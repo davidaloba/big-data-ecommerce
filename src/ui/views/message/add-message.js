@@ -121,7 +121,7 @@ const AddMessage = () => {
                                                         onChange={(e) => setPreacher(e.target.value)} required/>
                                                 </Form.Group>
                                                     <div className="col-12 form_gallery form-group">
-                                                    <label id="gallery2" htmlFor="form_gallery-upload">{thumbnail ? `http://localhost:5000/${thumbnail}` : 'Upload Thumbnail'}</label>
+                                                    <label id="gallery2" htmlFor="form_gallery-upload">{thumbnail ? `http://${thumbnail}` : 'Upload Thumbnail'}</label>
 
                                                         <input data-name="#gallery2" id="form_gallery-upload" className="form_gallery-upload"
                                                         type="file" accept=".png, .jpg, .jpeg"
@@ -167,7 +167,7 @@ const AddMessage = () => {
                                                     <div className="form_video-upload">
                                                     <input type="file" accept="video/mp4,video/x-m4v,video/*" multiple
                                                         onChange={uploadVideoHandler} />
-                                                    <p>{video ? `http://localhost:5000/${video}` : 'Upload video'}</p>
+                                                    <p>{video ? `http://${video}` : 'Upload video'}</p>
                                                     {loadingUpload && <div>Uploading...</div>}
                                                     {errorUpload && (<div variant="danger">{errorUpload}</div>)}
                                                     </div>

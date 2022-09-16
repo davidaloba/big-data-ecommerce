@@ -152,7 +152,7 @@ const MessageList = () => {
                                                             <td>
                                                                 <div className="flex align-items-center list-user-action">
                                                                     <OverlayTrigger placement="top" overlay={<Tooltip>View</Tooltip>}>
-                                                                        <a className="iq-bg-warning" href={`http://localhost:5000/${message.video}`} target='_blank' rel="noreferrer"><i className="lar la-eye"></i></a>
+                                                                        <a className="iq-bg-warning" href={`http://${message.video}`} target='_blank' rel="noreferrer"><i className="lar la-eye"></i></a>
                                                                     </OverlayTrigger>
                                                                     <OverlayTrigger placement="top" overlay={<Tooltip>Edit</Tooltip>}>
                                                                         <Link className="iq-bg-success"
