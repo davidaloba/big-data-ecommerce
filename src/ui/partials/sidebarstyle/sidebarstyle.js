@@ -86,7 +86,7 @@ const SidebarStyle = (props) => {
                     <nav className="iq-sidebar-menu">
                         <Accordion as="ul" id="iq-sidebar-toggle" className="iq-menu" onSelect={(e) => setActiveMenu(e)}>
                             <li className={`${location.pathname === '/' ? 'active' : ''} `}>
-                                <Link to="/" className="text-primary">
+                                <Link to="https://omegagospeltv.com" className="text-primary">
                                     <i className="ri-arrow-right-line"></i>
                                     <span>Visit site</span>
                                 </Link>
