@@ -1,5 +1,9 @@
 import React from 'react'
 
 export const CommingSoon = () => {
-  return <></>
+  return (
+    <>
+      <h1>COMMING SOON</h1>
+    </>
+  )
 }

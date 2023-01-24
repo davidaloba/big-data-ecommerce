@@ -12,7 +12,8 @@ const AppLayout = () => {
         <HeaderStyle />
         <div
           className="content-page"
-          id="content-page">
+          id="content-page"
+        >
           <AppRoute />
         </div>
       </div>

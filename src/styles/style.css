@@ -456,7 +456,7 @@ Sign In
 .sign-in-page {
   height: 100vh;
   position: relative;
-  background: url('../images/login/login.jpg') no-repeat scroll 0 0;
+  background: url('/images/login/login.jpg') no-repeat scroll 0 0;
   background-size: cover;
 }
 .sign-in-page .height-self-center {
