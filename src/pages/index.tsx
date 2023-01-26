@@ -1,15 +1,11 @@
-import React from 'react'
-import { Provider } from 'react-redux'
-import { store } from '../store'
+import Layout from './layout'
 
-import { CommingSoon } from './commingsoon'
-
-const Home = () => (
-  <React.Fragment>
-    <Provider store={store}>
-      <CommingSoon />
-    </Provider>
-  </React.Fragment>
-)
-
-export default Home
+export default function Home() {
+  return (
+    <Layout title="Home Page">
+      <div className=" text-9xl">
+        <h1>COMING SOON</h1>
+      </div>
+    </Layout>
+  )
+}

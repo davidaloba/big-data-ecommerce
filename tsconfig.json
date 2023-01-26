@@ -6,11 +6,7 @@
     "forceConsistentCasingInFileNames": true,
     "strict": false,
     "skipLibCheck": true,
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
     "noFallthroughCasesInSwitch": true,
@@ -19,12 +15,15 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "preserve",
-    "incremental": true
+    "incremental": true,
+    "paths": {
+      "@components/*": ["./src/global/components/*"],
+      "@styles/*": ["./src/global/styles/*"],
+      "@store/*": ["./src/global/store/*"],
+      "@modules/*": ["./src/modules/*"],
+      "@content/*": ["./src/content/*"]
+    }
   },
-  "include": [
-    "src"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["src", "reportWebVitals.ts", "test", "store", "src/pages"],
+  "exclude": ["node_modules"]
 }
