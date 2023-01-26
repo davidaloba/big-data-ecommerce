@@ -1,11 +1,11 @@
-import Layout from './layout'
+import PageLayout from '@components/marketing/layout'
 
 export default function Home() {
   return (
-    <Layout title="Home Page">
+    <PageLayout title="Home Page">
       <div className=" text-9xl">
         <h1>COMING SOON</h1>
       </div>
-    </Layout>
+    </PageLayout>
   )
 }

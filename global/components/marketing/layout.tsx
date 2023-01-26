@@ -1,6 +1,6 @@
 import React from 'react'
 
-const Layout = ({ children, title }) => {
+const PageLayout = ({ children, title }) => {
   return (
     <>
       <div className="wrapper">
@@ -11,4 +11,4 @@ const Layout = ({ children, title }) => {
   )
 }
 
-export default Layout
+export default PageLayout

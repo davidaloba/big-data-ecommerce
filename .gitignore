@@ -1,21 +1,48 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+# @generated: @expo/next-adapter@2.1.0
+node_modules/**/*
+.expo/*
+npm-debug.*
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+web-build/
+web-report/
 
-# dependencies
-.next
-/node_modules
-/.pnp
-.pnp.js
+# debug
+yarn-debug.log*
+yarn-error.log*
 
-# testing
-/coverage
-
-
+# macOS
+.DS_Store
 
 # misc
 .DS_Store
 .env*
 
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
-*crt
+.next
+
+# @generated: @expo/next-adapter@2.1.52
+/.expo/*
+# Expo Web
+/web-build/*
+# Expo Native
+*.jks
+*.p8
+*.p12
+*.key
+*.mobileprovision
+*.orig.*
+# Next.js
+/.next/*
+/out/
+# Next.js production
+/build/
+# Next.js dependencies
+/.pnp
+.pnp.js
+# @end @expo/next-adapter
+node_modules
+node_modules
