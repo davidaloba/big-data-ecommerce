@@ -1,6 +1,6 @@
-import Product from '../../modules/products/model'
-import data from '../../content/data'
-import db from '../../global/utils/db'
+import Product from '@modules/products/model'
+import data from '@content/data'
+import db from '@utils/db'
 
 const handler = async (req, res) => {
   await db.connect()

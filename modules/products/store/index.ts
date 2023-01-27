@@ -1,17 +1,21 @@
 import { createSlice, PayloadAction, createAsyncThunk } from '@reduxjs/toolkit'
 
 // First, create the thunk
-const fetchById = async (id) => {}
+const fetchById = async (id) => {
+  return {}
+}
 const fetchUserById = createAsyncThunk('users/fetchByIdStatus', async (userId, thunkAPI) => {
   const response = await fetchById(userId)
   return response.data
 })
 interface IProducts {
   loading: boolean
+  products: []
 }
 
 const initialState: IProducts = {
-  loading: true
+  loading: true,
+  products: []
 }
 
 const productsSlice = createSlice({

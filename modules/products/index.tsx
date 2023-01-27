@@ -8,6 +8,10 @@ export default function App() {
   // Individual hooks are also accessible under the generated endpoints:
   // const { data, error, isLoading } = pokemonApi.endpoints.getPokemonByName.useQuery('bulbasaur')
 
+  // useSelector: components need general (normalized) format
+  // selectFromResult: some consumers of the endpoint only need partial data, such as a filtered list
+  // per-component / useMemo: when only some specific components need to transform the cached data
+
   return (
     <div className="App">
       {error ? (
