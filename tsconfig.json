@@ -17,14 +17,14 @@
     "jsx": "preserve",
     "incremental": true,
     "paths": {
-      "@components/*": ["./global/components/*"],
-      "@styles/*": ["./global/styles/*"],
-      "@store/*": ["./global/store/*"],
-      "@utils/*": ["./global/utils/*"],
-      "@modules/*": ["./modules/*"],
-      "@content/*": ["./content/*"]
+      "@components/*": ["/global/components/*"],
+      "@styles/*": ["/global/styles/*"],
+      "@store/*": ["/global/store/*"],
+      "@utils/*": ["/global/utils/*"],
+      "@modules/*": ["/modules/*"],
+      "@content/*": ["/content/*"]
     }
   },
-  "include": ["src", "reportWebVitals.ts", "test", "store", "pages"],
+  "include": ["content", "modules", "global", "pages"],
   "exclude": ["node_modules"]
 }
