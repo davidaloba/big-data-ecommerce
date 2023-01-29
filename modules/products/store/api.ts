@@ -1,6 +1,6 @@
 import { createEntityAdapter, createSelector } from '@reduxjs/toolkit'
 
-import api from '../../../global/store/api'
+import api from '@store/api'
 
 const usersAdapter = createEntityAdapter()
 const initialState = usersAdapter.getInitialState()

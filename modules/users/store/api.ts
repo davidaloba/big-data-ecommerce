@@ -1,4 +1,4 @@
-import { api } from '../../../global/store'
+import { api } from '@store'
 
 const usersApi = api.injectEndpoints({
   endpoints: (build) => ({

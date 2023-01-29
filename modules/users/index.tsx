@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useGetUsersQuery } from './store/api'
+import { useGetUsersQuery } from '@store/api'
 
 export default function App() {
   // Using a query hook automatically fetches data and returns query values

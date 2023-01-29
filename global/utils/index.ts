@@ -1,6 +1,6 @@
-import type { RootState } from '../store'
-import { useAppSelector, useAppDispatch } from '../store'
-import { setLoading } from '../store/actions'
+import type { RootState } from '@store'
+import { useAppSelector, useAppDispatch } from '@store'
+import { setLoading } from '@store/actions'
 
 const state = useAppSelector((state: RootState) => state)
 const dispatch = useAppDispatch()
