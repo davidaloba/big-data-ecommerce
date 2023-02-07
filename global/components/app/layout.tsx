@@ -10,8 +10,7 @@ const AppLayout = ({ children }) => {
         <HeaderStyle />
         <div
           className="content-page"
-          id="content-page"
-        >
+          id="content-page">
           {children}
         </div>
       </div>

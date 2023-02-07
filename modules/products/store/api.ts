@@ -48,9 +48,11 @@ export const { useGetProductsQuery, useGetProductQuery } = productsApi
 // To generate a selector for a specific query argument, call `select(theQueryArg)`.
 // In this case, the users query has no params, so we don't pass anything to select()
 export const selectUsersResult = productsApi.endpoints.getproducts.select()
-const selectUsersData = createSelector(selectUsersResult, (usersResult) => usersResult.data)
-export const { selectAll: selectAllUsers, selectById: selectUserById } = usersAdapter.getSelectors(
-  (state) => selectUsersData(state) ?? initialState
+const selectUsersData = createSelector(
+  selectUsersResult,
+  (usersResult) => usersResult.data
 )
+export const { selectAll: selectAllUsers, selectById: selectUserById } =
+  usersAdapter.getSelectors((state) => selectUsersData(state) ?? initialState)
 
 // transformResponse: all consumers of the endpoint want a specific format, such as normalizing the response to enable faster lookups by ID

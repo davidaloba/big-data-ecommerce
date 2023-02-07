@@ -42,8 +42,7 @@ export default function ProductScreen(props) {
             alt={product.name}
             width={640}
             height={640}
-            layout="responsive"
-          ></Image>
+            layout="responsive"></Image>
         </div>
         <div>
           <ul>
@@ -70,8 +69,7 @@ export default function ProductScreen(props) {
             </div>
             <button
               className="primary-button w-full"
-              onClick={addToCartHandler}
-            >
+              onClick={addToCartHandler}>
               Add to cart
             </button>
           </div>

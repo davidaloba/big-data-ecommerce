@@ -27,5 +27,5 @@
     }
   },
   "include": ["content", "modules", "global", "pages"],
-  "exclude": ["node_modules"]
+  "exclude": ["node_modules", ".next"]
 }

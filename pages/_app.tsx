@@ -17,7 +17,8 @@ import '@styles/global.css'
  */
 function App({ Component, pageProps }: AppProps) {
   const Layout =
-    (Component as any).layout || (({ children }: { children: ReactNode }) => <>{children}</>)
+    (Component as any).layout ||
+    (({ children }: { children: ReactNode }) => <>{children}</>)
 
   return (
     <>

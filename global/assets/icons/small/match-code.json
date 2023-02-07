@@ -2181,7 +2181,12 @@
               "nm": "Path 6",
               "mn": "ADBE Vector Shape - Group"
             },
-            { "ty": "mm", "mm": 1, "nm": "Merge Paths 1", "mn": "ADBE Vector Filter - Merge" },
+            {
+              "ty": "mm",
+              "mm": 1,
+              "nm": "Merge Paths 1",
+              "mn": "ADBE Vector Filter - Merge"
+            },
             {
               "ty": "fl",
               "c": { "a": 0, "k": [0.247, 0.212, 0.192, 1] },

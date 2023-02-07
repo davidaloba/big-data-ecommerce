@@ -1,5 +1,9 @@
 import AppLayout from '@components/app/layout'
-import { ClientRouterProvider, ClientRouter, ClientRoute } from '@components/app/router'
+import {
+  ClientRouterProvider,
+  ClientRouter,
+  ClientRoute
+} from '@components/app/router'
 
 export default function Home() {
   return (

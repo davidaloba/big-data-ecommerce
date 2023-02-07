@@ -34,7 +34,12 @@ interface LinkProps extends ComponentProps<'a'> {
   replace?: boolean
 }
 
-export const ClientLink = ({ children, to, replace, ...restProps }: LinkProps) => {
+export const ClientLink = ({
+  children,
+  to,
+  replace,
+  ...restProps
+}: LinkProps) => {
   const handleClick: MouseEventHandler<HTMLAnchorElement> = (e) => {
     e.preventDefault()
     window.history.pushState({}, '', to)
@@ -45,8 +50,7 @@ export const ClientLink = ({ children, to, replace, ...restProps }: LinkProps) =
     <a
       href={to}
       onClick={handleClick}
-      {...restProps}
-    >
+      {...restProps}>
       {children}
     </a>
   )
@@ -56,7 +60,10 @@ interface RouterProps {
   whileLoading?: JSX.Element
 }
 
-export const ClientRouter = ({ children, whileLoading }: PropsWithChildren<RouterProps>) => {
+export const ClientRouter = ({
+  children,
+  whileLoading
+}: PropsWithChildren<RouterProps>) => {
   const { setRoute } = useContext(ClientRouterContext)
   const [loading, setLoading] = useState(true)
 
@@ -90,8 +97,7 @@ export const ClientRouterProvider = ({ children }: PropsWithChildren<{}>) => {
       value={{
         route,
         setRoute
-      }}
-    >
+      }}>
       {children}
     </ClientRouterContext.Provider>
   )

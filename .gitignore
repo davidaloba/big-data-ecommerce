@@ -46,3 +46,4 @@ yarn-error.log*
 # @end @expo/next-adapter
 node_modules
 node_modules
+.history
