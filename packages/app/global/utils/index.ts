@@ -1,6 +1,6 @@
 import type { RootState } from '@store'
 import { useAppSelector, useAppDispatch } from '@store'
-import { setLoading } from '@store/actions'
+import { setLoading } from '@app/global/store/slice'
 
 const state = useAppSelector((state: RootState) => state)
 const dispatch = useAppDispatch()
