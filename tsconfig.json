@@ -28,7 +28,7 @@
       "@store/*": ["packages/app/global/store/*"],
       "@styles/*": ["packages/app/global/styles/*"],
       "@types/*": ["packages/app/global/types/*"],
-      "@utils/*": ["packages/app/global/utils/*"],
+      "@utils/*": ["packages/app/global/utils/*"]
     }
   },
   "include": ["packages", "pages", "next.config.js"],

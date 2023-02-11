@@ -1,43 +1,47 @@
-import React, { ReactNode } from 'react'
-import Head from 'next/head'
-import { AppProps } from 'next/app'
-// import { CookiesProvider } from 'react-cookie'
-// import { appWithTranslation } from 'next-i18next'
-import { Provider } from 'react-redux'
-import { store } from '@store/index'
+import App from 'next/app'
+import ErrorPage from 'next/error'
+// Store
+import { QueryClient, QueryClientProvider } from 'react-query' // replace with: import { Provider } from 'react-redux'
+const queryClient = new QueryClient() // replace with: import { store } from '@store/index'
+// Styles
+import 'tailwindcss/tailwind.css'
+// Utils
+import { getStrapiURL } from '@utils/index' // for fetching data from server
+import { getLocalizedParams } from '@utils/localize' // for fetching site language from url query
 
-import '@styles/global.css'
+MyApp.getInitialProps = async (appContext) => {
+  // Get default App props
+  const appProps = await App.getInitialProps(appContext)
+  // Get global data attributes from server(strapi)
+  const { locale } = getLocalizedParams(appContext.ctx.query)
+  try {
+    const res = await fetch(
+      getStrapiURL(
+        `/global?populate[navigation][populate]=*&populate[footer][populate][footerColumns][populate]=*&locale=${locale}`
+      )
+    )
+    const globalData = await res.json()
+    const globalDataAttributes = globalData.data.attributes
+    // Add global data attributes to appProps as pageProps
+    return { ...appProps, pageProps: { global: globalDataAttributes } }
+  } catch (error) {
+    return { ...appProps }
+  }
+}
 
-/**
- * Next.js Docs
- * @see https://nextjs.org/docs/advanced-features/custom-app
- *
- * Layout pattern is inspired by
- * @see https://adamwathan.me/2019/10/17/persistent-layout-patterns-in-nextjs/
- */
-function App({ Component, pageProps }: AppProps) {
-  const Layout =
-    (Component as any).layout ||
-    (({ children }: { children: ReactNode }) => <>{children}</>)
+function MyApp({ Component, pageProps }) {
+  const { global } = pageProps
+  if (global === null) {
+    return <ErrorPage statusCode={404} />
+  }
 
   return (
     <>
-      <Head>
-        <meta
-          name="viewport"
-          content="width=device-width, initial-scale=1, shrink-to-fit=no"
-        />
-      </Head>
-      {/* <CookiesProvider> */}
-      <Provider store={store}>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </Provider>
-      {/* </CookiesProvider> */}
+      <QueryClientProvider client={queryClient}>
+        <Component {...pageProps} />
+      </QueryClientProvider>
     </>
   )
 }
 
-// export default appWithTranslation(App)
-export default App
+export default MyApp
