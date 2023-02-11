@@ -1,8 +1,10 @@
 import App from 'next/app'
 import ErrorPage from 'next/error'
 // Store
-import { QueryClient, QueryClientProvider } from 'react-query' // replace with: import { Provider } from 'react-redux'
-const queryClient = new QueryClient() // replace with: import { store } from '@store/index'
+import { QueryClient, QueryClientProvider } from 'react-query' // replace with:
+const queryClient = new QueryClient()
+import { Provider } from 'react-redux'
+import { store } from '@store/index'
 // Styles
 import 'tailwindcss/tailwind.css'
 // Utils
@@ -37,9 +39,11 @@ function MyApp({ Component, pageProps }) {
 
   return (
     <>
-      <QueryClientProvider client={queryClient}>
-        <Component {...pageProps} />
-      </QueryClientProvider>
+      <Provider store={store}>
+        <QueryClientProvider client={queryClient}>
+          <Component {...pageProps} />
+        </QueryClientProvider>
+      </Provider>
     </>
   )
 }
