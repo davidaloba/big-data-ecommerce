@@ -57,22 +57,26 @@ export function getData(slug, locale, apiID, kind, preview) {
   const previewParams = preview
     ? '&publicationState=preview&published_at_null=true'
     : ''
-
+  // Single Page
   if (kind == 'collectionType') {
     let prefix = `/${apiID}s`
+    /// Static Page
     if (apiID == 'page') {
       prefix = ``
+      /// Dynamic Page
     } else if (apiID == 'article') {
       prefix = `/blog`
     }
     const slugToReturn = `${prefix}/${slug}?lang=${locale}`
+
     const apiUrl = `/${apiID}s?filters[slug][$eq]=${slug}&locale=${locale}${previewParams}&populate[blocks][populate]=members.picture,header,buttons.link,faq,featuresCheck,cards,pricingCards.perks,articles,restaurants,author.picture,images,cards.image,image&populate=localizations&populate[seo][populate]=metaSocial.image`
 
     return {
       data: getStrapiURL(apiUrl),
       slug: slugToReturn
     }
-  } else {
+  } // Collection(Index) Page
+  else {
     const apiUrl = `/${apiID}?locale=${locale}${previewParams}&populate[blocks][populate]=*,buttons.link&populate=localizations&populate[header]=*&populate[seo]=metaSocial`
 
     if (apiID.includes('-page')) {

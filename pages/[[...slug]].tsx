@@ -1,6 +1,6 @@
 import ErrorPage from 'next/error'
 import Layout from '@components/layouts/layout'
-import BlockManager from '@components/blocks/BlockManager'
+import SectionManager from '@components/sections/SectionManager'
 import { getData, handleRedirection } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 // import PageLayout from '@components/layouts/layout'
@@ -47,7 +47,7 @@ const Universals = ({ global, pageData, preview }) => {
       pageData={pageData}
       type="pages"
       preview={preview}>
-      {blocks && <BlockManager blocks={blocks} />}
+      {blocks && <SectionManager blocks={blocks} />}
     </Layout>
   )
 }

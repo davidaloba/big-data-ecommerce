@@ -1,4 +1,3 @@
-import delve from 'dlv'
 import Link from 'next/link'
 
 const Cta = ({ title, text, buttons, theme }) => {

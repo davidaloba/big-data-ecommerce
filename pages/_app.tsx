@@ -1,8 +1,6 @@
 import App from 'next/app'
 import ErrorPage from 'next/error'
 // Store
-import { QueryClient, QueryClientProvider } from 'react-query' // replace with:
-const queryClient = new QueryClient()
 import { Provider } from 'react-redux'
 import { store } from '@store/index'
 // Styles
@@ -40,9 +38,7 @@ function MyApp({ Component, pageProps }) {
   return (
     <>
       <Provider store={store}>
-        <QueryClientProvider client={queryClient}>
-          <Component {...pageProps} />
-        </QueryClientProvider>
+        <Component {...pageProps} />
       </Provider>
     </>
   )

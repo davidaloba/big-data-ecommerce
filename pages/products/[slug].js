@@ -2,6 +2,7 @@ import { getStrapiURL, handleRedirection } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 import Layout from '@components/layouts/layout'
 import Product from '@modules/products/product'
+import SectionManager from '@components/sections/SectionManager'
 
 export async function getServerSideProps(context) {
   const { locale } = getLocalizedParams(context.query)
@@ -32,6 +33,7 @@ export async function getServerSideProps(context) {
 }
 
 const Products = ({ global, preview, pageData }) => {
+  const blocks = pageData.attributes.blocks
   return (
     <>
       <Layout
@@ -40,6 +42,7 @@ const Products = ({ global, preview, pageData }) => {
         preview={preview}
         type="restaurant">
         <Product pageData={{ ...pageData }} />
+        {blocks && <SectionManager blocks={blocks} />}
       </Layout>
     </>
   )

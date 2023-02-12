@@ -2,7 +2,7 @@ import { getData, getStrapiURL, handleRedirection } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 
 import Layout from '@components/layouts/layout'
-import BlockManager from '@components/blocks/BlockManager'
+import BlockManager from '@components/sections/SectionManager'
 import Articles from '@modules/blog/Articles'
 
 // This gets called on every request
@@ -64,7 +64,6 @@ const Blog = ({
   preview
 }) => {
   const blocks = pageData.attributes.blocks
-
   return (
     <Layout
       global={global}

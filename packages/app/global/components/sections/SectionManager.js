@@ -69,12 +69,12 @@ const getBlockComponent = ({ __component, ...rest }, index) => {
   ) : null
 }
 
-const BlockManager = ({ blocks }) => {
+const SectionManager = ({ blocks }) => {
   return <div>{blocks.map(getBlockComponent)}</div>
 }
 
-BlockManager.defaultProps = {
+SectionManager.defaultProps = {
   blocks: []
 }
 
-export default BlockManager
+export default SectionManager

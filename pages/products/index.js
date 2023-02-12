@@ -2,7 +2,7 @@ import { getData, getStrapiURL, handleRedirection } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 
 import Layout from '@components/layouts/layout'
-import BlockManager from '@components/blocks/BlockManager'
+import SectionManager from '@components/sections/SectionManager'
 import Products from '@modules/products/products'
 
 // This gets called on every request
@@ -20,7 +20,7 @@ export async function getServerSideProps(context) {
   try {
     const resProductPage = await fetch(data.data)
     const productPage = await resProductPage.json()
-    const perPage = productPage.productsPerPage || 12
+    const perPage = productPage.restaurantsPerPage || 12
 
     const resProducts = await fetch(
       getStrapiURL(
@@ -87,14 +87,14 @@ const Product = ({
       type="restaurant-page"
       preview={preview}>
       <Products
-        initialData={initialData}
         pageData={pageData}
+        initialData={initialData}
         categories={categories}
         places={places}
         locale={locale}
         perPage={perPage}
       />
-      {blocks && <BlockManager blocks={blocks} />}
+      {blocks && <SectionManager blocks={blocks} />}
     </Layout>
   )
 }
