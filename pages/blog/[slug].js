@@ -1,28 +1,29 @@
 import ArticleContent from '@modules/blog/Article'
 import Layout from '@components/layouts/layout'
 
-import { getStrapiURL, handleRedirection } from '@utils/index'
+import { getData, handleRedirection } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 
 // This gets called on every request
 export async function getServerSideProps(context) {
-  const { locale } = getLocalizedParams(context.query)
-  const preview = context.preview
-    ? '&publicationState=preview&published_at_null=true'
-    : ''
-  const res = await fetch(
-    getStrapiURL(
-      `/articles?filters[slug]=${context.params.slug}&locale=${locale}${preview}&populate=localizations,image,author.picture,blocks.articles.image,blocks.faq,blocks.header`
-    )
-  )
-  const json = await res.json()
+  const { slug, locale } = getLocalizedParams(context.query)
+  const data = getData(slug, 'article', 'single', locale, context.preview)
 
-  if (!json.data.length) {
-    return handleRedirection(context.params.slug, context.preview, 'blog')
-  }
+  try {
+    const res = await fetch(data.url)
+    const json = await res.json()
 
-  return {
-    props: { pageData: json.data[0], preview: context.preview || null }
+    if (!json.data.length) {
+      return handleRedirection(context.preview, null)
+    }
+
+    return {
+      props: { pageData: json.data[0], preview: context.preview || null }
+    }
+  } catch (error) {
+    return {
+      props: { pageData: null }
+    }
   }
 }
 

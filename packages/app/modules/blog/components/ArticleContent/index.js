@@ -7,8 +7,8 @@ import { getStrapiMedia } from '@utils/index'
 
 const ArticleContent = ({ attributes }) => {
   const title = attributes.title
-  const image = attributes.image
-  const content = attributes.ckeditor_content
+  const image = attributes.main.image
+  const content = attributes.main.content.ckeditor_content
   const locale = attributes.locale
 
   return (

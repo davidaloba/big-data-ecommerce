@@ -1,13 +1,13 @@
 import { useState } from 'react'
 import { useGetProductsQuery } from './store/api'
 
-import BlockManager from './components/blocks/BlockManager'
+import BlockManager from '@components/blocks/BlockManager'
 import ProductCard from './components/__lib/ProductCard'
-import NoResults from '@components/special/no-results'
+import NoResults from '@components/pages/no-results'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 
-const Products = ({ pageData, categories, places, locale, perPage }) => {
+const Store = ({ pageData, categories, places, locale, perPage }) => {
   const [placeId, setPlaceId] = useState(null)
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
@@ -18,15 +18,15 @@ const Products = ({ pageData, categories, places, locale, perPage }) => {
   const categoryText = pageData.attributes.categoryText
 
   const key = {
-    tag: 'restaurants',
+    tag: 'store',
     category: categoryId,
     locale: locale,
     place: placeId,
     page: pageNumber,
     perPage
   }
-  const { data: products, isSuccess, refetch } = useGetProductsQuery(key)
-  const lastPage = (products && Math.ceil(products.length / perPage)) || 1
+  const { data: store, isSuccess, refetch } = useGetProductsQuery(key)
+  const lastPage = (store && Math.ceil(store.length / perPage)) || 1
 
   return (
     <>
@@ -74,13 +74,13 @@ const Products = ({ pageData, categories, places, locale, perPage }) => {
 
           <NoResults
             status={isSuccess}
-            length={products && products}
+            length={store && store}
           />
 
           <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-16 mt-24 px-4">
             {isSuccess &&
-              products &&
-              products.map((product, index) => (
+              store &&
+              store.map((product, index) => (
                 <ProductCard
                   {...product.attributes}
                   locale={locale}
@@ -89,7 +89,7 @@ const Products = ({ pageData, categories, places, locale, perPage }) => {
               ))}
           </div>
 
-          {products.length > 0 && (
+          {store.length > 0 && (
             <div className="grid grid-cols-3 gap-4 my-24">
               <div className="col-start-2 col-end-3">
                 <div className="flex items-center">
@@ -131,4 +131,4 @@ const Products = ({ pageData, categories, places, locale, perPage }) => {
   )
 }
 
-export default Products
+export default Store

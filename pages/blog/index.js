@@ -2,17 +2,18 @@ import { getData, getStrapiURL, handleRedirection } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 
 import Layout from '@components/layouts/layout'
-import BlockManager from '@components/sections/SectionManager'
+import BlockManager from '@components/blocks/BlockManager'
 import Articles from '@modules/blog/Articles'
 
 // This gets called on every request
 export async function getServerSideProps(context) {
   const { slug, locale } = getLocalizedParams(context.query)
-  const data = getData(null, locale, 'blog-page', 'singleType', context.preview)
+  const data = getData(null, 'blog', 'index', locale, context.preview)
 
   try {
-    const resBlogPage = await fetch(data.data)
+    const resBlogPage = await fetch(data.url)
     const blogPage = await resBlogPage.json()
+
     const perPage = blogPage.articlesPerPage || 12
 
     const resArticles = await fetch(
@@ -68,7 +69,7 @@ const Blog = ({
     <Layout
       global={global}
       pageData={pageData}
-      type="blog-page"
+      type="blog"
       preview={preview}>
       <Articles
         initialData={initialData}

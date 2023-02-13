@@ -1,38 +1,32 @@
-import { getStrapiURL, handleRedirection } from '@utils/index'
+import { getData, handleRedirection } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 import Layout from '@components/layouts/layout'
-import Product from '@modules/products/product'
-import SectionManager from '@components/sections/SectionManager'
+import Product from '@modules/store/product'
+import BlockManager from '@components/sections/BlockManager'
 
 export async function getServerSideProps(context) {
-  const { locale } = getLocalizedParams(context.query)
-  const preview = context.preview
-    ? '&publicationState=preview&published_at_null=true'
-    : ''
-  const res = await fetch(
-    getStrapiURL(
-      `/restaurants?filters[slug]=${context.params.slug}&locale=${locale}${preview}&populate[reviews][populate]=author,author.picture&populate[information][populate]=opening_hours,location&populate[images][fields]=url&populate[category][fields]=name&populate[localizations]=*&populate[socialNetworks]=*&populate[blocks][populate]=restaurants.images,header,faq,buttons.link`
-    )
-  )
-  const json = await res.json()
+  const { slug, locale } = getLocalizedParams(context.query)
+  const data = getData(slug, 'product', 'single', locale, context.preview)
 
-  if (!json.data.length) {
-    return handleRedirection(
-      context.params.slug,
-      context.preview,
-      'restaurants'
-    )
-  }
+  try {
+    const res = await fetch(data.url)
+    const json = await res.json()
 
-  return {
-    props: {
-      pageData: json.data[0],
-      preview: context.preview || null
+    if (!json.data.length) {
+      return handleRedirection(context.preview, null)
+    }
+
+    return {
+      props: { pageData: json.data[0], preview: context.preview || null }
+    }
+  } catch (error) {
+    return {
+      props: { pageData: null }
     }
   }
 }
 
-const Products = ({ global, preview, pageData }) => {
+const Store = ({ global, preview, pageData }) => {
   const blocks = pageData.attributes.blocks
   return (
     <>
@@ -40,12 +34,12 @@ const Products = ({ global, preview, pageData }) => {
         global={global}
         pageData={pageData}
         preview={preview}
-        type="restaurant">
+        type="product">
         <Product pageData={{ ...pageData }} />
-        {blocks && <SectionManager blocks={blocks} />}
+        {blocks && <BlockManager blocks={blocks} />}
       </Layout>
     </>
   )
 }
 
-export default Products
+export default Store

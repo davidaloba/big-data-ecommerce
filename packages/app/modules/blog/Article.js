@@ -1,20 +1,11 @@
-import dynamic from 'next/dynamic'
-import BlockManager from './components/blocks/BlockManager'
-
-const ArticleContent = dynamic(
-  () => import('./components/blocks/ArticleContent'),
-  {
-    ssr: false
-  }
-)
+import RelatedArticles from './components/RelatedArticles'
+import ArticleContent from './components/ArticleContent'
 
 const Article = ({ ...pageData }) => {
-  const blocks = pageData.attributes.blocks
-
   return (
     <>
       <ArticleContent {...pageData} />
-      {blocks && <BlockManager blocks={blocks} />}
+      <RelatedArticles {...pageData} />
     </>
   )
 }

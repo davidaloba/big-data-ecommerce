@@ -11,8 +11,8 @@ export function localizePath(localePage, type) {
   const { locale, slug } = localePage
 
   switch (type) {
-    case 'restaurant':
-      return `/restaurants/${slug}?lang=${locale}`
+    case 'product':
+      return `/store/${slug}?lang=${locale}`
     case 'article':
       return `/blog/${slug}?lang=${locale}`
 
@@ -25,14 +25,14 @@ function getUrl(type, localization, targetLocale) {
   switch (type) {
     case 'pages':
       return `/pages/${localization.id}`
-    case 'restaurant-page':
-      return `/restaurant-page?locale=${targetLocale}`
-    case 'blog-page':
-      return `/blog-page?locale=${targetLocale}`
+    case 'store':
+      return `/store?locale=${targetLocale}`
+    case 'blog':
+      return `/blog?locale=${targetLocale}`
     case 'article':
       return `/articles/${localization.id}?locale=${targetLocale}`
-    case 'restaurant':
-      return `/restaurants/${localization.id}?locale=${targetLocale}`
+    case 'product':
+      return `/store/${localization.id}?locale=${targetLocale}`
     default:
       break
   }

@@ -14,7 +14,7 @@ const ProductCard = ({
   const categoryName = category ? category.data.attributes.name : ''
   const description = information ? information.description : ''
   return (
-    <Link href={`products/${slug}?lang=${locale}`}>
+    <Link href={`store/${slug}?lang=${locale}`}>
       <div className="overflow-hidden shadow-lg rounded-lg h-90 w-full cursor-pointer">
         <img
           alt={images.data[0].attributes.alternativeText}

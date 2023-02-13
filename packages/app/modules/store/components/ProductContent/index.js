@@ -6,13 +6,12 @@ import Information from './information'
 import OpeningHours from './opening-hours'
 import Price from './price'
 import Gallery from './gallery.js'
-import ReviewSummary from './review-summary'
+import ReviewSummary from './Reviews/review-summary'
 import OverallRating from './Reviews/overall-rating'
 import Reviews from './Reviews/reviews'
 import Stars from './stars'
 
-const ProductContent = ({ pageData }) => {
-  const { attributes } = pageData.pageData
+const ProductContent = ({ attributes }) => {
   const name = attributes.name
   const price = attributes.price
   const locale = attributes.locale
@@ -29,7 +28,7 @@ const ProductContent = ({ pageData }) => {
   return (
     <Container>
       <section className="text-gray-600 body-font overflow-hidden mt-40">
-        <Link href={`products?lang=${locale}`}>
+        <Link href={`store?lang=${locale}`}>
           <button
             type="button"
             className="ml-2 py-4 px-6 bg-secondary hover:bg-secondary-darker text-white w-1/8 text-center text-base font-semibold shadow-sm rounded-md">

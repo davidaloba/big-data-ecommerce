@@ -60,7 +60,6 @@ const getBlockComponent = ({ __component, ...rest }, index) => {
       Block = FeaturesWithImages
       break
   }
-
   return Block ? (
     <Block
       key={`index-${index}`}
@@ -69,12 +68,12 @@ const getBlockComponent = ({ __component, ...rest }, index) => {
   ) : null
 }
 
-const SectionManager = ({ blocks }) => {
+const BlockManager = ({ blocks }) => {
   return <div>{blocks.map(getBlockComponent)}</div>
 }
 
-SectionManager.defaultProps = {
+BlockManager.defaultProps = {
   blocks: []
 }
 
-export default SectionManager
+export default BlockManager

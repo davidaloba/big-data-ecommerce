@@ -2,7 +2,10 @@ import ArticleCard from '@modules/blog/components/__lib/ArticleCard'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 
-const RelatedArticles = ({ header, articles }) => {
+const RelatedArticles = ({ attributes }) => {
+  const header = attributes.main.related.header
+  const articles = attributes.main.related.articles
+
   return (
     <Container>
       <div className="bg-gray-100 my-40">

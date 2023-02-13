@@ -15,7 +15,7 @@ const productsApi = api.injectEndpoints({
         const placeName = key.place
         const start = +pageNumber === 1 ? 0 : (+pageNumber - 1) * perPage
 
-        let baseUrl = `/restaurants?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=images,category,place,information,seo`
+        let baseUrl = `/store?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=images,category,place,information,seo`
         if (categoryName) {
           baseUrl = `${baseUrl}&filters[category][name][$eq]=${categoryName}`
         }

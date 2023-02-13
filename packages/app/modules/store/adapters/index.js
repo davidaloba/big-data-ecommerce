@@ -16,6 +16,6 @@ export const productAdapter = ({
   }
 }
 
-export const productsAdapter = (products) => {
-  return products.map((product) => productAdapter({ ...product }))
+export const productsAdapter = (store) => {
+  return store.map((product) => productAdapter({ ...product }))
 }

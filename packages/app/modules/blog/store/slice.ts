@@ -13,33 +13,33 @@ const fetchUserById = createAsyncThunk(
 )
 interface IProducts {
   loading: boolean
-  products: []
+  store: []
 }
 
 const initialState: IProducts = {
   loading: true,
-  products: []
+  store: []
 }
 
 const productsSlice = createSlice({
-  name: 'products',
+  name: 'store',
 
   initialState,
 
   reducers: {
-    setLoading: (products, action: PayloadAction<boolean>) => {
-      products.loading = action.payload
+    setLoading: (store, action: PayloadAction<boolean>) => {
+      store.loading = action.payload
     }
   },
   extraReducers: (builder) => {
     // Add reducers for additional action types here, and handle loading state as needed
     builder.addCase(fetchUserById.fulfilled, (state, action) => {
       // Add user to the state array
-      state.products.push(action.payload)
+      state.store.push(action.payload)
     })
   }
 })
 
-// export const selectProducts = (state: RootState) => state.products
+// export const selectProducts = (state: RootState) => state.store
 export const { setLoading } = productsSlice.actions
 export default productsSlice.reducer

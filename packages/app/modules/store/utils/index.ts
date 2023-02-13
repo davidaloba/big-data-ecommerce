@@ -9,7 +9,7 @@ export async function getProducts(key) {
   const start = +pageNumber === 1 ? 0 : (+pageNumber - 1) * perPage
 
   let baseUrl = getStrapiURL(
-    `/restaurants?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=images,category,place,information,seo`
+    `/store?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=images,category,place,information,seo`
   )
 
   if (categoryName) {
@@ -25,10 +25,10 @@ export async function getProducts(key) {
   }
 
   const res = await fetch(baseUrl)
-  const products = await res.json()
+  const store = await res.json()
 
   return {
-    products: products.data,
-    count: products.meta.pagination.total
+    store: store.data,
+    count: store.meta.pagination.total
   }
 }

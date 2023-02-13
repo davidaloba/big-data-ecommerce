@@ -1,8 +1,8 @@
 import { useState } from 'react'
 import { useGetArticlesQuery } from './store/api'
-import BlockManager from './components//blocks/BlockManager'
+import BlockManager from '@components/blocks/BlockManager'
 import ArticleCard from './components/__lib/ArticleCard'
-import NoResults from '@components/special/no-results'
+import NoResults from '@components/pages/no-results'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 
