@@ -1,13 +1,27 @@
 import { useState } from 'react'
 import { useGetProductsQuery } from './store/api'
-
-import BlockManager from '@components/blocks/BlockManager'
 import ProductCard from './components/__lib/ProductCard'
-import NoResults from '@components/pages/no-results'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
+import NoResults from '@components/pages/no-results'
+import BlockManager from '@components/blocks/BlockManager'
 
-const Store = ({ pageData, categories, places, locale, perPage }) => {
+const Products = ({ pageData, locale, perPage }) => {
+  const resCategories = {
+    /*  await fetch(
+    getStrapiURL(`/categories?pagination[limit]=99`)
+  ) */
+  }
+  const categories = {
+    /* await resCategories.json() */
+  }
+  const resPlaces = {
+    /* await fetch(getStrapiURL(`/places?pagination[limit]=99`)) */
+  }
+  const places = {
+    /* await resPlaces.json() */
+  }
+
   const [placeId, setPlaceId] = useState(null)
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
@@ -25,8 +39,8 @@ const Store = ({ pageData, categories, places, locale, perPage }) => {
     page: pageNumber,
     perPage
   }
-  const { data: store, isSuccess, refetch } = useGetProductsQuery(key)
-  const lastPage = (store && Math.ceil(store.length / perPage)) || 1
+  const { data: products, isSuccess, refetch } = useGetProductsQuery(key)
+  const lastPage = (products && Math.ceil(products.length / perPage)) || 1
 
   return (
     <>
@@ -39,9 +53,7 @@ const Store = ({ pageData, categories, places, locale, perPage }) => {
                 className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                 onChange={(value) => setCategoryId(value.target.value)}>
                 <option value="">
-                  {categoryId
-                    ? 'Clear filter'
-                    : categoryText || 'Select a category'}
+                  {categoryId ? 'Clear filter' : categoryText || 'Select a category'}
                 </option>
                 {categories &&
                   categories.map((category, index) => (
@@ -57,9 +69,7 @@ const Store = ({ pageData, categories, places, locale, perPage }) => {
               <select
                 className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                 onChange={(value) => setPlaceId(value.target.value)}>
-                <option value="">
-                  {placeId ? 'Clear filter' : placeText || 'Select a place'}
-                </option>
+                <option value="">{placeId ? 'Clear filter' : placeText || 'Select a place'}</option>
                 {places &&
                   places.map((place, index) => (
                     <option
@@ -74,13 +84,13 @@ const Store = ({ pageData, categories, places, locale, perPage }) => {
 
           <NoResults
             status={isSuccess}
-            length={store && store}
+            length={products && products}
           />
 
           <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-16 mt-24 px-4">
             {isSuccess &&
-              store &&
-              store.map((product, index) => (
+              products &&
+              products.map((product, index) => (
                 <ProductCard
                   {...product.attributes}
                   locale={locale}
@@ -89,7 +99,7 @@ const Store = ({ pageData, categories, places, locale, perPage }) => {
               ))}
           </div>
 
-          {store.length > 0 && (
+          {products.length > 0 && (
             <div className="grid grid-cols-3 gap-4 my-24">
               <div className="col-start-2 col-end-3">
                 <div className="flex items-center">
@@ -109,9 +119,7 @@ const Store = ({ pageData, categories, places, locale, perPage }) => {
                   <button
                     type="button"
                     className={`${
-                      pageNumber >= lastPage
-                        ? 'cursor-not-allowed opacity-50'
-                        : ''
+                      pageNumber >= lastPage ? 'cursor-not-allowed opacity-50' : ''
                     } w-full p-4 border-t border-b border-r text-base rounded-r-xl text-gray-600 bg-white hover:bg-gray-100 focus:outline-none`}
                     onClick={() => {
                       setPageNumber(pageNumber + 1)
@@ -131,4 +139,4 @@ const Store = ({ pageData, categories, places, locale, perPage }) => {
   )
 }
 
-export default Store
+export default Products

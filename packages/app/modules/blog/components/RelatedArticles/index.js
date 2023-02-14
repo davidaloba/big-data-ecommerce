@@ -2,9 +2,9 @@ import ArticleCard from '@modules/blog/components/__lib/ArticleCard'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 
-const RelatedArticles = ({ attributes }) => {
-  const header = attributes.main.related.header
-  const articles = attributes.main.related.articles
+const RelatedArticles = ({ related }) => {
+  const header = related.header
+  const articles = related.articles
 
   return (
     <Container>

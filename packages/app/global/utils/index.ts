@@ -9,42 +9,51 @@ export function getStrapiMedia(url) {
 }
 
 export function getStrapiURL(path) {
-  return `${
-    process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'
-  }/api${path}`
+  return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'}/api${path}`
 }
 
-export function getData(slug, type, kind, locale, preview) {
-  const previewParams = preview
-    ? '&publicationState=preview&published_at_null=true'
-    : ''
-  // Single Page
-  const apiID = type
-  if (kind == 'single') {
-    if (type === 'product') {
-      const apiUrl = `/${apiID}s?filters[slug]=${slug}&locale=${locale}${previewParams}&populate[reviews][populate]=author,author.picture&populate[information][populate]=opening_hours,location&populate[images][fields]=url&populate[category][fields]=name&populate[localizations]=*&populate[socialNetworks]=*&populate[blocks][populate]=store.images,header,faq,buttons.link`
-      return {
-        url: getStrapiURL(apiUrl)
-      }
-    }
-    if (type === 'article') {
-      const apiUrl = `/${apiID}s?filters[slug][$eq]=${slug}&locale=${locale}${previewParams}&populate=localizations,image,author.picture,blocks.articles.image,blocks.faq,blocks.header`
-      return {
-        url: getStrapiURL(apiUrl)
-      }
-    }
-    if (type === 'page') {
-      const apiUrl = `/${apiID}s?filters[slug][$eq]=${slug}&locale=${locale}${previewParams}&populate[blocks][populate]=members.picture,header,buttons.link,faq,featuresCheck,cards,pricingCards.perks,articles,store,author.picture,images,cards.image,image&populate=localizations&populate[seo][populate]=metaSocial.image`
-      return {
-        url: getStrapiURL(apiUrl)
-      }
-    }
-  } // Collection(Index) Page
-  else {
+export function getData(slug, locale, preview) {
+  const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
+  const pageID = slug[slug.length - 1] ? slug[slug.length - 1] : slug[0] || ''
+  // TODO: Refactor collection so as not to hard code type checking for each collection
+  const collection = slug[0] === 'blog' ? slug[0] : slug[0] === 'store' ? 'store' : 'page'
+
+  // Index Page (singleType) - returns Object
+  if (pageID === collection) {
+    const apiID = collection
     const apiUrl = `/${apiID}?locale=${locale}${previewParams}&populate[blocks][populate]=*,buttons.link&populate=localizations&populate[header]=*&populate[seo]=metaSocial`
 
     return {
-      url: getStrapiURL(apiUrl)
+      url: getStrapiURL(apiUrl),
+      collection,
+      pageID
+    }
+  } // Single Page (CollectionType) - returns Array
+  else {
+    const apiID = collection === 'blog' ? 'article' : collection === 'store' ? 'product' : 'page'
+    if (collection === 'blog') {
+      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate=*`
+      return {
+        url: getStrapiURL(apiUrl),
+        collection,
+        pageID
+      }
+    }
+    if (collection === 'store') {
+      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate=*`
+      return {
+        url: getStrapiURL(apiUrl),
+        collection,
+        pageID
+      }
+    }
+    if (collection === 'page') {
+      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate[blocks][populate]=members.picture,header,buttons.link,faq,featuresCheck,cards,pricingCards.perks,articles,store,author.picture,images,cards.image,image&populate=localizations&populate[seo][populate]=metaSocial.image`
+      return {
+        url: getStrapiURL(apiUrl),
+        collection,
+        pageID
+      }
     }
   }
 }

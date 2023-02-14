@@ -1,11 +1,11 @@
 import RelatedArticles from './components/RelatedArticles'
 import ArticleContent from './components/ArticleContent'
 
-const Article = ({ ...pageData }) => {
+const Article = ({ ...attributes }) => {
   return (
     <>
-      <ArticleContent {...pageData} />
-      <RelatedArticles {...pageData} />
+      <ArticleContent {...attributes} />
+      <RelatedArticles {...attributes} />
     </>
   )
 }

@@ -6,7 +6,16 @@ import NoResults from '@components/pages/no-results'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 
-const Articles = ({ pageData, categories, locale, perPage }) => {
+const Articles = ({ pageData, locale, perPage }) => {
+  const resCategories = {
+    /*  await fetch(
+    getStrapiURL(`/categories?pagination[limit]=99`)
+  ) */
+  }
+  const categories = {
+    /* await resCategories.json() */
+  }
+
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
 
@@ -16,11 +25,11 @@ const Articles = ({ pageData, categories, locale, perPage }) => {
   const categoryText = attributes.categoryText
 
   const key = {
-    tag: 'articles',
     category: categoryId,
-    locale: locale,
     page: pageNumber,
-    perPage
+    perPage,
+    tag: 'articles',
+    locale: locale
   }
   const { data: articles, isSuccess, status } = useGetArticlesQuery(key)
 
@@ -38,9 +47,7 @@ const Articles = ({ pageData, categories, locale, perPage }) => {
                   className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
                   onChange={(value) => setCategoryId(value.target.value)}>
                   <option value="">
-                    {categoryId
-                      ? 'Clear filter'
-                      : categoryText || 'Select a category'}
+                    {categoryId ? 'Clear filter' : categoryText || 'Select a category'}
                   </option>
                   {categories &&
                     categories.map((category, index) => (
@@ -88,9 +95,7 @@ const Articles = ({ pageData, categories, locale, perPage }) => {
                   <button
                     type="button"
                     className={`${
-                      pageNumber >= lastPage
-                        ? 'cursor-not-allowed opacity-50'
-                        : ''
+                      pageNumber >= lastPage ? 'cursor-not-allowed opacity-50' : ''
                     } w-full p-4 border-t border-b border-r text-base rounded-r-xl text-gray-600 bg-white hover:bg-gray-100 focus:outline-none`}
                     onClick={() => setPageNumber(pageNumber + 1)}
                     disabled={pageNumber >= lastPage}>

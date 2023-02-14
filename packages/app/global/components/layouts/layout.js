@@ -7,7 +7,7 @@ import ModuleManager from '@modules/ModuleManager'
 
 const Layout = ({ children, global, pageData, preview, type }) => {
   const blocks = pageData.attributes.blocks
-  const module = pageData.attributes.main
+  const modules = pageData.attributes.main
 
   return (
     <div>
@@ -19,7 +19,7 @@ const Layout = ({ children, global, pageData, preview, type }) => {
         type={type}
       />
       {children}
-      {module && <ModuleManager blocks={module} />}
+      {modules && <ModuleManager blocks={modules} />}
       {blocks && <BlockManager blocks={blocks} />}
       <Footer
         {...global}

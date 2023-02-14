@@ -2,24 +2,30 @@ import ErrorPage from 'next/error'
 import Layout from '@components/layouts/layout'
 import { getData, handleRedirection } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
-// import PageLayout from '@components/layouts/layout'
 
 // This gets called on every request
 export async function getServerSideProps(context) {
   const { slug, locale } = getLocalizedParams(context.query)
-  const data = getData(slug, 'page', 'single', locale, context.preview)
+  const { url, collection, pageID } = getData(slug, locale, context.preview)
 
   try {
-    const res = await fetch(data.url)
-    const json = await res.json()
-    console.log(json.data[0])
+    const res = await fetch(url)
+    const page = await res.json()
+    const perPage = page.articlesPerPage || 12
 
-    if (!json.data.length) {
+    console.log([slug[0], slug[slug.length - 1]], collection, pageID, page.data)
+
+    if (!(page.data || page.data.length)) {
       return handleRedirection(context.preview, null)
     }
 
     return {
-      props: { pageData: json.data[0], preview: context.preview || null }
+      props: {
+        pageData: page.data[0] || page.data,
+        perPage,
+        locale,
+        preview: context.preview || null
+      }
     }
   } catch (error) {
     return {
