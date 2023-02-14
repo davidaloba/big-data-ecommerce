@@ -6,33 +6,27 @@ import NoResults from '@components/pages/no-results'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 
-const Articles = ({ pageData, locale, perPage }) => {
-  const resCategories = {
-    /*  await fetch(
-    getStrapiURL(`/categories?pagination[limit]=99`)
-  ) */
-  }
-  const categories = {
-    /* await resCategories.json() */
-  }
+const Articles = ({ header }) => {
+  //TODO: Create Backend Dynamic Zone Modules and Components for Blog Page
+
+  const locale = /* pageData.attributes.header  */ 'en' //TODO:  get from state
+  const perPage = /* pageData.attributes.placeText */ 12 //TODO:  get from state
 
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
 
-  const { attributes } = pageData
-  const blocks = attributes.blocks
-  const header = attributes.header
-  const categoryText = attributes.categoryText
-
+  // TODO: Fetch with Query Hook / Create global useGetCategoriesQuery hook
+  const { data: categories } = useGetCategoriesQuery(`/categories?pagination[limit]=99`)
   const key = {
-    category: categoryId,
-    page: pageNumber,
-    perPage,
     tag: 'articles',
-    locale: locale
+    locale: locale,
+    perPage,
+    category: categoryId,
+    page: pageNumber
   }
   const { data: articles, isSuccess, status } = useGetArticlesQuery(key)
 
+  const categoryText = articles.attributes.category
   const lastPage = (articles && Math.ceil(articles.length / perPage)) || 1
 
   return (
@@ -107,7 +101,6 @@ const Articles = ({ pageData, locale, perPage }) => {
           )}
         </Container>
       )}
-      <BlockManager blocks={blocks} />
     </>
   )
 }

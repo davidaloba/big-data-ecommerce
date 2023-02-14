@@ -9,6 +9,7 @@ export async function getServerSideProps(context) {
   const { url, collection, pageID } = getData(slug, locale, context.preview)
 
   try {
+    // TODO: Fetch with Query Hook / Create global useGetPageDataQuery hook
     const res = await fetch(url)
     const page = await res.json()
     const perPage = page.articlesPerPage || 12
@@ -34,7 +35,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-const Universals = ({ children, global, pageData, preview }) => {
+const Page = ({ children, global, pageData, preview }) => {
   if (pageData === null) {
     return <ErrorPage statusCode={404} />
   }
@@ -43,11 +44,10 @@ const Universals = ({ children, global, pageData, preview }) => {
     <Layout
       global={global}
       pageData={pageData}
-      type="pages"
       preview={preview}>
       {children}
     </Layout>
   )
 }
 
-export default Universals
+export default Page

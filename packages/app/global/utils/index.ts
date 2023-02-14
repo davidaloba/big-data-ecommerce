@@ -31,8 +31,10 @@ export function getData(slug, locale, preview) {
   } // Single Page (CollectionType) - returns Array
   else {
     const apiID = collection === 'blog' ? 'article' : collection === 'store' ? 'product' : 'page'
+
+    //TODO: Fix Deep Populate Issue
     if (collection === 'blog') {
-      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate=*`
+      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate[main][populate]=%2A&populate[blocks][populate]=*&populate[header]=*&populate[seo]=*&populate[localizations][populate]=*&populate=*`
       return {
         url: getStrapiURL(apiUrl),
         collection,
@@ -40,7 +42,7 @@ export function getData(slug, locale, preview) {
       }
     }
     if (collection === 'store') {
-      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate=*`
+      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate[main][populate]=%2A&populate[blocks][populate]=*&populate[header]=*&populate[seo]=*&populate[localizations][populate]=*&populate=*`
       return {
         url: getStrapiURL(apiUrl),
         collection,
@@ -48,7 +50,7 @@ export function getData(slug, locale, preview) {
       }
     }
     if (collection === 'page') {
-      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate[blocks][populate]=members.picture,header,buttons.link,faq,featuresCheck,cards,pricingCards.perks,articles,store,author.picture,images,cards.image,image&populate=localizations&populate[seo][populate]=metaSocial.image`
+      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate[main][populate]=%2A&populate[blocks][populate]=*&populate[header]=*&populate[seo]=*&populate[localizations][populate]=*&populate=*`
       return {
         url: getStrapiURL(apiUrl),
         collection,

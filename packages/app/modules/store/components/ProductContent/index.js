@@ -11,15 +11,11 @@ import OverallRating from './Reviews/overall-rating'
 import Reviews from './Reviews/reviews'
 import Stars from './stars'
 
-const ProductContent = ({ attributes }) => {
-  const name = attributes.name
-  const price = attributes.price
-  const locale = attributes.locale
-  const category = attributes.category
-  const socialNetworks = attributes.socialNetworks
-  const images = attributes.images
-  const reviews = attributes.reviews.data
-  const information = attributes.information
+const ProductContent = ({ name, category, place, images, content, reviews }) => {
+  const locale = /* attributes.locale || */ 'en' //TODO:  get from state
+  const price = content.price
+  const socialNetworks = content.socialNetworks
+  const information = content.information
 
   const description = information.description
   const opening_hours = information.opening_hours
@@ -64,11 +60,7 @@ const ProductContent = ({ attributes }) => {
                 {category.data.attributes.name}
               </h2>
             )}
-            {name && (
-              <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">
-                {name}
-              </h1>
-            )}
+            {name && <h1 className="text-gray-900 text-3xl title-font font-medium mb-1">{name}</h1>}
             <div className="flex mb-4">
               <span className="flex items-center">
                 <Stars reviews={reviews} />
@@ -91,9 +83,7 @@ const ProductContent = ({ attributes }) => {
               </span>
             </div>
 
-            {description && (
-              <p className="leading-relaxed mb-10">{description}</p>
-            )}
+            {description && <p className="leading-relaxed mb-10">{description}</p>}
 
             <OpeningHours opening_hours={opening_hours} />
             <Information information={information} />

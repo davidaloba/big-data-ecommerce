@@ -4,42 +4,31 @@ import ProductCard from './components/__lib/ProductCard'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 import NoResults from '@components/pages/no-results'
-import BlockManager from '@components/blocks/BlockManager'
 
-const Products = ({ pageData, locale, perPage }) => {
-  const resCategories = {
-    /*  await fetch(
-    getStrapiURL(`/categories?pagination[limit]=99`)
-  ) */
-  }
-  const categories = {
-    /* await resCategories.json() */
-  }
-  const resPlaces = {
-    /* await fetch(getStrapiURL(`/places?pagination[limit]=99`)) */
-  }
-  const places = {
-    /* await resPlaces.json() */
-  }
+const Products = ({ header, placeText }) => {
+  //TODO: Create Backend Dynamic Zone Modules and Components for Store Page
+
+  const locale = /* pageData.attributes.header  */ 'en' //TODO:  get from state
+  const perPage = /* pageData.attributes.placeText */ 12 //TODO:  get from state
 
   const [placeId, setPlaceId] = useState(null)
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
 
-  const blocks = pageData.attributes.blocks
-  const header = pageData.attributes.header
-  const placeText = pageData.attributes.placeText
-  const categoryText = pageData.attributes.categoryText
-
+  // TODO: Fetch with Query Hooks / Create clobal  useGetPlacesQuery hooks
+  const { data: categories } = useGetCategoriesQuery(`/categories?pagination[limit]=99`)
+  const { data: places } = useGetPlacesQuery(`/places?pagination[limit]=99`)
   const key = {
-    tag: 'store',
-    category: categoryId,
+    tag: 'products',
     locale: locale,
+    perPage,
+    category: categoryId,
     place: placeId,
-    page: pageNumber,
-    perPage
+    page: pageNumber
   }
   const { data: products, isSuccess, refetch } = useGetProductsQuery(key)
+
+  const categoryText = products.attributes.category
   const lastPage = (products && Math.ceil(products.length / perPage)) || 1
 
   return (
@@ -134,7 +123,6 @@ const Products = ({ pageData, locale, perPage }) => {
           )}
         </Container>
       )}
-      <BlockManager blocks={blocks} />
     </>
   )
 }

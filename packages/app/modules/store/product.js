@@ -1,12 +1,19 @@
 import ProductContent from './components/ProductContent'
 import RelatedProducts from './components/RelatedProducts'
 
-const Product = ({ ...pageData }) => {
+const Product = ({ name, category, place, images, content, reviews, related }) => {
   return (
     <>
       <>
-        <ProductContent {...pageData} />
-        <RelatedProducts {...pageData} />
+        <ProductContent
+          name={name}
+          category={category}
+          place={place}
+          image={images}
+          content={content}
+          reviewa={reviews}
+        />
+        <RelatedProducts related={related} />
       </>
     </>
   )

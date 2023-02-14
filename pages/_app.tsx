@@ -14,6 +14,8 @@ MyApp.getInitialProps = async (appContext) => {
   const appProps = await App.getInitialProps(appContext)
   // Get global data attributes from server(strapi)
   const { locale } = getLocalizedParams(appContext.ctx.query)
+
+  // TODO: Fetch with Query Hook / Create global useGetGlobalQuery hook
   try {
     const res = await fetch(
       getStrapiURL(

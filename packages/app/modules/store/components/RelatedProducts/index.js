@@ -2,9 +2,8 @@ import ProductCard from '../__lib/ProductCard'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 
-const RelatedProducts = ({ attributes }) => {
-  const header = attributes.main.related.header
-  const products = attributes.main.related.products
+const RelatedProducts = ({ related }) => {
+  const { header, products } = related
   return (
     <Container>
       <div className="bg-gray-100 my-40">

@@ -5,11 +5,9 @@ import styles from './ArticleContent.module.css'
 
 import { getStrapiMedia } from '@utils/index'
 
-const ArticleContent = ({ attributes }) => {
-  const title = attributes.title
-  const image = attributes.main.image
-  const content = attributes.main.content.ckeditor_content
-  const locale = attributes.locale
+const ArticleContent = ({ title, image, content }) => {
+  const locale = /* attributes.locale || */ 'en' //TODO:  get from state
+  const ckContent = content.ckeditor_content
 
   return (
     <Container>
@@ -31,7 +29,7 @@ const ArticleContent = ({ attributes }) => {
           </div>
           <div className="markdown-body ck-content shadow-lg rounded-xl lg:w-4/6 w-full md:p-12 p-6 mt-2 bg-white">
             <div className={styles['ck-no-border']}>
-              <Container>{content}</Container>
+              <Container>{ckContent}</Container>
             </div>
           </div>
           <Link href={`/blog?lang=${locale}`}>
