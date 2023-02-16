@@ -23,7 +23,7 @@ export function localizePath(localePage, type) {
 
 function getUrl(type, localization, targetLocale) {
   switch (type) {
-    case 'pages':
+    case 'page':
       return `/pages/${localization.id}`
     case 'store':
       return `/store?locale=${targetLocale}`

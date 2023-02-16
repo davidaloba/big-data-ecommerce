@@ -5,7 +5,7 @@ import Seo from '@components/partials/seo'
 import BlockManager from '@components/blocks/BlockManager'
 import ModuleManager from '@modules/ModuleManager'
 
-const Layout = ({ children, global, pageData, preview }) => {
+const Layout = ({ children, global, pageData, type, preview }) => {
   const blocks = pageData.attributes.blocks
   const modules = pageData.attributes.main
 
@@ -16,7 +16,7 @@ const Layout = ({ children, global, pageData, preview }) => {
       <Navbar
         {...global}
         pageData={pageData}
-        type={'page' || 'blog' || 'store'}
+        type={type}
       />
       {children}
       {modules && <ModuleManager modules={modules} />}

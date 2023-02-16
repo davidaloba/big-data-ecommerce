@@ -11,11 +11,12 @@ import OverallRating from './Reviews/overall-rating'
 import Reviews from './Reviews/reviews'
 import Stars from './stars'
 
-const ProductContent = ({ name, category, place, images, content, reviews }) => {
+const ProductContent = ({ name, category, place, images, content, reviews: reviewsData }) => {
   const locale = /* attributes.locale || */ 'en' //TODO:  get from state
   const price = content.price
   const socialNetworks = content.socialNetworks
   const information = content.information
+  const reviews = reviewsData.reviews.data
 
   const description = information.description
   const opening_hours = information.opening_hours
@@ -55,7 +56,7 @@ const ProductContent = ({ name, category, place, images, content, reviews }) => 
             </div>
           </div>
           <div className="lg:w-1/2 w-full lg:pl-10 lg:py-6 mt-6 lg:mt-0 p-4">
-            {category && (
+            {category.data && (
               <h2 className="text-sm title-font text-gray-500 tracking-widest">
                 {category.data.attributes.name}
               </h2>
@@ -95,10 +96,12 @@ const ProductContent = ({ name, category, place, images, content, reviews }) => 
           Reviews
         </p>
       </div>
-      <div className="md:grid md:grid-cols-2 gap-4 mt-20">
-        <OverallRating reviews={reviews} />
-        <Reviews reviews={reviews} />
-      </div>
+      {reviews && (
+        <div className="md:grid md:grid-cols-2 gap-4 mt-20">
+          <OverallRating reviews={reviews} />
+          <Reviews reviews={reviews} />
+        </div>
+      )}
     </Container>
   )
 }

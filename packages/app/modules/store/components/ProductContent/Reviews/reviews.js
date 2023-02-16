@@ -15,12 +15,11 @@ const Reviews = ({ reviews }) => {
                 <div className="inline-block relative">
                   <img
                     alt={
-                      review.attributes.author.data.attributes.picture.data
-                        .attributes.alternativeText
+                      review.attributes.author.data.attributes.picture.data.attributes
+                        .alternativeText
                     }
                     src={getStrapiMedia(
-                      review.attributes.author.data.attributes.picture.data
-                        .attributes.url
+                      review.attributes.author.data.attributes.picture.data.attributes.url
                     )}
                     className="mx-auto object-cover rounded-full h-16 w-16 "
                   />
@@ -74,9 +73,7 @@ const Reviews = ({ reviews }) => {
                   </div>
                   {review.attributes.content && (
                     <div className="mt-3">
-                      <p className="mt-1  dark:text-white">
-                        {review.attributes.content}
-                      </p>
+                      <p className="mt-1  dark:text-white">{review.attributes.content}</p>
                     </div>
                   )}
                 </div>

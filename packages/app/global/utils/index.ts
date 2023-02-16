@@ -21,41 +21,24 @@ export function getData(slug, locale, preview) {
   // Index Page (singleType) - returns Object
   if (pageID === collection) {
     const apiID = collection
-    const apiUrl = `/${apiID}?locale=${locale}${previewParams}&populate[blocks][populate]=*,buttons.link&populate=localizations&populate[header]=*&populate[seo]=metaSocial`
+    const apiUrl = `/${apiID}?locale=${locale}${previewParams}&populate=deep`
 
     return {
       url: getStrapiURL(apiUrl),
       collection,
-      pageID
+      pageID,
+      type: apiID
     }
   } // Single Page (CollectionType) - returns Array
   else {
     const apiID = collection === 'blog' ? 'article' : collection === 'store' ? 'product' : 'page'
 
-    //TODO: Fix Deep Populate Issue
-    if (collection === 'blog') {
-      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate[main][populate]=%2A&populate[blocks][populate]=*&populate[header]=*&populate[seo]=*&populate[localizations][populate]=*&populate=*`
-      return {
-        url: getStrapiURL(apiUrl),
-        collection,
-        pageID
-      }
-    }
-    if (collection === 'store') {
-      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate[main][populate]=%2A&populate[blocks][populate]=*&populate[header]=*&populate[seo]=*&populate[localizations][populate]=*&populate=*`
-      return {
-        url: getStrapiURL(apiUrl),
-        collection,
-        pageID
-      }
-    }
-    if (collection === 'page') {
-      const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate[main][populate]=%2A&populate[blocks][populate]=*&populate[header]=*&populate[seo]=*&populate[localizations][populate]=*&populate=*`
-      return {
-        url: getStrapiURL(apiUrl),
-        collection,
-        pageID
-      }
+    const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate=deep`
+    return {
+      url: getStrapiURL(apiUrl),
+      collection,
+      pageID,
+      type: apiID
     }
   }
 }

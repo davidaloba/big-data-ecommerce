@@ -2,8 +2,6 @@ import RelatedArticles from './components/RelatedArticles'
 import ArticleContent from './components/ArticleContent'
 
 const Article = ({ title, image, content, related }) => {
-  // console.log(image, content, related)
-
   return (
     <>
       <ArticleContent

@@ -6,7 +6,7 @@ import { getLocalizedParams } from '@utils/localize'
 // This gets called on every request
 export async function getServerSideProps(context) {
   const { slug, locale } = getLocalizedParams(context.query)
-  const { url, collection, pageID } = getData(slug, locale, context.preview)
+  const { url, collection, pageID, type } = getData(slug, locale, context.preview)
 
   try {
     // TODO: Fetch with Query Hook / Create global useGetPageDataQuery hook
@@ -14,7 +14,7 @@ export async function getServerSideProps(context) {
     const page = await res.json()
     const perPage = page.articlesPerPage || 12
 
-    console.log([slug[0], slug[slug.length - 1]], collection, pageID, page.data)
+    console.log([slug[0], slug[slug.length - 1]], collection, pageID)
 
     if (!(page.data || page.data.length)) {
       return handleRedirection(context.preview, null)
@@ -25,6 +25,7 @@ export async function getServerSideProps(context) {
         pageData: page.data[0] || page.data,
         perPage,
         locale,
+        type,
         preview: context.preview || null
       }
     }
@@ -35,7 +36,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-const Page = ({ children, global, pageData, preview }) => {
+const Page = ({ children, global, pageData, type, preview }) => {
   if (pageData === null) {
     return <ErrorPage statusCode={404} />
   }
@@ -44,6 +45,7 @@ const Page = ({ children, global, pageData, preview }) => {
     <Layout
       global={global}
       pageData={pageData}
+      type={type}
       preview={preview}>
       {children}
     </Layout>

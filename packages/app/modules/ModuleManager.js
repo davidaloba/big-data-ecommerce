@@ -13,9 +13,10 @@ const Products = dynamic(() => import('./store/products'), {
   ssr: true
 })
 
-const getModuleComponent = ({ __component, ...rest }, index) => {
-  let Module
+const getModuleComponent = (module, index) => {
+  const { __component, ...rest } = module
 
+  let Module
   switch (__component) {
     case 'modules.article':
       Module = Article

@@ -9,9 +9,9 @@ const Product = ({ name, category, place, images, content, reviews, related }) =
           name={name}
           category={category}
           place={place}
-          image={images}
+          images={images}
           content={content}
-          reviewa={reviews}
+          reviews={reviews}
         />
         <RelatedProducts related={related} />
       </>

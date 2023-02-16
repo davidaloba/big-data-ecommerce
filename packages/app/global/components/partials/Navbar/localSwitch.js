@@ -1,11 +1,7 @@
 import { useRouter } from 'next/router'
 import { useEffect, useRef, useState } from 'react'
 import { useOnClickOutside } from '@hooks/index'
-import {
-  getLocalizedData,
-  listLocalizedPaths,
-  localizePath
-} from '@utils/localize'
+import { getLocalizedData, listLocalizedPaths, localizePath } from '@utils/localize'
 
 const localeSwitch = ({ pageData, type }) => {
   const router = useRouter()
