@@ -2,22 +2,22 @@ import { getStrapiURL } from '@utils/index'
 
 export async function getProducts(key) {
   const categoryName = key.queryKey[1].category
-  const placeName = key.queryKey[2].place
+  const tagName = key.queryKey[2].tag
   const localeCode = key.queryKey[3].locale
   const pageNumber = key.queryKey[4].page
   const perPage = key.queryKey[5].perPage
   const start = +pageNumber === 1 ? 0 : (+pageNumber - 1) * perPage
 
   let baseUrl = getStrapiURL(
-    `/store?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=images,category,place,information,seo`
+    `/shop?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=images,category,tag,information,seo`
   )
 
   if (categoryName) {
     baseUrl = `${baseUrl}&filters[category][name][$eq]=${categoryName}`
   }
 
-  if (placeName) {
-    baseUrl = `${baseUrl}&filters[place][name][$eq]=${placeName}`
+  if (tagName) {
+    baseUrl = `${baseUrl}&filters[tag][name][$eq]=${tagName}`
   }
 
   if (localeCode) {
@@ -25,10 +25,10 @@ export async function getProducts(key) {
   }
 
   const res = await fetch(baseUrl)
-  const store = await res.json()
+  const products = await res.json()
 
   return {
-    store: store.data,
-    count: store.meta.pagination.total
+    products: products.data,
+    count: products.meta.pagination.total
   }
 }

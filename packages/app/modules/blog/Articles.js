@@ -1,16 +1,13 @@
 import { useState } from 'react'
 import { useGetArticlesQuery } from './store/api'
-import BlockManager from '@components/blocks/BlockManager'
 import ArticleCard from './components/__lib/ArticleCard'
 import NoResults from '@components/pages/no-results'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 
 const Articles = ({ header }) => {
-  //TODO: Create Backend Dynamic Zone Modules and Components for Blog Page
-
   const locale = /* pageData.attributes.header  */ 'en' //TODO:  get from state
-  const perPage = /* pageData.attributes.placeText */ 12 //TODO:  get from state
+  const perPage = /* pageData.attributes.tagText */ 12 //TODO:  get from state
 
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)

@@ -16,7 +16,7 @@ export async function getServerSideProps(context) {
 
     console.log([slug[0], slug[slug.length - 1]], collection, pageID)
 
-    if (!(page.data || page.data.length)) {
+    if (!page.data) {
       return handleRedirection(context.preview, null)
     }
 
@@ -37,7 +37,7 @@ export async function getServerSideProps(context) {
 }
 
 const Page = ({ children, global, pageData, type, preview }) => {
-  if (pageData === null) {
+  if (pageData.length === 0) {
     return <ErrorPage statusCode={404} />
   }
 

@@ -12,15 +12,15 @@ const productsApi = api.injectEndpoints({
         const localeCode = key.locale
         const pageNumber = key.page
         const perPage = key.perPage
-        const placeName = key.place
+        const tagName = key.tag
         const start = +pageNumber === 1 ? 0 : (+pageNumber - 1) * perPage
 
-        let baseUrl = `/store?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=images,category,place,information,seo`
+        let baseUrl = `/shop?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=images,category,tag,information,seo`
         if (categoryName) {
           baseUrl = `${baseUrl}&filters[category][name][$eq]=${categoryName}`
         }
-        if (placeName) {
-          baseUrl = `${baseUrl}&filters[place][name][$eq]=${placeName}`
+        if (tagName) {
+          baseUrl = `${baseUrl}&filters[tag][name][$eq]=${tagName}`
         }
         if (localeCode) {
           baseUrl = `${baseUrl}&locale=${localeCode}`
@@ -47,13 +47,8 @@ export const { useGetProductsQuery } = productsApi
 // To generate a selector for a specific query argument, call `select(theQueryArg)`.
 // In this case, the users query has no params, so we don't pass anything to select()
 export const selectProducts = productsApi.endpoints.getProducts.select()
-const selectProductsData = createSelector(
-  selectProducts,
-  (productsResult) => productsResult.data
-)
+const selectProductsData = createSelector(selectProducts, (productsResult) => productsResult.data)
 export const { selectAll: selectAllProducts, selectById: selectProductsById } =
-  usersAdapter.getSelectors(
-    (state) => selectProductsData(state) ?? initialState
-  )
+  usersAdapter.getSelectors((state) => selectProductsData(state) ?? initialState)
 
 // transformResponse: all consumers of the endpoint want a specific format, such as normalizing the response to enable faster lookups by ID

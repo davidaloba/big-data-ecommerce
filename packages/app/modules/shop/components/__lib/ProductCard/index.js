@@ -1,20 +1,12 @@
 import Link from 'next/link'
 import { getStrapiMedia } from '@utils/index'
 
-const ProductCard = ({
-  slug,
-  images,
-  name,
-  information,
-  category,
-  place,
-  locale
-}) => {
-  const placeName = place ? place.data.attributes.name : ''
+const ProductCard = ({ slug, images, name, information, category, tag, locale }) => {
+  const tagName = tag ? tag.data.attributes.name : ''
   const categoryName = category ? category.data.attributes.name : ''
   const description = information ? information.description : ''
   return (
-    <Link href={`store/${slug}?lang=${locale}`}>
+    <Link href={`shop/${slug}?lang=${locale}`}>
       <div className="overflow-hidden shadow-lg rounded-lg h-90 w-full cursor-pointer">
         <img
           alt={images.data[0].attributes.alternativeText}
@@ -22,14 +14,10 @@ const ProductCard = ({
           className="max-h-48 w-full object-cover"
         />
         <div className="bg-white w-full p-4">
-          <p className="text-secondary text-md font-medium">{placeName}</p>
-          {name && (
-            <p className="text-gray-800 text-xl font-medium mb-2">{name}</p>
-          )}
+          <p className="text-secondary text-md font-medium">{tagName}</p>
+          {name && <p className="text-gray-800 text-xl font-medium mb-2">{name}</p>}
 
-          {description && (
-            <p className="text-gray-400 font-light text-md">{description}</p>
-          )}
+          {description && <p className="text-gray-400 font-light text-md">{description}</p>}
 
           {categoryName && (
             <div className="flex flex-wrap justify-starts items-center mt-4">

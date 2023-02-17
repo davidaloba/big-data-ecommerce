@@ -6,10 +6,10 @@ const Article = dynamic(() => import('./blog/Article'), {
 const Articles = dynamic(() => import('./blog/Articles'), {
   ssr: true
 })
-const Product = dynamic(() => import('./store/product'), {
+const Product = dynamic(() => import('./shop/product'), {
   ssr: true
 })
-const Products = dynamic(() => import('./store/products'), {
+const Products = dynamic(() => import('./shop/products'), {
   ssr: true
 })
 

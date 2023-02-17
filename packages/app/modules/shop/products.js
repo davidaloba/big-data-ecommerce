@@ -5,25 +5,23 @@ import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 import NoResults from '@components/pages/no-results'
 
-const Products = ({ header, placeText }) => {
-  //TODO: Create Backend Dynamic Zone Modules and Components for Store Page
-
+const Products = ({ header, tagText }) => {
   const locale = /* pageData.attributes.header  */ 'en' //TODO:  get from state
-  const perPage = /* pageData.attributes.placeText */ 12 //TODO:  get from state
+  const perPage = /* pageData.attributes.tagText */ 12 //TODO:  get from state
 
-  const [placeId, setPlaceId] = useState(null)
+  const [tagId, setTagId] = useState(null)
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
 
-  // TODO: Fetch with Query Hooks / Create clobal  useGetPlacesQuery hooks
+  // TODO: Fetch with Query Hooks / Create clobal  useGetTagsQuery hooks
   const { data: categories } = useGetCategoriesQuery(`/categories?pagination[limit]=99`)
-  const { data: places } = useGetPlacesQuery(`/places?pagination[limit]=99`)
+  const { data: tags } = useGetTagsQuery(`/tags?pagination[limit]=99`)
   const key = {
     tag: 'products',
     locale: locale,
     perPage,
     category: categoryId,
-    place: placeId,
+    tag: tagId,
     page: pageNumber
   }
   const { data: products, isSuccess, refetch } = useGetProductsQuery(key)
@@ -57,14 +55,14 @@ const Products = ({ header, placeText }) => {
             <div>
               <select
                 className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                onChange={(value) => setPlaceId(value.target.value)}>
-                <option value="">{placeId ? 'Clear filter' : placeText || 'Select a place'}</option>
-                {places &&
-                  places.map((place, index) => (
+                onChange={(value) => setTagId(value.target.value)}>
+                <option value="">{tagId ? 'Clear filter' : tagText || 'Select a tag'}</option>
+                {tags &&
+                  tags.map((tag, index) => (
                     <option
-                      key={`placeOption-${index}`}
-                      value={place.attributes.name}>
-                      {place.attributes.name}
+                      key={`tagOption-${index}`}
+                      value={tag.attributes.name}>
+                      {tag.attributes.name}
                     </option>
                   ))}
               </select>

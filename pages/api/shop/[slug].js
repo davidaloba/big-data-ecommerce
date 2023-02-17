@@ -1,7 +1,7 @@
 import { getData, handleRedirection } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 import Layout from '@components/layouts/layout'
-import Product from '@modules/store/product'
+import Product from '@modules/shop/product'
 import BlockManager from '@components/sections/BlockManager'
 
 export async function getServerSideProps(context) {
@@ -26,7 +26,7 @@ export async function getServerSideProps(context) {
   }
 }
 
-const Store = ({ global, preview, pageData }) => {
+const Shop = ({ global, preview, pageData }) => {
   const blocks = pageData.attributes.blocks
   return (
     <>
@@ -42,4 +42,4 @@ const Store = ({ global, preview, pageData }) => {
   )
 }
 
-export default Store
+export default Shop

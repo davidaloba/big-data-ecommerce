@@ -3,12 +3,12 @@ import { getLocalizedParams } from '@utils/localize'
 
 import Layout from '@components/layouts/layout'
 import BlockManager from '@components/sections/BlockManager'
-import Products from '@modules/store/products'
+import Products from '@modules/shop/products'
 
 // This gets called on every request
 export async function getServerSideProps(context) {
   const { slug, locale } = getLocalizedParams(context.query)
-  const data = getData(null, 'store', 'index', locale, context.preview)
+  const data = getData(null, 'shop', 'index', locale, context.preview)
 
   try {
     const res = await fetch(data.url)
@@ -43,7 +43,7 @@ const Product = ({ global, pageData, locale, perPage, preview }) => {
     <Layout
       global={global}
       pageData={pageData}
-      type="store"
+      type="shop"
       preview={preview}>
       <Products
         pageData={pageData}
