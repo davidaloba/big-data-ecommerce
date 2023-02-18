@@ -3,12 +3,12 @@ import { useEffect, useRef, useState } from 'react'
 import { useOnClickOutside } from '@hooks/index'
 import { getLocalizedData, listLocalizedPaths, localizePath } from '@utils/localize'
 
-const localeSwitch = ({ pageData, type }) => {
+const localeSwitch = ({ pageData, type, locale: language }) => {
   const router = useRouter()
   const lang = router.query.lang
   const isMounted = useRef(false)
   const select = useRef()
-  const [locale, setLocale] = useState(pageData.attributes.locale)
+  const [locale, setLocale] = useState(language)
   const [showing, setShowing] = useState(false)
   const [localizedPaths, setLocalizedPaths] = useState()
 
@@ -16,9 +16,9 @@ const localeSwitch = ({ pageData, type }) => {
 
   useEffect(() => {
     const changeLocale = async () => {
-      if (!isMounted.current && lang && lang !== pageData.attributes.locale) {
+      if (!isMounted.current && lang && lang !== locale) {
         const localePage = await getLocalizedData(lang, pageData, type)
-        router.push(`${localizePath(localePage, pageData.attributes.locale)}`, {
+        router.push(`${localizePath(localePage, locale)}`, {
           locale: localePage.locale
         })
       }

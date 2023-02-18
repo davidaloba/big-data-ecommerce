@@ -1,7 +1,9 @@
 import Link from 'next/link'
 import { getStrapiMedia } from '@utils/index'
 
-const ArticleCard = ({ slug, title, category, seo, locale, author, image }) => {
+const ArticleCard = ({ slug, main, seo, locale }) => {
+  const { title, category, author, image } = main[0]
+
   const description = seo ? seo.metaDescription : ''
   const authorAttr = author ? author.data.attributes : ''
   const categoryAttr = author ? category.data.attributes : ''
@@ -46,12 +48,8 @@ const ArticleCard = ({ slug, title, category, seo, locale, author, image }) => {
             className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
           />
           <span className="flex-grow flex flex-col pl-4">
-            <span className="title-font font-medium text-gray-900">
-              {authorAttr.username}
-            </span>
-            <span className="text-gray-400 text-xs tracking-widest mt-0.5">
-              {authorAttr.job}
-            </span>
+            <span className="title-font font-medium text-gray-900">{authorAttr.username}</span>
+            <span className="text-gray-400 text-xs tracking-widest mt-0.5">{authorAttr.job}</span>
           </span>
         </div>
       )}

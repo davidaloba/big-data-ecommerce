@@ -5,26 +5,40 @@ import Seo from '@components/partials/seo'
 import BlockManager from '@components/blocks/BlockManager'
 import ModuleManager from '@modules/ModuleManager'
 
-const Layout = ({ children, global, pageData, type, preview }) => {
-  const blocks = pageData.attributes.blocks
-  const modules = pageData.attributes.main
+const Layout = ({ children, global, page, pageDataIsSuccess, type, preview }) => {
+  const pageData = page.attributes
+  const { navigation, footer } = global.attributes
+
+  const blocks = pageData.blocks || []
+  const modules = pageData.main
 
   return (
     <div>
-      <Seo seo={pageData.attributes.seo} />
+      <Seo seo={pageData.seo} />
       {preview && <PreviewBanner />}
-      <Navbar
-        {...global}
-        pageData={pageData}
-        type={type}
-      />
+      {pageDataIsSuccess && (
+        <Navbar
+          navigation={navigation}
+          pageData={pageData}
+          type={type}
+          locale={pageData.locale}
+        />
+      )}
       {children}
-      {modules && <ModuleManager modules={modules} />}
+      {modules && (
+        <ModuleManager
+          modules={modules}
+          locale={pageData.locale}
+          perPage={pageData.perPage || 12}
+        />
+      )}
       {blocks && <BlockManager blocks={blocks} />}
-      <Footer
-        {...global}
-        pageData={pageData}
-      />
+      {pageDataIsSuccess && (
+        <Footer
+          footer={footer}
+          locale={pageData.locale}
+        />
+      )}
     </div>
   )
 }

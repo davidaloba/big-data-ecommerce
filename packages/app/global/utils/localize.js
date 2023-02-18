@@ -39,7 +39,7 @@ function getUrl(type, localization, targetLocale) {
 }
 
 export async function getLocalizedData(targetLocale, pageData, type) {
-  const localization = pageData.attributes.localizations.data.find(
+  const localization = pageData.localizations.data.find(
     (localization) => localization.attributes.locale === 'fr-FR'
   )
   const url = getUrl(type, localization, targetLocale)
@@ -50,15 +50,15 @@ export async function getLocalizedData(targetLocale, pageData, type) {
 
 export async function listLocalizedPaths(pageData, type) {
   const currentPage = {
-    locale: pageData.attributes.locale,
-    href: localizePath(pageData.attributes, type)
+    locale: pageData.locale,
+    href: localizePath(pageData, type)
   }
   const paths = await Promise.all(
-    pageData.attributes.localizations.data.map(async (localization) => {
+    pageData.localizations.data.map(async (localization) => {
       const url = getUrl(type, localization, localization.attributes.locale)
       const res = await fetch(getStrapiURL(url))
       const localePage = await res.json()
-      const page = { ...pageData.attributes, ...localePage.data.attributes }
+      const page = { ...pageData, ...localePage.data.attributes }
       return {
         locale: page.locale,
         href: localizePath(page, type)

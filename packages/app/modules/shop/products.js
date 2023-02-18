@@ -4,21 +4,17 @@ import ProductCard from './components/__lib/ProductCard'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 import NoResults from '@components/pages/no-results'
+import { useGetTagsQuery, useGetCategoriesQuery } from '@store/api'
 
-const Products = ({ header, tagText }) => {
-  const locale = /* pageData.attributes.header  */ 'en' //TODO:  get from state
-  const perPage = /* pageData.attributes.tagText */ 12 //TODO:  get from state
-
+const Products = ({ header, locale, perPage }) => {
   const [tagId, setTagId] = useState(null)
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
 
-  // TODO: Fetch with Query Hooks / Create clobal  useGetTagsQuery hooks
-  const { data: categories } = useGetCategoriesQuery(`/categories?pagination[limit]=99`)
-  const { data: tags } = useGetTagsQuery(`/tags?pagination[limit]=99`)
+  const { data: categories } = useGetCategoriesQuery()
+  const { data: tags } = useGetTagsQuery()
   const key = {
-    tag: 'products',
-    locale: locale,
+    locale,
     perPage,
     category: categoryId,
     tag: tagId,
@@ -26,7 +22,8 @@ const Products = ({ header, tagText }) => {
   }
   const { data: products, isSuccess, refetch } = useGetProductsQuery(key)
 
-  const categoryText = products.attributes.category
+  const categoryText = 'Category'
+  const tagText = 'Tag'
   const lastPage = (products && Math.ceil(products.length / perPage)) || 1
 
   return (

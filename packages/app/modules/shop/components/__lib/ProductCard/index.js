@@ -1,9 +1,10 @@
 import Link from 'next/link'
 import { getStrapiMedia } from '@utils/index'
 
-const ProductCard = ({ slug, images, name, information, category, tag, locale }) => {
-  const tagName = tag ? tag.data.attributes.name : ''
-  const categoryName = category ? category.data.attributes.name : ''
+const ProductCard = ({ slug, main, locale }) => {
+  const { images, name, information, category, tag } = main[0]
+  const tagName = tag && tag.data ? tag.data.attributes.name : ''
+  const categoryName = category && category.data ? category.data.attributes.name : ''
   const description = information ? information.description : ''
   return (
     <Link href={`shop/${slug}?lang=${locale}`}>

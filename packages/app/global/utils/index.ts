@@ -15,7 +15,7 @@ export function getStrapiURL(path) {
 export function getData(slug, locale, preview) {
   const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
   const pageID = slug[slug.length - 1] ? slug[slug.length - 1] : slug[0] || ''
-  // TODO: Refactor collection so as not to hard code type checking for each collection
+  //  Refactor collection so as not to hard code type checking for each collection
   const collection = slug[0] === 'blog' ? slug[0] : slug[0] === 'shop' ? 'shop' : 'page'
 
   // Index Page (singleType) - returns Object
@@ -24,7 +24,7 @@ export function getData(slug, locale, preview) {
     const apiUrl = `/${apiID}?locale=${locale}${previewParams}&populate=deep`
 
     return {
-      url: getStrapiURL(apiUrl),
+      url: apiUrl,
       collection,
       pageID,
       type: apiID
@@ -35,7 +35,7 @@ export function getData(slug, locale, preview) {
 
     const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate=deep`
     return {
-      url: getStrapiURL(apiUrl),
+      url: apiUrl,
       collection,
       pageID,
       type: apiID

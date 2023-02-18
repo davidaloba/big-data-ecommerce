@@ -11,8 +11,7 @@ import OverallRating from './Reviews/overall-rating'
 import Reviews from './Reviews/reviews'
 import Stars from './stars'
 
-const ProductContent = ({ name, category, tag, images, content, reviews: reviewsData }) => {
-  const locale = /* attributes.locale || */ 'en' //TODO:  get from state
+const ProductContent = ({ name, category, tag, images, content, reviews: reviewsData, locale }) => {
   const price = content.price
   const socialNetworks = content.socialNetworks
   const information = content.information

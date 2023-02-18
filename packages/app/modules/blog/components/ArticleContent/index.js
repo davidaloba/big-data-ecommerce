@@ -1,12 +1,9 @@
 import Container from '@components/__lib/Container'
 import Link from 'next/link'
-
 import styles from './ArticleContent.module.css'
-
 import { getStrapiMedia } from '@utils/index'
 
-const ArticleContent = ({ title, image, content }) => {
-  const locale = /* attributes.locale || */ 'en' //TODO:  get from state
+const ArticleContent = ({ title, image, content, locale }) => {
   const ckContent = content.ckeditor_content
 
   return (

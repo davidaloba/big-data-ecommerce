@@ -1,49 +1,39 @@
 import App from 'next/app'
 import ErrorPage from 'next/error'
-// Store
-import { Provider } from 'react-redux'
-import { store } from '@store/index'
-// Styles
+import { wrapper } from '@store/index'
 import 'tailwindcss/tailwind.css'
-// Utils
-import { getStrapiURL } from '@utils/index' // for fetching data from server
-import { getLocalizedParams } from '@utils/localize' // for fetching site language from url query
+import { getLocalizedParams } from '@utils/localize'
+import { getGlobal, getRunningQueriesThunk, useGetGlobalQuery } from '@store/api'
 
-MyApp.getInitialProps = async (appContext) => {
-  // Get default App props
+MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async (appContext) => {
   const appProps = await App.getInitialProps(appContext)
-  // Get global data attributes from server(strapi)
   const { locale } = getLocalizedParams(appContext.ctx.query)
-
-  // TODO: Fetch with Query Hook / Create global useGetGlobalQuery hook
   try {
-    const res = await fetch(
-      getStrapiURL(
-        `/global?populate[navigation][populate]=*&populate[footer][populate][footerColumns][populate]=*&locale=${locale}`
-      )
-    )
-    const globalData = await res.json()
-    const globalDataAttributes = globalData.data.attributes
-    // Add global data attributes to appProps as pageProps
-    return { ...appProps, pageProps: { global: globalDataAttributes } }
+    store.dispatch(getGlobal.initiate(locale))
+    await Promise.all(store.dispatch(getRunningQueriesThunk()))
+
+    return { ...appProps, locale, pageProps: {} }
   } catch (error) {
     return { ...appProps }
   }
-}
+})
 
-function MyApp({ Component, pageProps }) {
-  const { global } = pageProps
-  if (global === null) {
+function MyApp({ Component, pageProps, locale }) {
+  const { data: global, error, isSuccess: globalIsSuccess } = useGetGlobalQuery(locale)
+
+  if (error || !global.attributes) {
     return <ErrorPage statusCode={404} />
   }
-
   return (
     <>
-      <Provider store={store}>
-        <Component {...pageProps} />
-      </Provider>
+      {globalIsSuccess && (
+        <Component
+          {...pageProps}
+          global={global}
+        />
+      )}
     </>
   )
 }
 
-export default MyApp
+export default wrapper.withRedux(MyApp)

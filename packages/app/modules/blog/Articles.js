@@ -4,27 +4,23 @@ import ArticleCard from './components/__lib/ArticleCard'
 import NoResults from '@components/pages/no-results'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
+import { useGetCategoriesQuery } from '@store/api'
 
-const Articles = ({ header }) => {
-  const locale = /* pageData.attributes.header  */ 'en' //TODO:  get from state
-  const perPage = /* pageData.attributes.tagText */ 12 //TODO:  get from state
-
+const Articles = ({ header, locale, perPage }) => {
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
 
-  // TODO: Fetch with Query Hook / Create global useGetCategoriesQuery hook
   const { data: categories } = useGetCategoriesQuery(`/categories?pagination[limit]=99`)
   const key = {
-    tag: 'articles',
-    locale: locale,
+    locale,
     perPage,
     category: categoryId,
     page: pageNumber
   }
-  const { data: articles, isSuccess, status } = useGetArticlesQuery(key)
+  const { data: articles, isSuccess } = useGetArticlesQuery(key)
 
-  const categoryText = articles.attributes.category
-  const lastPage = (articles && Math.ceil(articles.length / perPage)) || 1
+  const categoryText = 'Category'
+  const lastPage = (isSuccess && articles && Math.ceil(articles.length / perPage)) || 1
 
   return (
     <>
@@ -54,7 +50,7 @@ const Articles = ({ header }) => {
           </div>
 
           <NoResults
-            status={status}
+            status={isSuccess}
             length={articles && articles.length}
           />
 
