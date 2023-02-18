@@ -10,7 +10,7 @@ const articlesApi = api.injectEndpoints({
         const perPage = key.perPage
         const start = +pageNumber === 1 ? 0 : (+pageNumber - 1) * perPage
 
-        let baseUrl = `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=image,category,author,seo`
+        let baseUrl = `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
         if (categoryName) {
           baseUrl = `${baseUrl}&filters[category][name][$eq]=${categoryName}`
         }
