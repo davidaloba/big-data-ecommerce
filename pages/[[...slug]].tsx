@@ -1,6 +1,6 @@
 import { ReactNode } from 'react'
 import ErrorPage from 'next/error'
-import { GlobalData } from '@types/models'
+import type { Global } from '@types/models'
 import { getData, getStrapiURL } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 import { wrapper } from '@store/index'
@@ -33,7 +33,7 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
 
 interface PageProps {
   children: ReactNode | undefined
-  global: GlobalData
+  global: Global
   apiUrl: string
   type: string
   preview: boolean | undefined

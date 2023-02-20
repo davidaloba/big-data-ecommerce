@@ -1,4 +1,4 @@
-export interface GlobalData {
+export interface Global {
   id: number
   attributes: {
     createdAt: string
@@ -19,7 +19,7 @@ export interface GlobalData {
   }
 }
 
-export interface PageData {
+export interface Page {
   id: number
   attributes: {
     slug: string

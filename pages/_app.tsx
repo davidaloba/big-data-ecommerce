@@ -4,11 +4,11 @@ import { wrapper } from '@store/index'
 import 'tailwindcss/tailwind.css'
 import { getLocalizedParams } from '@utils/localize'
 import { getGlobal, getRunningQueriesThunk, useGetGlobalQuery } from '@store/api'
-import type { GlobalData } from '@types/models'
+import type { Global } from '@types/models'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   const { data: global, error, isSuccess: globalIsSuccess } = useGetGlobalQuery(pageProps.locale)
-  const globalData = global as GlobalData
+  const globalData = global as Global
 
   if (error || !globalData.attributes) {
     return <ErrorPage statusCode={404} />
