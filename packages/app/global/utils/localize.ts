@@ -1,13 +1,15 @@
-import { getStrapiURL } from './'
+import { PageData } from '@types/models'
+import { ParsedUrlQuery } from 'querystring'
+import { getStrapiURL } from '.'
 
-export function getLocalizedParams(query) {
+export function getLocalizedParams(query: ParsedUrlQuery) {
   const lang = query.lang
   const slug = query.slug
 
   return { slug: slug || '', locale: lang || 'en' }
 }
 
-export function localizePath(localePage, type) {
+export function localizePath(localePage: PageData['attributes'], type: string) {
   const { locale, slug } = localePage
 
   switch (type) {
@@ -21,7 +23,7 @@ export function localizePath(localePage, type) {
   }
 }
 
-function getUrl(type, localization, targetLocale) {
+function getUrl(type: string, localization: object, targetLocale: string): string {
   switch (type) {
     case 'page':
       return `/pages/${localization.id}`
@@ -38,9 +40,13 @@ function getUrl(type, localization, targetLocale) {
   }
 }
 
-export async function getLocalizedData(targetLocale, pageData, type) {
+export async function getLocalizedData(
+  targetLocale: string,
+  pageData: PageData['attributes'],
+  type: string
+) {
   const localization = pageData.localizations.data.find(
-    (localization) => localization.attributes.locale === 'fr-FR'
+    (localization: any) => localization.attributes.locale === 'fr-FR'
   )
   const url = getUrl(type, localization, targetLocale)
   const res = await fetch(getStrapiURL(url))
@@ -48,7 +54,7 @@ export async function getLocalizedData(targetLocale, pageData, type) {
   return localePage
 }
 
-export async function listLocalizedPaths(pageData, type) {
+export async function listLocalizedPaths(pageData: PageData['attributes'], type: string) {
   const currentPage = {
     locale: pageData.locale,
     href: localizePath(pageData, type)

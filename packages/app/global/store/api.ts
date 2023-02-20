@@ -14,28 +14,33 @@ const api = createApi({
   tagTypes: [],
   endpoints: (build) => ({
     getGlobal: build.query({
-      query: (locale) =>
+      query: (locale: string) =>
         `/global?populate[navigation][populate]=*&populate[footer][populate][footerColumns][populate]=*&locale=${locale}`,
-      transformResponse: (responseData) => {
-        return responseData.data
+      transformResponse: (res: object) => {
+        const data: [] | object = res.data
+        return data
       }
     }),
     getPageData: build.query({
-      query: (url) => url,
-      transformResponse: (responseData) => {
-        return responseData.data[0] || responseData.data
+      query: (url: string) => url,
+      transformResponse: (res: object) => {
+        const data: [] | object = res.data
+        const pageData = Array.isArray(data) ? data[0] : data
+        return pageData
       }
     }),
     getTags: build.query({
       query: () => `/tags?pagination[limit]=99`,
-      transformResponse: (responseData) => {
-        return responseData.data
+      transformResponse: (res: object) => {
+        const data: [] | object = res.data
+        return data
       }
     }),
     getCategories: build.query({
       query: () => `/categories?pagination[limit]=99`,
-      transformResponse: (responseData) => {
-        return responseData.data
+      transformResponse: (res: object) => {
+        const data: [] | object = res.data
+        return data
       }
     })
   })

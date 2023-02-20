@@ -4,7 +4,6 @@ const productsApi = api.injectEndpoints({
   endpoints: (build) => ({
     getProducts: build.query({
       query: (key) => {
-        console.log(key)
         const categoryName = key.category
         const localeCode = key.locale
         const pageNumber = key.page

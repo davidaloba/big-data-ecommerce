@@ -1,8 +1,10 @@
+import { ReactNode } from 'react'
+import ErrorPage from 'next/error'
+import { GlobalData } from '@types/models'
 import { getData, getStrapiURL } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 import { wrapper } from '@store/index'
 import { getPageData, getRunningQueriesThunk, useGetPageDataQuery } from '@store/api'
-import ErrorPage from 'next/error'
 import Layout from '@components/layouts/layout'
 
 // This gets called on every request
@@ -29,7 +31,15 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
   }
 })
 
-const Page = ({ children, global, apiUrl, type, preview }) => {
+interface PageProps {
+  children: ReactNode | undefined
+  global: GlobalData
+  apiUrl: string
+  type: string
+  preview: boolean | undefined
+}
+
+const Page = ({ children, global, apiUrl, type, preview }: PageProps) => {
   const {
     data: page,
     error: pageDataError,

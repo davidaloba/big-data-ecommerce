@@ -1,4 +1,4 @@
-export function getStrapiMedia(url) {
+export function getStrapiMedia(url: string) {
   if (url == null) {
     return null
   }
@@ -8,11 +8,15 @@ export function getStrapiMedia(url) {
   return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'}${url}`
 }
 
-export function getStrapiURL(path) {
+export function getStrapiURL(path: string) {
   return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'}/api${path}`
 }
 
-export function getData(slug, locale, preview) {
+export function getData(
+  slug: string | string[],
+  locale: string | string[],
+  preview: boolean | undefined
+) {
   const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
   const pageID = slug[slug.length - 1] ? slug[slug.length - 1] : slug[0] || ''
   //  Refactor collection so as not to hard code type checking for each collection
@@ -43,7 +47,7 @@ export function getData(slug, locale, preview) {
   }
 }
 
-export function handleRedirection(preview, custom) {
+export function handleRedirection(preview: string, custom: string) {
   if (preview) {
     return {
       redirect: {
@@ -68,9 +72,9 @@ export function handleRedirection(preview, custom) {
   }
 }
 
-export const getPeriod = (totalMinutes) => {
+export const getPeriod = (totalMinutes: number) => {
   // const diffTime = Math.abs(new Date().valueOf() - new Date(date).valueOf())
-  function padTo2Digits(num) {
+  function padTo2Digits(num: number) {
     return num.toString().padStart(2, '0')
   }
   const minutes = totalMinutes % 60
@@ -78,6 +82,6 @@ export const getPeriod = (totalMinutes) => {
   return `${padTo2Digits(hours)}h ${padTo2Digits(minutes)}m`
 }
 
-export const numberWithCommas = (x) => {
+export const numberWithCommas = (x: number) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }

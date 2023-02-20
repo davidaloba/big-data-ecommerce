@@ -1,39 +1,41 @@
-import App from 'next/app'
+import App, { AppProps } from 'next/app'
 import ErrorPage from 'next/error'
 import { wrapper } from '@store/index'
 import 'tailwindcss/tailwind.css'
 import { getLocalizedParams } from '@utils/localize'
 import { getGlobal, getRunningQueriesThunk, useGetGlobalQuery } from '@store/api'
+import type { GlobalData } from '@types/models'
 
-MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async (appContext) => {
-  const appProps = await App.getInitialProps(appContext)
-  const { locale } = getLocalizedParams(appContext.ctx.query)
-  try {
-    store.dispatch(getGlobal.initiate(locale))
-    await Promise.all(store.dispatch(getRunningQueriesThunk()))
+const MyApp = ({ Component, pageProps }: AppProps) => {
+  const { data: global, error, isSuccess: globalIsSuccess } = useGetGlobalQuery(pageProps.locale)
+  const globalData = global as GlobalData
 
-    return { ...appProps, locale, pageProps: {} }
-  } catch (error) {
-    return { ...appProps }
-  }
-})
-
-function MyApp({ Component, pageProps, locale }) {
-  const { data: global, error, isSuccess: globalIsSuccess } = useGetGlobalQuery(locale)
-
-  if (error || !global.attributes) {
+  if (error || !globalData.attributes) {
     return <ErrorPage statusCode={404} />
   }
   return (
-    <>
+    <div>
       {globalIsSuccess && (
         <Component
           {...pageProps}
           global={global}
         />
       )}
-    </>
+    </div>
   )
 }
+
+MyApp.getInitialProps = wrapper.getInitialAppProps((store) => async (appContext) => {
+  const appProps = await App.getInitialProps(appContext)
+  const { locale } = getLocalizedParams(appContext.ctx.query)
+  const localeT = locale as string
+  try {
+    store.dispatch(getGlobal.initiate(localeT))
+    await Promise.all(store.dispatch(getRunningQueriesThunk()))
+    return { ...appProps, pageProps: { locale } }
+  } catch (error) {
+    return { ...appProps }
+  }
+})
 
 export default wrapper.withRedux(MyApp)
