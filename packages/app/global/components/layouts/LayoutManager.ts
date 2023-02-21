@@ -20,14 +20,18 @@ const getBlockComponent = ({ __component, ...rest }, index) => {
   }
 
   return Block ? (
+    // @ts-expect-error TS(2749): 'Block' refers to a value, but is being used as a ... Remove this comment to see the full error message
     <Block
+      // @ts-expect-error TS(2304): Cannot find name 'key'.
       key={`index-${index}`}
+      // @ts-expect-error TS(2304): Cannot find name 'rest'.
       {...rest}
     />
   ) : null
 }
 
 const LayoutManager = ({ blocks }) => {
+  // @ts-expect-error TS(2304): Cannot find name 'div'.
   return <div>{blocks.map(getBlockComponent)}</div>
 }
 

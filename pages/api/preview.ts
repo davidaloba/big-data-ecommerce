@@ -1,3 +1,4 @@
+// @ts-expect-error TS(2307): Cannot find module '../../utils' or its correspond... Remove this comment to see the full error message
 import { getData } from '../../utils'
 
 export default async (req, res) => {

@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
+// @ts-expect-error TS(6137): Cannot import type declaration files. Consider imp... Remove this comment to see the full error message
 import type { Global, Page } from '@types/models'
 import { HYDRATE } from 'next-redux-wrapper'
 
@@ -18,6 +19,7 @@ const api = createApi({
       query: (locale: string) =>
         `/global?populate[navigation][populate]=*&populate[footer][populate][footerColumns][populate]=*&locale=${locale}`,
       transformResponse: (res) => {
+        // @ts-expect-error TS(2339): Property 'data' does not exist on type 'unknown'.
         const data: Global = res.data
         return data
       }
@@ -25,6 +27,7 @@ const api = createApi({
     getPageData: build.query({
       query: (url: string) => url,
       transformResponse: (res) => {
+        // @ts-expect-error TS(2339): Property 'data' does not exist on type 'unknown'.
         const data = res.data
         const pageData: Page = Array.isArray(data) ? data[0] : data
         return pageData
@@ -33,6 +36,7 @@ const api = createApi({
     getTags: build.query({
       query: () => `/tags?pagination[limit]=99`,
       transformResponse: (res) => {
+        // @ts-expect-error TS(2339): Property 'data' does not exist on type 'unknown'.
         const data = res.data
         return data
       }
@@ -40,6 +44,7 @@ const api = createApi({
     getCategories: build.query({
       query: () => `/categories?pagination[limit]=99`,
       transformResponse: (res) => {
+        // @ts-expect-error TS(2339): Property 'data' does not exist on type 'unknown'.
         const data = res.data
         return data
       }

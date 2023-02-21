@@ -1,11 +1,4 @@
-export const articleAdapter = ({
-  slug,
-  title,
-  category,
-  seo,
-  locale,
-  author
-}) => {
+export const articleAdapter = ({ slug, title, category, seo, locale, author }) => {
   return {
     slug,
     title,

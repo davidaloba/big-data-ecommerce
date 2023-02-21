@@ -11,7 +11,9 @@ const Products = ({ header, locale, perPage }) => {
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
 
+  // @ts-expect-error TS(2554): Expected 1-2 arguments, but got 0.
   const { data: categories } = useGetCategoriesQuery()
+  // @ts-expect-error TS(2554): Expected 1-2 arguments, but got 0.
   const { data: tags } = useGetTagsQuery()
   const key = {
     locale,
@@ -65,12 +67,11 @@ const Products = ({ header, locale, perPage }) => {
               </select>
             </div>
           </div>
-
+          // @ts-expect-error TS(2786): 'NoResults' cannot be used as a JSX component.
           <NoResults
             status={isSuccess}
             length={products && products}
           />
-
           <div className="grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1 gap-16 mt-24 px-4">
             {isSuccess &&
               products &&
@@ -82,7 +83,6 @@ const Products = ({ header, locale, perPage }) => {
                 />
               ))}
           </div>
-
           {products.length > 0 && (
             <div className="grid grid-cols-3 gap-4 my-24">
               <div className="col-start-2 col-end-3">

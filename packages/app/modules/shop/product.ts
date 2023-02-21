@@ -5,6 +5,7 @@ const Product = ({ name, category, tag, images, content, reviews, related, local
   return (
     <>
       <>
+        // @ts-expect-error TS(2709): Cannot use namespace 'ProductContent' as a type.
         <ProductContent
           name={name}
           category={category}
@@ -14,6 +15,7 @@ const Product = ({ name, category, tag, images, content, reviews, related, local
           reviews={reviews}
           locale
         />
+        // @ts-expect-error TS(2709): Cannot use namespace 'RelatedProducts' as a type.
         <RelatedProducts related={related} />
       </>
     </>

@@ -21,25 +21,43 @@ const Gallery = ({ images }) => {
     }
   }
   return (
+    // @ts-expect-error TS(2709): Cannot use namespace 'Container' as a type.
     <Container
+      // @ts-expect-error TS(2304): Cannot find name 'swipeable'.
       swipeable={false}
+      // @ts-expect-error TS(2304): Cannot find name 'draggable'.
       draggable={false}
+      // @ts-expect-error TS(2304): Cannot find name 'showDots'.
       showDots={true}
+      // @ts-expect-error TS(2588): Cannot assign to 'responsive' because it is a cons... Remove this comment to see the full error message
       responsive={responsive}
+      // @ts-expect-error TS(2304): Cannot find name 'ssr'.
       ssr={true}
+      // @ts-expect-error TS(2552): Cannot find name 'infinite'. Did you mean 'isFinit... Remove this comment to see the full error message
       infinite={true}
+      // @ts-expect-error TS(2304): Cannot find name 'keyBoardControl'.
       keyBoardControl={true}
+      // @ts-expect-error TS(2304): Cannot find name 'customTransition'.
       customTransition="all .5"
+      // @ts-expect-error TS(2304): Cannot find name 'transitionDuration'.
       transitionDuration={100}
+      // @ts-expect-error TS(2304): Cannot find name 'containerClass'.
       containerClass="carousel-container"
+      // @ts-expect-error TS(2304): Cannot find name 'dotListClass'.
       dotListClass="custom-dot-list-style"
+      // @ts-expect-error TS(2304): Cannot find name 'itemClass'.
       itemClass="md:py-2 py-2 w-1/2">
       {images &&
         images.map((image, index) => (
+          // @ts-expect-error TS(2304): Cannot find name 'img'.
           <img
+            // @ts-expect-error TS(2304): Cannot find name 'alt'.
             alt={image.attributes.alternativeText}
+            // @ts-expect-error TS(2304): Cannot find name 'className'.
             className="block object-fill px-1"
+            // @ts-expect-error TS(2304): Cannot find name 'src'.
             src={getStrapiMedia(image.attributes.url)}
+            // @ts-expect-error TS(2304): Cannot find name 'key'.
             key={`imageGallery-${index}`}
           />
         ))}

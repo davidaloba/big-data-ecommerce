@@ -1,3 +1,4 @@
+// @ts-expect-error TS(2307): Cannot find module 'bcryptjs' or its corresponding... Remove this comment to see the full error message
 import bcrypt from 'bcryptjs'
 
 const data = {

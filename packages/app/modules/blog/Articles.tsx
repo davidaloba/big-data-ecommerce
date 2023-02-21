@@ -48,15 +48,15 @@ const Articles = ({ header, locale, perPage }) => {
               </label>
             </div>
           </div>
-
+          // @ts-expect-error TS(2786): 'NoResults' cannot be used as a JSX component.
           <NoResults
             status={isSuccess}
             length={articles && articles.length}
           />
-
           <div className="grid md:grid-cols-2 grid-cols-1 gap-40 mt-24 px-4">
             {articles &&
               articles.map((article, index) => (
+                // @ts-expect-error TS(2786): 'ArticleCard' cannot be used as a JSX component.
                 <ArticleCard
                   {...article.attributes}
                   locale={locale}
@@ -64,7 +64,6 @@ const Articles = ({ header, locale, perPage }) => {
                 />
               ))}
           </div>
-
           {articles && articles.length > 0 && (
             <div className="grid grid-cols-3 gap-4 my-24">
               <div className="col-start-2 col-end-3">

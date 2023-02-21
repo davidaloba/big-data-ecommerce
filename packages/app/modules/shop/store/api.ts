@@ -24,6 +24,7 @@ const productsApi = api.injectEndpoints({
         return baseUrl
       },
       transformResponse: (responseData) => {
+        // @ts-expect-error TS(2339): Property 'data' does not exist on type 'unknown'.
         return responseData.data
       }
     })
