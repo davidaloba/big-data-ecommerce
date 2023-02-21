@@ -49,6 +49,7 @@ const Articles = ({ header, locale, perPage }) => {
             </div>
           </div>
           // @ts-expect-error TS(2786): 'NoResults' cannot be used as a JSX component.
+          // @ts-expect-error TS(2786): 'NoResults' cannot be used as a JSX component.
           <NoResults
             status={isSuccess}
             length={articles && articles.length}
