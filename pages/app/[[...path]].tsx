@@ -7,6 +7,7 @@ export default function Home() {
       <AppLayout>
         // @ts-expect-error TS(2304): Cannot find name 'Loading'.
         // @ts-expect-error TS(2304): Cannot find name 'Loading'.
+        // @ts-expect-error TS(2304): Cannot find name 'Loading'.
         <ClientRouter whileLoading={<Loading />}>
           <ClientRoute
             path="summary"

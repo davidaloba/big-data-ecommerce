@@ -14,7 +14,9 @@ const Layout = ({ children, global, page, pageDataIsSuccess, type, preview }) =>
 
   return (
     <div>
+      // @ts-expect-error TS(2786): 'Seo' cannot be used as a JSX component.
       <Seo seo={pageData.seo} />
+      // @ts-expect-error TS(2786): 'PreviewBanner' cannot be used as a JSX component.
       {preview && <PreviewBanner />}
       {pageDataIsSuccess && (
         <Navbar
@@ -32,6 +34,7 @@ const Layout = ({ children, global, page, pageDataIsSuccess, type, preview }) =>
           perPage={pageData.perPage || 12}
         />
       )}
+      // @ts-expect-error TS(2786): 'BlockManager' cannot be used as a JSX component.
       {blocks && <BlockManager blocks={blocks} />}
       {pageDataIsSuccess && (
         <Footer
