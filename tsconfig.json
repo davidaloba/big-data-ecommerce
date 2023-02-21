@@ -47,11 +47,11 @@
       "@styles/*": [
         "packages/app/global/styles/*"
       ],
-      "@types/*": [
-        "packages/app/global/types/*"
-      ],
       "@utils/*": [
         "packages/app/global/utils/*"
+      ],
+      "types/*": [
+        "packages/app/global/types/*"
       ]
     },
     "allowJs": true,

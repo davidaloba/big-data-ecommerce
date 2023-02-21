@@ -1,11 +1,11 @@
 import { ReactNode } from 'react'
 import ErrorPage from 'next/error'
-import type { Global } from '@types/models'
 import { getData, getStrapiURL } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
 import { wrapper } from '@store/index'
 import { getPageData, getRunningQueriesThunk, useGetPageDataQuery } from '@store/api'
 import Layout from '@components/layouts/layout'
+import type { Global } from 'types/models'
 
 // This gets called on every request
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {

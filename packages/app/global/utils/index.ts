@@ -36,8 +36,6 @@ export function getData(slug: string | string[], locale: string | string[], prev
     }
   } else {
     const apiID = pageType in apiIDs && apiIDs[pageType]
-    console.log()
-
     const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate=deep`
 
     return {
@@ -85,5 +83,5 @@ export const getPeriod = (totalMinutes: number) => {
 }
 
 export const numberWithCommas = (x: number) => {
-  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+  return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }

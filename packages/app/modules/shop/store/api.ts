@@ -23,7 +23,7 @@ const productsApi = api.injectEndpoints({
         }
         return baseUrl
       },
-      transformResponse: (responseData) => {
+      transformResponse: (responseData: { [index: string]: object | object[] }) => {
         return responseData.data
       }
     })

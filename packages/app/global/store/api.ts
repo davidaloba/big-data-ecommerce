@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import type { Global, Page } from '@types/models'
 import { HYDRATE } from 'next-redux-wrapper'
+import type { Global, Page } from 'types/models'
 
 const api = createApi({
   reducerPath: 'api',
@@ -17,29 +17,29 @@ const api = createApi({
     getGlobal: build.query({
       query: (locale: string) =>
         `/global?populate[navigation][populate]=*&populate[footer][populate][footerColumns][populate]=*&locale=${locale}`,
-      transformResponse: (res) => {
-        const data: Global = res.data
+      transformResponse: (res: { data: Global; [index: string]: object | object[] }) => {
+        const data = res.data
         return data
       }
     }),
     getPageData: build.query({
       query: (url: string) => url,
-      transformResponse: (res) => {
+      transformResponse: (res: { data: Page | Page[]; [index: string]: object | object[] }) => {
         const data = res.data
-        const pageData: Page = Array.isArray(data) ? data[0] : data
+        const pageData = Array.isArray(data) ? data[0] : data
         return pageData
       }
     }),
     getTags: build.query({
       query: () => `/tags?pagination[limit]=99`,
-      transformResponse: (res) => {
+      transformResponse: (res: { [index: string]: object | object[] }) => {
         const data = res.data
         return data
       }
     }),
     getCategories: build.query({
       query: () => `/categories?pagination[limit]=99`,
-      transformResponse: (res) => {
+      transformResponse: (res: { [index: string]: object | object[] }) => {
         const data = res.data
         return data
       }

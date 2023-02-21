@@ -32,7 +32,7 @@ export interface Page {
       data: {
         id: number
         attributes: {
-          [index: string]: string;
+          [index: string]: string
         }
       }[]
     }
