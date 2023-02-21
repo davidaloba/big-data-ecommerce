@@ -1,26 +1,68 @@
 {
-  "include": ["packages", "pages", "next.config.js"],
-  "exclude": ["node_modules", ".next"],
+  "include": [
+    "packages",
+    "pages",
+    "next.config.js"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next"
+  ],
   "compilerOptions": {
     "module": "esnext",
     "target": "es2015",
     "moduleResolution": "node",
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": "./",
     "paths": {
-      "@db/*": ["packages/db/*"],
-      "@modules/*": ["packages/app/modules/*"],
-      "@tests/*": ["packages/app/global/__tests__/*"],
-      "@components/*": ["packages/app/global/components/*"],
-      "@assets/*": ["packages/app/global/assets/*"],
-      "@content/*": ["packages/app/global/content/*"],
-      "@hooks/*": ["packages/app/global/hooks/*"],
-      "@store/*": ["packages/app/global/store/*"],
-      "@styles/*": ["packages/app/global/styles/*"],
-      "@types/*": ["packages/app/global/types/*"],
-      "@utils/*": ["packages/app/global/utils/*"]
-    }
+      "@db/*": [
+        "packages/db/*"
+      ],
+      "@modules/*": [
+        "packages/app/modules/*"
+      ],
+      "@tests/*": [
+        "packages/app/global/__tests__/*"
+      ],
+      "@components/*": [
+        "packages/app/global/components/*"
+      ],
+      "@assets/*": [
+        "packages/app/global/assets/*"
+      ],
+      "@content/*": [
+        "packages/app/global/content/*"
+      ],
+      "@hooks/*": [
+        "packages/app/global/hooks/*"
+      ],
+      "@store/*": [
+        "packages/app/global/store/*"
+      ],
+      "@styles/*": [
+        "packages/app/global/styles/*"
+      ],
+      "@types/*": [
+        "packages/app/global/types/*"
+      ],
+      "@utils/*": [
+        "packages/app/global/utils/*"
+      ]
+    },
+    "allowJs": true,
+    "skipLibCheck": true,
+    "strict": false,
+    "forceConsistentCasingInFileNames": true,
+    "noEmit": true,
+    "incremental": true,
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "isolatedModules": true
   },
   "allowJs": true,
   "noEmit": true,
@@ -32,5 +74,5 @@
   "allowSyntheticDefaultImports": true,
   "noFallthroughCasesInSwitch": true,
   "resolveJsonModule": true,
-  "isolatedModules": true,
+  "isolatedModules": true
 }
