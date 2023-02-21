@@ -1,5 +1,4 @@
-// @ts-expect-error TS(2307): Cannot find module '../../utils' or its correspond... Remove this comment to see the full error message
-import { getData } from '../../utils'
+import { getData } from '@utils/index'
 
 export default async (req, res) => {
   if (
@@ -10,9 +9,7 @@ export default async (req, res) => {
   }
 
   const previewData = await getData(
-    req.query.slug,
     req.query.locale,
-    req.query.apiID,
     req.query.kind,
     null
   )

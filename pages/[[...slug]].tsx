@@ -1,6 +1,5 @@
 import { ReactNode } from 'react'
 import ErrorPage from 'next/error'
-// @ts-expect-error TS(6137): Cannot import type declaration files. Consider imp... Remove this comment to see the full error message
 import type { Global } from '@types/models'
 import { getData, getStrapiURL } from '@utils/index'
 import { getLocalizedParams } from '@utils/localize'
@@ -9,7 +8,6 @@ import { getPageData, getRunningQueriesThunk, useGetPageDataQuery } from '@store
 import Layout from '@components/layouts/layout'
 
 // This gets called on every request
-// @ts-expect-error TS(2322): Type '(context: GetServerSidePropsContext<ParsedUr... Remove this comment to see the full error message
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   const { slug, locale } = getLocalizedParams(context.query)
   const { url, type } = getData(slug, locale, context.preview)

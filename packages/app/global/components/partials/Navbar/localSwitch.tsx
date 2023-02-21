@@ -17,17 +17,14 @@ const localeSwitch = ({ pageData, type, locale: language }) => {
   useEffect(() => {
     const changeLocale = async () => {
       if (!isMounted.current && lang && lang !== locale) {
-        // @ts-expect-error TS(2345): Argument of type 'string | string[]' is not assign... Remove this comment to see the full error message
         const localePage = await getLocalizedData(lang, pageData, type)
         router.push(`${localizePath(localePage, locale)}`, {
-          // @ts-expect-error TS(2345): Argument of type '{ locale: any; }' is not assigna... Remove this comment to see the full error message
           locale: localePage.locale
         })
       }
 
       setShowing(false)
       const localizations = await listLocalizedPaths(pageData, type)
-      // @ts-expect-error TS(2345): Argument of type 'any[]' is not assignable to para... Remove this comment to see the full error message
       setLocalizedPaths(localizations)
     }
 
@@ -67,12 +64,10 @@ const localeSwitch = ({ pageData, type, locale: language }) => {
           aria-orientation="vertical"
           aria-labelledby="options-menu">
           {localizedPaths &&
-            // @ts-expect-error TS(2339): Property 'map' does not exist on type 'never'.
             localizedPaths.map(({ href, locale }) => (
               <a
                 href={href}
                 key={locale}
-                // @ts-expect-error TS(2322): Type '{ children: Element; href: any; key: any; lo... Remove this comment to see the full error message
                 locale={locale}
                 className="block px-4 py-2 text-md text-gray-700 hover:bg-gray-100 hover:text-gray-900 dark:text-gray-100 dark:hover:text-white dark:hover:bg-gray-600"
                 role="menuitem">

@@ -27,7 +27,15 @@ export interface Page {
     updatedAt: string
     publishedAt: string
     locale: string
-    localizations: object
+    localizations: {
+      id: number
+      data: {
+        id: number
+        attributes: {
+          [index: string]: string;
+        }
+      }[]
+    }
     seo: null
     title?: string
     main?: object[]

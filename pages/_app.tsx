@@ -4,7 +4,6 @@ import { wrapper } from '@store/index'
 import 'tailwindcss/tailwind.css'
 import { getLocalizedParams } from '@utils/localize'
 import { getGlobal, getRunningQueriesThunk, useGetGlobalQuery } from '@store/api'
-// @ts-expect-error TS(6137): Cannot import type declaration files. Consider imp... Remove this comment to see the full error message
 import type { Global } from '@types/models'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
