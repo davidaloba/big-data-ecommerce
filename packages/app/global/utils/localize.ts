@@ -1,6 +1,6 @@
 import { ParsedUrlQuery } from 'querystring'
 import { getStrapiURL } from '.'
-import type { Page } from 'types/models'
+import { Page } from '@__types/models'
 
 export function getLocalizedParams(query: ParsedUrlQuery) {
   const lang = query.lang

@@ -13,11 +13,7 @@ const Seo = ({ seo }) => {
     metaDescription
   }: any = seo ? seo : {}
 
-  const metaImageAttr = !seo
-    ? {}
-    : seo.metaImage
-    ? seo.metaImage.data.attributes
-    : {}
+  const metaImageAttr = !seo ? {} : seo.metaImage ? seo.metaImage.data.attributes : {}
 
   // const metaTitle = seo.metaTitle
   // const metaRobots = seo.metaRobots
@@ -40,35 +36,34 @@ const Seo = ({ seo }) => {
         content="summary"
       />
 
-      {metaSocial &&
-        metaSocial.find((item) => item.socialNetwork == 'Twitter') && (
-          <>
-            <meta
-              data-hid="twitter:title"
-              name="twitter:title"
-              property="twitter:title"
-              content={item.title}
-            />
-            <meta
-              data-hid="twitter:description"
-              name="twitter:description"
-              property="twitter:description"
-              content={item.description}
-            />
-            <meta
-              data-hid="twitter:image"
-              name="twitter:image"
-              property="twitter:image"
-              content={getStrapiMedia(item.image.data.attributes.url)}
-            />
-            <meta
-              data-hid="twitter:image:alt"
-              name="twitter:image:alt"
-              property="twitter:image:alt"
-              content={item.image.data.attributes.alternativeText}
-            />
-          </>
-        )}
+      {metaSocial && metaSocial.find((item) => item.socialNetwork == 'Twitter') && (
+        <>
+          <meta
+            data-hid="twitter:title"
+            name="twitter:title"
+            property="twitter:title"
+            content={item.title}
+          />
+          <meta
+            data-hid="twitter:description"
+            name="twitter:description"
+            property="twitter:description"
+            content={item.description}
+          />
+          <meta
+            data-hid="twitter:image"
+            name="twitter:image"
+            property="twitter:image"
+            content={getStrapiMedia(item.image.data.attributes.url)}
+          />
+          <meta
+            data-hid="twitter:image:alt"
+            name="twitter:image:alt"
+            property="twitter:image:alt"
+            content={item.image.data.attributes.alternativeText}
+          />
+        </>
+      )}
 
       <meta
         prefix="og: http://ogp.me/ns#"

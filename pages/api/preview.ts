@@ -8,11 +8,7 @@ export default async (req, res) => {
     return res.status(401).json({ message: 'Invalid token' })
   }
 
-  const previewData = await getData(
-    req.query.locale,
-    req.query.kind,
-    null
-  )
+  const previewData = await getData(req.query.locale, req.query.kind, null)
 
   if (!previewData.data) {
     return res.status(401).json({ message: 'Invalid slug' })

@@ -16,9 +16,7 @@ const Cards = ({ cards }) => {
                 />
               </div>
             </div>
-            <h3 className="text-2xl sm:text-xl text-gray-700 font-semibold py-4">
-              {item.title}
-            </h3>
+            <h3 className="text-2xl sm:text-xl text-gray-700 font-semibold py-4">{item.title}</h3>
 
             <p className="text-md  text-gray-500 py-4">{item.text}</p>
           </div>

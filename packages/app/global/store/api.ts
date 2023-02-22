@@ -1,6 +1,6 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
-import type { Global, Page } from 'types/models'
+import { Global, Page } from '@__types/models'
 
 const api = createApi({
   reducerPath: 'api',

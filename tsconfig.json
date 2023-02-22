@@ -20,9 +20,6 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@db/*": [
-        "packages/db/*"
-      ],
       "@modules/*": [
         "packages/app/modules/*"
       ],
@@ -50,8 +47,8 @@
       "@utils/*": [
         "packages/app/global/utils/*"
       ],
-      "types/*": [
-        "packages/app/global/types/*"
+      "@__types/*": [
+        "packages/app/global/__types/*"
       ]
     },
     "allowJs": true,

@@ -5,7 +5,7 @@ import { getLocalizedParams } from '@utils/localize'
 import { wrapper } from '@store/index'
 import { getPageData, getRunningQueriesThunk, useGetPageDataQuery } from '@store/api'
 import Layout from '@components/layouts/layout'
-import type { Global } from 'types/models'
+import { Global } from '@__types/models'
 
 // This gets called on every request
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {

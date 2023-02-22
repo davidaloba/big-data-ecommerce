@@ -9,9 +9,7 @@ const Columns = ({ columns, locale }) => {
             className="w-1/2 md:w-1/3 lg:w-1/3"
             key={`footerColumn-${index}`}>
             <div className="text-center">
-              <h2 className="text-gray-500 text-md font-bold uppercase mb-4">
-                {column.title}
-              </h2>
+              <h2 className="text-gray-500 text-md font-bold uppercase mb-4">{column.title}</h2>
               <ul>
                 {column.links &&
                   column.links.map((link, index2) => (

@@ -16,25 +16,17 @@ const Testimonial = ({ theme, text, author }) => {
           <div className="flex items-center justify-center mt-8">
             <div className="block relative">
               <img
-                alt={
-                  (author,
-                  'data.attributes.picture.data.attributes.alternativeText')
-                }
-                src={getStrapiMedia(
-                  author.data.attributes.picture.data.attributes.url
-                )}
+                alt={(author, 'data.attributes.picture.data.attributes.alternativeText')}
+                src={getStrapiMedia(author.data.attributes.picture.data.attributes.url)}
                 className="mx-auto object-cover rounded-full h-10 w-10 "
               />
             </div>
 
             <div className="flex ml-2 items-center justify-center">
-              <span
-                className={`font-semibold text-${theme} mr-2 text-md md:text-lg`}>
+              <span className={`font-semibold text-${theme} mr-2 text-md md:text-lg`}>
                 {author.data.attributes.username}
               </span>
-              <span className="text-gray-400 text-xs md:text-xl font-light">
-                /
-              </span>
+              <span className="text-gray-400 text-xs md:text-xl font-light">/</span>
               <span className="text-gray-400 text-xs md:text-lg ml-2">
                 {author.data.attributes.job}
               </span>

@@ -13,9 +13,7 @@ const MemberCards = ({ members }) => {
                 <div className="block relative">
                   <img
                     alt="profil"
-                    src={getStrapiMedia(
-                      member.attributes.picture.data.attributes.url
-                    )}
+                    src={getStrapiMedia(member.attributes.picture.data.attributes.url)}
                     className="mx-auto object-cover rounded-full h-20 w-20 "
                   />
                 </div>
@@ -24,9 +22,7 @@ const MemberCards = ({ members }) => {
                 <span className="text-gray-600 text-lg font-medium">
                   {member.attributes.username}
                 </span>
-                <span className="text-gray-400 text-sm">
-                  {member.attributes.job}
-                </span>
+                <span className="text-gray-400 text-sm">{member.attributes.job}</span>
               </div>
             </div>
           </div>
