@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { useGetArticlesQuery } from './store/api'
-import ArticleCard from './components/__lib/ArticleCard'
+import { useGetArticlesQuery } from '../store/api'
+import ArticleCard from './__lib/ArticleCard'
 import NoResults from '@components/pages/no-results'
 import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'

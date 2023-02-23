@@ -1,15 +1,15 @@
 import dynamic from 'next/dynamic'
 
-const Article = dynamic(() => import('./blog/Article'), {
+const Article = dynamic(() => import('./blog/components/Article'), {
   ssr: true
 })
-const Articles = dynamic(() => import('./blog/Articles'), {
+const Articles = dynamic(() => import('./blog/components/Articles'), {
   ssr: true
 })
-const Product = dynamic(() => import('./shop/product'), {
+const Product = dynamic(() => import('./shop/components/Product'), {
   ssr: true
 })
-const Products = dynamic(() => import('./shop/products'), {
+const Products = dynamic(() => import('./shop/components/Products'), {
   ssr: true
 })
 

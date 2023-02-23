@@ -1,5 +1,5 @@
-import ProductContent from './components/ProductContent'
-import RelatedProducts from './components/RelatedProducts'
+import ProductContent from './ProductContent'
+import RelatedProducts from './RelatedProducts'
 
 const Product = ({ name, category, tag, images, content, reviews, related, locale }) => {
   return (
@@ -12,7 +12,7 @@ const Product = ({ name, category, tag, images, content, reviews, related, local
           images={images}
           content={content}
           reviews={reviews}
-          locale
+          locale={locale}
         />
         <RelatedProducts related={related} />
       </>

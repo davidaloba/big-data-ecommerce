@@ -1,5 +1,5 @@
-import RelatedArticles from './components/RelatedArticles'
-import ArticleContent from './components/ArticleContent'
+import RelatedArticles from './RelatedArticles'
+import ArticleContent from './ArticleContent'
 
 const Article = ({ title, image, content, related }) => {
   return (
