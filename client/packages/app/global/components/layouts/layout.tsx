@@ -8,7 +8,6 @@ import ModuleManager from '@modules/ModuleManager'
 const Layout = ({ children, global, page, pageDataIsSuccess, type, preview }) => {
   const pageData = page.attributes
   const { navigation, footer } = global.attributes
-
   const blocks = pageData.blocks || []
   const modules = pageData.main
 
@@ -23,15 +22,16 @@ const Layout = ({ children, global, page, pageDataIsSuccess, type, preview }) =>
           type={type}
         />
       )}
-      {children}
-      {modules && (
-        <ModuleManager
-          modules={modules}
-          perPage={pageData.perPage || 12}
-        />
-      )}
-      {blocks && <BlockManager blocks={blocks} />}
-
+      <main>
+        {children}
+        {modules && (
+          <ModuleManager
+            modules={modules}
+            perPage={pageData.perPage || 12}
+          />
+        )}
+        {blocks && <BlockManager blocks={blocks} />}
+      </main>
       {pageDataIsSuccess && <Footer footer={footer} />}
     </div>
   )

@@ -6,16 +6,13 @@ import { getPageData, getRunningQueriesThunk, useGetPageDataQuery } from '@store
 import Layout from '@components/layouts/layout'
 import { Global } from '@__types/models'
 
-// This gets called on every request
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   const { url, type } = getData(context.query.slug || '', context.preview)
-
   const apiUrl = getStrapiURL(url)
 
   try {
     store.dispatch(getPageData.initiate(apiUrl))
     await Promise.all(store.dispatch(getRunningQueriesThunk()))
-
     return {
       props: {
         apiUrl,
@@ -48,7 +45,6 @@ const Page = ({ children, global, apiUrl, type, preview }: PageProps) => {
   if (pageDataError || !page) {
     return <ErrorPage statusCode={404} />
   }
-
   return (
     <Layout
       page={page}
@@ -60,5 +56,4 @@ const Page = ({ children, global, apiUrl, type, preview }: PageProps) => {
     </Layout>
   )
 }
-
 export default Page
