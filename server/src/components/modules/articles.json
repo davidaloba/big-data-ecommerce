@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_modules_articles",
+  "info": {
+    "displayName": "articles",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.header"
+    }
+  }
+}

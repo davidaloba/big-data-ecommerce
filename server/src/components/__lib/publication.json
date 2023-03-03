@@ -1,0 +1,17 @@
+{
+  "collectionName": "components___lib_publications",
+  "info": {
+    "displayName": "publication",
+    "icon": "arrow-up"
+  },
+  "options": {},
+  "attributes": {
+    "publish_at": {
+      "type": "datetime"
+    },
+    "ready": {
+      "type": "boolean",
+      "default": true
+    }
+  }
+}

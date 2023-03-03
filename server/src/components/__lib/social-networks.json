@@ -1,0 +1,14 @@
+{
+  "collectionName": "components___lib_social_network",
+  "info": {
+    "displayName": "socialNetwork",
+    "icon": "network-wired"
+  },
+  "options": {},
+  "attributes": {
+    "url": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

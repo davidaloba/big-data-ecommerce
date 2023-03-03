@@ -1,0 +1,19 @@
+{
+  "collectionName": "components___lib_footer_columns",
+  "info": {
+    "displayName": "footerColumns",
+    "icon": "align-left"
+  },
+  "options": {},
+  "attributes": {
+
+    "label": {
+      "type": "string"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "__lib.link"
+    }
+  }
+}

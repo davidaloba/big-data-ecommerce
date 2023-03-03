@@ -1,0 +1,13 @@
+{
+  "collectionName": "components___lib_comments",
+  "info": {
+    "displayName": "comment",
+    "icon": "comment-dots"
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "text"
+    }
+  }
+}

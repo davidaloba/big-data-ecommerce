@@ -1,0 +1,46 @@
+{
+  "collectionName": "components_modules_article",
+  "info": {
+    "displayName": "Article",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "articles"
+    },
+    "editors": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "admin::user"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "content": {
+      "type": "component",
+      "repeatable": false,
+      "component": "article.article-content"
+    },
+    "related": {
+      "type": "component",
+      "repeatable": false,
+      "component": "article.related-articles"
+    }
+  }
+}

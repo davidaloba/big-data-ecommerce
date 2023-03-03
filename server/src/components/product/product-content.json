@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_product_product_content",
+  "info": {
+    "displayName": "relatedProducts",
+    "icon": "copy",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "information": {
+      "type": "component",
+      "repeatable": false,
+      "component": "product.information"
+    },
+    "price": {
+      "type": "enumeration",
+      "repeatable": false,
+      "enum": [
+        "p1",
+        "p2",
+        "p3",
+        "p4"
+      ],
+      "required": true
+    },
+    "socialNetworks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "__lib.social-networks"
+    },
+    "richContent": {
+      "type": "component",
+      "repeatable": true,
+      "component": "product.rich-content"
+    }
+  }
+
+  
+}

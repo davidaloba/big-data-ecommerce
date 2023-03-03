@@ -1,0 +1,21 @@
+{
+  "collectionName": "components_product_related_products",
+  "info": {
+    "displayName": "relatedProducts",
+    "icon": "copy",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.header"
+    },
+    "shop": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product"
+    }
+  }
+}

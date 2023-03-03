@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_article_article_content",
+  "info": {
+    "displayName": "ArticleContent",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "ckeditor_content": {
+      "type": "customField",
+      "options": {
+        "preset": "standard"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    }
+  }
+}
