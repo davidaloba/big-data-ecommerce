@@ -1,7 +1,7 @@
 import dynamic from 'next/dynamic'
 
 const Article = dynamic(() => import('./blog/components/Article'), {
-  ssr: true
+  ssr: false
 })
 const Articles = dynamic(() => import('./blog/components/Articles'), {
   ssr: true

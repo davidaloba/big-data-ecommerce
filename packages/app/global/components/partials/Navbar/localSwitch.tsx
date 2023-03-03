@@ -42,9 +42,9 @@ const localeSwitch = ({ pageData, type, locale: language }) => {
       ref={select}>
       <div>
         <button
-          className="md:mt-4 hover:bg-primary-50 hover:text-primary-600 focus:bg-primary-50 focus:text-primary-600 focus:outline-none flex items-center justify-between md:pl-8 cursor-pointer rounded-md"
+          className=" md:pl-2 hover:bg-primary-50 hover:text-primary-600 focus:bg-primary-50 focus:text-primary-600 focus:outline-none flex items-center justify-between cursor-pointer rounded-md"
           onClick={() => setShowing(!showing)}>
-          <div className="w-6 h-6">
+          <div className="w-4 h-4">
             <svg
               className="fill-current text-primary-600"
               xmlns="http://www.w3.org/2000/svg"

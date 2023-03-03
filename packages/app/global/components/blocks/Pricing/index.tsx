@@ -3,8 +3,7 @@ const Pricing = ({ header, pricingCards }) => {
     <div className="bg-white pb-60">
       <div className="text-center pt-24">
         {header && (
-          <h2
-            className={`text-${header.theme} font-extrabold tracking-wide uppercase`}>
+          <h2 className={`text-${header.theme} font-extrabold tracking-wide uppercase`}>
             {header.label}
           </h2>
         )}
@@ -29,9 +28,7 @@ const Pricing = ({ header, pricingCards }) => {
                 ${card.price}
                 <span className="text-gray-300 text-sm">/ month</span>
               </p>
-              <p className="text-gray-600 dark:text-gray-100  text-xs mt-4">
-                {card.description}
-              </p>
+              <p className="text-gray-600 dark:text-gray-100  text-xs mt-4">{card.description}</p>
               <ul className="text-sm text-gray-600 dark:text-gray-100 w-full mt-6 mb-6">
                 {card.perks &&
                   card.perks.map((perk, index) => (

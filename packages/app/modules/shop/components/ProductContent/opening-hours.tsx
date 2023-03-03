@@ -30,8 +30,7 @@ const OpeningHours = ({ opening_hours }) => {
                 key={`openingHour-${index}`}>
                 <div className="flex items-center justify-start text-sm">
                   <span className="mx-2">
-                    {item.day_interval} {item.opening_hour} -{' '}
-                    {item.closing_hour}
+                    {item.day_interval} {item.opening_hour} - {item.closing_hour}
                   </span>
                 </div>
               </li>

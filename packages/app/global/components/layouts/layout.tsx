@@ -13,7 +13,7 @@ const Layout = ({ children, global, page, pageDataIsSuccess, type, preview }) =>
   const modules = pageData.main
 
   return (
-    <div>
+    <div className=" mx-auto">
       <Seo seo={pageData.seo} />
       {preview && <PreviewBanner />}
       {pageDataIsSuccess && (
@@ -33,6 +33,7 @@ const Layout = ({ children, global, page, pageDataIsSuccess, type, preview }) =>
         />
       )}
       {blocks && <BlockManager blocks={blocks} />}
+
       {pageDataIsSuccess && (
         <Footer
           footer={footer}

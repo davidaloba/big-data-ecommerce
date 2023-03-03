@@ -9,10 +9,10 @@ const CtaCommandLine = dynamic(() => import('./CtaCommandLine'), {
 const Faq = dynamic(() => import('./Faq'), {
   ssr: true
 })
-const Features = dynamic(() => import('./Features'), {
+const FeaturedProjects = dynamic(() => import('./FeaturedProjects'), {
   ssr: true
 })
-const FeaturesWithImages = dynamic(() => import('./FeaturesWithImages'), {
+const LatestCode = dynamic(() => import('./LatestCode'), {
   ssr: true
 })
 const Hero = dynamic(() => import('./Hero'), {
@@ -47,8 +47,8 @@ const getBlockComponent = ({ __component, ...rest }, index) => {
     case 'blocks.pricing':
       Block = Pricing
       break
-    case 'blocks.features':
-      Block = Features
+    case 'blocks.featured-projects':
+      Block = FeaturedProjects
       break
     case 'blocks.testimonial':
       Block = Testimonial
@@ -56,8 +56,8 @@ const getBlockComponent = ({ __component, ...rest }, index) => {
     case 'blocks.cta-command-line':
       Block = CtaCommandLine
       break
-    case 'blocks.features-with-images':
-      Block = FeaturesWithImages
+    case 'blocks.latest-code':
+      Block = LatestCode
       break
   }
   return Block ? (

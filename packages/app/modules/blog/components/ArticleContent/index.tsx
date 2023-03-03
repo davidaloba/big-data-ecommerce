@@ -1,8 +1,8 @@
 import Container from '@components/__lib/Container'
 import Link from 'next/link'
 import styles from './ArticleContent.module.css'
-import { CKEditor } from '@ckeditor/ckeditor5-react';
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic';
+import { CKEditor } from '@ckeditor/ckeditor5-react'
+import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { getStrapiMedia } from '@utils/index'
 
 const ArticleContent = ({ title, image, content, locale }) => {
@@ -28,15 +28,12 @@ const ArticleContent = ({ title, image, content, locale }) => {
           </div>
           <div className="markdown-body ck-content shadow-lg rounded-xl lg:w-4/6 w-full md:p-12 p-6 mt-2 bg-white">
             <div className={styles['ck-no-border']}>
-            <CKEditor
+              <CKEditor
                 editor={ClassicEditor}
                 onReady={(editor) => {
-                  editor.ui.view.toolbar.element.remove();
+                  editor.ui.view.toolbar.element.remove()
                 }}
-                data={ckContent.replaceAll(
-                  '"/uploads',
-                  `"${process.env.NEXT_PUBLIC_API_URL}/uploads`
-                )}
+                data={ckContent}
                 disabled={true}
               />
             </div>

@@ -18,9 +18,7 @@ const NoResults = ({ status, length }) => {
               />
             </svg>
             <p className="text-gray-800 dark:text-gray-200 text-xl font-bold mt-4">
-              {status == 'error'
-                ? 'Error'
-                : `We couldn't find what you're looking for`}
+              {status == 'error' ? 'Error' : `We couldn't find what you're looking for`}
             </p>
           </div>
         </div>

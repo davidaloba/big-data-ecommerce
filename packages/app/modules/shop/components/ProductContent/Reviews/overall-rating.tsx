@@ -6,9 +6,7 @@ const OverallRating = ({ reviews }) => {
       <div>
         <div className="shadow-lg rounded-xl w-full p-4 bg-white text-gray-700 text-center relative overflow-hidden">
           <div className="w-full">
-            <p className="text-gray-700 dark:text-white  text-2xl font-light mb-4">
-              No reviews 😥
-            </p>
+            <p className="text-gray-700 dark:text-white  text-2xl font-light mb-4">No reviews 😥</p>
           </div>
         </div>
       </div>
@@ -45,14 +43,10 @@ const OverallRating = ({ reviews }) => {
     <div>
       <div className="rounded-xl w-full p-4 bg-white text-gray-700 text-center relative overflow-hidden">
         <div className="w-full">
-          <p className="text-gray-700 dark:text-white  text-2xl font-light mb-4">
-            Overall Rating
-          </p>
+          <p className="text-gray-700 dark:text-white  text-2xl font-light mb-4">Overall Rating</p>
 
           {reviewsCount && (
-            <p className="text-5xl text-black dark:text-white font-bold">
-              {average}/5
-            </p>
+            <p className="text-5xl text-black dark:text-white font-bold">{average}/5</p>
           )}
 
           {reviewsCount && <p className="my-4">{reviewsCount} reviews</p>}
@@ -67,9 +61,7 @@ const OverallRating = ({ reviews }) => {
                 <div className="w-full h-2 bg-gray-100 rounded-full mb-4">
                   <div
                     className={`${
-                      item.value === 0
-                        ? 'w-0'
-                        : `w-${item.value}/${reviewsCount}`
+                      item.value === 0 ? 'w-0' : `w-${item.value}/${reviewsCount}`
                     }  h-full text-center text-xs text-white bg-primary rounded-full`}></div>
                 </div>
               </div>
