@@ -1,6 +1,3 @@
-!/.*
-/build/
-/test-config/
-.vscode
-.next
-.history
+.cache
+build
+**/node_modules/**

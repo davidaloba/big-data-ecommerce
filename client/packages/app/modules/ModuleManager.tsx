@@ -13,7 +13,7 @@ const Products = dynamic(() => import('./shop/components/Products'), {
   ssr: true
 })
 
-const ModuleManager = ({ modules, locale, perPage }) => {
+const ModuleManager = ({ modules, perPage }) => {
   return (
     <div>
       {modules.map((module, index) => {
@@ -38,7 +38,6 @@ const ModuleManager = ({ modules, locale, perPage }) => {
         return Module ? (
           <Module
             key={`index-${index}`}
-            locale={locale}
             perPage={perPage}
             {...rest}
           />

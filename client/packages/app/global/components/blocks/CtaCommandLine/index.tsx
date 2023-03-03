@@ -1,5 +1,3 @@
-import Container from '@components/__lib/Container'
-
 const CtaCommandLine = ({ title, text, theme, commandLine }) => {
   return (
     <div className={`bg-${theme}`}>
@@ -10,14 +8,8 @@ const CtaCommandLine = ({ title, text, theme, commandLine }) => {
         </h2>
         <div className="py-12 lg:flex-shrink-0 flex items-center justify-center">
           <div className="block md:w-2/5 w-full shadow-2xl text-center">
-            <Container
-              // note="code-block"
-              text={commandLine}
-              language="bash"
-              codeBlock
-              // theme={}
-              showLineNumbers={false}
-            />
+            text={commandLine}
+            language="bash" codeBlock
           </div>
         </div>
       </div>

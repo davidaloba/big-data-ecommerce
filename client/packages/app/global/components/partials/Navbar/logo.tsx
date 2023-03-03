@@ -2,10 +2,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import { getStrapiMedia } from '@utils/index'
 
-const Logo = ({ url, button, locale }) => {
+const Logo = ({ url, button }) => {
   return (
     <Link
-      href={`${button.href}?lang=${locale || 'en'}`}
+      href={button.href}
       className="flex title-font font-medium items-center text-gray-900 md:mb-0 mb-4 ">
       <Image
         src={getStrapiMedia(url)}

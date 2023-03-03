@@ -1,6 +1,5 @@
 import Link from 'next/link'
 import { getStrapiMedia } from '@utils/index'
-import Container from '@components/__lib/Container'
 import SocialLogo from '@components/__lib/SocialLogo'
 import Information from './information'
 import OpeningHours from './opening-hours'
@@ -11,7 +10,7 @@ import OverallRating from './Reviews/overall-rating'
 import Reviews from './Reviews/reviews'
 import Stars from './stars'
 
-const ProductContent = ({ name, category, tag, images, content, reviews: reviewsData, locale }) => {
+const ProductContent = ({ name, category, tag, images, content, reviews: reviewsData }) => {
   const price = content.price
   const socialNetworks = content.socialNetworks
   const information = content.information
@@ -22,9 +21,9 @@ const ProductContent = ({ name, category, tag, images, content, reviews: reviews
   const location = information.location
 
   return (
-    <Container>
+    <div>
       <section className="text-gray-600 body-font overflow-hidden mt-40">
-        <Link href={`shop?lang=${locale}`}>
+        <Link href={`shop`}>
           <button
             type="button"
             className="ml-2 py-4 px-6 bg-secondary hover:bg-secondary-darker text-white w-1/8 text-center text-base font-semibold shadow-sm rounded-md">
@@ -101,7 +100,7 @@ const ProductContent = ({ name, category, tag, images, content, reviews: reviews
           <Reviews reviews={reviews} />
         </div>
       )}
-    </Container>
+    </div>
   )
 }
 

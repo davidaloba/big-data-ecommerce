@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { getStrapiMedia } from '@utils/index'
 
-const ArticleCard = ({ slug, main, seo, locale }) => {
+const ArticleCard = ({ slug, main, seo }) => {
   const { title, category, author, image } = main[0]
 
   const description = seo ? seo.metaDescription : ''
@@ -24,7 +24,7 @@ const ArticleCard = ({ slug, main, seo, locale }) => {
       <p className="leading-relaxed mb-8">{description}</p>
       <div className="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
         <Link
-          href={`/blog/${slug}?lang=${locale}`}
+          href={`/blog/${slug}`}
           className="text-secondary-darker inline-flex items-center">
           Learn More
           <svg

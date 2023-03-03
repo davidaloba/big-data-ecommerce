@@ -1,5 +1,5 @@
-const Container = ({ children }) => {
-  return <div className="bg-white container mx-auto">{children}</div>
+const Container = ({ answer }) => {
+  return <div className="bg-white container mx-auto">{answer}</div>
 }
 
 Container.defaultProps = {}

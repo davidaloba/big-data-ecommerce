@@ -19,14 +19,14 @@ export function getStrapiURL(path: string) {
   return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'}/api${path}`
 }
 
-export function getData(slug: string | string[], locale: string | string[], preview: boolean) {
+export function getData(slug: string | string[], preview: boolean) {
   const pageType = indexes.includes(slug[0]) ? slug[0] : 'page'
   const pageID = !slug[slug.length - 1] ? '' : slug[slug.length - 1]
   const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
 
   if (pageID === pageType) {
     const apiID = pageType
-    const apiUrl = `/${apiID}?locale=${locale}${previewParams}&populate=deep`
+    const apiUrl = `/${apiID}?${previewParams}&populate=deep`
 
     return {
       url: apiUrl,
@@ -36,7 +36,7 @@ export function getData(slug: string | string[], locale: string | string[], prev
     }
   } else {
     const apiID = pageType in apiIDs && apiIDs[pageType]
-    const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}&locale=${locale}${previewParams}&populate=deep`
+    const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}${previewParams}&populate=deep`
 
     return {
       url: apiUrl,

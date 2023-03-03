@@ -1,6 +1,6 @@
 import Link from 'next/link'
 
-const CustomLink = ({ label, href, locale, target, isExternal }) => {
+const CustomLink = ({ label, href, target, isExternal }) => {
   if (isExternal) {
     return (
       <Link

@@ -1,9 +1,8 @@
 import Cta from './cta'
-import LocalSwitch from './localSwitch'
 import Logo from './logo'
 import Nav from './nav'
 
-const Navigation = ({ navigation, pageData, type, locale }) => {
+const Navigation = ({ navigation, pageData, type }) => {
   //
   return (
     <header className="px-8 text-gray-600 bg-white body-font ">
@@ -12,13 +11,9 @@ const Navigation = ({ navigation, pageData, type, locale }) => {
           <Logo
             url={navigation.logo.data.attributes.url}
             button={navigation.leftButton}
-            locale={locale}
           />
           <div className="flex flex-wrap md:flex-row flex-col items-center justify-end ">
-            <Nav
-              links={navigation.links}
-              locale={locale}
-            />
+            <Nav links={navigation.links} />
             {navigation.rightButton && (
               <div className="flex">
                 <div className="mr-5 py-4 px-6 hidden lg:block"></div>
@@ -29,11 +24,6 @@ const Navigation = ({ navigation, pageData, type, locale }) => {
                 />
               </div>
             )}
-            <LocalSwitch
-              pageData={pageData}
-              type={type}
-              locale={locale}
-            />
           </div>
         </div>
       )}

@@ -2,17 +2,15 @@ import { useState } from 'react'
 import { useGetArticlesQuery } from '../store/api'
 import ArticleCard from './__lib/ArticleCard'
 import NoResults from '@components/pages/no-results'
-import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 import { useGetCategoriesQuery } from '@store/api'
 
-const Articles = ({ header, locale, perPage }) => {
+const Articles = ({ header, perPage }) => {
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
 
   const { data: categories } = useGetCategoriesQuery(`/categories?pagination[limit]=99`)
   const key = {
-    locale,
     perPage,
     category: categoryId,
     page: pageNumber
@@ -25,7 +23,7 @@ const Articles = ({ header, locale, perPage }) => {
   return (
     <>
       {isSuccess && (
-        <Container>
+        <div>
           <Header {...header} />
           <div className="flex flex-col md:flex-row gap-2 my-24 px-4">
             <div>
@@ -57,7 +55,6 @@ const Articles = ({ header, locale, perPage }) => {
               articles.map((article, index) => (
                 <ArticleCard
                   {...article.attributes}
-                  locale={locale}
                   key={index}
                 />
               ))}
@@ -89,7 +86,7 @@ const Articles = ({ header, locale, perPage }) => {
               </div>
             </div>
           )}
-        </Container>
+        </div>
       )}
     </>
   )

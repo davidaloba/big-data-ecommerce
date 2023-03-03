@@ -1,12 +1,11 @@
 import { useState } from 'react'
 import { useGetProductsQuery } from '../store/api'
 import ProductCard from './__lib/ProductCard'
-import Container from '@components/__lib/Container'
 import Header from '@components/__lib/Header'
 import NoResults from '@components/pages/no-results'
 import { useGetTagsQuery, useGetCategoriesQuery } from '@store/api'
 
-const Products = ({ header, locale, perPage }) => {
+const Products = ({ header, perPage }) => {
   const [tagId, setTagId] = useState(null)
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
@@ -14,7 +13,6 @@ const Products = ({ header, locale, perPage }) => {
   const { data: categories } = useGetCategoriesQuery()
   const { data: tags } = useGetTagsQuery()
   const key = {
-    locale,
     perPage,
     category: categoryId,
     tag: tagId,
@@ -29,7 +27,7 @@ const Products = ({ header, locale, perPage }) => {
   return (
     <>
       {isSuccess && (
-        <Container>
+        <div>
           <Header {...header} />
           <div className="flex flex-col md:flex-row gap-2 my-24 px-4">
             <div>
@@ -75,7 +73,6 @@ const Products = ({ header, locale, perPage }) => {
               products.map((product, index) => (
                 <ProductCard
                   {...product.attributes}
-                  locale={locale}
                   key={index}
                 />
               ))}
@@ -113,7 +110,7 @@ const Products = ({ header, locale, perPage }) => {
               </div>
             </div>
           )}
-        </Container>
+        </div>
       )}
     </>
   )

@@ -1,7 +1,6 @@
 import { ReactNode } from 'react'
 import ErrorPage from 'next/error'
 import { getData, getStrapiURL } from '@utils/index'
-import { getLocalizedParams } from '@utils/localize'
 import { wrapper } from '@store/index'
 import { getPageData, getRunningQueriesThunk, useGetPageDataQuery } from '@store/api'
 import Layout from '@components/layouts/layout'
@@ -9,8 +8,8 @@ import { Global } from '@__types/models'
 
 // This gets called on every request
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
-  const { slug, locale } = getLocalizedParams(context.query)
-  const { url, type } = getData(slug, locale, context.preview)
+  const { url, type } = getData(context.query.slug || '', context.preview)
+
   const apiUrl = getStrapiURL(url)
 
   try {

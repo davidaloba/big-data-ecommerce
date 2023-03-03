@@ -1,7 +1,7 @@
 import CustomLink from '@components/__lib/CustomLink'
 import Image from 'next/image'
 
-const Columns = ({ columns, locale }) => {
+const Columns = ({ columns }) => {
   return (
     <div className="text-lg font-light  flex flex-wrap ">
       {columns &&
@@ -27,10 +27,7 @@ const Columns = ({ columns, locale }) => {
                     <li
                       className="mb-4 mr-6 text-xl text-gray-900 hover:text-gray-700 font-bold transition-colors duration-200"
                       key={`footerColumnLink-${index2}`}>
-                      <CustomLink
-                        {...link}
-                        locale={locale}
-                      />
+                      <CustomLink {...link} />
                     </li>
                   ))}
               </ul>

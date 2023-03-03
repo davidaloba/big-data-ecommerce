@@ -1,4 +1,3 @@
-import Container from '@components/__lib/Container'
 import { getStrapiMedia } from '@utils/index'
 
 const Gallery = ({ images }) => {
@@ -21,19 +20,7 @@ const Gallery = ({ images }) => {
     }
   }
   return (
-    <Container
-      swipeable={false}
-      draggable={false}
-      showDots={true}
-      responsive={responsive}
-      ssr={true}
-      infinite={true}
-      keyBoardControl={true}
-      customTransition="all .5"
-      transitionDuration={100}
-      containerClass="carousel-container"
-      dotListClass="custom-dot-list-style"
-      itemClass="md:py-2 py-2 w-1/2">
+    <div>
       {images &&
         images.map((image, index) => (
           <img
@@ -43,7 +30,7 @@ const Gallery = ({ images }) => {
             key={`imageGallery-${index}`}
           />
         ))}
-    </Container>
+    </div>
   )
 }
 

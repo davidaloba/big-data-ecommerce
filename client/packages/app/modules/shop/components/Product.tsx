@@ -1,7 +1,7 @@
 import ProductContent from './ProductContent'
 import RelatedProducts from './RelatedProducts'
 
-const Product = ({ name, category, tag, images, content, reviews, related, locale }) => {
+const Product = ({ name, category, tag, images, content, reviews, related }) => {
   return (
     <>
       <>
@@ -12,7 +12,6 @@ const Product = ({ name, category, tag, images, content, reviews, related, local
           images={images}
           content={content}
           reviews={reviews}
-          locale={locale}
         />
         <RelatedProducts related={related} />
       </>

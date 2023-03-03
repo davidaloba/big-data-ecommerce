@@ -21,25 +21,18 @@ const Layout = ({ children, global, page, pageDataIsSuccess, type, preview }) =>
           navigation={navigation}
           pageData={pageData}
           type={type}
-          locale={pageData.locale}
         />
       )}
       {children}
       {modules && (
         <ModuleManager
           modules={modules}
-          locale={pageData.locale}
           perPage={pageData.perPage || 12}
         />
       )}
       {blocks && <BlockManager blocks={blocks} />}
 
-      {pageDataIsSuccess && (
-        <Footer
-          footer={footer}
-          locale={pageData.locale}
-        />
-      )}
+      {pageDataIsSuccess && <Footer footer={footer} />}
     </div>
   )
 }

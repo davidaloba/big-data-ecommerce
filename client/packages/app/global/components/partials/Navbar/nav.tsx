@@ -1,11 +1,11 @@
 import Link from 'next/link'
 
-const Nav = ({ links, locale }) => {
+const Nav = ({ links }) => {
   return (
     <nav className="text-xl flex flex-wrap flex-col md:flex-row justify-around items-center">
       {links.map((link, index) => (
         <Link
-          href={`${link.href}?lang=${locale || 'en'}`}
+          href={link.href}
           key={`navigationLink-${index}`}
           className="md:mx-3 text-gray-900 hover:text-gray-600 text-lg font-bold">
           {link.label}
