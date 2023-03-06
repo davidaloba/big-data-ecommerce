@@ -37,15 +37,16 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "blocks.cta-command-line",
-        "blocks.cta",
-        "blocks.faq",
-        "blocks.latest-code",
-        "blocks.featured-projects",
         "blocks.hero",
-        "blocks.pricing",
+        "blocks.page-title",
+        "blocks.featured-projects",
+        "blocks.latest-code",
+        "blocks.about-me",
         "article.related-articles",
         "product.related-products",
+        "blocks.cta",
+        "blocks.faq",
+        "blocks.pricing",
         "blocks.team",
         "blocks.testimonial"
       ],

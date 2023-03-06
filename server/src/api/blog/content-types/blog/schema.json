@@ -62,7 +62,6 @@
       },
       "type": "dynamiczone",
       "components": [
-        "blocks.cta-command-line",
         "blocks.cta"
       ]
     },

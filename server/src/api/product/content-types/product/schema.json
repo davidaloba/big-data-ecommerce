@@ -46,8 +46,7 @@
       "type": "dynamiczone",
       "components": [
         "blocks.faq",
-        "blocks.cta",
-        "blocks.cta-command-line"
+        "blocks.cta"
       ]
     },
     "seo": {

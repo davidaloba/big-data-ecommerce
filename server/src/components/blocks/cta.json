@@ -1,8 +1,9 @@
 {
-  "collectionName": "components_slices_ctas",
+  "collectionName": "components_blocks_cta",
   "info": {
-    "displayName": "cta",
-    "icon": "bullhorn"
+    "displayName": "Cta",
+    "icon": "code",
+    "description": ""
   },
   "options": {},
   "attributes": {
@@ -13,18 +14,20 @@
         "secondary",
         "muted"
       ],
-      "default": "muted"
+      "default": "primary",
+      "required": false
     },
     "title": {
-      "type": "string"
+      "type": "string",
+      "required": false
     },
     "text": {
-      "type": "string"
+      "type": "string",
+      "required": false
     },
-    "buttons": {
-      "type": "component",
-      "repeatable": true,
-      "component": "__lib.button"
+    "commandLine": {
+      "type": "text",
+      "required": false
     }
   }
 }

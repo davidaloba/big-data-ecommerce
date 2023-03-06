@@ -70,7 +70,7 @@
       "type": "dynamiczone",
       "components": [
         "blocks.faq",
-        "blocks.cta-command-line"
+        "blocks.cta"
       ],
       "required": false
     },

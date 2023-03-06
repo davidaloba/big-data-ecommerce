@@ -1,0 +1,21 @@
+{
+  "collectionName": "components___tech_stack",
+  "info": {
+    "displayName": "TechStack",
+    "icon": "adjust"
+  },
+  "options": {},
+  "attributes": {
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "technologies": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

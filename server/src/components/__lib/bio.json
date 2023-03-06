@@ -1,0 +1,22 @@
+{
+  "collectionName": "components___lib_bio",
+  "info": {
+    "displayName": "ShortBio",
+    "icon": "adjust"
+  },
+  "options": {},
+  "attributes": {
+    "headline": {
+      "type": "string",
+      "required": true
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "currentProject": {
+      "type": "component",
+      "component": "__lib.link"
+    }
+  }
+}
