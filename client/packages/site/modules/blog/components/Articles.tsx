@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { useGetArticlesQuery } from '../store/api'
 import ArticleCard from './ArticleCard'
-import NoResults from '@siteComponents/pages/no-results'
+import NoResults from '@siteComponents/__lib/no-results'
 import { useGetCategoriesQuery } from '@siteStore/api'
 import PageTitle from '@siteComponents/blocks/PageTitle'
 

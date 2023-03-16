@@ -7,7 +7,7 @@ const Nav = ({ links }) => {
         <Link
           href={link.href}
           key={`navigationLink-${index}`}
-          className="mx-1 md:mx-3 text-lg font-bold">
+          className="mt-2 md:mt-0 mx-1 md:mx-3 text-lg font-bold">
           {link.label}
         </Link>
       ))}

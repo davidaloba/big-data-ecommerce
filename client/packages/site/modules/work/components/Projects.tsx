@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import PageTitle from '@siteComponents/blocks/PageTitle'
-import NoResults from '@siteComponents/pages/no-results'
+import NoResults from '@siteComponents/__lib/no-results'
 import ProjectCard from './ProjectCard'
 import { useGetCategoriesQuery } from '@siteStore/api'
 import { useGetProjectsQuery } from '../store/api'

@@ -16,22 +16,6 @@ const AboutMe = dynamic(() => import('./AboutMe'), {
   ssr: true
 })
 
-const Pricing = dynamic(() => import('./Pricing'), {
-  ssr: true
-})
-const Team = dynamic(() => import('./Team'), {
-  ssr: true
-})
-const Testimonial = dynamic(() => import('./Testimonial'), {
-  ssr: true
-})
-const CtaCommandLine = dynamic(() => import('./CtaCommandLine'), {
-  ssr: true
-})
-const Faq = dynamic(() => import('./Faq'), {
-  ssr: true
-})
-
 const getBlockComponent = ({ __component, ...rest }, index) => {
   let Block
 
@@ -50,21 +34,6 @@ const getBlockComponent = ({ __component, ...rest }, index) => {
       break
     case 'blocks.about-me':
       Block = AboutMe
-      break
-    case 'blocks.faq':
-      Block = Faq
-      break
-    case 'blocks.team':
-      Block = Team
-      break
-    case 'blocks.pricing':
-      Block = Pricing
-      break
-    case 'blocks.testimonial':
-      Block = Testimonial
-      break
-    case 'blocks.cta-command-line':
-      Block = CtaCommandLine
       break
   }
   return Block ? (

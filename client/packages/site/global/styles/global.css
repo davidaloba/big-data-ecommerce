@@ -5,11 +5,11 @@
 @layer base {
   
   section {
-    @apply md:px-16 px-4 md:py-20 py-8 ;
+    @apply p-8 lg:p-16  ;
   }
 
   header {
-    @apply md:px-12 px-8;
+    /* @apply ; */
   }
 
   main {
@@ -17,7 +17,7 @@
   }
 
   footer {
-    @apply md:px-12 px-8 py-8;
+    @apply lg:px-12 px-8 py-8;
   }
 
   div, p,li{
@@ -25,7 +25,7 @@
   }
   
   a {
-    @apply text-slate-900 hover:text-gray-700  ;
+    @apply text-slate-900 hover:text-gray-700 cursor-pointer  ;
   }
   
   h1, h2, h3, h4, h5, h6 {

@@ -3,8 +3,8 @@ import Link from 'next/link'
 const Header = ({ theme, title, subtitle, text, link }) => {
   // const link = '/'
   return (
-    <div className="mx-8 flex flex-col md:flex-row justify-between items-start ">
-      <div className={`${text ? 'md:max-w-[50%]' : 'md:max-w-[60%]'}`}>
+    <div className=" flex flex-col md:flex-row justify-between items-center">
+      <div className={`${text && 'md:max-w-[50%]'}`}>
         {title && <h1 className=" text-4xl md:text-5xl lg:text-[80px] font-bold ">{title}</h1>}
         {subtitle && <h2 className="ml-4 mt-8 text-xl md:text-2xl lg:text-[20px]  ">{subtitle}</h2>}
       </div>

@@ -12,7 +12,7 @@ const CustomLink = ({ label, href, target, isExternal }) => {
   } else {
     return (
       <Link
-        href={`${href}?lang=${locale || 'en'}`}
+        href={href}
         target={target}>
         {label}
       </Link>

@@ -4,18 +4,18 @@ const Hero = ({ images, header, text, buttons }) => {
   const title = header.title
 
   return (
-    <section className=" min-h-[80vh] py-20 flex justify-center items-center ">
-      <div className=" flex flex-col md:flex-row md:flex-grow justify-between items-center">
-        <div className="mb-16 md:mb-0 w-full md:w-2/4 lg:py-20 md:px-10 md:text-left text-center">
-          <div className=" my-2 text-orange-500 text-4xl md:text-5xl lg:text-7xl font-bold">
+    <section className=" md:min-h-[50vh] xl:min-h-[80vh] py-4 md:py-20 flex items-center ">
+      <div className=" flex flex-col md:flex-row md:flex-grow  justify-around items-center">
+        <div className="w-full md:w-2/4 md:px-4 xl:px-8 md:text-left text-center">
+          <div className=" my-2 text-orange-500 text-4xl md:text-4xl lg:text-6xl font-bold">
             Hi!
           </div>
-          <h2 className=" mt-4 md:mt-8 text-3xl md:text-4xl xl:text-5xl font-semibold">
+          <h2 className=" mt-4 xl:mt-8 text-2xl md:text-3xl xl:text-5xl font-semibold">
             I'm David, a software engineer passionate about afrocentric startups.
           </h2>
         </div>
 
-        <div className="md:w-2/4 w-full ">
+        <div className="md:w-2/4 mt-16 md:mt-0 w-full ">
           <div className="flex flex-col items-center md:flex-none ">
             <Image
               src={'/avatar.jpg'}
