@@ -10,7 +10,7 @@ const LatestCode = ({ header }) => {
     <section className="bg-[#F1F1F1] ">
       <Header {...header} />
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto mt-20 gap-y-20 px-10">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mx-auto mt-20 gap-y-12 xl:gap-y-20 px-10">
         {isSuccess &&
           repos &&
           repos.map((latestRepo, idx: string) => (

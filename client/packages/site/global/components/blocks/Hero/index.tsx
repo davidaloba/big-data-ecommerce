@@ -4,7 +4,10 @@ const Hero = ({ images, header, text, buttons }) => {
   const title = header.title
 
   return (
-    <section className=" md:min-h-[50vh] xl:min-h-[80vh] py-4 md:py-20 flex items-center ">
+    <section
+      className=" md:min-h-[50vh] xl:min-h-[80vh] 
+    pt-4  md:py-20 
+    flex items-center ">
       <div className=" flex flex-col md:flex-row md:flex-grow  justify-around items-center">
         <div className="w-full md:w-2/4 md:px-4 xl:px-8 md:text-left text-center">
           <div className=" my-2 text-orange-500 text-4xl md:text-4xl lg:text-6xl font-bold">
