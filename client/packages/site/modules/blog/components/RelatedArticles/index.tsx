@@ -1,4 +1,4 @@
-import ArticleCard from '@siteModules/blog/components/__lib/ArticleCard'
+import ArticleCard from '@siteModules/blog/components/ArticleCard'
 import Header from '@siteComponents/__lib/Header'
 
 const RelatedArticles = ({ related }) => {

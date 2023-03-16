@@ -21,6 +21,14 @@
       "type": "string",
       "required": false
     },
+    "subtitle": {
+      "type": "string",
+      "required": false
+    },
+    "text": {
+      "type": "richtext",
+      "required": false
+    },
     "link": {
       "type": "component",
       "repeatable": false,

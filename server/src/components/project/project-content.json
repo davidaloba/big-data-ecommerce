@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_project_project_content",
+  "info": {
+    "displayName": "ProjectContent",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "ckeditor_content": {
+      "type": "customField",
+      "options": {
+        "preset": "standard"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    }
+  }
+}

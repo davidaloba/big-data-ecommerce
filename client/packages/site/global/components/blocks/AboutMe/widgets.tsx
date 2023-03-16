@@ -5,7 +5,7 @@ const Widgets = ({ widgets }) => {
         widgets.map((widget, id) => (
           <div
             key={id}
-            className="mt-8">
+            className="">
             <h1 className="text-xl font-semibold text-gray-700">{widget.title}</h1>
             {widget.text && (
               <div className="mt-4 flex flex-wrap text-lg text-gray-500">

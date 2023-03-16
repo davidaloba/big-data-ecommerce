@@ -1,4 +1,4 @@
-import ProductCard from '../__lib/ProductCard'
+import ProductCard from '../ProductCard'
 import Header from '@siteComponents/__lib/Header'
 
 const RelatedProducts = ({ related }) => {

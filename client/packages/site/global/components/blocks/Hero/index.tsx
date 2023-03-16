@@ -22,7 +22,7 @@ const Hero = ({ images, header, text, buttons }) => {
               alt="avatar"
               width={480}
               height={480}
-              className="shadow"
+              className="shadow rounded-lg"
             />
             <div className="flex flex-row justify-between mt-4">
               <div className="flex flex-row space-x-4">

@@ -5,25 +5,31 @@
 @layer base {
   
   section {
-    @apply md:px-16 md:py-20 px-4 py-20 ;
+    @apply md:px-16 px-4 md:py-20 py-8 ;
   }
 
   header {
     @apply md:px-12 px-8;
   }
 
+  main {
+    @apply py-0;
+  }
+
   footer {
     @apply md:px-12 px-8 py-8;
   }
 
-  h1, h2, h3, h4, h5, h6 {
-    @apply text-slate-800 ;
-  }
   div, p,li{
     @apply text-gray-800 ;
   }
+  
   a {
     @apply text-slate-900 hover:text-gray-700  ;
+  }
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-800 ;
   }
   
   

@@ -1,7 +1,8 @@
-const indexes = ['blog', 'shop']
+const indexes = ['blog', 'shop', 'work']
 const apiIDs = {
   blog: 'article',
   shop: 'product',
+  work: 'work',
   page: 'page'
 }
 
@@ -24,27 +25,22 @@ export function getData(slug: string | string[], preview: boolean) {
   const pageID = !slug[slug.length - 1] ? '' : slug[slug.length - 1]
   const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
 
-  if (pageID === pageType) {
-    const apiID = pageType
-    const apiUrl = `/${apiID}?${previewParams}&populate=deep`
-
-    return {
-      url: apiUrl,
-      pageType,
-      pageID,
-      type: apiID
-    }
-  } else {
-    const apiID = pageType in apiIDs && apiIDs[pageType]
-    const apiUrl = `/${apiID}s?filters[slug][$eq]=${pageID}${previewParams}&populate=deep`
-
-    return {
-      url: apiUrl,
-      pageType,
-      pageID,
-      type: apiID
-    }
+  const data = {
+    url: '',
+    pageType,
+    pageID,
+    type: 'page'
   }
+
+  if (pageID === pageType) {
+    data.type = pageType
+    data.url = `/${data.type}?${previewParams}&populate=deep`
+  } else {
+    data.type = pageType in apiIDs && apiIDs[pageType]
+    data.url = `/${data.type}s?filters[slug][$eq]=${pageID}${previewParams}&populate=deep`
+  }
+
+  return data
 }
 
 export function handleRedirection(preview: boolean, custom: string) {

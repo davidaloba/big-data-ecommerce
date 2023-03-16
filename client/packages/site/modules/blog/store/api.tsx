@@ -9,15 +9,13 @@ const articlesApi = api.injectEndpoints({
         const perPage = key.perPage
         const start = +pageNumber === 1 ? 0 : (+pageNumber - 1) * perPage
 
-        const baseUrl = `/articles?${
-          categoryName && `filters[category][name][$eq]=${categoryName}&`
-        }pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
+        const category = categoryName ? `filters[category][name][$eq]=${categoryName}&` : ''
+        const baseUrl = `/articles?${category}pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
 
-        console.log(baseUrl)
         return baseUrl
       },
-      transformResponse: (responseData: { [index: string]: object | object[] }) => {
-        return responseData.data
+      transformResponse: (res: { [index: string]: object | object[] }) => {
+        return res.data
       }
     })
   }),

@@ -1,32 +1,31 @@
-import Footer from '@siteComponents/partials/Footer'
-import Navbar from '@siteComponents/partials/Navbar'
-import PreviewBanner from '@siteComponents/partials/PreviewBanner'
 import Seo from '@siteComponents/partials/seo'
-import BlockManager from '@siteComponents/blocks/BlockManager'
-import ModuleManager from '@siteModules/ModuleManager'
+import PreviewBanner from '@siteComponents/partials/PreviewBanner'
+import Navbar from '@siteComponents/partials/Navbar'
+import Main from '@siteComponents/partials/Main'
+import Footer from '@siteComponents/partials/Footer'
 
-const Layout = ({ children, globalData, pageData, pageDataIsSuccess, preview }) => {
+const Layout = ({ children, globalData, pageData, pageDataSuccess, preview }) => {
   const { navigation, footer } = globalData
   const blocks = pageData.blocks || []
   const modules = pageData.main
 
   return (
-    <div className=" mx-auto">
+    <>
       <Seo seo={pageData.seo} />
       {preview && <PreviewBanner />}
-      {pageDataIsSuccess && <Navbar navigation={navigation} />}
-      <main>
-        {children}
-        {modules && (
-          <ModuleManager
+      {pageDataSuccess && (
+        <>
+          <Navbar navigation={navigation} />
+          <Main
+            blocks={blocks}
             modules={modules}
-            perPage={pageData.perPage || 12}
-          />
-        )}
-        {blocks && <BlockManager blocks={blocks} />}
-      </main>
-      {pageDataIsSuccess && <Footer footer={footer} />}
-    </div>
+            perPage={pageData.perPage}>
+            {children}
+          </Main>
+          <Footer footer={footer} />
+        </>
+      )}
+    </>
   )
 }
 

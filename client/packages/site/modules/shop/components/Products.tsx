@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useGetProductsQuery } from '../store/api'
-import ProductCard from './__lib/ProductCard'
+import ProductCard from './ProductCard'
 import Header from '@siteComponents/__lib/Header'
 import NoResults from '@siteComponents/pages/no-results'
 import { useGetTagsQuery, useGetCategoriesQuery } from '@siteStore/api'

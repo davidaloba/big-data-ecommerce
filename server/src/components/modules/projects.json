@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_modules_projects",
+  "info": {
+    "displayName": "projects",
+    "icon": "book"
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "blocks.page-title"
+    }
+  }
+}

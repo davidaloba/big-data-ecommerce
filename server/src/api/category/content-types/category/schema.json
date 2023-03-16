@@ -19,13 +19,19 @@
       "type": "uid",
       "targetField": "name"
     },
-    "shop": {
+    "products": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::product.product",
       "mappedBy": "category"
     },
     "articles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "category"
+    },
+    "projects": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::article.article",

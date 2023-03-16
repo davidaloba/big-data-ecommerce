@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useGetArticlesQuery } from '../store/api'
-import ArticleCard from './__lib/ArticleCard'
+import ArticleCard from './ArticleCard'
 import NoResults from '@siteComponents/pages/no-results'
 import { useGetCategoriesQuery } from '@siteStore/api'
 import PageTitle from '@siteComponents/blocks/PageTitle'
@@ -8,17 +8,18 @@ import PageTitle from '@siteComponents/blocks/PageTitle'
 const Articles = ({ header, perPage }) => {
   const [categoryId, setCategoryId] = useState(null)
   const [pageNumber, setPageNumber] = useState(1)
-
-  const { data: categories } = useGetCategoriesQuery(`/categories?pagination[limit]=99`)
   const key = {
     category: categoryId,
     page: pageNumber,
     perPage
   }
   const { data: articles, isSuccess } = useGetArticlesQuery(key)
-
-  const categoryText = 'Category'
+  const { data: categories } = useGetCategoriesQuery(`/categories?pagination[limit]=99`)
   const lastPage = (isSuccess && articles && Math.ceil(articles.length / perPage)) || 1
+
+  const handleSelectCategory = (value) => {
+    setCategoryId(value)
+  }
 
   return (
     <>
@@ -31,10 +32,8 @@ const Articles = ({ header, perPage }) => {
                 <label className="text-gray-700">
                   <select
                     className="block w-52 py-2 px-3 border border-gray-300 bg-white rounded-md shadow-sm focus:outline-none focus:ring-primary-500 focus:border-primary-500"
-                    onChange={(value) => setCategoryId(value.target.value)}>
-                    <option value="">
-                      {categoryId ? 'Clear filter' : categoryText || 'Select a category'}
-                    </option>
+                    onChange={(e) => handleSelectCategory(e.target.value)}>
+                    <option value="">{categoryId ? 'Clear filter' : 'Select a category'}</option>
                     {categories &&
                       categories.map((category, index) => (
                         <option

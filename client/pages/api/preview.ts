@@ -8,15 +8,15 @@ export default async (req, res) => {
     return res.status(401).json({ message: 'Invalid token' })
   }
 
-  const previewData = await getData(req.query.req.query.kind, null)
+  const { slug, preview } = getData(req.query.req.query.kind, null)
 
-  if (!previewData.data) {
+  if (!preview) {
     return res.status(401).json({ message: 'Invalid slug' })
   }
   res.setPreviewData({})
 
   res.writeHead(307, {
-    Location: previewData.slug
+    Location: slug
   })
 
   res.end()

@@ -1,8 +1,6 @@
 import Link from 'next/link'
-import styles from './ArticleContent.module.css'
-import { CKEditor } from '@ckeditor/ckeditor5-react'
-import ClassicEditor from '@ckeditor/ckeditor5-build-classic'
 import { getStrapiMedia } from '@siteUtils/index'
+import RichContent from '@siteComponents/__lib/RichContent'
 
 const ArticleContent = ({ title, image, content }) => {
   const ckContent = content.ckeditor_content
@@ -23,15 +21,8 @@ const ArticleContent = ({ title, image, content }) => {
           <div className="flex flex-col sm:flex-row mt-10 items-center justify-center"></div>
         </div>
         <div className="markdown-body ck-content shadow-lg rounded-xl lg:w-4/6 w-full md:p-12 p-6 mt-2 bg-white">
-          <div className={styles['ck-no-border']}>
-            <CKEditor
-              editor={ClassicEditor}
-              onReady={(editor) => {
-                editor.ui.view.toolbar.element.remove()
-              }}
-              data={ckContent}
-              disabled={true}
-            />
+          <div className="border-none">
+            <RichContent content={ckContent} />
           </div>
         </div>
         <Link href={`/blog`}>

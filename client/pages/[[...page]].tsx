@@ -13,19 +13,16 @@ import Layout from '@siteComponents/layouts/layout'
 import { Global } from '@siteTypes/models'
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
-  const { url } = getData(context.query.page || '', context.preview)
-  const apiUrl = getStrapiURL(url)
-
   try {
-    store.dispatch(getGlobal.initiate('global'))
-    await Promise.all(store.dispatch(getRunningQueriesThunk()))
-
+    const { url } = getData(context.query.page || '', context.preview)
+    const apiUrl = getStrapiURL(url)
     store.dispatch(getPageData.initiate(apiUrl))
+    store.dispatch(getGlobal.initiate('global'))
     await Promise.all(store.dispatch(getRunningQueriesThunk()))
 
     return {
       props: {
-        apiUrl,
+        apiUrl: apiUrl,
         preview: context.preview || null
       }
     }
@@ -36,26 +33,20 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
   }
 })
 
-const Page = ({
-  children,
-  apiUrl,
-  preview
-}: {
+interface Page {
   children: ReactNode | undefined
   apiUrl: string
   preview: boolean | undefined
-}) => {
-  const { data: globalData, error: globalDataError } = useGetGlobalQuery('global')
-  const global = globalData.data as Global
+}
 
-  const {
-    data: pageData,
-    error: pageDataError,
-    isSuccess: pageDataIsSuccess
-  } = useGetPageDataQuery(apiUrl)
+const Page = ({ children, apiUrl, preview }: Page) => {
+  const { data: globalData, isSuccess: globalDataSuccess } = useGetGlobalQuery('global')
+  const { data: pageData, isSuccess: pageDataSuccess } = useGetPageDataQuery(apiUrl)
+
+  const global = globalData.data as Global
   const page = Array.isArray(pageData.data) ? pageData.data[0] : pageData.data
 
-  if (globalDataError || !global || pageDataError || !page) {
+  if (!globalDataSuccess || !global || !pageDataSuccess || !page) {
     return <ErrorPage statusCode={404} />
   }
 
@@ -63,7 +54,7 @@ const Page = ({
     <Layout
       globalData={global.attributes}
       pageData={page.attributes}
-      pageDataIsSuccess={pageDataIsSuccess}
+      pageDataSuccess={pageDataSuccess}
       preview={preview}>
       {children}
     </Layout>

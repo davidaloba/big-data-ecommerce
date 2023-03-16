@@ -16,7 +16,7 @@
       "required": true,
       "unique": true
     },
-    "shop": {
+    "products": {
       "type": "relation",
       "relation": "oneToMany",
       "target": "api::product.product",

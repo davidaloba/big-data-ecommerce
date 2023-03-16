@@ -12,6 +12,12 @@ const Product = dynamic(() => import('./shop/components/Product'), {
 const Products = dynamic(() => import('./shop/components/Products'), {
   ssr: true
 })
+const Project = dynamic(() => import('./work/components/Project'), {
+  ssr: true
+})
+const Projects = dynamic(() => import('./work/components/Projects'), {
+  ssr: true
+})
 
 const ModuleManager = ({ modules, perPage }) => {
   return (
@@ -32,6 +38,12 @@ const ModuleManager = ({ modules, perPage }) => {
             break
           case 'modules.products':
             Module = Products
+            break
+          case 'modules.project':
+            Module = Project
+            break
+          case 'modules.projects':
+            Module = Projects
             break
         }
 
