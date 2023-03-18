@@ -1,10 +1,10 @@
 import { ReactNode } from 'react'
 import ErrorPage from 'next/error'
-import { getData, getStrapiURL } from '@siteUtils/index'
-import { wrapper } from '@siteStore/index'
-import { getPageData, getRunningQueriesThunk, useGetPageDataQuery } from '@siteStore/api'
-import Layout from '@siteComponents/layouts/layout'
-import { Global } from '@siteTypes/models'
+import { getData, getStrapiURL } from '@marketingUtils/index'
+import { wrapper } from '@marketingStore/index'
+import { getPageData, getRunningQueriesThunk, useGetPageDataQuery } from '@marketingStore/api'
+import Layout from '@marketingComponents/layouts/layout'
+import { Global } from '@marketingTypes/models'
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   const { url, type } = getData(context.query.slug || '', context.preview)

@@ -1,4 +1,4 @@
-import { getData } from '@siteUtils/index'
+import { getData } from '@marketingUtils/index'
 
 export default async (req, res) => {
   if (

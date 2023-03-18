@@ -1,16 +1,16 @@
 import { ReactNode } from 'react'
 import ErrorPage from 'next/error'
-import { getData, getStrapiURL } from '@siteUtils/index'
-import { wrapper } from '@siteStore/index'
+import { getData, getStrapiURL } from '@marketingUtils/index'
+import { wrapper } from '@marketingStore/index'
 import {
   getGlobal,
   getPageData,
   getRunningQueriesThunk,
   useGetGlobalQuery,
   useGetPageDataQuery
-} from '@siteStore/api'
-import Layout from '@siteComponents/layouts/layout'
-import { Global } from '@siteTypes/models'
+} from '@marketingStore/api'
+import Layout from '@marketingComponents/layouts/layout'
+import { Global } from '@marketingTypes/models'
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   try {
@@ -45,6 +45,7 @@ const Page = ({ children, apiUrl, preview }: Page) => {
 
   const global = globalData.data as Global
   const page = Array.isArray(pageData.data) ? pageData.data[0] : pageData.data
+  console.log(page)
 
   if (!globalDataSuccess || !global || !pageDataSuccess || !page) {
     return <ErrorPage statusCode={404} />
