@@ -1,5 +1,6 @@
 import BlockManager from '@marketingComponents/blocks/BlockManager'
 import ModuleManager from '@marketingModules/ModuleManager'
+import AppManager from '@appModules/ModuleManager'
 
 const Main = ({ blocks, modules, children, perPage }) => {
   if (!modules && !blocks) {
@@ -10,6 +11,12 @@ const Main = ({ blocks, modules, children, perPage }) => {
       {children}
       {modules && (
         <ModuleManager
+          modules={modules}
+          perPage={perPage || 12}
+        />
+      )}
+      {modules && (
+        <AppManager
           modules={modules}
           perPage={perPage || 12}
         />
