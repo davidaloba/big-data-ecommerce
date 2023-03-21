@@ -10,21 +10,25 @@
     "strapi": "strapi",
     "seed": "node script/seed.js"
   },
-  "devDependencies": {},
+  "devDependencies": {
+    "codemirror": "5.65.11"
+  },
   "dependencies": {
     "@ckeditor/strapi-plugin-ckeditor": "^0.0.4",
     "@offset-dev/strapi-calendar": "^0.0.8",
-    "@strapi/plugin-graphql": "^4.5.0",
-    "@strapi/plugin-i18n": "4.5.0",
+    "@strapi/plugin-graphql": "^4.6.1",
+    "@strapi/plugin-i18n": "4.6.1",
     "@strapi/plugin-seo": "^1.7.7",
-    "@strapi/plugin-users-permissions": "4.5.0",
-    "@strapi/strapi": "4.5.0",
+    "@strapi/plugin-users-permissions": "4.6.1",
+    "@strapi/strapi": "4.6.1",
     "@webbio/strapi-plugin-scheduler": "^0.1.2",
     "better-sqlite3": "^7.6.2",
     "fs-extra": "^10.0.0",
+    "mysql": "^2.18.1",
+    "sharp": "^0.31.3",
     "strapi-plugin-cookie-manager": "^1.0.7",
     "strapi-plugin-populate-deep": "^1.1.2",
-    "strapi-plugin-sitemap": "^2.0.8",
+    "strapi-plugin-sitemap": "^2.0.9",
     "strapi-plugin-todo": "^0.0.9",
     "unzip-stream": "^0.3.1",
     "uuid-v4": "^0.1.0"
