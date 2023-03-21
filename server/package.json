@@ -14,7 +14,6 @@
     "codemirror": "5.65.11"
   },
   "dependencies": {
-    "@ckeditor/strapi-plugin-ckeditor": "^0.0.4",
     "@offset-dev/strapi-calendar": "^0.0.8",
     "@strapi/plugin-graphql": "^4.6.1",
     "@strapi/plugin-i18n": "4.6.1",

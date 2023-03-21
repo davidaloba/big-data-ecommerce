@@ -1,12 +1,20 @@
 
 version: '3'
+
+volumes:
+  strapi-data:
+
+networks:
+  strapi:
+    name: Strapi
+    driver: bridge
 services:
   strapi:
     container_name: strapi
     build: .
     image: strapi:latest
     restart: unless-stopped
-    env_file: .env
+    env_file: ./server/.env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
       DATABASE_HOST: strapiDB
@@ -50,11 +58,3 @@ services:
       - '3306:3306'
     networks:
       - strapi
-
-volumes:
-  strapi-data:
-
-networks:
-  strapi:
-    name: Strapi
-    driver: bridge
