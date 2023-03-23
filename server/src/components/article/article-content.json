@@ -7,12 +7,9 @@
   },
   "options": {},
   "attributes": {
-    "ckeditor_content": {
-      "type": "customField",
-      "options": {
-        "preset": "standard"
-      },
-      "customField": "plugin::ckeditor.CKEditor"
+    "content": {
+      "type": "richtext",
+      "required": true
     }
   }
 }
