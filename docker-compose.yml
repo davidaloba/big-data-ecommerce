@@ -14,7 +14,7 @@ services:
     build: .
     image: strapi:latest
     restart: unless-stopped
-    env_file: ./server/.env
+    env_file: server/.env
     environment:
       DATABASE_CLIENT: ${DATABASE_CLIENT}
       DATABASE_HOST: strapiDB
@@ -44,7 +44,7 @@ services:
     container_name: strapiDB
     platform: linux/amd64 #for platform error on Apple M1 chips
     restart: unless-stopped
-    env_file: .env
+    env_file: server/.env
     image: mariadb:latest
     environment:
       MYSQL_USER: ${DATABASE_USERNAME}

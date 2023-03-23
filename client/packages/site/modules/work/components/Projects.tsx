@@ -16,7 +16,6 @@ const Projects = ({ header, perPage }) => {
   const { data: projects, isSuccess } = useGetProjectsQuery(key)
   const { data: categories } = useGetCategoriesQuery(`/categories?pagination[limit]=99`)
   const lastPage = (isSuccess && projects && Math.ceil(projects.length / perPage)) || 1
-  console.log(projects)
 
   const handleSelectCategory = (value) => {
     setCategoryId(value)

@@ -37,7 +37,7 @@ export function getData(slug: string | string[], preview: boolean) {
     data.url = `/${data.type}?${previewParams}&populate=deep`
   } else {
     data.type = pageType in apiIDs && apiIDs[pageType]
-    data.url = `/${data.type}s?filters[slug][$eq]=${pageID}${previewParams}&populate=deep`
+    data.url = `/${data.type}s?filters[slug][$eq]=/${pageID}${previewParams}&populate=deep`
   }
 
   return data

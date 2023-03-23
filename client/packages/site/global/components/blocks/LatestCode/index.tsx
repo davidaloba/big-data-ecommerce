@@ -4,7 +4,6 @@ import { useGetLatestReposQuery } from '@siteStore/api'
 
 const LatestCode = ({ header }) => {
   const { data: repos, isSuccess } = useGetLatestReposQuery('davidaloba')
-  console.log(repos)
 
   return (
     <section className="bg-[#F1F1F1] ">
