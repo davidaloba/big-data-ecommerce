@@ -1,5 +1,5 @@
 const indexes = ['blog', 'shop', 'work']
-const singlePages = {
+const apiIDs = {
   blog: 'article',
   shop: 'product',
   work: 'work',
@@ -38,13 +38,8 @@ export function getData(slug: string | string[], preview: boolean) {
     data.url = `/${data.type}?${previewParams}&populate=deep`
     // handle Single Pages
   } else {
-<<<<<<< HEAD:client/packages/marketing/global/utils/index.ts
-    data.type = pageType in singlePages && singlePages[pageType]
-    data.url = `/${data.type}s?filters[slug][$eq]=${pageID}${previewParams}&populate=deep`
-=======
     data.type = pageType in apiIDs && apiIDs[pageType]
     data.url = `/${data.type}s?filters[slug][$eq]=/${pageID}${previewParams}&populate=deep`
->>>>>>> main:client/packages/site/global/utils/index.ts
   }
 
   return data

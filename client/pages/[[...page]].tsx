@@ -45,7 +45,6 @@ const Page = ({ children, apiUrl, preview }: Page) => {
 
   const global = globalData.data as Global
   const page = Array.isArray(pageData.data) ? pageData.data[0] : pageData.data
-  console.log(page)
 
   if (!globalDataSuccess || !global || !pageDataSuccess || !page) {
     return <ErrorPage statusCode={404} />
