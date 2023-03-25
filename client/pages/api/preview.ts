@@ -1,4 +1,4 @@
-import { getData } from '@marketingUtils/index'
+import { getData } from 'packages/global/utils/index'
 
 export default async (req, res) => {
   if (

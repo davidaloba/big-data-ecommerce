@@ -1,24 +1,59 @@
 {
-  "include": ["packages", "pages"],
-  "exclude": ["node_modules", ".next", ".history"],
+  "include": [
+    "packages",
+    "pages",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    ".history"
+  ],
   "compilerOptions": {
     "module": "esnext",
     "target": "es2015",
     "moduleResolution": "node",
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": "./",
     "paths": {
-      "@appModules/*": ["packages/app/modules/*"],
-      "@marketingModules/*": ["packages/marketing/modules/*"],
-      "@marketingTests/*": ["packages/marketing/global/__tests__/*"],
-      "@marketingComponents/*": ["packages/marketing/global/components/*"],
-      "@marketingAssets/*": ["packages/marketing/global/assets/*"],
-      "@marketingContent/*": ["packages/marketing/global/content/*"],
-      "@marketingStore/*": ["packages/marketing/global/store/*"],
-      "@marketingStyles/*": ["packages/marketing/global/styles/*"],
-      "@marketingUtils/*": ["packages/marketing/global/utils/*"],
-      "@marketingTypes/*": ["packages/marketing/global/__types/*"]
+      "@globalStore/*": [
+        "packages/global/store/*"
+      ],
+      "@globalStyles/*": [
+        "packages/global/styles/*"
+      ],
+      "@globalUtils/*": [
+        "packages/global/utils/*"
+      ],
+      "@globalAssets/*": [
+        "packages/global/assets/*"
+      ],
+      "@globalTypes/*": [
+        "packages/global/__types/*"
+      ],
+      "@globalHooks/*": [
+        "packages/global/hooks/*"
+      ],
+      "@marketingModules/*": [
+        "packages/marketing/__modules/*"
+      ],
+      "@marketingTests/*": [
+        "packages/marketing/__tests__/*"
+      ],
+      "@marketingComponents/*": [
+        "packages/marketing/components/*"
+      ],
+      "@appModules/*": [
+        "packages/app/__modules/*"
+      ],
+      "@appComponents/*": [
+        "packages/app/components/*"
+      ]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -28,6 +63,11 @@
     "incremental": true,
     "esModuleInterop": true,
     "resolveJsonModule": true,
-    "isolatedModules": true
+    "isolatedModules": true,
+    "plugins": [
+      {
+        "name": "next"
+      }
+    ]
   }
 }
