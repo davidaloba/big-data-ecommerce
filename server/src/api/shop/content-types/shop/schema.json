@@ -25,17 +25,14 @@
       "type": "string",
       "required": true
     },
-    "main": {
+    "perPage": {
       "pluginOptions": {
         "i18n": {
-          "localized": true
+          "localized": false
         }
       },
-      "type": "dynamiczone",
-      "components": [
-        "modules.products"
-      ],
-      "max": 1
+      "type": "integer",
+      "required": true
     },
     "blocks": {
       "pluginOptions": {
@@ -45,7 +42,7 @@
       },
       "type": "dynamiczone",
       "components": [
-        "blocks.cta"
+        "shop.products"
       ]
     },
     "seo": {

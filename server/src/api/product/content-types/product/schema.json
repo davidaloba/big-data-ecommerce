@@ -24,18 +24,14 @@
       },
       "type": "uid"
     },
-    "main": {
+    "title": {
+      "type": "string",
+      "required": true,
       "pluginOptions": {
         "i18n": {
           "localized": true
         }
-      },
-      "type": "dynamiczone",
-      "components": [
-        "modules.product"
-      ],
-      "required": true,
-      "max": 1
+      }
     },
     "blocks": {
       "pluginOptions": {
@@ -45,8 +41,7 @@
       },
       "type": "dynamiczone",
       "components": [
-        "blocks.faq",
-        "blocks.cta"
+        "shop.product"
       ]
     },
     "seo": {

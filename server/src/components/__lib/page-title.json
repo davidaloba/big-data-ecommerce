@@ -1,0 +1,27 @@
+{
+  "collectionName": "components___lib_page_title",
+  "info": {
+    "displayName": "PageTitle",
+    "icon": "bullhorn",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "muted"
+      ],
+      "default": "muted"
+    },
+    "title": {
+      "type": "string",
+      "required": false
+    },
+    "text": {
+      "type": "string"
+    }
+  }
+}

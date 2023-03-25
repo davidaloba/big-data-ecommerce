@@ -25,14 +25,6 @@
       "type": "string",
       "required": true
     },
-    "categoryText": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "string"
-    },
     "perPage": {
       "pluginOptions": {
         "i18n": {
@@ -42,18 +34,6 @@
       "type": "integer",
       "required": true
     },
-    "main": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "dynamiczone",
-      "components": [
-        "modules.articles"
-      ],
-      "max": 1
-    },
     "blocks": {
       "pluginOptions": {
         "i18n": {
@@ -62,7 +42,7 @@
       },
       "type": "dynamiczone",
       "components": [
-        "blocks.cta"
+        "blog.articles"
       ]
     },
     "seo": {

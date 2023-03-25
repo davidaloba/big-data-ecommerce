@@ -24,6 +24,15 @@
       },
       "type": "uid"
     },
+    "title": {
+      "type": "string",
+      "required": true,
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      }
+    },
     "publicationState": {
       "pluginOptions": {
         "i18n": {
@@ -48,19 +57,6 @@
       },
       "type": "json"
     },
-    "main": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "dynamiczone",
-      "components": [
-        "modules.article"
-      ],
-      "required": true,
-      "max": 1
-    },
     "blocks": {
       "pluginOptions": {
         "i18n": {
@@ -69,8 +65,7 @@
       },
       "type": "dynamiczone",
       "components": [
-        "blocks.faq",
-        "blocks.cta"
+        "blog.article"
       ],
       "required": false
     },

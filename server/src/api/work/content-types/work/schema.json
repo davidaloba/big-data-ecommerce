@@ -34,18 +34,6 @@
       "type": "integer",
       "required": true
     },
-    "main": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "dynamiczone",
-      "components": [
-        "modules.projects"
-      ],
-      "max": 1
-    },
     "blocks": {
       "pluginOptions": {
         "i18n": {
@@ -54,7 +42,7 @@
       },
       "type": "dynamiczone",
       "components": [
-        "blocks.cta"
+        "work.projects"
       ]
     },
     "seo": {

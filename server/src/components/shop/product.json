@@ -1,0 +1,53 @@
+{
+  "collectionName": "components_shop_product",
+  "info": {
+    "displayName": "Product",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "products"
+    },
+    "tag": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::tag.tag",
+      "inversedBy": "products"
+    },
+    "images": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+      
+    },
+    "content": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shop.product-content"
+    },
+    "reviews": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shop.product-reviews"
+    },
+    "related": {
+      "type": "component",
+      "repeatable": false,
+      "component": "shop.related-products"
+    }
+  }
+}

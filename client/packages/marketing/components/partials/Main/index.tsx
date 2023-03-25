@@ -1,5 +1,3 @@
-import AppManager from '@appModules/ModuleManager'
-import ModuleManager from '@marketingModules/ModuleManager'
 import BlockManager from '@marketingComponents/BlockManager'
 
 const Main = ({ pageData, children }) => {
@@ -13,19 +11,12 @@ const Main = ({ pageData, children }) => {
   return (
     <main>
       {children}
-      {modules && (
-        <AppManager
-          modules={modules}
+      {blocks && (
+        <BlockManager
+          blocks={blocks}
           perPage={perPage || 12}
         />
       )}
-      {modules && (
-        <ModuleManager
-          modules={modules}
-          perPage={perPage || 12}
-        />
-      )}
-      {blocks && <BlockManager blocks={blocks} />}
     </main>
   )
 }
