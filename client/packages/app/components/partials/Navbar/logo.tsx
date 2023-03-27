@@ -10,10 +10,10 @@ const Logo = ({ url, button }) => {
       <Image
         src={getStrapiMedia(url)}
         alt="logo"
-        width="28"
-        height="28"
+        width="52"
+        height="52"
       />
-      <span className="ml-1 text-xl md:text-3xl font-bold">{button.label}</span>
+      {/* <span className="ml-1 text-xl md:text-3xl font-bold">{button.label}</span> */}
     </Link>
   )
 }

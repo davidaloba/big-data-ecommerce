@@ -1,17 +1,16 @@
 import Link from 'next/link'
 
-const Nav = ({ links }) => {
+const Nav = ({ style, links }) => {
   return (
-    <nav className="text-xl flex flex-wrap flex-col sm:flex-row justify-around items-center">
+    <ul className={` ${style} text-xs capitalize`}>
       {links.map((link, index) => (
-        <Link
-          href={link.href}
+        <li
           key={`navigationLink-${index}`}
-          className="mt-2 md:mt-0 mx-1 md:mx-3 text-lg font-bold">
-          {link.label}
-        </Link>
+          className="mt-2 md:mt-0 mx-1 md:mx-2 ">
+          <Link href={link.href}>{link.label}</Link>
+        </li>
       ))}
-    </nav>
+    </ul>
   )
 }
 
