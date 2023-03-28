@@ -16,8 +16,7 @@ const api = createApi({
   tagTypes: [],
   endpoints: (build) => ({
     getGlobal: build.query({
-      query: () =>
-        `/global?populate[navigation][populate]=*&populate[footer][populate][footerColumns][populate]=*`,
+      query: () => `/global?populate=deep`,
       transformResponse: (res: { data: Global; [index: string]: object | object[] }) => {
         return res
       }

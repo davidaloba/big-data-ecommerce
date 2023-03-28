@@ -4,7 +4,8 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "category"
+    "displayName": "category",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -25,17 +26,17 @@
       "target": "api::product.product",
       "mappedBy": "category"
     },
-    "articles": {
+    "parent": {
       "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "category"
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "children"
     },
-    "projects": {
+    "children": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "category"
+      "target": "api::category.category",
+      "mappedBy": "parent"
     }
   }
 }

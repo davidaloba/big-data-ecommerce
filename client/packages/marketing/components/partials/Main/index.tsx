@@ -1,15 +1,11 @@
-import BlockManager from '@marketingComponents/BlockManager'
+import BlockManager from './BlockManager'
 
-const Main = ({ pageData, children }) => {
-  const blocks = pageData.blocks || []
-  const modules = pageData.main
-  const perPage = pageData.perPage
-
-  if (!modules && !blocks) {
+const Main = ({ children, blocks, perPage }) => {
+  if (!blocks[0]) {
     return <main className="h-screen"></main>
   }
   return (
-    <main>
+    <main className="h-screen">
       {children}
       {blocks && (
         <BlockManager

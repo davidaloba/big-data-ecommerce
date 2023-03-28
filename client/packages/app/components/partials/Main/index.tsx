@@ -1,11 +1,11 @@
-import BlockManager from '@appComponents/BlockManager'
+import BlockManager from './BlockManager'
 
-const Main = ({ blocks, modules, children, perPage }) => {
-  if (!modules && !blocks) {
-    return <main className="h-screen"></main>
+const Main = ({ children, blocks, perPage }) => {
+  if (!blocks[0]) {
+    return <main className="min-h-screen"></main>
   }
   return (
-    <main>
+    <main className="min-h-screen">
       {children}
       {blocks && (
         <BlockManager

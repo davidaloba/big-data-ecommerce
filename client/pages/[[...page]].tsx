@@ -12,6 +12,7 @@ import {
 import { Global } from '@globalTypes/models'
 import MarketingLayout from '@marketingComponents/layouts/layout'
 import AppLayout from '@appComponents/layouts/layout'
+import Seo from '@marketingComponents/partials/seo'
 
 interface Page {
   children: ReactNode | undefined
@@ -47,8 +48,6 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
 })
 
 const Page = ({ children, apiUrl, pageType, pageID, type, preview }: Page) => {
-  console.log(pageType, type, pageID)
-
   const { data: globalData, isSuccess: globalDataSuccess } = useGetGlobalQuery('global')
   const { data: pageData, isSuccess: pageDataSuccess } = useGetPageDataQuery(apiUrl)
 
@@ -75,6 +74,7 @@ const Page = ({ children, apiUrl, pageType, pageID, type, preview }: Page) => {
       pageData={page.attributes}
       pageDataSuccess={pageDataSuccess}
       preview={preview}>
+      <Seo seo={page.attributes.seo} />
       {children}
     </LayoutComponent>
   )

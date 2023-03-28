@@ -32,10 +32,10 @@
       "repeatable": false,
       "component": "blog.related-articles"
     },
-    "category": {
+    "topics": {
       "type": "relation",
       "relation": "manyToOne",
-      "target": "api::category.category",
+      "target": "api::topic.topic",
       "inversedBy": "articles"
     },
     "editors": {

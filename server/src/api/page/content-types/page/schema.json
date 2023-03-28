@@ -27,35 +27,27 @@
     },
     "title": {
       "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+      "required": true
+    },
+    "pageTitle": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.page-title"
     },
     "blocks": {
       "type": "dynamiczone",
       "components": [
+        "shop.categories",
         "page.hero",
         "page.featured-projects",
         "page.latest-code",
-        "page.about-me"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+        "page.about-me",
+        "__lib.page-title"
+      ]
     },
     "seo": {
       "type": "component",
       "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "component": "__lib.seo"
     }
   }

@@ -1,16 +1,17 @@
-import CustomLink from '@marketingComponents/__lib/CustomLink'
+import Link from 'next/link'
 
-const Cta = ({ href, target, label }) => {
+const Cta = ({ button }) => {
   return (
     <button
       type="button"
       className="py-4 px-6 bg-primary hover:bg-primary-darker text-gray-50 transition ease-in duration-200 text-center text-base font-semibold shadow-md rounded-full hidden lg:block">
-      <CustomLink
-        href={href}
-        target={target}
-        label={label}
-        isExternal={true}
-      />
+      <Link
+        href={button.href}
+        target={button.target}
+        /* isExternal={button.isExternal} */
+      >
+        {button.label}
+      </Link>
     </button>
   )
 }

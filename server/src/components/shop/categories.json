@@ -1,0 +1,18 @@
+{
+  "collectionName": "components_shop_categories",
+  "info": {
+    "displayName": "categories",
+    "icon": "smile",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "categories": {
+      "type": "component",
+      "required": true,
+      "repeatable": true,
+      "minimum": 2,
+      "component": "__lib.category-card"
+    }
+  }
+}

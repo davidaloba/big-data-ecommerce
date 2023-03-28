@@ -5,7 +5,7 @@ export interface Global {
     updatedAt: string
     publishedAt: string
     locale: string
-    navigation: {
+    header: {
       id: number
       links: string[]
       leftButton: object
