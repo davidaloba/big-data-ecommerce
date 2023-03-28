@@ -13,6 +13,15 @@ const MobileNav = ({ navMenu, mobileMenu, setMobileMenu }) => {
         onClick={() => setMobileMenu(false)}>
         <Menu links={navMenu} />
       </div>
+      {/* mobile navigation toggle */}
+      <div
+        className=" py-1 px-4 text-sm
+              hidden
+              font-semibold 
+              cursor-pointer shadow rounded-lg bg-white "
+        onClick={() => setMobileMenu(!mobileMenu)}>
+        Menu
+      </div>
     </nav>
   )
 }

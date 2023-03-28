@@ -7,8 +7,9 @@ const MegaMenu = ({ columns }) => {
       Element={MegaMenuItem}
       elements={columns}
       style={{
-        container: 'md:flex md:flex-row items-center justify-start relative ',
-        wrapper: 'text-xs mr-2 py-6 group'
+        container: `flex flex-row  items-center justify-start relative 
+        min-w-[40vw]`,
+        wrapper: 'text-xs mr-2 py-[25px] group'
       }}
       pre="headerLink"
     />

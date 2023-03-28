@@ -11,7 +11,7 @@ const Navigation = ({ logo, navMenu, shopMenu }) => {
   return (
     <header className=" sticky top-0 z-50 ">
       <nav
-        className="px-2 md:px-4 lg:px-8 xl:px-12 
+        className="px-4 md:px-6 lg:px-8 xl:px-12 
         flex flex-row items-center justify-between
        bg-gray-50 ">
         {shopMenu[0] && <MegaMenu columns={shopMenu} />}
@@ -24,15 +24,6 @@ const Navigation = ({ logo, navMenu, shopMenu }) => {
           />
         )}
         {navMenu[0] && <Menu links={navMenu} />}
-        {/* mobile navigation toggle */}
-        <div
-          className=" py-1 px-4 text-sm
-              md:hidden
-              font-semibold 
-              cursor-pointer shadow rounded-lg bg-white "
-          onClick={() => setMobileMenu(!mobileMenu)}>
-          Menu
-        </div>
       </nav>
       <MobileNav
         mobileMenu={mobileMenu}
