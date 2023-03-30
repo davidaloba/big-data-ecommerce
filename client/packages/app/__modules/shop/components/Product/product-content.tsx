@@ -1,13 +1,13 @@
 import Link from 'next/link'
 import { getStrapiMedia } from 'packages/global/utils/index'
 import SocialLogo from '@marketingComponents/__lib/SocialLogo'
-import Information from './information'
+import Information from './product-details'
 import OpeningHours from './opening-hours'
 import Price from './price'
 import Gallery from './gallery'
-import ReviewSummary from './Reviews/review-summary'
-import OverallRating from './Reviews/overall-rating'
-import Reviews from './Reviews/reviews'
+import ReviewSummary from './review-summary'
+import OverallRating from './overall-rating'
+import Reviews from './reviews'
 import Stars from './stars'
 
 const ProductContent = ({ name, category, tag, images, content, reviews: reviewsData }) => {
@@ -26,7 +26,7 @@ const ProductContent = ({ name, category, tag, images, content, reviews: reviews
         <Link href={`shop`}>
           <button
             type="button"
-            className="ml-2 py-4 px-6 bg-secondary hover:bg-secondary-darker text-gray-50 w-1/8 text-center text-base font-semibold shadow-sm rounded-md">
+            className="ml-2 py-4 px-6 bg-secondary hover:bg-secondary-darker text-gray-50 w-1/8 text-center ase font-semibold shadow-sm rounded-md">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-6 w-6"

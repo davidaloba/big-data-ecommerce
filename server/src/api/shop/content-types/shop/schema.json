@@ -37,7 +37,7 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "shop.products"
+        "shop.shop"
       ]
     },
     "seo": {

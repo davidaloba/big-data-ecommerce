@@ -28,7 +28,7 @@ const ArticleContent = ({ title, image, content }) => {
         <Link href={`/blog`}>
           <button
             type="button"
-            className="ml-2 py-4 mt-8 px-6 bg-secondary hover:bg-secondary-darker text-gray-50 w-1/8 text-center text-base font-semibold shadow-sm rounded-md">
+            className="ml-2 py-4 mt-8 px-6 bg-secondary hover:bg-secondary-darker text-gray-50 w-1/8 text-center ase font-semibold shadow-sm rounded-md">
             Back to articles
           </button>
         </Link>

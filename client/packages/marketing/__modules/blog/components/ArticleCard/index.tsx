@@ -10,7 +10,7 @@ const ArticleCard = ({ slug, main, seo }) => {
 
   return (
     <div>
-      <span className="inline-block py-2 px-2 rounded bg-secondary-lightest text-secondary text-xs font-medium tracking-widest">
+      <span className="inline-block py-2 px-2 rounded bg-secondary-lightest text-secondary  font-medium tracking-widest">
         {categoryAttr.name}
       </span>
       <img
@@ -49,7 +49,7 @@ const ArticleCard = ({ slug, main, seo }) => {
           />
           <span className="flex-grow flex flex-col pl-4">
             <span className="title-font font-medium text-gray-900">{authorAttr.username}</span>
-            <span className="text-gray-400 text-xs tracking-widest mt-0.5">{authorAttr.job}</span>
+            <span className="text-gray-400  tracking-widest mt-0.5">{authorAttr.job}</span>
           </span>
         </div>
       )}

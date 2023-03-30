@@ -1,9 +1,12 @@
-import MenuLink from '@appComponents/partials/Header/menulink'
-import Repeatable from '@appComponents/__lib/Repeatable'
-import { getStrapiMedia } from '@globalUtils/index'
+'use client'
+import { useState } from 'react'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import MenuLink from '@appComponents/partials/Header/menulink'
+import Repeatable from '@appComponents/__lib/Repeatable'
+
+import { getStrapiMedia } from '@globalUtils/index'
 
 const CategoryCard = ({
   category,
@@ -17,47 +20,37 @@ const CategoryCard = ({
 }) => {
   const [openMenu, setOpenMenu] = useState(true)
 
-  const bgImg = getStrapiMedia(featuredImage.data.attributes.url)
-
   return (
     <section className={`relative px-0 pb-0 pt-0`}>
       <Image
         onClick={() => setOpenMenu(!openMenu)}
         className=" -z-10"
-        src={bgImg}
+        src={getStrapiMedia(featuredImage.data.attributes.url)}
         alt="logo"
         width="1366"
         height="52"
       />
       <div
         className="`absolute top-2 left-2
-      absolute md:top-4 lg:top-[26px] md:left-5 lg:left-9 z-10 flex items-start justify-start`">
+      absolute md:top-4 lg:top-[26px] 2xl:top-[30px]  md:left-5 lg:left-9 z-10 flex items-start justify-start`">
         <div
           onClick={() => setOpenMenu(!openMenu)}
           className={`${
-            !openMenu ? 'text-black' : 'text-white '
-          } text-3xl lg:text-4xl xl:text-5xl leading-4 lg:leading-5 mr-2 lg:mr-4 xl:mr-6 `}>
+            !openMenu ? 'lack' : 'text-white '
+          } text-3xl lg:text-4xl 2xl:text-4xl leading-4 lg:leading-5 2xl:leading-6 mr-2 lg:mr-4 2xl:mr-8 `}>
           {openMenu ? 'x' : '+'}
         </div>
         {!link ? (
           <div onClick={() => setOpenMenu(!openMenu)}>
-            <h3 className={` ${!openMenu ? 'text-black' : 'text-white '} font-semibold text-xs `}>
-              {label}S
-            </h3>
-            <h3 className={` ${!openMenu ? 'text-black' : 'text-white '} font-semibold text-xs `}>
-              NEW IN
-            </h3>
+            <h3 className={` ${!openMenu ? 'lack' : 'text-white '} font-semibold  `}>{label}S</h3>
+            <h3 className={` ${!openMenu ? 'lack' : 'text-white '} font-semibold  `}>NEW IN</h3>
           </div>
         ) : (
           <Link
             className="hover:underline decoration-white"
             href={link}>
-            <h3 className={` ${!openMenu ? 'text-black' : 'text-white '} font-semibold text-xs `}>
-              {label}S
-            </h3>
-            <h3 className={` ${!openMenu ? 'text-black' : 'text-white '} font-semibold text-xs `}>
-              NEW IN
-            </h3>
+            <h3 className={` ${!openMenu ? 'lack' : 'text-white '} font-semibold  `}>{label}S</h3>
+            <h3 className={` ${!openMenu ? 'lack' : 'text-white '} font-semibold  `}>NEW IN</h3>
           </Link>
         )}
       </div>
@@ -68,7 +61,7 @@ const CategoryCard = ({
             h-full w-full 
             pt-16 px-8
             md:pt-16 md:px-11
-            lg:pt-[88px] xl:pt-[100px] lg:px-[70px] xl:px-[84px]
+            lg:pt-[88px] 2xl:pt-[100px] lg:px-[70px] 2xl:px-[84px]
           bg-black bg-opacity-80">
           <Repeatable
             Element={MenuLink}
@@ -76,8 +69,8 @@ const CategoryCard = ({
             style={{
               container: 'static',
               wrapper: `
-                lg:mb-2 xl:mb-[3] 
-                text-xl lg:text-2xl xl:text-3xl font-bold text-white  hover:text-gray-300`
+                lg:mb-2 2xl:mb-[3] 
+                text-xl lg:text-2xl 2xl:text-3xl font-bold text-white  hover:text-gray-300`
             }}
             pre="category"
           />

@@ -25,7 +25,7 @@ const Columns = ({ columns }) => {
                 {column.links &&
                   column.links.map((link, index2) => (
                     <li
-                      className="mb-4 mr-6 text-xl  hover:text-gray-700 font-bold transition-colors duration-200"
+                      className="mb-4 mr-6   hover:text-gray-700 font-bold transition-colors duration-200"
                       key={`footerColumnLink-${index2}`}>
                       <CustomLink {...link} />
                     </li>

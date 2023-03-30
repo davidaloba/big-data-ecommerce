@@ -2,6 +2,7 @@
   "include": [
     "packages",
     "pages",
+    "app",
     ".next/types/**/*.ts"
   ],
   "exclude": [
@@ -50,6 +51,9 @@
       ],
       "@appModules/*": [
         "packages/app/__modules/*"
+      ],
+      "@appUtils/*": [
+        "packages/app/utils/*"
       ],
       "@appComponents/*": [
         "packages/app/components/*"

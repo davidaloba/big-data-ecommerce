@@ -16,7 +16,7 @@ const Column = ({ links, label, index }) => {
               ml-6 mt-8 flex flex-col 
               md:flex-row row-start-2
             `,
-          wrapper: `mb-2 md:mb-3 md:mr-6 text-xl  hover:text-gray-700 font-bold transition-colors duration-200`
+          wrapper: `mb-2 md:mb-3 md:mr-6   hover:text-gray-700 font-bold transition-colors duration-200`
         }}
         pre="headerLink"></Repeatable>
     </div>

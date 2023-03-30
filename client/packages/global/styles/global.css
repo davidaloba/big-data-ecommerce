@@ -4,27 +4,35 @@
 
 @layer base {
   
-  section {
-    @apply px-8 lg:px-16 pt-16 pb-20 md:pt-20 md:pb-28;
+  
+  h1, h2, h3, h4, h5, h6 {
+    @apply text-slate-600 text-xs  ;
   }
 
-
-  main {
-    @apply py-0;
-  }
-
-  div, p,li{
-    @apply text-gray-800 ;
+  p,  li {
+    @apply text-gray-600 text-xs ;
   }
   
   a {
     @apply  cursor-pointer  ;
   }
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply text-slate-800 ;
+
+  div,ul{
+    @apply text-gray-600 text-xs ;
+  }
+  section {
+    @apply px-8 lg:px-16 pt-16 pb-20 md:pt-20 md:pb-28;
+  }
+
+  main {
+    @apply py-0;
   }
   
+  button {
+    @apply border border-gray-400  px-4 py-1 text-xs uppercase ;
+  }
+  
+
   
 }
 

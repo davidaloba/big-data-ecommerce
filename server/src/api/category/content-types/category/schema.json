@@ -12,19 +12,20 @@
   },
   "pluginOptions": {},
   "attributes": {
+    "slug": {
+      "type": "uid",
+      "required": true,
+      "targetField": "name"
+    },
+    "blocks": {
+      "type": "dynamiczone",
+      "components": [
+        "shop.category"
+      ]
+    },
     "name": {
       "type": "string",
       "required": true
-    },
-    "slug": {
-      "type": "uid",
-      "targetField": "name"
-    },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product",
-      "mappedBy": "category"
     },
     "parent": {
       "type": "relation",
@@ -37,6 +38,17 @@
       "relation": "oneToMany",
       "target": "api::category.category",
       "mappedBy": "parent"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.seo"
+    },
+    "products": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::product.product",
+      "mappedBy": "category"
     }
   }
 }

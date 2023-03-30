@@ -3,28 +3,25 @@ import api from '@globalStore/api'
 const productsApi = api.injectEndpoints({
   endpoints: (build) => ({
     getProducts: build.query({
-      query: (key) => {
-        const categoryName = key.category
-        const localeCode = key.locale
-        const pageNumber = key.page
-        const perPage = key.perPage
-        const tagName = key.tag
-        const start = +pageNumber === 1 ? 0 : (+pageNumber - 1) * perPage
+      query: (category) => {
+        const pageNo = 1
+        const start = +pageNo === 1 ? 0 : (+pageNo - 1) * 24
+        const baseUrl = `/products?pagination[limit]=${24}&pagination[start]=${start}&pagination[withCount]=true`
 
-        let baseUrl = `/products?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
-        if (categoryName) {
-          baseUrl = `${baseUrl}&filters[category][name][$eq]=${categoryName}`
-        }
-        if (tagName) {
-          baseUrl = `${baseUrl}&filters[tag][name][$eq]=${tagName}`
-        }
-        if (localeCode) {
-          baseUrl = `${baseUrl}&locale=${localeCode}`
-        }
+        return category === 'shop'
+          ? `${baseUrl}&populate=deep`
+          : `${baseUrl}&filters[category][slug][$eq]=${category}&populate=deep`
+
         return baseUrl
       },
-      transformResponse: (responseData: { [index: string]: object | object[] }) => {
-        return responseData.data
+      transformResponse: (res: { [index: string]: object | object[] }) => {
+        return res.data
+      }
+    }),
+    getProduct: build.query({
+      query: (url) => url,
+      transformResponse: (res) => {
+        return res
       }
     }),
     getTags: build.query({
@@ -45,4 +42,4 @@ const productsApi = api.injectEndpoints({
   overrideExisting: false
 })
 
-export const { useGetProductsQuery, useGetCollectionQuery, useGetTagsQuery } = productsApi
+export const { useGetProductsQuery, useGetProductQuery, useGetTagsQuery } = productsApi

@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import PageTitle from '@marketingComponents/__lib/PageTitle'
 import NoResults from '@marketingComponents/__lib/no-results'
@@ -43,7 +44,7 @@ const Projects = ({ header, perPage }) => {
                           type="button"
                           className={`${
                             pageNumber <= 1 ? 'cursor-not-allowed opacity-50' : ''
-                          } w-full p-4 border text-base rounded-l-xl text-gray-600 bg-white hover:bg-gray-100 focus:outline-none`}
+                          } w-full p-4 border ase rounded-l-xl text-gray-600 bg-white hover:bg-gray-100 focus:outline-none`}
                           onClick={() => setPageNumber(pageNumber - 1)}
                           disabled={pageNumber <= 1}>
                           Previous
@@ -53,7 +54,7 @@ const Projects = ({ header, perPage }) => {
                           type="button"
                           className={`${
                             pageNumber >= lastPage ? 'cursor-not-allowed opacity-50' : ''
-                          } w-full p-4 border-t border-b border-r text-base rounded-r-xl text-gray-600 bg-white hover:bg-gray-100 focus:outline-none`}
+                          } w-full p-4 border-t border-b border-r ase rounded-r-xl text-gray-600 bg-white hover:bg-gray-100 focus:outline-none`}
                           onClick={() => setPageNumber(pageNumber + 1)}
                           disabled={pageNumber >= lastPage}>
                           Next

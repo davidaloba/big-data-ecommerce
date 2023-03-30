@@ -10,7 +10,7 @@ const Header = ({ theme, title, subtitle, text, link }) => {
             {title}
           </h1>
         )}
-        {subtitle && <h2 className="ml-4 mt-8 text-xl md:text-2xl lg:text-[20px]  ">{subtitle}</h2>}
+        {subtitle && <h2 className="ml-4 mt-8  md:text-2xl lg:text-[20px]  ">{subtitle}</h2>}
       </div>
       <div>
         {text && <p className=" text-lg text-gray-500">{text}</p>}
@@ -18,7 +18,7 @@ const Header = ({ theme, title, subtitle, text, link }) => {
           <Link
             target={link.target}
             href={link.href}
-            className="mt-6 md:mt-0 md:px-8 px-4 md:py-4 py-2 rounded-md bg-white shadow-lg text-lg md:text-xl font-semibold flex flex-row space-x-4 items-center">
+            className="mt-6 md:mt-0 md:px-8 px-4 md:py-4 py-2 rounded-md bg-white shadow-lg text-lg md: font-semibold flex flex-row space-x-4 items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"

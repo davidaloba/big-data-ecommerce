@@ -7,7 +7,7 @@ const Menu = ({ links, style }: { links: []; style?: string }) => {
       elements={links}
       Element={(props) => <Link href={props.element.href}>{props.element.label}</Link>}
       style={{
-        container: ` ${style} text-xs capitalize`,
+        container: ` ${style}  capitalize`,
         wrapper: 'mt-2 md:mt-0 mx-1 md:mx-2 '
       }}
       pre="headerLink"

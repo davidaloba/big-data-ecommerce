@@ -15,7 +15,7 @@ export default function ProjectCard({ title, slug, image, label, text }) {
           alt={imageAlt}
           className="transform hover:scale-125 transition duration-2000 ease-out"
         />
-        <h1 className="absolute top-3 xl:top-5 left-3 xl:left-5 md:text-xl text-gray-50 font-bold bg-orange-600 rounded-md px-2">
+        <h1 className="absolute top-3 xl:top-5 left-3 xl:left-5 md: text-gray-50 font-bold bg-orange-600 rounded-md px-2">
           {title}
         </h1>
         <h1 className="absolute bottom-2 xl:bottom-5 left-3 xl:left-5 text-sm md:text-lg text-gray-500 bg-[#f1f1f1] rounded-md px-2">

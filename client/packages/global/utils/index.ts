@@ -1,32 +1,33 @@
-const indexes = ['blog', 'shop', 'work']
+const indexes = ['blog', 'shop', 'work', 'category']
 const apiIDs = {
-  page: 'page',
-  blog: 'article',
-  work: 'project',
-  shop: 'product',
-  collection: 'collection'
+  page: 'pages',
+  blog: 'articles',
+  work: 'projects',
+  shop: 'products',
+  category: 'categories'
 }
 
-export function getData(slug: string | string[], preview: boolean) {
+export function getData(slug: string | string[], preview?: boolean) {
   const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
   const pageType = indexes.includes(slug[0]) ? slug[0] : 'page'
-  const pageID = !slug[slug.length - 1] ? '' : slug[slug.length - 1]
+  const pageID = !slug[slug.length - 1] ? 'home' : slug[slug.length - 1]
 
   const data = {
-    url: '',
+    apiUrl: '',
     pageType,
     pageID,
-    type: 'page'
+    apiID: 'page'
   }
-
   // handle Index Pages
-  if (indexes.includes(slug[0])) {
-    data.type = pageType
-    data.url = `/${data.type}?${previewParams}&populate=deep`
+  if (indexes.includes(slug[0]) && slug.length === 1) {
+    data.apiID = pageType
+    data.apiUrl = getStrapiURL(`/${data.apiID}?${previewParams}&populate=deep`)
     // handle Single Pages
   } else {
-    data.type = pageType in apiIDs && apiIDs[pageType]
-    data.url = `/${data.type}s?filters[slug][$eq]=/${pageID}${previewParams}&populate=deep`
+    data.apiID = pageType in apiIDs && apiIDs[pageType]
+    data.apiUrl = getStrapiURL(
+      `/${data.apiID}?filters[slug][$eq]=${pageID}${previewParams}&populate=deep`
+    )
   }
 
   return data

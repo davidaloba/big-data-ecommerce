@@ -12,8 +12,8 @@ const GithubRepoCard = ({ latestRepo }) => {
         />
       </div>
       <div className="ml-4">
-        <h1 className="font-semibold text-xl  ">{latestRepo.name}</h1>
-        <p className="text-base font-normal my-2  ">{latestRepo.description}</p>
+        <h1 className="font-semibold   ">{latestRepo.name}</h1>
+        <p className="ase font-normal my-2  ">{latestRepo.description}</p>
         <a
           href={latestRepo.clone_url}
           className="font-semibold group flex flex-row space-x-2 w-full items-center">

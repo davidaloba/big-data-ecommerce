@@ -4,8 +4,8 @@ const Bio = ({ headline, currentProject, text }) => {
       <p className=" text-3xl md:text-4xl lg:text-5xl lg:leading-tight font-semibold ">
         {headline}{' '}
       </p>
-      <p className="mt-4 text-xl md:text-2xl">{text}</p>
-      <div className="mt-4 flex text-xl md:text-2xl  font-bold  ">
+      <p className="mt-4  md:text-2xl">{text}</p>
+      <div className="mt-4 flex  md:text-2xl  font-bold  ">
         <p className="">
           Currently working on
           <a

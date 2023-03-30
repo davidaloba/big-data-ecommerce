@@ -1,4 +1,4 @@
-import ProductCard from '../ProductCard'
+import ProductCard from '../../../../components/__lib/ProductCard'
 import Header from '@marketingComponents/__lib/Header'
 
 const RelatedProducts = ({ related }) => {

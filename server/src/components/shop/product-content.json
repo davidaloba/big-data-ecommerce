@@ -7,23 +7,16 @@
   },
   "options": {},
   "attributes": {
-    "price": {
-      "type": "enumeration",
-      "repeatable": false,
-      "enum": [
-        "p1",
-        "p2",
-        "p3",
-        "p4"
-      ],
-      "required": true
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
     },
-    "socialNetworks": {
-      "type": "component",
-      "repeatable": true,
-      "component": "__lib.social-networks"
-    },
-    "richContent": {
+    "description": {
       "type": "component",
       "repeatable": true,
       "component": "shop.rich-content"

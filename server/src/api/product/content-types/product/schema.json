@@ -17,28 +17,53 @@
   },
   "attributes": {
     "slug": {
+      "required": true,
       "type": "uid"
-    },
-    "title": {
-      "type": "string",
-      "required": true
     },
     "blocks": {
       "type": "dynamiczone",
+      "required": true,
       "components": [
         "shop.product"
       ]
     },
-    "seo": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "featuredImages": {
+      "type": "media",
+      "multiple": true,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "price": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "float",
+      "required": true,
+      "default": 0
+    },
+    "content": {
       "type": "component",
       "repeatable": false,
-      "component": "__lib.seo"
+      "component": "shop.product-content"
     },
     "category": {
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::category.category",
       "inversedBy": "products"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.seo"
     }
   }
 }

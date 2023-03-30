@@ -7,20 +7,17 @@
   "options": {},
   "attributes": {
     "metaTitle": {
-      "required": true,
       "type": "string",
       "maxLength": 60
     },
     "metaDescription": {
       "type": "string",
-      "required": true,
       "maxLength": 160,
       "minLength": 50
     },
     "metaImage": {
       "type": "media",
       "multiple": false,
-      "required": true,
       "allowedTypes": [
         "images",
         "files",

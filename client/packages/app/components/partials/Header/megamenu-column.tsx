@@ -29,7 +29,7 @@ const MegaMenuColumn = ({ image, title, links, style }) => {
           elements={links}
           style={{
             container: ``,
-            wrapper: ' text-xs capitalize mt-2'
+            wrapper: '  capitalize mt-2'
           }}
           pre="headerLink"
         />

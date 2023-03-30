@@ -1,3 +1,4 @@
+'use c'
 import RelatedArticles from './RelatedArticles'
 import ArticleContent from './ArticleContent'
 

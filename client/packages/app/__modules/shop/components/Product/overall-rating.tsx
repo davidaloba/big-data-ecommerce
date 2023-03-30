@@ -49,9 +49,7 @@ const OverallRating = ({ reviews }) => {
             Overall Rating
           </p>
 
-          {reviewsCount && (
-            <p className="text-5xl text-black dark:text-gray-50 font-bold">{average}/5</p>
-          )}
+          {reviewsCount && <p className="text-5xl lack dark:text-gray-50 font-bold">{average}/5</p>}
 
           {reviewsCount && <p className="my-4">{reviewsCount} reviews</p>}
 
@@ -66,7 +64,7 @@ const OverallRating = ({ reviews }) => {
                   <div
                     className={`${
                       item.value === 0 ? 'w-0' : `w-${item.value}/${reviewsCount}`
-                    }  h-full text-center text-xs text-gray-50 bg-primary rounded-full`}></div>
+                    }  h-full text-center  text-gray-50 bg-primary rounded-full`}></div>
                 </div>
               </div>
             ))}

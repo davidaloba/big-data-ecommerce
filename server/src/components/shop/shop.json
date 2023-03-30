@@ -1,8 +1,8 @@
 {
-  "collectionName": "components_shop_product",
+  "collectionName": "components_shop_shop",
   "info": {
-    "displayName": "Product",
-    "icon": "align-left",
+    "displayName": "shop",
+    "icon": "shopping-cart",
     "description": ""
   },
   "options": {},

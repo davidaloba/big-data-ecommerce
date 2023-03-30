@@ -1,11 +1,8 @@
 import BlockManager from './BlockManager'
 
-const Main = ({ children, blocks, perPage }) => {
-  if (!blocks[0]) {
-    return <main className="h-screen"></main>
-  }
+const Main = ({ children, blocks, perPage }: { children; blocks?; perPage? }) => {
   return (
-    <main className="h-screen">
+    <main className="min-h-screen">
       {children}
       {blocks && (
         <BlockManager

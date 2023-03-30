@@ -1,19 +1,19 @@
 export interface Repeatable {
   Element: (props) => JSX.Element
-  elements: Array<unknown>
+  elements: Array<any>
   pre: string
-  style: { [index: string]: string }
+  style?: { [index: string]: string }
   children?: JSX.Element
 }
 
 const Repeatable = ({ Element, elements, pre, style, children }: Repeatable) => {
   return (
-    <ul className={style.container}>
+    <ul className={style && style.container}>
       {children}
       {elements.map((element: object, index) => (
         <li
           key={`${pre}-${index}`}
-          className={style.wrapper}>
+          className={style && style.wrapper}>
           <Element
             {...element}
             index={index}></Element>
