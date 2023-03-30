@@ -1,5 +1,5 @@
 const indexes = ['blog', 'shop', 'work', 'category']
-const apiIDs = {
+const contentTypes = {
   page: 'pages',
   blog: 'articles',
   work: 'projects',
@@ -9,24 +9,23 @@ const apiIDs = {
 
 export function getData(slug: string | string[], preview?: boolean) {
   const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
-  const pageType = indexes.includes(slug[0]) ? slug[0] : 'page'
+  const index = indexes.includes(slug[0]) ? slug[0] : 'page'
   const pageID = !slug[slug.length - 1] ? 'home' : slug[slug.length - 1]
 
   const data = {
     apiUrl: '',
-    pageType,
     pageID,
-    apiID: 'page'
+    contentType: ''
   }
   // handle Index Pages
   if (indexes.includes(slug[0]) && slug.length === 1) {
-    data.apiID = pageType
-    data.apiUrl = getStrapiURL(`/${data.apiID}?${previewParams}&populate=deep`)
+    data.contentType = index
+    data.apiUrl = getStrapiURL(`/${data.contentType}?${previewParams}&populate=deep`)
     // handle Single Pages
   } else {
-    data.apiID = pageType in apiIDs && apiIDs[pageType]
+    data.contentType = index in contentTypes && contentTypes[index]
     data.apiUrl = getStrapiURL(
-      `/${data.apiID}?filters[slug][$eq]=${pageID}${previewParams}&populate=deep`
+      `/${data.contentType}?filters[slug][$eq]=${pageID}${previewParams}&populate=deep`
     )
   }
 

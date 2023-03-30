@@ -4,12 +4,12 @@ const Main = ({ children, blocks, perPage }: { children; blocks?; perPage? }) =>
   return (
     <main className="min-h-screen">
       {children}
-      {blocks && (
+      {/* {blocks && (
         <BlockManager
           blocks={blocks}
           perPage={perPage || 12}
         />
-      )}
+      )} */}
     </main>
   )
 }

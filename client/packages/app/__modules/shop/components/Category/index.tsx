@@ -7,9 +7,9 @@ import Repeatable from '@appComponents/__lib/Repeatable'
 import ProductCard from '@appComponents/__lib/ProductCard'
 import { useGetProductsQuery } from '@appModules/shop/store/api'
 
-const Category = ({ slug }) => {
+const Category = ({ name, pageID }) => {
   // TODO: populate only required product fields {name, slug, featuredImages, price}
-  const { data: products, isSuccess } = useGetProductsQuery(slug)
+  const { data: products, isSuccess } = useGetProductsQuery(pageID)
 
   // TODO: Add filter and sort functionality
   // const [openFilter, setOpenFilter] = useState(false)
@@ -22,7 +22,7 @@ const Category = ({ slug }) => {
         <div
           className="flex flex-row min-w-56
              uppercase ">
-          <h1 className="md:mr-3">{slug}</h1>
+          <h1 className="md:mr-3">{name}</h1>
           <p>/</p>
           {products && (
             <h1 className="md:ml-3">{`${products.length} product${

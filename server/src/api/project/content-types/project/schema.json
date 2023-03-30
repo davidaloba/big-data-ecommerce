@@ -23,12 +23,6 @@
       "type": "string",
       "required": true
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": [
-        "work.project"
-      ]
-    },
     "seo": {
       "type": "component",
       "repeatable": false,

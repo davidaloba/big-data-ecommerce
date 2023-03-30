@@ -1,13 +1,15 @@
 import Link from 'next/link'
 import Repeatable from '@appComponents/__lib/Repeatable'
+import MenuLink from './menulink'
 
-const Menu = ({ links, style }: { links: []; style?: string }) => {
+const Menu = ({ links }) => {
   return (
     <Repeatable
+      Element={MenuLink}
       elements={links}
-      Element={(props) => <Link href={props.element.href}>{props.element.label}</Link>}
       style={{
-        container: ` ${style}  capitalize`,
+        container: `flex flex-row flex-wrap items-center justify-end  capitalize
+        min-w-[40vw] `,
         wrapper: 'mt-2 md:mt-0 mx-1 md:mx-2 '
       }}
       pre="headerLink"

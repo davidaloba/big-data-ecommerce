@@ -1,6 +1,3 @@
-import { ReactNode } from 'react'
-import ErrorPage from 'next/error'
-import { getData, getStrapiURL } from '@globalUtils/index'
 import { wrapper } from '@globalStore/index'
 import {
   getGlobal,
@@ -9,37 +6,38 @@ import {
   useGetGlobalQuery,
   useGetPageDataQuery
 } from '@globalStore/api'
-import { Global } from '@globalTypes/models'
+import { getData } from '@globalUtils/index'
+
+import ErrorPage from 'next/error'
 import MarketingLayout from '@marketingComponents/layouts/layout'
-import WebLayout from '@appComponents/layouts/layout.web'
 import Seo from '@marketingComponents/partials/seo'
+import BlockManager from '@marketingModules/pages/components/BlockManager'
+import Shop from '@appModules/shop/components/Shop'
+import Category from '@appModules/shop/components/Category'
+import Product from '@appModules/shop/components/Product'
 
 interface Page {
-  children: ReactNode | undefined
   apiUrl: string
   preview: boolean | undefined
-  pageType: string
+  contentType: string
   apiID: string
   pageID: string
 }
 
-export const getServerSideProps = wrapper.getServerSideProps((store) => async (context: T) => {
+export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   try {
-    const { apiUrl, pageID, pageType, apiID } = getData(context.query.page || '', context.preview)
+    const { apiUrl, pageID, contentType } = getData(context.query.page || '', context.preview)
 
     store.dispatch(getPageData.initiate(apiUrl))
     store.dispatch(getGlobal.initiate('global'))
     await Promise.all(store.dispatch(getRunningQueriesThunk()))
 
-    console.log(pageType, apiUrl)
-
     return {
       props: {
         apiUrl,
         preview: context.preview || null,
-        pageType,
-        pageID,
-        apiID
+        contentType,
+        pageID
       }
     }
   } catch (error) {
@@ -49,34 +47,63 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
   }
 })
 
-const Page = ({ children, apiUrl, pageType, pageID, preview }: Page) => {
-  const { data: globalData, isSuccess: globalDataSuccess } = useGetGlobalQuery('global')
-  const { data: pageData, isSuccess: pageDataSuccess } = useGetPageDataQuery(apiUrl)
-  const global = globalData.data
-  const page = Array.isArray(pageData.data) ? pageData.data[0] : pageData.data
+const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
+  const { data: global } = useGetGlobalQuery('global')
+  const { data: page } = useGetPageDataQuery(apiUrl)
 
-  let LayoutComponent
-  const pageTID = pageID === 'home' ? pageID : pageType
+  if (
+    !page ||
+    !page.data ||
+    (!Array.isArray(page.data) ? !page.data.attributes : page.data.length < 1)
+  )
+    return <ErrorPage statusCode={404} />
+
+  const globalData = global.data.attributes
+  const pageData = page
+    ? Array.isArray(page.data)
+      ? page.data[0].attributes
+      : page.data.attributes
+    : null
+  const props = {
+    apiUrl,
+    contentType,
+    pageID,
+    ...pageData
+  }
+
+  console.log(globalData, props)
+  const pageTID = pageID === 'home' ? pageID : contentType
+
+  let Layout
   switch (pageTID) {
-    case 'page':
-      LayoutComponent = MarketingLayout
-      break
     default:
-      LayoutComponent = WebLayout
+      Layout = MarketingLayout
       break
   }
 
-  return !globalDataSuccess || !global || !pageDataSuccess || !page ? (
-    <ErrorPage statusCode={404} />
-  ) : (
-    <LayoutComponent
-      globalData={global.attributes}
-      pageData={page.attributes}
-      pageDataSuccess={pageDataSuccess}
+  let Content
+  switch (contentType) {
+    case 'shop':
+      Content = Shop
+      break
+    case 'categories':
+      Content = Category
+      break
+    case 'products':
+      Content = Product
+      break
+    default:
+      Content = BlockManager
+      break
+  }
+
+  return (
+    <Layout
+      globalData={globalData}
       preview={preview}>
-      <Seo seo={page.attributes.seo} />
-      {children}
-    </LayoutComponent>
+      <Seo seo={pageData.seo} />
+      <Content {...props} />
+    </Layout>
   )
 }
 export default Page

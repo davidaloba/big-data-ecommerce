@@ -34,12 +34,6 @@
       "type": "integer",
       "required": true
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": [
-        "blog.articles"
-      ]
-    },
     "seo": {
       "type": "component",
       "repeatable": false,

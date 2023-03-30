@@ -17,12 +17,6 @@
       "required": true,
       "targetField": "name"
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": [
-        "shop.category"
-      ]
-    },
     "name": {
       "type": "string",
       "required": true

@@ -1,5 +1,8 @@
 import dynamic from 'next/dynamic'
 
+const Categories = dynamic(() => import('@marketingModules/pages/components/Categories'), {
+  ssr: true
+})
 const PageTitle = dynamic(() => import('@marketingComponents/__lib/PageTitle'), {
   ssr: true
 })
@@ -38,6 +41,9 @@ const BlockManager = ({ blocks, perPage }) => {
         let Block
 
         switch (__component) {
+          case 'shop.categories':
+            Block = Categories
+            break
           case '__lib.page-title':
             Block = PageTitle
             break

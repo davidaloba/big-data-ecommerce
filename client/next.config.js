@@ -9,7 +9,5 @@ module.exports = {
       }
     ]
   },
-  experimental: {
-    appDir: true
-  }
+  experimental: {}
 }

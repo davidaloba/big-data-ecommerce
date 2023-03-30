@@ -47,13 +47,6 @@
       },
       "type": "json"
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "components": [
-        "blog.article"
-      ],
-      "required": false
-    },
     "seo": {
       "type": "component",
       "repeatable": false,

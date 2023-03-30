@@ -5,8 +5,8 @@ import Repeatable from '@appComponents/__lib/Repeatable'
 import ProductCard from '@appComponents/__lib/ProductCard'
 import { useGetProductsQuery } from '@appModules/shop/store/api'
 
-const Shop = ({ slug }) => {
-  const { data: products, isSuccess } = useGetProductsQuery(slug)
+const Shop = ({ pageID }) => {
+  const { data: products, isSuccess } = useGetProductsQuery(pageID)
 
   // TODO: Add filter and sort functionality
   // const [openFilter, setOpenFilter] = useState(false)

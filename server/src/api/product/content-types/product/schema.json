@@ -20,13 +20,6 @@
       "required": true,
       "type": "uid"
     },
-    "blocks": {
-      "type": "dynamiczone",
-      "required": true,
-      "components": [
-        "shop.product"
-      ]
-    },
     "name": {
       "type": "string",
       "required": true

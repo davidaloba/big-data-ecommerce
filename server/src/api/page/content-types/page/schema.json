@@ -37,7 +37,7 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "shop.categories",
+        "page.categories",
         "page.hero",
         "page.featured-projects",
         "page.latest-code",

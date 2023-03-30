@@ -3,17 +3,13 @@ import Header from '@marketingComponents/partials/Header'
 import Main from '@marketingComponents/partials/Main'
 import Footer from '@marketingComponents/partials/Footer'
 
-const Layout = ({ children, globalData, pageData, pageDataSuccess, preview }) => {
+const Layout = ({ children, globalData, preview }) => {
   return (
     <>
       {preview && <PreviewBanner />}
-      {pageDataSuccess && (
-        <>
-          <Header {...globalData.header} />
-          <Main {...pageData}>{children}</Main>
-          <Footer {...globalData.footer} />
-        </>
-      )}
+      <Header {...globalData.header} />
+      <Main>{children}</Main>
+      <Footer {...globalData.footer} />
     </>
   )
 }
