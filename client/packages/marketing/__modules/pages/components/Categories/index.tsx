@@ -1,4 +1,4 @@
-import Repeatable from '@appComponents/__lib/Repeatable'
+import Repeatable from '@marketingComponents/__lib/Repeatable'
 import CategoryCard from './category-card'
 
 const Categories = ({ categories }) => {

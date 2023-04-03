@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import MenuLink from './menulink'
-import Repeatable from '@appComponents/__lib/Repeatable'
+import Repeatable from '@marketingComponents/__lib/Repeatable'
 
 import { getStrapiMedia } from '@globalUtils/index'
 import Link from 'next/link'

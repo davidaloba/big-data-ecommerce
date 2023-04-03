@@ -15,6 +15,7 @@ const Repeatable = ({ Element, elements, pre, style, children }: Repeatable) => 
           key={`${pre}-${index}`}
           className={style && style.wrapper}>
           <Element
+            element={element}
             {...element}
             index={index}></Element>
         </li>

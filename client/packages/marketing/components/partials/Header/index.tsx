@@ -14,7 +14,7 @@ const Navigation = ({ logo, navMenu, shopMenu }) => {
     <header className=" sticky top-0 z-50 ">
       <nav
         className="px-4 md:px-6 lg:px-8 2xl:px-12 
-        flex flex-row items-center justify-between  border bg-white ">
+        flex flex-row items-center justify-between  bg-white ">
         {shopMenu[0] && <MegaMenu columns={shopMenu} />}
         {logo.data && (
           <Link href="/">

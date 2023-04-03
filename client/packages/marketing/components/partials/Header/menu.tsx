@@ -1,5 +1,5 @@
 import Link from 'next/link'
-import Repeatable from '@appComponents/__lib/Repeatable'
+import Repeatable from '@marketingComponents/__lib/Repeatable'
 import MenuLink from './menulink'
 
 const Menu = ({ links }) => {

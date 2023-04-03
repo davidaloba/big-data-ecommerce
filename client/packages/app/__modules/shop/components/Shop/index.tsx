@@ -1,7 +1,7 @@
 // import { useState } from 'react'
 
 import NoResults from '@marketingComponents/__lib/no-results'
-import Repeatable from '@appComponents/__lib/Repeatable'
+import Repeatable from '@marketingComponents/__lib/Repeatable'
 import ProductCard from '@appComponents/__lib/ProductCard'
 import { useGetProductsQuery } from '@appModules/shop/store/api'
 
@@ -14,7 +14,7 @@ const Shop = ({ pageID }) => {
   // const filteredProducts = products.filter((product) => {})
 
   return isSuccess ? (
-    <section className=" py-0 px-6 md:px-8 lg:px-12 2xl:px-14 ">
+    <section className=" pb-20 pt-0 px-8 md:px-12 lg:px-16 2xl:px-20 ">
       <div className="flex flex-row justify-between items-center ">
         <div
           className="flex flex-row min-w-56

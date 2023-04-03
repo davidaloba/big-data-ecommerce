@@ -43,6 +43,24 @@
       "relation": "oneToMany",
       "target": "api::product.product",
       "mappedBy": "category"
+    },
+    "featuredImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "primaryButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.link"
+    },
+    "secondaryButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.link"
     }
   }
 }

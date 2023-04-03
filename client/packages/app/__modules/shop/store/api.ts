@@ -18,6 +18,18 @@ const productsApi = api.injectEndpoints({
         return res.data
       }
     }),
+    getRelatedProducts: build.query({
+      query: ({ category, slug }) => {
+        const baseUrl = ``
+
+        return `/products?filters[category][slug][$eq]=${category}&filters[slug][$ne]=${slug}&pagination[limit]=${4}&populate=deep`
+
+        return baseUrl
+      },
+      transformResponse: (res: { [index: string]: object | object[] }) => {
+        return res.data
+      }
+    }),
     getProduct: build.query({
       query: (url) => url,
       transformResponse: (res) => {
@@ -42,4 +54,9 @@ const productsApi = api.injectEndpoints({
   overrideExisting: false
 })
 
-export const { useGetProductsQuery, useGetProductQuery, useGetTagsQuery } = productsApi
+export const {
+  useGetProductsQuery,
+  useGetRelatedProductsQuery,
+  useGetProductQuery,
+  useGetTagsQuery
+} = productsApi

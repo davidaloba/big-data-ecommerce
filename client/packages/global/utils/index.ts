@@ -83,3 +83,22 @@ export const getPeriod = (totalMinutes: number) => {
 export const numberWithCommas = (x: number) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
+
+export const fetchHoverImg = async (slug: string, setData: Function) => {
+  fetch(
+    `http://localhost:1337/api/products?filters[slug][$eq]=${slug}&populate[hoverImage][populate][0]=url`
+  )
+    .then((res) => {
+      if (res.ok) {
+        return res.json()
+      }
+      throw res
+    })
+    .then((data) => {
+      console.log(data)
+      setData(getStrapiMedia(data.data[0].attributes.hoverImage.data.attributes.url))
+    })
+    .catch((err) => {
+      console.error('Error fetching data:', err)
+    })
+}
