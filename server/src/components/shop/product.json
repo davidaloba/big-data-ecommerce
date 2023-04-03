@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shop_product",
+  "info": {
+    "displayName": "Product",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

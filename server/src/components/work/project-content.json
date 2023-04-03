@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_work_project_content",
+  "info": {
+    "displayName": "ProjectContent",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "content": {
+      "type": "richtext",
+      "required": true
+    }
+  }
+}

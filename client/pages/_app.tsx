@@ -1,7 +1,7 @@
 import App, { AppProps } from 'next/app'
-import { wrapper } from '@siteStore/index'
+import { wrapper } from '@globalStore/index'
 import 'tailwindcss/tailwind.css'
-import '@siteStyles/global.css'
+import '@globalStyles/global.css'
 
 const MyApp = ({ Component, pageProps }: AppProps) => {
   return <Component {...pageProps} />

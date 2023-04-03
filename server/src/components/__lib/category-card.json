@@ -1,0 +1,44 @@
+{
+  "collectionName": "components___lib_category_card",
+  "info": {
+    "displayName": "categoryCard",
+    "icon": "smile"
+  },
+  "options": {},
+  "attributes": {
+    "category": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::category.category"
+    },
+      "featuredImage": {
+        "type": "media",
+        "multiple": false,
+        "required": true,
+        "allowedTypes": [
+          "images",
+          "files",
+          "videos"
+        ]
+      },
+      "label": {
+        "type": "string",
+        "required": true
+      },
+      "link": {
+        "type": "string"
+      },
+      "featuredLinks": {
+        "type": "component",
+        "required": true,
+        "repeatable": true,
+        "minimum": 2,
+        "component": "__lib.link"
+      },
+      "subCategories": {
+        "type": "relation",
+        "relation": "oneToMany",
+        "target": "api::category.category"
+      }
+  }
+}

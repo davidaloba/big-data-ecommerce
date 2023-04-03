@@ -1,0 +1,26 @@
+{
+  "collectionName": "components___lib_megamenu_column",
+  "info": {
+    "displayName": "MegaMenuColumn",
+    "icon": "backward"
+  },
+  "options": {},
+  "attributes": {
+    "image": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "title": {
+      "type": "component",
+      "component": "__lib.link"
+    },
+    "links": {
+      "type": "component",
+      "repeatable": true,
+      "component": "__lib.link"
+    }
+  }
+}

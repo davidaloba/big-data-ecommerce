@@ -1,0 +1,15 @@
+{
+  "collectionName": "components_shop_shop",
+  "info": {
+    "displayName": "shop",
+    "icon": "shopping-cart",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "slug": {
+      "type": "string",
+      "required": true
+    }
+  }
+}

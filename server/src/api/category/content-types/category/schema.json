@@ -4,20 +4,39 @@
   "info": {
     "singularName": "category",
     "pluralName": "categories",
-    "displayName": "category"
+    "displayName": "category",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
+    "slug": {
+      "type": "uid",
+      "required": true,
+      "targetField": "name"
+    },
     "name": {
       "type": "string",
       "required": true
     },
-    "slug": {
-      "type": "uid",
-      "targetField": "name"
+    "parent": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "children"
+    },
+    "children": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::category.category",
+      "mappedBy": "parent"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.seo"
     },
     "products": {
       "type": "relation",
@@ -25,17 +44,23 @@
       "target": "api::product.product",
       "mappedBy": "category"
     },
-    "articles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "category"
+    "featuredImage": {
+      "type": "media",
+      "multiple": false,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
     },
-    "projects": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "category"
+    "primaryButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.link"
+    },
+    "secondaryButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.link"
     }
   }
 }

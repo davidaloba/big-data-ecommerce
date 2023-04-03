@@ -6,23 +6,28 @@
   },
   "options": {},
   "attributes": {
+    "label": {
+      "type": "string"
+    },
     "footerColumns": {
       "type": "component",
       "repeatable": true,
       "component": "__lib.footer-columns"
     },
-    "socialNetworks": {
-      "type": "component",
-      "repeatable": true,
-      "component": "__lib.social-networks"
-    },
-    "button": {
+    "primaryButton": {
       "type": "component",
       "repeatable": false,
       "component": "__lib.button"
     },
-    "label": {
-      "type": "string"
+    "secondaryButton": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.button"
+    },
+    "socialNetworks": {
+      "type": "component",
+      "repeatable": true,
+      "component": "__lib.social-networks"
     }
   }
 }

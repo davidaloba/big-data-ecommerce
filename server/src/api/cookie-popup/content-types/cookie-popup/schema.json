@@ -27,11 +27,6 @@
       "type": "string"
     },
     "description": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "type": "richtext"
     }
   }

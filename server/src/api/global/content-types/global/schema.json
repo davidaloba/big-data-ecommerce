@@ -19,24 +19,14 @@
     }
   },
   "attributes": {
-    "navigation": {
+    "header": {
       "type": "component",
       "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "component": "global.navigation"
+      "component": "global.header"
     },
     "footer": {
       "type": "component",
       "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "component": "global.footer"
     }
   }

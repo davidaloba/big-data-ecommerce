@@ -1,0 +1,39 @@
+{
+  "collectionName": "components_page_latest_code",
+  "info": {
+    "displayName": "LatestCode",
+    "icon": "images",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.header"
+    },
+    "text": {
+      "type": "text",
+      "required": true
+    },
+    "theme": {
+      "type": "enumeration",
+      "enum": [
+        "primary",
+        "secondary",
+        "muted"
+      ],
+      "required": false,
+      "default": "primary"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    }  }
+}

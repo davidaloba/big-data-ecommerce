@@ -1,0 +1,31 @@
+{
+  "collectionName": "components_work_project",
+  "info": {
+    "displayName": "Project",
+    "icon": "align-left",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.header"
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "content": {
+      "type": "component",
+      "repeatable": false,
+      "component": "work.project-content"
+    }
+  }
+}

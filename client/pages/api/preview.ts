@@ -1,4 +1,4 @@
-import { getData } from '@siteUtils/index'
+import { getData } from 'packages/global/utils/index'
 
 export default async (req, res) => {
   if (

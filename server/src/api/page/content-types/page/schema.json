@@ -1,6 +1,6 @@
 {
   "kind": "collectionType",
-  "collectionName": "pages",
+  "collectionName": "page",
   "info": {
     "singularName": "page",
     "pluralName": "pages",
@@ -16,15 +16,6 @@
     }
   },
   "attributes": {
-    "title": {
-      "type": "string",
-      "required": true,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
-    },
     "slug": {
       "pluginOptions": {
         "i18n": {
@@ -34,42 +25,30 @@
       "type": "string",
       "required": false
     },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "pageTitle": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.page-title"
+    },
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "blocks.hero",
-        "blocks.page-title",
-        "blocks.featured-projects",
-        "blocks.latest-code",
-        "blocks.about-me",
-        "article.related-articles",
-        "product.related-products",
-        "blocks.cta",
-        "blocks.faq",
-        "blocks.pricing",
-        "blocks.team",
-        "blocks.testimonial"
-      ],
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      }
+        "page.categories",
+        "page.hero",
+        "page.featured-projects",
+        "page.latest-code",
+        "page.about-me",
+        "__lib.page-title"
+      ]
     },
     "seo": {
       "type": "component",
       "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "component": "__lib.seo"
-    },
-    "editors": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "admin::user"
     }
   }
 }

@@ -1,0 +1,40 @@
+{
+  "collectionName": "components_global_header",
+  "info": {
+    "displayName": "header",
+    "icon": "location-arrow",
+    "description": ""
+  },
+  "options": {},
+  "attributes": {
+    "logo": {
+      "allowedTypes": [
+        "images"
+      ],
+      "type": "media",
+      "multiple": false
+    },
+    "navMenu": {
+      "type": "component",
+      "repeatable": true,
+      "component": "__lib.link"
+    },
+    "shopMenu": {
+      "type": "component",
+      "repeatable": true,
+      "component": "__lib.megamenu-item"
+    },
+    "leftButton": {
+      "type": "component",
+      "required": false,
+      "repeatable": false,
+      "component": "__lib.link"
+    },
+    "rightButton": {
+      "type": "component",
+      "required": false,
+      "repeatable": false,
+      "component": "__lib.link"
+    }
+  }
+}

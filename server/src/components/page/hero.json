@@ -1,0 +1,32 @@
+{
+  "collectionName": "components_page_heroes",
+  "info": {
+    "displayName": "hero",
+    "icon": "pizza-slice"
+  },
+  "options": {},
+  "attributes": {
+    "images": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ],
+      "type": "media",
+      "multiple": true
+    },
+    "header": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.header"
+    },
+    "text": {
+      "type": "string"
+    },
+    "buttons": {
+      "type": "component",
+      "repeatable": true,
+      "component": "__lib.button"
+    }
+  }
+}

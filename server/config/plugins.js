@@ -10,5 +10,8 @@ module.exports = ({ env }) => ({
     config: {
       localization: true,
     },
+  },
+  "generate-data": {
+      enabled: true,
   }
 });

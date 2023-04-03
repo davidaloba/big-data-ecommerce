@@ -34,37 +34,9 @@
       "type": "integer",
       "required": true
     },
-    "main": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "dynamiczone",
-      "components": [
-        "modules.projects"
-      ],
-      "max": 1
-    },
-    "blocks": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
-      "type": "dynamiczone",
-      "components": [
-        "blocks.cta"
-      ]
-    },
     "seo": {
       "type": "component",
       "repeatable": false,
-      "pluginOptions": {
-        "i18n": {
-          "localized": true
-        }
-      },
       "component": "__lib.seo"
     }
   }
