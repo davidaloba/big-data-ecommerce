@@ -39,6 +39,7 @@
     "featuredImage": {
       "type": "media",
       "multiple": false,
+      "required": false,
       "allowedTypes": [
         "images"
       ]
@@ -51,10 +52,10 @@
       },
       "customField": "plugin::ckeditor.CKEditor"
     },
-    "related": {
-      "type": "component",
-      "repeatable": false,
-      "component": "blog.related-articles"
+    "relatedArticles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
     },
     "publicationState": {
       "type": "enumeration",

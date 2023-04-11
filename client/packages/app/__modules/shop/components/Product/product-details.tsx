@@ -1,4 +1,4 @@
-import ProductCard from '@appComponents/__lib/ProductCard'
+import ProductCard from '@appModules/shop/components/ProductCard'
 import { useGetRelatedProductsQuery } from '@appModules/shop/store/api'
 import { getStrapiMedia, numberWithCommas } from '@globalUtils/index'
 import Repeatable from '@marketingComponents/__lib/Repeatable'

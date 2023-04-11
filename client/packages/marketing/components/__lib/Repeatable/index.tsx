@@ -1,6 +1,6 @@
 export interface Repeatable {
   Element: (props) => JSX.Element
-  elements: Array<any>
+  elements: Array<unknown>
   pre: string
   style?: { [index: string]: string }
   children?: JSX.Element
@@ -17,7 +17,8 @@ const Repeatable = ({ Element, elements, pre, style, children }: Repeatable) => 
           <Element
             element={element}
             {...element}
-            index={index}></Element>
+            index={index}
+          />
         </li>
       ))}
     </ul>

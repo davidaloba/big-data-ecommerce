@@ -71,6 +71,7 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
     apiUrl,
     contentType,
     pageID,
+    sidebar: globalData.sidebar,
     ...pageData
   }
 

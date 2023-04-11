@@ -1,12 +1,21 @@
-import RelatedArticles from './related-articles'
+import { useState } from 'react'
+import { getStrapiMedia } from 'packages/global/utils/index'
 import Link from 'next/link'
-import { getStrapiMedia, getStrapiURL } from 'packages/global/utils/index'
 import Image from 'next/image'
+import SideBar from '../BlogSideBar'
 
-const Article = ({ slug, title, featuredImage, topic, author, content, publishedAt }) => {
-  console.log(author)
+const Article = ({
+  title,
+  featuredImage,
+  topic,
+  author,
+  content,
+  relatedArticles,
+  publishedAt
+}) => {
+  //TODO: article navigation
+  const [pageNumber, setPageNumber] = useState(1)
   const published = new Date(publishedAt).toUTCString().slice(4, 17)
-
   const createMarkup = () => {
     return { __html: content }
   }
@@ -71,18 +80,25 @@ const Article = ({ slug, title, featuredImage, topic, author, content, published
             <div
               className="editor mt-10"
               dangerouslySetInnerHTML={createMarkup()}></div>
-            <Link href={`/blog`}>
-              <button
-                type="button"
-                className="ml-2 py-4 mt-8 px-6 bg-secondary hover:bg-secondary-darker text-gray-50 w-1/8 text-center ase font-semibold shadow-sm rounded-md">
-                Back to articles
-              </button>
-            </Link>
+            <div className="mt-10 grid grid-cols-3 gap-4 ">
+              <div className="col-start-2 col-end-3 flex items-center">
+                <button
+                  type="button"
+                  className={`w-full p-4 border ase rounded-l-xl text-gray-600 bg-white hover:bg-gray-100 focus:outline-none`}>
+                  Previous Article
+                </button>
+                <button
+                  type="button"
+                  className={` w-full p-4 border-t border-b border-r ase rounded-r-xl text-gray-600 bg-white hover:bg-gray-100 focus:outline-none`}
+                  onClick={() => setPageNumber(pageNumber + 1)}>
+                  Next Article
+                </button>
+              </div>
+            </div>
           </article>
-          <aside className=" min-w-[30%]"></aside>
+          <SideBar relatedArticles={relatedArticles} />
         </div>
       </section>
-      {/* <RelatedArticles related={related} /> */}
     </>
   )
 }

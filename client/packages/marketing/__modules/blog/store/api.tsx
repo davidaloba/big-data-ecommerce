@@ -16,8 +16,17 @@ const articlesApi = api.injectEndpoints({
           ? `/articles?${topicFilter}pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
           : contentType === 'authors'
           ? `/articles?${authorFilter}pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
+          : contentType === 'recent'
+          ? `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&sort=publishedAt%3Aasc&populate=deep`
           : `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
       },
+      transformResponse: (res: { [index: string]: object | object[] }) => {
+        return res.data
+      }
+    }),
+
+    getTopics: build.query({
+      query: () => `http://localhost:1337/api/topics?populate=deep`,
       transformResponse: (res: { [index: string]: object | object[] }) => {
         return res.data
       }
@@ -26,4 +35,4 @@ const articlesApi = api.injectEndpoints({
   overrideExisting: false
 })
 
-export const { useGetArticlesQuery } = articlesApi
+export const { useGetArticlesQuery, useGetTopicsQuery } = articlesApi

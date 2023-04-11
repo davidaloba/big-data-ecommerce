@@ -1,13 +1,15 @@
 'use client'
 import { useState } from 'react'
 import { useGetArticlesQuery } from '../../store/api'
-import ArticleCard from '../../../../components/__lib/ArticleCard'
+import ArticleCard from '../ArticleCard'
+import SideBar from '../BlogSideBar'
 import NoResults from '@marketingComponents/__lib/no-results'
 import PageTitle from '@marketingComponents/__lib/PageTitle'
 import Repeatable from '@marketingComponents/__lib/Repeatable'
 
 const Articles = ({ perPage, contentType, slug, name }) => {
   const [pageNumber, setPageNumber] = useState(1)
+
   const key = {
     slug: slug,
     contentType: contentType,
@@ -15,7 +17,9 @@ const Articles = ({ perPage, contentType, slug, name }) => {
     perPage
   }
   const { data: articles, isSuccess } = useGetArticlesQuery(key)
-  console.log(articles)
+  const lastPage = (isSuccess && articles && Math.ceil(articles.length / perPage)) || 1
+  console.log(pageNumber, articles)
+
   let title
   switch (contentType) {
     case 'topics':
@@ -29,8 +33,6 @@ const Articles = ({ perPage, contentType, slug, name }) => {
       break
   }
 
-  const lastPage = (isSuccess && articles && Math.ceil(articles.length / perPage)) || 1
-
   return (
     <>
       <PageTitle
@@ -40,7 +42,7 @@ const Articles = ({ perPage, contentType, slug, name }) => {
       />
       <section>
         <div className="flex flex-col lg:flex-row gap-10">
-          {isSuccess ? (
+          {articles && articles.length > 0 ? (
             <>
               <Repeatable
                 Element={ArticleCard}
@@ -58,7 +60,7 @@ const Articles = ({ perPage, contentType, slug, name }) => {
               length={articles && articles.length}
             />
           )}
-          <aside className="min-w-[30%]"></aside>
+          <SideBar />
         </div>
         {isSuccess && (
           <div className="mt-10 grid grid-cols-3 gap-4 ">
