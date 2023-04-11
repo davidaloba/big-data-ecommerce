@@ -18,6 +18,8 @@ import Article from '@marketingModules/blog/components/Article'
 import Shop from '@appModules/shop/components/Shop'
 import Category from '@appModules/shop/components/Category'
 import Product from '@appModules/shop/components/Product'
+import Work from '@marketingModules/work/components/Work'
+import Project from '@marketingModules/work/components/Project'
 
 interface Page {
   apiUrl: string
@@ -87,15 +89,6 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
 
   let Content
   switch (contentType) {
-    case 'categories':
-      Content = Category
-      break
-    case 'shop':
-      Content = Shop
-      break
-    case 'products':
-      Content = Product
-      break
     case 'blog':
       Content = Blog
       break
@@ -107,6 +100,21 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
       break
     case 'articles':
       Content = Article
+      break
+    case 'work':
+      Content = Work
+      break
+    case 'projects':
+      Content = Project
+      break
+    case 'shop':
+      Content = Shop
+      break
+    case 'categories':
+      Content = Category
+      break
+    case 'products':
+      Content = Product
       break
     default:
       Content = BlockManager

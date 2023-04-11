@@ -2,11 +2,11 @@ const indexes = ['blog', 'shop', 'work', 'category', 'topic', 'author']
 const contentTypes = {
   page: 'pages',
   blog: 'articles',
+  topic: 'topics',
+  author: 'authors',
   work: 'projects',
   shop: 'products',
-  category: 'categories',
-  topic: 'topics',
-  author: 'authors'
+  category: 'categories'
 }
 
 export function getData(slug: string | string[], preview?: boolean) {
