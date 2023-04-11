@@ -35,28 +35,9 @@ const productsApi = api.injectEndpoints({
       transformResponse: (res) => {
         return res
       }
-    }),
-    getTags: build.query({
-      query: () => `/tags?pagination[limit]=99`,
-      transformResponse: (res: { [index: string]: object | object[] }) => {
-        const data = res.data
-        return data
-      }
-    }),
-    getCollection: build.query({
-      query: () => `/collections?pagination[limit]=99`,
-      transformResponse: (res: { [index: string]: object | object[] }) => {
-        const data = res.data
-        return data
-      }
     })
   }),
   overrideExisting: false
 })
 
-export const {
-  useGetProductsQuery,
-  useGetRelatedProductsQuery,
-  useGetProductQuery,
-  useGetTagsQuery
-} = productsApi
+export const { useGetProductsQuery, useGetRelatedProductsQuery, useGetProductQuery } = productsApi

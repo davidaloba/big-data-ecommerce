@@ -1,4 +1,4 @@
-import ArticleCard from '@marketingModules/blog/components/ArticleCard'
+import ArticleCard from '../../../../components/__lib/ArticleCard'
 import Header from '@marketingComponents/__lib/Header'
 
 const RelatedArticles = ({ related }) => {

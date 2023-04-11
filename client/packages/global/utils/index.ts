@@ -1,10 +1,12 @@
-const indexes = ['blog', 'shop', 'work', 'category']
+const indexes = ['blog', 'shop', 'work', 'category', 'topic', 'author']
 const contentTypes = {
   page: 'pages',
   blog: 'articles',
   work: 'projects',
   shop: 'products',
-  category: 'categories'
+  category: 'categories',
+  topic: 'topics',
+  author: 'authors'
 }
 
 export function getData(slug: string | string[], preview?: boolean) {

@@ -12,6 +12,9 @@ import ErrorPage from 'next/error'
 import MarketingLayout from '@marketingComponents/layouts/layout'
 import Seo from '@marketingComponents/partials/seo'
 import BlockManager from '@marketingModules/pages/components/BlockManager'
+import Blog from '@marketingModules/blog/components/Blog'
+import Topic from '@marketingModules/blog/components/Topic'
+import Article from '@marketingModules/blog/components/Article'
 import Shop from '@appModules/shop/components/Shop'
 import Category from '@appModules/shop/components/Category'
 import Product from '@appModules/shop/components/Product'
@@ -83,14 +86,26 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
 
   let Content
   switch (contentType) {
-    case 'shop':
-      Content = Shop
-      break
     case 'categories':
       Content = Category
       break
+    case 'shop':
+      Content = Shop
+      break
     case 'products':
       Content = Product
+      break
+    case 'blog':
+      Content = Blog
+      break
+    case 'topics':
+      Content = Blog
+      break
+    case 'authors':
+      Content = Blog
+      break
+    case 'articles':
+      Content = Article
       break
     default:
       Content = BlockManager

@@ -1,8 +1,11 @@
 import dynamic from 'next/dynamic'
 
-const Categories = dynamic(() => import('@marketingModules/pages/components/Categories'), {
-  ssr: true
-})
+const FeaturedCategories = dynamic(
+  () => import('@marketingModules/pages/components/FeaturedCategories'),
+  {
+    ssr: true
+  }
+)
 const PageTitle = dynamic(() => import('@marketingComponents/__lib/PageTitle'), {
   ssr: true
 })
@@ -21,18 +24,6 @@ const LatestCode = dynamic(() => import('@marketingModules/pages/components/Late
 const AboutMe = dynamic(() => import('@marketingModules/pages/components/AboutMe'), {
   ssr: true
 })
-const Article = dynamic(() => import('@marketingModules/blog/components/Article'), {
-  ssr: false
-})
-const Articles = dynamic(() => import('@marketingModules/blog/components/Articles'), {
-  ssr: true
-})
-const Project = dynamic(() => import('@marketingModules/work/components/Project'), {
-  ssr: true
-})
-const Projects = dynamic(() => import('@marketingModules/work/components/Projects'), {
-  ssr: true
-})
 
 const BlockManager = ({ blocks, perPage }) => {
   return (
@@ -42,7 +33,7 @@ const BlockManager = ({ blocks, perPage }) => {
 
         switch (__component) {
           case 'shop.categories':
-            Block = Categories
+            Block = FeaturedCategories
             break
           case '__lib.page-title':
             Block = PageTitle
@@ -58,18 +49,6 @@ const BlockManager = ({ blocks, perPage }) => {
             break
           case 'page.about-me':
             Block = AboutMe
-            break
-          case 'blog.article':
-            Block = Article
-            break
-          case 'blog.articles':
-            Block = Articles
-            break
-          case 'work.project':
-            Block = Project
-            break
-          case 'work.projects':
-            Block = Projects
             break
         }
         return Block ? (
