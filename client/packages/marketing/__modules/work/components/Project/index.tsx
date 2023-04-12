@@ -34,7 +34,7 @@ const Project = ({ title, featuredImage, mockup, content }) => {
         <div
           className="editor mt-10"
           dangerouslySetInnerHTML={createMarkup()}></div>
-        <div className="mt-10 grid grid-cols-5  ">
+        {/*  <div className="mt-10 grid grid-cols-5  ">
           <div className="col-start-2 col-end-5 flex items-center">
             <button
               type="button"
@@ -48,7 +48,7 @@ const Project = ({ title, featuredImage, mockup, content }) => {
               Next Case Study
             </button>
           </div>
-        </div>
+        </div> */}
       </section>
     </>
   )

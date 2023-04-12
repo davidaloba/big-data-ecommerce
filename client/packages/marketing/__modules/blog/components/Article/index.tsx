@@ -80,7 +80,7 @@ const Article = ({
             <div
               className="editor mt-10"
               dangerouslySetInnerHTML={createMarkup()}></div>
-            <div className="mt-10 grid grid-cols-3 gap-4 ">
+            {/* <div className="mt-10 grid grid-cols-3 gap-4 ">
               <div className="col-start-2 col-end-3 flex items-center">
                 <button
                   type="button"
@@ -94,7 +94,7 @@ const Article = ({
                   Next Article
                 </button>
               </div>
-            </div>
+            </div> */}
           </article>
           <SideBar relatedArticles={relatedArticles} />
         </div>
