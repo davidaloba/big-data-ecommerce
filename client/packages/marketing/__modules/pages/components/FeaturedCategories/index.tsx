@@ -1,7 +1,7 @@
 import Repeatable from '@marketingComponents/__lib/Repeatable'
 import CategoryCard from './category-card'
 
-const Categories = ({ categories }) => {
+const FeaturedCategories = ({ categories }) => {
   return (
     <Repeatable
       className=" 2xl:gap-12"
@@ -21,4 +21,4 @@ const Categories = ({ categories }) => {
   )
 }
 
-export default Categories
+export default FeaturedCategories

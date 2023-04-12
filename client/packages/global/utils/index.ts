@@ -1,7 +1,9 @@
-const indexes = ['blog', 'shop', 'work', 'category']
+const indexes = ['blog', 'shop', 'work', 'category', 'topic', 'author']
 const contentTypes = {
   page: 'pages',
   blog: 'articles',
+  topic: 'topics',
+  author: 'authors',
   work: 'projects',
   shop: 'products',
   category: 'categories'
@@ -102,3 +104,23 @@ export const fetchHoverImg = async (slug: string, setData: Function) => {
       console.error('Error fetching data:', err)
     })
 }
+
+// const [topics, setTopics] = useState([])
+// const fetchTopics = async () => {
+//   fetch(`http://localhost:1337/api/topics?populate=deep`)
+//     .then((res) => {
+//       if (res.ok) {
+//         return res.json()
+//       }
+//       throw res
+//     })
+//     .then((data) => {
+//       setTopics(data.data)
+//     })
+//     .catch((err) => {
+//       console.error('Error fetching data:', err)
+//     })
+// }
+// useEffect(() => {
+//   fetchTopics()
+// }, [])

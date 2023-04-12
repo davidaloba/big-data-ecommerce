@@ -4,16 +4,29 @@ const articlesApi = api.injectEndpoints({
   endpoints: (build) => ({
     getArticles: build.query({
       query: (key) => {
-        const categoryName = key.category
+        const contentType = key.contentType
         const pageNumber = key.page
-        const perPage = key.perPage
+        const perPage = key.perPage || 24
         const start = +pageNumber === 1 ? 0 : (+pageNumber - 1) * perPage
+        const slug = key.slug
+        const topicFilter = `filters[topic][slug][$eq]=${slug}&`
+        const authorFilter = `filters[author][slug][$eq]=${slug}&`
 
-        const category = categoryName ? `filters[category][name][$eq]=${categoryName}&` : ''
-        const baseUrl = `/articles?${category}pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
-
-        return baseUrl
+        return contentType === 'topics'
+          ? `/articles?${topicFilter}pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
+          : contentType === 'authors'
+          ? `/articles?${authorFilter}pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
+          : contentType === 'recent'
+          ? `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&sort=publishedAt%3Aasc&populate=deep`
+          : `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
       },
+      transformResponse: (res: { [index: string]: object | object[] }) => {
+        return res.data
+      }
+    }),
+
+    getTopics: build.query({
+      query: () => `http://localhost:1337/api/topics?populate=deep`,
       transformResponse: (res: { [index: string]: object | object[] }) => {
         return res.data
       }
@@ -22,4 +35,4 @@ const articlesApi = api.injectEndpoints({
   overrideExisting: false
 })
 
-export const { useGetArticlesQuery } = articlesApi
+export const { useGetArticlesQuery, useGetTopicsQuery } = articlesApi

@@ -4,7 +4,8 @@
   "info": {
     "singularName": "topic",
     "pluralName": "topics",
-    "displayName": "topic"
+    "displayName": "topic",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -18,6 +19,9 @@
     "slug": {
       "type": "uid",
       "targetField": "name"
+    },
+    "description": {
+      "type": "text"
     },
     "articles": {
       "type": "relation",

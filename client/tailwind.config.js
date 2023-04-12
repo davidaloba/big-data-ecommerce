@@ -3,6 +3,16 @@ module.exports = {
   content: ['./packages/**/*.{js,ts,jsx,tsx}', './pages/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
+      screens: {
+        '2xl': '1366px',
+        // => @media (min-width: 1366px) { ... }
+
+        '3xl': '1440px',
+        // => @media (min-width: 1440px) { ... }
+
+        '4xl': '1920px'
+        // => @media (min-width: 1920px) { ... }
+      },
       colors: {
         primary: {
           DEFAULT: '#e27d60',

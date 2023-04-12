@@ -1,59 +1,47 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { getStrapiMedia } from 'packages/global/utils/index'
 
-const ArticleCard = ({ slug, main, seo }) => {
-  const { title, category, author, image } = main[0]
-
-  const description = seo ? seo.metaDescription : ''
-  const authorAttr = author ? author.data.attributes : ''
-  const categoryAttr = author ? category.data.attributes : ''
+const ArticleCard = ({ attributes }) => {
+  const { slug, title, featuredImage, topic, author } = attributes
 
   return (
-    <div>
-      <span className="inline-block py-2 px-2 rounded bg-secondary-lightest text-secondary  font-medium tracking-widest">
-        {categoryAttr.name}
-      </span>
-      <img
-        alt={image.data.attributes.alternativeText}
-        src={getStrapiMedia(image.data.attributes.url)}
-        className="max-h-48 w-full py-3 object-cover"
-      />
-      <h2 className="sm:text-3xl text-2xl title-font font-medium text-gray-900 mt-4 mb-4">
-        {title}
-      </h2>
-      <p className="leading-relaxed mb-8">{description}</p>
-      <div className="flex items-center flex-wrap pb-4 mb-4 border-b-2 border-gray-100 mt-auto w-full">
-        <Link
-          href={`/blog/${slug}`}
-          className="text-secondary-darker inline-flex items-center">
-          Learn More
-          <svg
-            className="w-4 h-4 ml-2"
-            viewBox="0 0 24 24"
-            stroke="currentColor"
-            strokeWidth="2"
-            fill="none"
-            strokeLinecap="round"
-            strokeLinejoin="round">
-            <path d="M5 12h14"></path>
-            <path d="M12 5l7 7-7 7"></path>
-          </svg>
-        </Link>
-      </div>
-      {authorAttr.picture && (
-        <div className="inline-flex items-center">
-          <img
-            alt={authorAttr.picture.alternativeText}
-            src={getStrapiMedia(authorAttr.picture.url)}
-            className="w-12 h-12 rounded-full flex-shrink-0 object-cover object-center"
-          />
-          <span className="flex-grow flex flex-col pl-4">
-            <span className="title-font font-medium text-gray-900">{authorAttr.username}</span>
-            <span className="text-gray-400  tracking-widest mt-0.5">{authorAttr.job}</span>
+    <Link
+      href={`/blog/${slug}`}
+      className="text-secondary-darker inline-flex items-center">
+      <div className="rounded-xl shadow-lg">
+        <div className="relative">
+          {featuredImage.data.attributes && (
+            <Image
+              alt={featuredImage.data.attributes.alternativeText || 'featured image'}
+              src={getStrapiMedia(featuredImage.data.attributes.url)}
+              height={366}
+              width={366}
+            />
+          )}
+          <span
+            className="absolute bottom-0 py-1 px-2 
+            font-medium tracking-widest 
+            rounded bg-secondary-lightest text-secondary">
+            {topic.data.attributes.name}
           </span>
         </div>
-      )}
-    </div>
+        <div className="px-8 py-6">
+          <h2 className="sm:text-3xl text-2xl font-bold">{title}</h2>
+          {author && author.data.attributes && (
+            <div className="flex flex-row justify-between items-center mt-12">
+              <span className=" ">by {author.data.attributes.name}</span>
+              <Image
+                alt={author.data.attributes.avatar.data.attributes.alternativeText || 'avatar'}
+                src={getStrapiMedia(author.data.attributes.avatar.data.attributes.url)}
+                height={36}
+                width={36}
+              />
+            </div>
+          )}
+        </div>
+      </div>
+    </Link>
   )
 }
 
