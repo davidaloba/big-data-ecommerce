@@ -13,5 +13,10 @@ module.exports = ({ env }) => ({
   },
   "generate-data": {
       enabled: true,
-  }
+  },
+  'strapi-plugin-populate-deep': {
+    config: {
+      defaultDepth: 7, // Default is 5
+    }
+  },
 });

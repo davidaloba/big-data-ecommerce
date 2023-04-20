@@ -17,20 +17,10 @@
   },
   "attributes": {
     "slug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
       "type": "string",
       "required": true
     },
     "perPage": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
       "type": "integer",
       "required": true
     },

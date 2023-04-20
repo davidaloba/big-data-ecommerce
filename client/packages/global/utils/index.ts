@@ -41,11 +41,11 @@ export function getStrapiMedia(url: string) {
   if (url.startsWith('http') || url.startsWith('//')) {
     return url
   }
-  return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'}${url}`
+  return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1338'}${url}`
 }
 
 export function getStrapiURL(path: string) {
-  return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'}/api${path}`
+  return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1338'}/api${path}`
 }
 export function handleRedirection(preview: boolean, custom: string) {
   if (preview) {
@@ -88,7 +88,7 @@ export const numberWithCommas = (x: number) => {
 
 export const fetchHoverImg = async (slug: string, setData: Function) => {
   fetch(
-    `http://localhost:1337/api/products?filters[slug][$eq]=${slug}&populate[hoverImage][populate][0]=url`
+    `${process.env.NEXT_PUBLIC_API_URL}/api/products?filters[slug][$eq]=${slug}&populate[hoverImage][populate][0]=url`
   )
     .then((res) => {
       if (res.ok) {
@@ -107,7 +107,7 @@ export const fetchHoverImg = async (slug: string, setData: Function) => {
 
 // const [topics, setTopics] = useState([])
 // const fetchTopics = async () => {
-//   fetch(`http://localhost:1337/api/topics?populate=deep`)
+//   fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/topics?populate=deep`)
 //     .then((res) => {
 //       if (res.ok) {
 //         return res.json()

@@ -17,11 +17,6 @@
   },
   "attributes": {
     "slug": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
       "type": "string",
       "required": false
     },
@@ -29,14 +24,10 @@
       "type": "string",
       "required": true
     },
-    "pageTitle": {
-      "type": "component",
-      "repeatable": false,
-      "component": "__lib.page-title"
-    },
     "blocks": {
       "type": "dynamiczone",
       "components": [
+        "page.section",
         "page.categories",
         "page.hero",
         "page.featured-projects",

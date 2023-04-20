@@ -93,8 +93,7 @@
       ]
     },
     "description": {
-      "type": "component",
-      "component": "shop.rich-content"
+      "type": "richtext"
     },
     "seo": {
       "type": "component",

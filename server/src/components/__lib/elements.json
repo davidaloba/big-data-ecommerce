@@ -1,0 +1,54 @@
+{
+  "collectionName": "components___lib_elements",
+  "info": {
+    "displayName": "elements",
+    "icon": "bullhorn",
+    "description": ""
+  },
+  "options": {},
+  "attributes":  {
+    "text": {
+      "type": "component",
+      "component": "__lib.text-editor",
+      "required": false
+    },
+    "button": {
+      "type": "component",
+      "component": "__lib.link",
+      "repeatable": true,
+      "required": false
+    },
+    "image": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    },
+    "style": {
+      "type": "json"
+    },
+    "link": {
+      "type": "component",
+      "component": "__lib.link",
+      "required": false
+    },
+    "bgColor": {
+      "type": "customField",
+      "customField": "plugin::color-picker.color"
+    },
+    "bgImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos"
+      ]
+    }
+  }
+}

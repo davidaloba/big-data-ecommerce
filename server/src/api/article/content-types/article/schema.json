@@ -69,11 +69,6 @@
       "default": "Draft"
     },
     "publicationStages": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
       "type": "json"
     },
     "seo": {

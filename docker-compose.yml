@@ -1,0 +1,81 @@
+
+version: '3'
+
+volumes:
+  strapi-data:
+
+networks:
+  net:
+    name: Strapi
+    driver: bridge
+
+services:
+  # nextjs:
+  #   container_name: client
+  #   build:
+  #     context: ./client
+  #     target: runner
+  #   restart: unless-stopped
+  #   env_file: ./client/.env
+  #   environment:
+  #     NODE_ENV: ${NODE_ENV}
+  #     NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
+  #     PREVIEW_SECRET: ${PREVIEW_SECRET}
+  #   volumes:
+  #     - ./client:/app
+  #   ports:
+  #     - "3000:3000"
+  #   networks:
+  #     - net
+  #   depends_on:
+  #     - strapi
+
+  strapi:
+    container_name: server
+    build: ./server
+    image: strapi:latest
+    restart: unless-stopped
+    env_file: ./server/.env
+    environment:
+      DATABASE_CLIENT: ${DATABASE_CLIENT}
+      DATABASE_HOST: strapiDB
+      DATABASE_PORT: ${DATABASE_PORT}
+      DATABASE_NAME: ${DATABASE_NAME}
+      DATABASE_USERNAME: ${DATABASE_USERNAME}
+      DATABASE_PASSWORD: ${DATABASE_PASSWORD}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      APP_KEYS: ${APP_KEYS}
+      NODE_ENV: ${NODE_ENV}
+    volumes:
+      - ./server/package.json:/opt/app/package.json
+      - ./server/yarn.lock:/opt/app/yarn.lock
+      - ./server/config:/opt/app/config
+      - ./server/src:/opt/app/src
+      - ./server/.env:/opt/app/.env
+      - ./server/public/uploads:/opt/app/public/uploads
+    ports:
+      - '1338:1338'
+    networks:
+      - net
+    depends_on:
+      - strapiDB
+
+  strapiDB:
+    container_name: database
+    platform: linux/amd64 #for platform error on Apple M1 chips
+    restart: unless-stopped
+    env_file: ./server/.env
+    image: mariadb:latest
+    environment:
+      MYSQL_USER: ${DATABASE_USERNAME}
+      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${DATABASE_NAME}
+    volumes:
+      # - strapi-data:/var/lib/mysql
+      - ./database:/var/lib/mysql # if you want to use a bind folder
+    ports:
+      - '3307:3307'
+    networks:
+      - net

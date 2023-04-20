@@ -19,11 +19,6 @@
       "type": "text"
     },
     "note": {
-      "pluginOptions": {
-        "i18n": {
-          "localized": false
-        }
-      },
       "type": "integer",
       "required": true,
       "max": 5,

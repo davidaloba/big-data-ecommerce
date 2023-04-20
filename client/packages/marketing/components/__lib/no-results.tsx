@@ -1,4 +1,4 @@
-const NoResults = ({ status, length }) => {
+const NoResults = ({ status, length }: { status?; length? }) => {
   if (status == 'error' || length == 0) {
     return (
       <div className="shadow-lg rounded-2xl p-4 bg-gray-50 w-64 m-auto">

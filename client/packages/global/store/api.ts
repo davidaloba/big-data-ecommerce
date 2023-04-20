@@ -6,7 +6,7 @@ import { createSelector } from '@reduxjs/toolkit'
 const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1337'}/api`
+    baseUrl: `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1338'}/api`
   }),
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
