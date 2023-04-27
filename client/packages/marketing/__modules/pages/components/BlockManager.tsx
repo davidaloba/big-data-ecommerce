@@ -38,7 +38,7 @@ const BlockManager = ({ blocks, perPage }) => {
           case 'page.section':
             Block = Section
             break
-          case 'shop.categories':
+          case 'page.categories':
             Block = FeaturedCategories
             break
           case '__lib.page-title':
