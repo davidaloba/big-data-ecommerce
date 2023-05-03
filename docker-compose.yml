@@ -1,19 +1,17 @@
-
 version: '3'
 
-volumes:
-  strapi-data:
-
 networks:
-  network:
-    name: network
-    driver: bridge
+  proxy:
+    name: proxy
+    external: true
+    
 
 services:
   nextjs:
     container_name: client
-    build:
-      context: ./client
+    build: ./client
+    image: next_simple:latest
+    # restart: unless-stopped
     environment:
       NODE_ENV: ${NODE_ENV}
       NEXT_PUBLIC_API_URL: ${NEXT_PUBLIC_API_URL}
@@ -23,7 +21,7 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - network
+      - proxy
     depends_on:
       - strapi
 
@@ -33,16 +31,21 @@ services:
     image: strapi:latest
     restart: unless-stopped
     environment:
+      NODE_ENV: ${NODE_ENV}
+      HOST: ${HOST}
+      PORT: ${PORT}
+      CLIENT_URL: ${CLIENT_URL}
+      APP_KEYS: ${APP_KEYS}
+      API_TOKEN_SALT: ${API_TOKEN_SALT}
+      JWT_SECRET: ${JWT_SECRET}
+      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
+      PREVIEW_SECRET: ${PREVIEW_SECRET}
       DATABASE_CLIENT: ${DATABASE_CLIENT}
-      DATABASE_HOST: strapiMySQL
+      DATABASE_HOST: ${DATABASE_HOST}
       DATABASE_PORT: ${DATABASE_PORT}
       DATABASE_NAME: ${DATABASE_NAME}
       DATABASE_USERNAME: ${DATABASE_USERNAME}
       DATABASE_PASSWORD: ${DATABASE_PASSWORD}
-      JWT_SECRET: ${JWT_SECRET}
-      ADMIN_JWT_SECRET: ${ADMIN_JWT_SECRET}
-      APP_KEYS: ${APP_KEYS}
-      NODE_ENV: ${NODE_ENV}
     volumes:
       - ./server/package.json:/opt/app/package.json
       - ./server/yarn.lock:/opt/app/yarn.lock
@@ -51,27 +54,7 @@ services:
       - ./server/.env:/opt/app/.env
       - ./server/public/uploads:/opt/app/public/uploads
     ports:
-      - '1337:1337'
+      - '1338:1338'
     networks:
-      - network
-    depends_on:
-      - strapiMySQL
-
-  strapiMySQL:
-    container_name: database
-    platform: linux/amd64 #for platform error on Apple M1 chips
-    restart: unless-stopped
-    image: mariadb:latest
-    environment:
-      MYSQL_USER: ${DATABASE_USERNAME}
-      MARIADB_ROOT_PASSWORD: ${DATABASE_PASSWORD}
-      MYSQL_ROOT_PASSWORD: ${DATABASE_PASSWORD}
-      MYSQL_PASSWORD: ${DATABASE_PASSWORD}
-      MYSQL_DATABASE: ${DATABASE_NAME}
-    volumes:
-      # - strapi-data:/var/lib/mysql
-      - ./database:/var/lib/mysql # if you want to use a bind folder
-    ports:
-      - '3306:3306'
-    networks:
-      - network
+      - proxy
+  
