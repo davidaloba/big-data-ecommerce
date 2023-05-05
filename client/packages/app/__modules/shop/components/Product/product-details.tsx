@@ -1,10 +1,13 @@
-import ProductCard from '@appModules/shop/components/ProductCard'
+import { useState } from 'react'
+import { useAppDispatch } from '@globalStore/index'
+import { addToCart, openCart } from '@appModules/shop/store/slice'
 import { useGetRelatedProductsQuery } from '@appModules/shop/store/api'
 import { getStrapiMedia, numberWithCommas } from '@globalUtils/index'
-import Repeatable from '@marketingComponents/__lib/Repeatable'
+
 import Image from 'next/image'
 import Link from 'next/link'
-import { useState } from 'react'
+import ProductCard from '@appModules/shop/components/ProductCard'
+import Repeatable from '@marketingComponents/__lib/Repeatable'
 
 const ProductInfo = ({
   slug,
@@ -30,34 +33,57 @@ const ProductInfo = ({
   description
 }) => {
   const [selectedSize, setSelectedSize] = useState('')
-  const { data: products, isSuccess } = useGetRelatedProductsQuery({
-    category: category.data.attributes.slug,
-    slug
-  })
-  console.log(products)
+  const [sizeError, setSizeError] = useState('')
+  const { data: products, isSuccess } = category.data
+    ? useGetRelatedProductsQuery({
+        category: category.data.attributes.slug,
+        slug
+      })
+    : { data: null, isSuccess: false }
+  const createMarkup = () => {
+    return { __html: description }
+  }
+
+  const dispatch = useAppDispatch()
+  const cartHandler = (name, slug, featuredImage, selectedSize, price) => {
+    dispatch(
+      addToCart({
+        name,
+        slug,
+        featuredImage,
+        selectedSize,
+        price
+      })
+    )
+    setSizeError('')
+    dispatch(openCart(true))
+    setTimeout(() => dispatch(openCart(false)), 1000)
+  }
 
   return (
     <section className=" pb-20 pt-0 px-8 md:px-12 lg:px-16 2xl:px-20">
       <div className="flex flex-col lg:flex-row">
-        <div className=" lg:w-[65vw] bg-gray-100 lg:-ml-12 group">
-          {featuredImage && (
-            <Image
-              className="group-hover:hidden "
-              src={getStrapiMedia(featuredImage.data.attributes.url)}
-              alt="logo"
-              width="600"
-              height="20"
-            />
-          )}
-          {hoverImage && (
-            <Image
-              className="hidden group-hover:block "
-              src={getStrapiMedia(hoverImage.data.attributes.url)}
-              alt="logo"
-              width="600"
-              height="20"
-            />
-          )}
+        <div className=" lg:w-[65vw]  lg:-ml-24  group">
+          <div className="bg-gray-100">
+            {featuredImage && (
+              <Image
+                className="group-hover:hidden "
+                src={getStrapiMedia(featuredImage.data.attributes.url)}
+                alt="logo"
+                width="1366"
+                height="20"
+              />
+            )}
+            {hoverImage && (
+              <Image
+                className="hidden group-hover:block "
+                src={getStrapiMedia(hoverImage.data.attributes.url)}
+                alt="logo"
+                width="1366"
+                height="20"
+              />
+            )}
+          </div>
         </div>
         <div
           className="flex flex-col 
@@ -71,7 +97,7 @@ const ProductInfo = ({
               href="/shop">
               SHOP
             </Link>
-            {category && (
+            {category.data && (
               <>
                 <p>/</p>
                 <Link
@@ -82,11 +108,11 @@ const ProductInfo = ({
               </>
             )}
           </div>
-          {name && <p className="mt-20 lg:mt-7 text-base">{name}</p>}
-          {price && <p className="mt-7">PRICE: ${numberWithCommas(price)}</p>}
-          {color && (
-            <div className="flex flex-row mt-6 items-center">
-              <p className="mr-3">COLOR:</p>
+          <p className="mt-20 lg:mt-7 text-base">{name && name}</p>
+          <p className="mt-7">PRICE: {price && '$' + numberWithCommas(price)}</p>
+          <div className="flex flex-row mt-6 items-center">
+            <p className="mr-3">COLOR:</p>
+            {color && (
               <Repeatable
                 Element={({ label, slug, swatch }) => (
                   <Link href={`shop/${slug}`}>
@@ -102,11 +128,11 @@ const ProductInfo = ({
                 pre="color"
                 style={{ container: `flex flex-row items-center`, wrapper: `mr-2` }}
               />
-            </div>
-          )}
-          {size && (
-            <div className="flex flex-row mt-6 items-center">
-              <p className="mr-3">SIZE:</p>
+            )}
+          </div>
+          <div className="flex flex-row mt-6 items-center">
+            <p className="mr-3">SIZE:</p>
+            {size && (
               <Repeatable
                 Element={({ element }) => (
                   <>
@@ -135,43 +161,58 @@ const ProductInfo = ({
                   wrapper: `relative mt-3 mr-2 `
                 }}
               />
+            )}
+          </div>
+          <div className="   mt-12    ">
+            {sizeError && <p className=" py-2 normal-case text-red-600">{sizeError}!</p>}
+            <div className="flex gap-3 justify-stretch flex-row uppercase ">
+              <Link
+                className=" w-full max-w-sm"
+                href="#">
+                <button
+                  className="w-full text-white font-semibold bg-gray-600"
+                  type="button"
+                  onClick={() => {
+                    selectedSize
+                      ? cartHandler(
+                          name,
+                          slug,
+                          featuredImage.data.attributes.url,
+                          selectedSize,
+                          price
+                        )
+                      : setSizeError('Please select a size')
+                  }}>
+                  Add to cart
+                </button>
+              </Link>
+              {/* <Link
+                className=" w-full"
+                href="#">
+                <button
+                  className="w-full"
+                  type="button">
+                  add to Wishlist
+                </button>
+              </Link> */}
             </div>
-          )}
-          <div
-            className=" flex gap-3 justify-stretch flex-row 
-          mt-12   uppercase ">
-            <Link
-              className=" w-full"
-              href="#">
-              <button
-                className="w-full text-white font-semibold bg-gray-600"
-                type="button">
-                Add to cart
-              </button>
-            </Link>
-            <Link
-              className=" w-full"
-              href="#">
-              <button
-                className="w-full"
-                type="button">
-                add to Wishlist
-              </button>
-            </Link>
           </div>
           <div className="mt-12 flex flex-col minw-w-[85%]  uppercase">
             <h3>PRODUCT DETAILS</h3>
-            <p className=" mt-6">{description.content}</p>
+            <p className=" mt-6">{description ? description.content : ''}</p>
+            <div
+              className="normal-case"
+              dangerouslySetInnerHTML={createMarkup()}></div>
           </div>
         </div>
       </div>
-      <div className="md:mt-12 lg:mt-20">
-        <h1
-          className="flex flex-row min-w-56
+      {products && products.data && (
+        <div className="md:mt-12 lg:mt-20">
+          <h1
+            className="flex flex-row min-w-56
             uppercase ">
-          WE ALSO RECOMMEND
-        </h1>
-        {isSuccess && (
+            WE ALSO RECOMMEND
+          </h1>
           <Repeatable
             Element={ProductCard}
             elements={products}
@@ -183,8 +224,8 @@ const ProductInfo = ({
             }}
             pre="product"
           />
-        )}
-      </div>
+        </div>
+      )}
     </section>
   )
 }

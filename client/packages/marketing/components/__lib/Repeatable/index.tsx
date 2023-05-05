@@ -10,17 +10,18 @@ const Repeatable = ({ Element, elements, pre, style, children }: Repeatable) => 
   return (
     <ul className={style && style.container}>
       {children}
-      {elements.map((element: object, index) => (
-        <li
-          key={`${pre}-${index}`}
-          className={style && style.wrapper}>
-          <Element
-            element={element}
-            {...element}
-            index={index}
-          />
-        </li>
-      ))}
+      {elements &&
+        elements.map((element: object, index) => (
+          <li
+            key={`${pre}-${index}`}
+            className={style && style.wrapper}>
+            <Element
+              element={element}
+              {...element}
+              index={index}
+            />
+          </li>
+        ))}
     </ul>
   )
 }

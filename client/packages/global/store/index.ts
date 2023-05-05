@@ -1,12 +1,14 @@
-import { configureStore } from '@reduxjs/toolkit'
+import { combineReducers, configureStore } from '@reduxjs/toolkit'
 import { createWrapper } from 'next-redux-wrapper'
+import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 
 import api from './api'
-import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
+import shop from '@appModules/shop/store/slice'
+const rootReducer = combineReducers({ [api.reducerPath]: api.reducer, shop })
 
 export const makeStore = () =>
   configureStore({
-    reducer: { [api.reducerPath]: api.reducer },
+    reducer: rootReducer,
     middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(api.middleware),
     devTools: true
   })

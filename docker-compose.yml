@@ -54,7 +54,7 @@ services:
       - ./server/.env:/opt/app/.env
       - ./server/public/uploads:/opt/app/public/uploads
     ports:
-      - '1338:1338'
+      - '1337:1337'
     networks:
       - proxy
   

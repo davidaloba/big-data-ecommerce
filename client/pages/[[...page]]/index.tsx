@@ -13,11 +13,13 @@ import MarketingLayout from '@marketingComponents/layouts/layout'
 import Seo from '@marketingComponents/partials/seo'
 import BlockManager from '@marketingModules/pages/components/BlockManager'
 import Blog from '@marketingModules/blog/components/Blog'
-import Topic from '@marketingModules/blog/components/Topic'
+// import Topic from '@marketingModules/blog/components/Topic'
 import Article from '@marketingModules/blog/components/Article'
 import Shop from '@appModules/shop/components/Shop'
 import Category from '@appModules/shop/components/Category'
 import Product from '@appModules/shop/components/Product'
+import Cart from '@appModules/shop/components/Cart'
+import Checkout from '@appModules/shop/components/Checkout'
 import Work from '@marketingModules/work/components/Work'
 import Project from '@marketingModules/work/components/Project'
 
@@ -77,8 +79,9 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
     ...pageData
   }
 
-  console.log(globalData, props)
-  const pageTID = pageID === 'home' ? pageID : contentType
+  // console.log(globalData, props)
+  const pageTID =
+    pageID === 'home' || pageID === 'cart' || pageID === 'checkout' ? pageID : contentType
 
   let Layout
   switch (pageTID) {
@@ -88,7 +91,13 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
   }
 
   let Content
-  switch (contentType) {
+  switch (pageTID) {
+    case 'cart':
+      Content = Cart
+      break
+    case 'checkout':
+      Content = Checkout
+      break
     case 'blog':
       Content = Blog
       break
@@ -121,6 +130,8 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
       break
   }
 
+  console.log(pageID, contentType, pageTID)
+
   return (
     <Layout
       globalData={globalData}
@@ -130,4 +141,5 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
     </Layout>
   )
 }
+
 export default Page

@@ -41,11 +41,11 @@ export function getStrapiMedia(url: string) {
   if (url.startsWith('http') || url.startsWith('//')) {
     return url
   }
-  return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1338'}${url}`
+  return `${process.env.NEXT_PUBLIC_API_URL}${url}`
 }
 
 export function getStrapiURL(path: string) {
-  return `${process.env.NEXT_PUBLIC_API_URL || 'http://localhost:1338'}/api${path}`
+  return `${process.env.NEXT_PUBLIC_API_URL}/api${path}`
 }
 export function handleRedirection(preview: boolean, custom: string) {
   if (preview) {

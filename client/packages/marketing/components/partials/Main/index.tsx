@@ -2,7 +2,7 @@ import BlockManager from './BlockManager'
 
 const Main = ({ children, blocks, perPage }: { children; blocks?; perPage? }) => {
   return (
-    <main className="min-h-screen">
+    <main className="">
       {children}
       {/* {blocks && (
         <BlockManager
