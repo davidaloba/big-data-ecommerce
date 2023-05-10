@@ -3,7 +3,6 @@ import { useRouter } from 'next/router'
 
 const Elements = ({ style, link, bgColor, bgImage, text, image, button, elements }) => {
   // { style, link, bgColor, bgImage, text, image, button }
-  console.log(elements)
 
   const background = {
     backgroundImage:

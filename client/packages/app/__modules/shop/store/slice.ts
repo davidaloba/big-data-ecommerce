@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '@globalStore/index'
 import Cookies from 'js-cookie'
+import { HYDRATE } from 'next-redux-wrapper'
 
 interface IShop {
   cart: object[]
@@ -12,10 +13,17 @@ const initialState: IShop = {
   openCart: false
 }
 
-const shopSlice: any = createSlice({
+const shopSlice = createSlice({
   name: 'shop',
   initialState,
-
+  extraReducers: (builder) => {
+    // builder.addCase(HYDRATE, (state, action) => {
+    //   return {
+    //     ...state,
+    //     ...action.payload.shop
+    //   }
+    // })
+  },
   reducers: {
     addToCart: (shop, action) => {
       const existingItem = shop.cart.find(
@@ -54,14 +62,6 @@ const shopSlice: any = createSlice({
       shop.openCart = action.payload
     }
   }
-  // ,extraReducers: (builder) => {
-  //   builder.addCase(shop, (state, action) => {
-  //     return {
-  //       ...state,
-  //       ...action.payload.shop
-  //     }
-  //   })
-  // }
 })
 
 export const { addToCart, removeFromCart, openCart } = shopSlice.actions

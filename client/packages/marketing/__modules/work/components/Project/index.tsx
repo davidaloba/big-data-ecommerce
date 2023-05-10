@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 
 const Project = ({ title, featuredImage, mockup, content }) => {
-  //TODO: project navigation
+  //TODO: WORK PAGINATION
   const [pageNumber, setPageNumber] = useState(1)
   const createMarkup = () => {
     return { __html: content }

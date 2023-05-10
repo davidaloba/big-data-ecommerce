@@ -9,6 +9,9 @@ import Link from 'next/link'
 import ProductCard from '@appModules/shop/components/ProductCard'
 import Repeatable from '@marketingComponents/__lib/Repeatable'
 
+// TODO: ADD PRODUCT GALEERY
+// TODO: ADD RELATED PRODUCT CAROUSEL
+
 const ProductInfo = ({
   slug,
   name,

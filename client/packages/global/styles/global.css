@@ -29,7 +29,11 @@
   }
   
   button {
-    @apply border border-gray-400  px-4 py-1 text-xs uppercase ;
+    @apply border  px-4 py-1 text-xs uppercase ;
+  }
+
+  input {
+    @apply border p-2 text-xs uppercase ;
   }
   
 

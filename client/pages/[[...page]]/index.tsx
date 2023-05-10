@@ -130,8 +130,6 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
       break
   }
 
-  console.log(pageID, contentType, pageTID)
-
   return (
     <Layout
       globalData={globalData}

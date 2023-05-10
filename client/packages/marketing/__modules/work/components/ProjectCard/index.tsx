@@ -4,8 +4,8 @@ import { getStrapiMedia } from 'packages/global/utils/index'
 
 const ArticleCard = ({ attributes }) => {
   const { slug, cardImage, logo, description, bgColor } = attributes
-  // TODO: add dynamic bg color
-  // TODO: fix card height issue
+  // TODO: ADD DYNAMIC BG-COLOR
+  // TODO: FIX CARD HEIGHT ISSUE
 
   return (
     <Link

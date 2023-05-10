@@ -3,10 +3,17 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { removeFromCart } from '@appModules/shop/store/slice'
 import { getStrapiMedia, numberWithCommas } from '@globalUtils/index'
+import { useEffect, useState } from 'react'
 
 const MenuCart = () => {
-  const { cart, openCart } = useAppSelector((state: RootState) => state.shop)
-  console.log(openCart)
+  const { cart: data, openCart } = useAppSelector((state: RootState) => state.shop)
+  const [subtotal, setSubtotal] = useState(0)
+  const [cart, setCart] = useState([])
+  useEffect(() => {
+    const count = cart.reduce((prev, current) => prev + current.price * current.qty, 0)
+    setSubtotal(count)
+    setCart(data)
+  }, [])
 
   const dispatch = useAppDispatch()
 
@@ -40,7 +47,7 @@ const MenuCart = () => {
                     <div
                       className=" border-0 underline hover:no-underline py-1 uppercase"
                       onClick={() => {
-                        dispatch(removeFromCart(item))
+                        // dispatch(removeFromCart(item))
                       }}>
                       Remove
                     </div>
@@ -52,16 +59,11 @@ const MenuCart = () => {
           </div>
           <div className=" flex flex-row justify-between items-center px-4 py-6 border-t ">
             <div className=" ">SUBTOTAL</div>
-            <div className=" ">
-              $
-              {numberWithCommas(
-                cart.reduce((prev, current) => prev + current.price * current.qty, 0)
-              )}
-            </div>
+            <div className=" "></div>
           </div>
           <div className="group/checkout bg-gray-700">
             <Link
-              href="/cart"
+              href="/checkout"
               className=" flex flex-row justify-between items-center px-4 py-2 border-t ">
               <div className="group-hover/checkout:underline  text-white ">CHECKOUT</div>
               <div className=" text-lg  text-white">{`>`}</div>

@@ -18,7 +18,6 @@ const Articles = ({ perPage, contentType, slug, name }) => {
   }
   const { data: articles, isSuccess } = useGetArticlesQuery(key)
   const lastPage = (isSuccess && articles && Math.ceil(articles.length / perPage)) || 1
-  console.log(pageNumber, articles)
 
   let title
   switch (contentType) {

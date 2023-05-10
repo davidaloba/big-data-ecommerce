@@ -9,7 +9,6 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 const Category = ({ name, parent, pageID, featuredImage, primaryButton, secondaryButton }) => {
-  console.log(primaryButton, secondaryButton)
   // TODO: populate only required product fields {name, slug, featuredImages, price}
   const { data: products, isSuccess } = useGetProductsQuery(pageID)
 

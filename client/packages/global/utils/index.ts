@@ -97,7 +97,6 @@ export const fetchHoverImg = async (slug: string, setData: Function) => {
       throw res
     })
     .then((data) => {
-      console.log(data)
       setData(getStrapiMedia(data.data[0].attributes.hoverImage.data.attributes.url))
     })
     .catch((err) => {

@@ -13,7 +13,7 @@ const Article = ({
   relatedArticles,
   publishedAt
 }) => {
-  //TODO: article navigation
+  //TODO: BLOG PAGINATION
   const [pageNumber, setPageNumber] = useState(1)
   const published = new Date(publishedAt).toUTCString().slice(4, 17)
   const createMarkup = () => {

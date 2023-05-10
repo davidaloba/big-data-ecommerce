@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import Image from 'next/image'
 import { RootState, useAppSelector } from '@globalStore/index'
 import { getStrapiMedia } from 'packages/global/utils/index'
@@ -11,12 +11,17 @@ import MenuLink from './menulink'
 import MenuCart from './menu-cart'
 
 const Navigation = ({ logo, navMenu, shopMenu }) => {
-  const [mobileMenu, setMobileMenu] = useState(false)
   const { cart } = useAppSelector((state: RootState) => state.shop)
-  const cartCount =
-    cart.reduce((prev, current) => prev + current.qty, 0) !== 0
-      ? ` ${cart.reduce((prev, current) => prev + current.qty, 0)}`
-      : ''
+  const [mobileMenu, setMobileMenu] = useState(false)
+  const [cartCount, setCartCount] = useState('')
+
+  useEffect(() => {
+    const count =
+      cart.reduce((prev, current) => prev + current.qty, 0) !== 0
+        ? ` ${cart.reduce((prev, current) => prev + current.qty, 0)}`
+        : ''
+    setCartCount(count)
+  }, [cart])
 
   return (
     <header className=" sticky top-0 z-50 ">
