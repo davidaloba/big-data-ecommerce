@@ -1,12 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '@globalStore/index'
 import Cookies from 'js-cookie'
-import { HYDRATE } from 'next-redux-wrapper'
-
-interface IShop {
-  cart: object[]
-  openCart?: boolean
-}
 
 const initialState: IShop = {
   cart: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : [],
@@ -69,4 +63,4 @@ export const { addToCart, removeFromCart, openCart } = shopSlice.actions
 export default shopSlice.reducer
 
 // Other code such as selectors can use the imported `RootState` type
-// export const selectCount = (state: RootState) => state.shop
+export const selectCount = (state: RootState) => state.shop

@@ -6,6 +6,7 @@ interface ICheckout {
   info?: object
   shipping?: object
   billing?: object
+  errorMessage?: string
 }
 
 export type CheckoutContextType = [
@@ -18,8 +19,10 @@ const CheckoutContext = createContext<CheckoutContextType>([
     stage: 'info',
     info: null,
     shipping: null,
-    billing: null
+    billing: null,
+    errorMessage: null
   },
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
   () => {}
 ])
 

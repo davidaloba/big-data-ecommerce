@@ -5,22 +5,49 @@ import { useContext, useState, useEffect } from 'react'
 import { CheckoutContext } from '.'
 import { RootState, useAppSelector } from '@globalStore/index'
 
-const OrderSummary = ({ handleSubmit, getValues }) => {
+const OrderSummary = ({ placeOrder, watch, errors }) => {
   const { cart: data } = useAppSelector((state: RootState) => state.shop)
   const [cart, setCart] = useState([])
   const [subtotal, setSubtotal] = useState(0)
+
+  const [{ stage }, setCheckout] = useContext(CheckoutContext)
+
   useEffect(() => {
     const subtotal = data.reduce((prev, current) => prev + current.price * current.qty, 0)
     setSubtotal(subtotal)
     setCart(data)
   }, [])
 
-  const [{ stage }, setCheckout] = useContext(CheckoutContext)
-
-  const placeOrder = () => {
-    const onFormSubmit = (data) => console.log(data)
-    const onErrors = (errors) => console.error(errors)
-    return handleSubmit(onFormSubmit, onErrors)
+  const cta = () => {
+    if (stage === 'info') {
+      if (errors.info || !watch('info.email')) {
+        setCheckout((checkout) => ({
+          ...checkout,
+          errorMessage: 'Please fill in all required fields correctly'
+        }))
+      } else {
+        setCheckout((checkout) => ({
+          ...checkout,
+          errorMessage: '',
+          info: watch('info'),
+          stage: 'shipping'
+        }))
+      }
+    } else if (stage === 'shipping') {
+      if (errors.info || errors.shipping || !watch('shipping')) {
+        setCheckout((checkout) => ({
+          ...checkout,
+          errorMessage: 'Please fill in all required fields correctly'
+        }))
+      } else {
+        setCheckout((checkout) => ({
+          ...checkout,
+          errorMessage: '',
+          shipping: JSON.parse(watch('shipping')),
+          stage: 'billing'
+        }))
+      }
+    } else placeOrder()
   }
 
   return (
@@ -69,31 +96,13 @@ const OrderSummary = ({ handleSubmit, getValues }) => {
         <div className=" ">TOTAL</div>
         <div className="  ">${numberWithCommas(subtotal)}</div>
       </div>
-      <div className="  bg-gray-700">
-        <Link
-          href="/checkout"
-          className=" flex flex-row justify-between items-center px-5 py-3 border-t ">
-          <div
-            onClick={() =>
-              stage === 'info'
-                ? setCheckout((checkout) => ({
-                    ...checkout,
-                    info: getValues('info'),
-                    stage: 'shipping'
-                  }))
-                : stage === 'shipping'
-                ? setCheckout((checkout) => ({
-                    ...checkout,
-                    shipping: getValues('shipping'),
-                    stage: 'billing'
-                  }))
-                : placeOrder
-            }
-            className="grow hover:underline text text-center  text-white ">
-            {`${stage === 'billing' ? 'PLACE ORDER' : 'SAVE AND CONTINUE'}`}
-          </div>
-          <div className=" text-2xl  text-white">{`>`}</div>
-        </Link>
+      <div className=" flex flex-row justify-between items-center px-5 py-3 border-t  bg-gray-700 ">
+        <div
+          onClick={() => cta()}
+          className="grow hover:underline text text-center  text-white ">
+          {`${stage === 'billing' ? 'PLACE ORDER' : 'SAVE AND CONTINUE'}`}
+        </div>
+        <div className=" text-2xl  text-white">{`>`}</div>
       </div>
     </div>
   )
