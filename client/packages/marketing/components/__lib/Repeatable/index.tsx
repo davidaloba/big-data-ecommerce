@@ -1,6 +1,6 @@
 export interface Repeatable {
   Element: (props) => JSX.Element
-  elements: Array<unknown>
+  elements: Array<any>
   pre: string
   style?: { [index: string]: string }
   children?: JSX.Element

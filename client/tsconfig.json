@@ -25,6 +25,9 @@
       "@globalStore/*": [
         "packages/global/store/*"
       ],
+      "@globalComponents/*": [
+        "packages/global/components/*"
+      ],
       "@globalStyles/*": [
         "packages/global/styles/*"
       ],

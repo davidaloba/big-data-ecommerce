@@ -17,14 +17,14 @@ const api = createApi({
   endpoints: (build) => ({
     getGlobal: build.query({
       query: () => `/global?populate=deep`,
-      transformResponse: (res: { data: Global; [index: string]: object | object[] }) => {
-        return res
+      transformResponse: (global: { data: Global; [index: string]: object | object[] }) => {
+        return global.data.attributes
       }
     }),
     getPageData: build.query({
       query: (url: string) => url,
-      transformResponse: (res: { data: Page | Page[]; [index: string]: object | object[] }) => {
-        return res
+      transformResponse: (page: { data: Page | Page[]; [index: string]: object | object[] }) => {
+        return Array.isArray(page.data) ? page.data[0].attributes : page.data.attributes
       }
     })
   })

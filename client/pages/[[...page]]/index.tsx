@@ -32,12 +32,14 @@ interface Page {
 }
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
-  try {
-    const { apiUrl, pageID, contentType } = getData(context.query.page || '', context.preview)
+  const { apiUrl, pageID, contentType } = getData(context.query.page || '', context.preview)
 
-    store.dispatch(getPageData.initiate(apiUrl))
-    store.dispatch(getGlobal.initiate('global'))
-    await Promise.all(store.dispatch(getRunningQueriesThunk()))
+  try {
+    await Promise.all([
+      store.dispatch(getPageData.initiate(apiUrl)),
+      store.dispatch(getGlobal.initiate('global')),
+      store.dispatch(getRunningQueriesThunk())
+    ])
 
     return {
       props: {
@@ -55,31 +57,11 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
 })
 
 const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
-  const { data: global } = useGetGlobalQuery('global')
-  const { data: page } = useGetPageDataQuery(apiUrl)
+  const { data: globalData } = useGetGlobalQuery('global')
+  const { data: pageData } = useGetPageDataQuery(apiUrl)
 
-  if (
-    !page ||
-    !page.data ||
-    (!Array.isArray(page.data) ? !page.data.attributes : page.data.length < 1)
-  )
-    return <ErrorPage statusCode={404} />
+  if (!pageData) return <ErrorPage statusCode={404} />
 
-  const globalData = global.data.attributes
-  const pageData = page
-    ? Array.isArray(page.data)
-      ? page.data[0].attributes
-      : page.data.attributes
-    : null
-  const props = {
-    apiUrl,
-    contentType,
-    pageID,
-    sidebar: globalData.sidebar,
-    ...pageData
-  }
-
-  // console.log(globalData, props)
   const pageTID =
     pageID === 'home' || pageID === 'cart' || pageID === 'checkout' ? pageID : contentType
 
@@ -89,7 +71,6 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
       Layout = MarketingLayout
       break
   }
-
   let Content
   switch (pageTID) {
     case 'cart':
@@ -129,6 +110,14 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
       Content = BlockManager
       break
   }
+
+  const props = {
+    apiUrl,
+    contentType,
+    pageID,
+    ...pageData
+  }
+  // console.log(globalData, props)
 
   return (
     <Layout

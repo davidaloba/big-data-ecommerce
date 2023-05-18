@@ -1,5 +1,18 @@
 import api from '@globalStore/api'
 
+interface IProduct {
+  slug?
+  name?
+  featuredImage?
+  hoverImage?
+  category?
+  price?
+  color?
+  size?
+  gallery?
+  description?
+}
+
 const productsApi = api.injectEndpoints({
   endpoints: (build) => ({
     getProducts: build.query({
@@ -14,7 +27,7 @@ const productsApi = api.injectEndpoints({
 
         return baseUrl
       },
-      transformResponse: (res: { [index: string]: object | object[] }) => {
+      transformResponse: (res): Array<IProduct> => {
         return res.data
       }
     }),
@@ -26,14 +39,16 @@ const productsApi = api.injectEndpoints({
 
         return baseUrl
       },
-      transformResponse: (res: { [index: string]: object | object[] }) => {
+      transformResponse: (res): Array<IProduct> => {
         return res.data
       }
     }),
     getProduct: build.query({
       query: (url) => url,
-      transformResponse: (res) => {
-        return res
+      transformResponse: (product): IProduct => {
+        return Array.isArray(product.data)
+          ? product.data[0] && product.data[0].attributes
+          : product.data && product.data.attributes
       }
     })
   }),
