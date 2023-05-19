@@ -3,7 +3,6 @@ import Checkout from './main'
 
 interface ICheckout {
   stage?: string
-  info?: object
   shipping?: object
   billing?: object
   errorMessage?: string
@@ -17,10 +16,9 @@ export type CheckoutContextType = [
 const CheckoutContext = createContext<CheckoutContextType>([
   {
     stage: 'info',
-    info: null,
+    errorMessage: null,
     shipping: null,
-    billing: null,
-    errorMessage: null
+    billing: null
   },
   // eslint-disable-next-line @typescript-eslint/no-empty-function
   () => {}
@@ -29,7 +27,6 @@ const CheckoutContext = createContext<CheckoutContextType>([
 const CheckoutProvider = ({ children }) => {
   const [checkout, setCheckout] = useState<ICheckout>({
     stage: 'info',
-    info: null,
     shipping: null,
     billing: null
   })
@@ -40,10 +37,32 @@ const CheckoutProvider = ({ children }) => {
 
 export { CheckoutProvider, CheckoutContext }
 
+const shippingOptions = [
+  {
+    name: 'Express Delivery',
+    cost: 5000,
+    duration: '1 - 3 business days'
+  },
+  {
+    name: 'Standard Delivery',
+    cost: 3000,
+    duration: '5 - 7 business days'
+  }
+]
+
+const paymentOptions = [
+  {
+    name: 'FlutterWave'
+  }
+]
+
 const CheckoutMain = () => {
   return (
     <CheckoutProvider>
-      <Checkout />
+      <Checkout
+        paymentOptions={paymentOptions}
+        shippingOptions={shippingOptions}
+      />
     </CheckoutProvider>
   )
 }

@@ -4,23 +4,88 @@ import Image from 'next/image'
 import { useContext, useState, useEffect } from 'react'
 import { CheckoutContext } from '.'
 import { RootState, useAppSelector } from '@globalStore/index'
+import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3'
+import { useRouter } from 'next/router'
 
-const OrderSummary = ({ placeOrder, watch, errors }) => {
+const OrderSummary = ({ watch, errors }) => {
+  // useEffect(() => console.log('errors:', errors, '|'), [watch()])
+  // useEffect(() => console.log('formValues', watch(), '|'), [watch()])
+  // useEffect(() => console.log('checkout', checkout), [watch()])
+
+  const router = useRouter()
+
+  const [checkout, setCheckout] = useContext(CheckoutContext)
+  const { stage, shipping, billing } = checkout
+
   const { cart: data } = useAppSelector((state: RootState) => state.shop)
   const [cart, setCart] = useState([])
   const [subtotal, setSubtotal] = useState(0)
-
-  const [{ stage }, setCheckout] = useContext(CheckoutContext)
-
+  const [shippingCost, setShippingCost] = useState(0)
+  const [tax, setTax] = useState(0)
+  const [total, setTotal] = useState(0)
   useEffect(() => {
+    setCart(data)
+    setShippingCost(shipping && shipping.method ? shipping.method.cost : 0)
     const subtotal = data.reduce((prev, current) => prev + current.price * current.qty, 0)
     setSubtotal(subtotal)
-    setCart(data)
-  }, [])
+    const tax = (7.5 / 100) * subtotal
+    setTax(tax)
+    setTotal(subtotal + shippingCost + tax)
+  }, [shipping, data])
+
+  const handleFlutterPayment = useFlutterwave({
+    public_key: 'FLWPUBK-336e1502b66347f21711416b1f2b7c66-X',
+    tx_ref: `${Date.now()}`,
+    currency: 'NGN',
+    payment_options: 'card,mobilemonesy,ussd',
+    customizations: {
+      title: 'Yinka Samuels Checkout',
+      description: '',
+      logo: '/logo.png'
+    },
+    customer: {
+      email: billing && billing.address && billing.address.email,
+      phone_number: billing && billing.address && billing.address.phone,
+      name:
+        billing && billing.address && `${billing.address.firstName} ${billing.address.firstName}`
+    },
+    amount: total
+  })
+
+  const placeOrder = () => {
+    handleFlutterPayment({
+      callback: async (response) => {
+        if (response.status === 'successful') {
+          try {
+            const order = {
+              cart: cart,
+              billing: {
+                ...billing,
+                payment: { ...billing.payment, ...response }
+              },
+              shipping
+            }
+            console.log(order)
+            // Create Order Hook: Add Order to Strapi
+          } catch (err) {
+            alert(err)
+          }
+          closePaymentModal() // this will close the modal programmatically
+          router.push('/orders?')
+        } else {
+          alert(` Your payment is ${response.status}.Please try again later`)
+          return
+        }
+      },
+      onClose: () => {
+        // handle payment cancellation
+      }
+    })
+  }
 
   const cta = () => {
     if (stage === 'info') {
-      if (errors.info || !watch('info.email')) {
+      if ((errors.shipping && errors.shipping.address) || !watch('shipping.address.email')) {
         setCheckout((checkout) => ({
           ...checkout,
           errorMessage: 'Please fill in all required fields correctly'
@@ -29,12 +94,15 @@ const OrderSummary = ({ placeOrder, watch, errors }) => {
         setCheckout((checkout) => ({
           ...checkout,
           errorMessage: '',
-          info: watch('info'),
+          shipping: { ...shipping, address: watch('shipping.address') },
           stage: 'shipping'
         }))
       }
     } else if (stage === 'shipping') {
-      if (errors.info || errors.shipping || !watch('shipping')) {
+      if (
+        (errors.shipping && (errors.shipping.address || errors.shipping)) ||
+        !watch('shipping.address')
+      ) {
         setCheckout((checkout) => ({
           ...checkout,
           errorMessage: 'Please fill in all required fields correctly'
@@ -43,13 +111,29 @@ const OrderSummary = ({ placeOrder, watch, errors }) => {
         setCheckout((checkout) => ({
           ...checkout,
           errorMessage: '',
-          shipping: JSON.parse(watch('shipping')),
-          stage: 'billing'
+          shipping: { ...shipping, method: JSON.parse(watch('shipping.method')) },
+          stage: 'billing',
+          billing: {
+            ...billing,
+            subtotal: subtotal,
+            vat: tax
+          }
         }))
       }
-    } else placeOrder()
+    } else if (errors.billing || !billing.payment) {
+      setCheckout((checkout) => ({
+        ...checkout,
+        errorMessage: 'Please fill in all required fields correctly'
+      }))
+    } else {
+      setCheckout((checkout) => ({
+        ...checkout,
+        errorMessage: ''
+      }))
+      console.log(' order:', cart, billing, shipping)
+      // placeOrder()
+    }
   }
-
   return (
     <div className=" md:flex flex-col  border border-gray-200">
       <div className=" flex flex-row justify-between items-center px-5 py-5 text-black border-b">
@@ -84,17 +168,21 @@ const OrderSummary = ({ placeOrder, watch, errors }) => {
           </div>
         ))}
       </div>
-      <div className=" flex flex-row justify-between items-center px-5 py-5  ">
-        <div className=" ">Shipping</div>
+      <div className=" flex flex-row justify-between items-center px-5 py-2  ">
+        <div className=" ">Subtotal</div>
         <div className="  ">${numberWithCommas(subtotal)}</div>
       </div>
-      <div className=" flex flex-row justify-between items-center px-5 py-5 border-b ">
-        <div className=" ">Domestic Taxes</div>
-        <div className="  ">${numberWithCommas(subtotal)}</div>
+      <div className=" flex flex-row justify-between items-center px-5 py-2  ">
+        <div className=" ">Shipping</div>
+        <div className="  ">${numberWithCommas(shippingCost)}</div>
+      </div>
+      <div className=" flex flex-row justify-between items-center px-5 py-2 border-b ">
+        <div className=" ">VAT (7.5%)</div>
+        <div className="  ">${numberWithCommas(tax)}</div>
       </div>
       <div className=" flex flex-row justify-between items-center px-5 py-5 border-b ">
         <div className=" ">TOTAL</div>
-        <div className="  ">${numberWithCommas(subtotal)}</div>
+        <div className="  ">${numberWithCommas(total)}</div>
       </div>
       <div className=" flex flex-row justify-between items-center px-5 py-3 border-t  bg-gray-700 ">
         <div

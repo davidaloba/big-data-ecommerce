@@ -1,9 +1,8 @@
 import { useContext } from 'react'
 import { CheckoutContext } from '.'
 
-const Information = ({ register, watch, shippingOptions }) => {
-  const [checkout, setCheckout] = useContext(CheckoutContext)
-
+const Information = ({ register, shippingOptions }) => {
+  const [{ shipping }, setCheckout] = useContext(CheckoutContext)
   const registerOptions = {
     shipping: {
       required: 'Shipping method is required'
@@ -24,23 +23,30 @@ const Information = ({ register, watch, shippingOptions }) => {
                 className="group cursor-pointer">
                 <div
                   className={`flex flex-col justify-center w-full h-full min-h-[60px] border border-gray-400 ${
-                    watch('shipping') && option.name === JSON.parse(watch('shipping')).name
+                    shipping.method && option.name === shipping.method.name
                       ? 'border-green-500 bg-gray-400'
                       : ''
                   }`}>
                   <p className="text-center">
-                    {option.name} <span>${option.price.toFixed(2)}</span>
+                    {option.name} <span>${option.cost.toFixed(2)}</span>
                   </p>
                   <p className="text-center">({option.duration})</p>
                 </div>
               </label>
               <input
                 type="radio"
-                {...register('shipping', registerOptions.shipping)}
+                {...register('shipping.method', registerOptions.shipping)}
                 id={option.name}
-                name="shipping"
+                name="shipping.method"
                 value={JSON.stringify(option)}
                 className="absolute top-0 w-full h-full opacity-0 cursor-pointer"
+                onClick={() =>
+                  setCheckout((checkout) => ({
+                    ...checkout,
+                    errorMessage: '',
+                    shipping: { ...checkout.shipping, method: option }
+                  }))
+                }
               />
             </div>
           ))}

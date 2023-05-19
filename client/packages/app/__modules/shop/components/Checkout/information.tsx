@@ -122,7 +122,7 @@ const Information = ({ register, errors }) => {
               {firstNameErr && <p className="text-red-500 uppercase">{firstNameErr.message}</p>}
             </div>
             <input
-              {...register('info.firstName', registerOptions.firstName)}
+              {...register('shipping.address.firstName', registerOptions.firstName)}
               type="text"
               autoFocus
               className={` invalid:border-red-500 ${firstNameErr && 'border-red-500'}`}
@@ -135,7 +135,7 @@ const Information = ({ register, errors }) => {
             </div>
             <input
               type="text"
-              {...register('info.lastName', registerOptions.lastName)}
+              {...register('shipping.address.lastName', registerOptions.lastName)}
               className={` invalid:border-red-500 ${lastNameErr && 'border-red-500'}`}
             />
           </div>
@@ -147,7 +147,7 @@ const Information = ({ register, errors }) => {
           </div>
           <input
             type="email"
-            {...register('info.email', registerOptions.email)}
+            {...register('shipping.address.email', registerOptions.email)}
             className={` invalid:border-red-500 ${emailErr && 'border-red-500'}`}
           />
         </div>
@@ -163,7 +163,7 @@ const Information = ({ register, errors }) => {
           </div>
           <input
             type="dropdown"
-            {...register('info.country', registerOptions.country)}
+            {...register('shipping.address.country', registerOptions.country)}
             className={` invalid:border-red-500 ${countryErr && 'border-red-500'}`}>
             {/* ADDRESS DROPDOWN */}
           </input>
@@ -175,7 +175,7 @@ const Information = ({ register, errors }) => {
           </div>
           <input
             type="text"
-            {...register('info.addressLine1', registerOptions.addressLine1)}
+            {...register('shipping.address.addressLine1', registerOptions.addressLine1)}
             className={` invalid:border-red-500 ${addressLine1Err && 'border-red-500'}`}
           />
         </div>
@@ -185,7 +185,7 @@ const Information = ({ register, errors }) => {
             {addressLine2Err && <p className="text-red-500 uppercase">{addressLine2Err.message}</p>}
           </div>
           <input
-            {...register('info.addressLine2', registerOptions.addressLine2)}
+            {...register('shipping.address.addressLine2', registerOptions.addressLine2)}
             type="text"
             className={` invalid:border-red-500 ${addressLine2Err && 'border-red-500'}`}
           />
@@ -198,7 +198,7 @@ const Information = ({ register, errors }) => {
             </div>
             <input
               type="text"
-              {...register('info.city', registerOptions.city)}
+              {...register('shipping.address.city', registerOptions.city)}
               className={` invalid:border-red-500 ${cityErr && 'border-red-500'}`}
             />
           </div>
@@ -208,7 +208,7 @@ const Information = ({ register, errors }) => {
               {stateErr && <p className="text-red-500 uppercase">{stateErr.message}</p>}
             </div>
             <input
-              {...register('info.state', registerOptions.state)}
+              {...register('shipping.address.state', registerOptions.state)}
               type="text"
               className={` invalid:border-red-500 ${stateErr && 'border-red-500'}`}
             />
@@ -222,7 +222,7 @@ const Information = ({ register, errors }) => {
             </div>
             <input
               type="text"
-              {...register('info.zipCode', registerOptions.zipCode)}
+              {...register('shipping.address.zipCode', registerOptions.zipCode)}
               className={` invalid:border-red-500 ${zipCodeErr && 'border-red-500'}`}
             />
           </div>
@@ -245,7 +245,7 @@ const Information = ({ register, errors }) => {
               </div>
               <input
                 type="tel"
-                {...register('info.phone', registerOptions.phone)}
+                {...register('shipping.address.phone', registerOptions.phone)}
                 autoComplete="tel"
                 className={` invalid:border-red-500 ${phoneErr && 'border-red-500'}`}
               />

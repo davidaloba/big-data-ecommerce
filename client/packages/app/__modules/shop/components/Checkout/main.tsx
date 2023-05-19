@@ -4,40 +4,17 @@ import OrderSummary from './order-summary'
 import Information from './information'
 import { CheckoutContext } from '.'
 import Shipping from './shipping'
+import Billing from './biling'
 
-const shippingOptions = [
-  {
-    name: 'Express Delivery',
-    price: 0,
-    duration: '4 - 8 business days'
-  },
-  {
-    name: 'Standard Delivery',
-    price: 5,
-    duration: '7 - 10 business days'
-  }
-]
-
-const Checkout = () => {
-  const [{ stage, info, shipping, billing, errorMessage }, setCheckout] =
-    useContext(CheckoutContext)
+const Checkout = ({ paymentOptions, shippingOptions }) => {
+  const [{ stage, shipping, errorMessage }, setCheckout] = useContext(CheckoutContext)
 
   const {
     register,
-    handleSubmit,
     watch,
+    setValue,
     formState: { errors }
-  } = useForm({ mode: 'onBlur', defaultValues: { info: null } })
-
-  const placeOrder = () => {
-    setCheckout((checkout) => ({
-      ...checkout,
-      billing: {},
-      stage: 'billing'
-    }))
-    const order = watch()
-    console.log(order)
-  }
+  } = useForm({ mode: 'onBlur' })
 
   return (
     <section className="pb-10 md:pb-20 pt-0 px-5 md:px-12 lg:px-16 2xl:px-20 ">
@@ -57,7 +34,7 @@ const Checkout = () => {
                 1. INFORMATION
               </button>
               <button
-                disabled={!info}
+                disabled={shipping ? !shipping.address : true}
                 onClick={() => setCheckout((checkout) => ({ ...checkout, stage: 'shipping' }))}
                 className={`flex-1  px-5 py-5 border-0  border-r hover:underline disabled:hover:no-underline
                   ${stage === 'shipping' ? 'bg-gray-700 text-white underline' : ''}
@@ -65,7 +42,7 @@ const Checkout = () => {
                 2. SHIPPING
               </button>
               <button
-                disabled={!info || !shipping}
+                disabled={shipping ? !shipping.address || !shipping.method : true}
                 onClick={() => setCheckout((checkout) => ({ ...checkout, stage: 'billing' }))}
                 className={`flex-1  px-5 py-5 border-0  border-r hover:underline disabled:hover:no-underline
                   ${stage === 'billing' ? 'bg-gray-700 text-white underline' : ''}
@@ -73,20 +50,26 @@ const Checkout = () => {
                 3. PAYMENT
               </button>
             </div>
-            <form
-              onSubmit={handleSubmit(placeOrder)}
-              className="border-b">
+            <form className="border-b">
               {stage === 'info' && (
                 <Information
                   register={register}
-                  errors={errors.info}
+                  errors={errors.shipping && errors.shipping.address}
                 />
               )}
               {stage === 'shipping' && (
                 <Shipping
                   register={register}
-                  watch={watch}
                   shippingOptions={shippingOptions}
+                />
+              )}
+              {stage === 'billing' && (
+                <Billing
+                  register={register}
+                  errors={errors.billing}
+                  watch={watch}
+                  setValue={setValue}
+                  paymentOptions={paymentOptions}
                 />
               )}
             </form>
@@ -95,7 +78,6 @@ const Checkout = () => {
         <div className=" sticky top-[100px]  md:block min-w-[35%] xl:min-w-[30%]">
           <OrderSummary
             errors={errors}
-            placeOrder={placeOrder}
             watch={watch}
           />
         </div>
