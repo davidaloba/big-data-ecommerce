@@ -1,13 +1,22 @@
-import { useContext } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import { CheckoutContext } from '.'
 
-const Information = ({ register, shippingOptions }) => {
+const Information = ({ register, shippingOptions, setValue }) => {
   const [{ shipping }, setCheckout] = useContext(CheckoutContext)
   const registerOptions = {
     shipping: {
       required: 'Shipping method is required'
     }
   }
+  const [checked, setChecked] = useState(shippingOptions[0].name)
+  useEffect(
+    () =>
+      setValue(
+        'shipping.method',
+        JSON.stringify(shippingOptions.filter((e) => e.name === checked)[0])
+      ),
+    []
+  )
 
   return (
     <div className="px-5 py-5">
@@ -22,11 +31,9 @@ const Information = ({ register, shippingOptions }) => {
                 htmlFor={option.name}
                 className="group cursor-pointer">
                 <div
-                  className={`flex flex-col justify-center w-full h-full min-h-[60px] border border-gray-400 ${
-                    shipping.method && option.name === shipping.method.name
-                      ? 'border-green-500 bg-gray-400'
-                      : ''
-                  }`}>
+                  className={`flex flex-col justify-center w-full h-full min-h-[60px] border border-gray-400 
+                  ${option.name === checked && 'border-green-500 bg-gray-400'}
+                  `}>
                   <p className="text-center">
                     {option.name} <span>${option.cost.toFixed(2)}</span>
                   </p>
@@ -40,13 +47,14 @@ const Information = ({ register, shippingOptions }) => {
                 name="shipping.method"
                 value={JSON.stringify(option)}
                 className="absolute top-0 w-full h-full opacity-0 cursor-pointer"
-                onClick={() =>
+                onClick={() => {
+                  setChecked(option.name)
                   setCheckout((checkout) => ({
                     ...checkout,
                     errorMessage: '',
                     shipping: { ...checkout.shipping, method: option }
                   }))
-                }
+                }}
               />
             </div>
           ))}

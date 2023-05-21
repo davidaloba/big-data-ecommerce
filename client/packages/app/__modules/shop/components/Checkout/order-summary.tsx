@@ -8,9 +8,12 @@ import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3'
 import { useRouter } from 'next/router'
 
 const OrderSummary = ({ watch, errors }) => {
-  // useEffect(() => console.log('errors:', errors, '|'), [watch()])
-  // useEffect(() => console.log('formValues', watch(), '|'), [watch()])
-  // useEffect(() => console.log('checkout', checkout), [watch()])
+  const [order, setOrder] = useState({})
+  useEffect(() => console.log(' order:', order), [order])
+
+  useEffect(() => console.log('errors:', errors, '|'), [watch()])
+  useEffect(() => console.log('formValues', watch(), '|'), [watch()])
+  useEffect(() => console.log('checkout', checkout), [watch()])
 
   const router = useRouter()
 
@@ -100,8 +103,8 @@ const OrderSummary = ({ watch, errors }) => {
       }
     } else if (stage === 'shipping') {
       if (
-        (errors.shipping && (errors.shipping.address || errors.shipping)) ||
-        !watch('shipping.address')
+        !watch('shipping.method') ||
+        (errors.shipping && (errors.shipping.method || errors.shipping))
       ) {
         setCheckout((checkout) => ({
           ...checkout,
@@ -120,7 +123,7 @@ const OrderSummary = ({ watch, errors }) => {
           }
         }))
       }
-    } else if (errors.billing || !billing.payment) {
+    } else if (errors.billing) {
       setCheckout((checkout) => ({
         ...checkout,
         errorMessage: 'Please fill in all required fields correctly'
@@ -130,7 +133,7 @@ const OrderSummary = ({ watch, errors }) => {
         ...checkout,
         errorMessage: ''
       }))
-      console.log(' order:', cart, billing, shipping)
+      setOrder({ cart, billing, shipping })
       // placeOrder()
     }
   }

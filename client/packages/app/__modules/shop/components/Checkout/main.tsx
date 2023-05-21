@@ -61,6 +61,7 @@ const Checkout = ({ paymentOptions, shippingOptions }) => {
                 <Shipping
                   register={register}
                   shippingOptions={shippingOptions}
+                  setValue={setValue}
                 />
               )}
               {stage === 'billing' && (

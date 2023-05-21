@@ -5,6 +5,7 @@ const Billing = ({ register, watch, paymentOptions, errors, setValue }) => {
   const [checkout, setCheckout] = useContext(CheckoutContext)
   const { shipping, billing } = checkout
   const [billingAdd, setBillingAdd] = useState(true)
+  const [checked, setChecked] = useState(paymentOptions[0].name)
 
   const firstNameErr = (errors && errors.firstName && errors.firstName) || null
   const lastNameErr = (errors && errors.lastName && errors.lastName) || null
@@ -122,12 +123,18 @@ const Billing = ({ register, watch, paymentOptions, errors, setValue }) => {
   }
 
   useEffect(() => {
+    setValue('billing.payment.method', checked)
+
     setCheckout((checkout) => ({
       ...checkout,
       errorMessage: '',
-      billing: { ...billing, address: watch('billing.address') }
+      billing: {
+        ...billing,
+        address: watch('billing.address'),
+        method: watch('billing.payment.method')
+      }
     }))
-  }, [watch('billing.address')])
+  }, [watch('billing.address'), watch('billing.payment.method')])
 
   return (
     <div>
@@ -323,11 +330,10 @@ const Billing = ({ register, watch, paymentOptions, errors, setValue }) => {
                   htmlFor={option.name}
                   className="group cursor-pointer">
                   <div
-                    className={`flex flex-col justify-center w-full h-full min-h-[60px] border border-gray-400 ${
-                      billing && billing.payment && option.name === billing.payment.method
-                        ? 'border-green-500 bg-gray-400'
-                        : ''
-                    }`}>
+                    className={`flex flex-col justify-center w-full h-full min-h-[60px] border border-gray-400 
+                  ${option.name === checked && 'border-green-500 bg-gray-400'}
+                    
+                    `}>
                     <p className="text-center">{option.name}</p>
                   </div>
                 </label>
@@ -337,7 +343,8 @@ const Billing = ({ register, watch, paymentOptions, errors, setValue }) => {
                   name="paymentMethod"
                   value={option.name}
                   className="absolute top-0 w-full h-full opacity-0 cursor-pointer"
-                  onClick={() =>
+                  onClick={() => {
+                    setChecked(option.name)
                     setCheckout((checkout) => ({
                       ...checkout,
                       errorMessage: '',
@@ -346,7 +353,7 @@ const Billing = ({ register, watch, paymentOptions, errors, setValue }) => {
                         payment: { ...billing.payment, method: option.name }
                       }
                     }))
-                  }
+                  }}
                 />
               </div>
             ))}
