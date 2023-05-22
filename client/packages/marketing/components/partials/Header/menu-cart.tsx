@@ -13,7 +13,7 @@ const MenuCart = () => {
     const count = cart.reduce((prev, current) => prev + current.price * current.qty, 0)
     setSubtotal(count)
     setCart(items)
-  }, [])
+  }, [subtotal])
 
   const dispatch = useAppDispatch()
 
@@ -47,7 +47,7 @@ const MenuCart = () => {
                     <div
                       className=" border-0 underline hover:no-underline py-1 uppercase"
                       onClick={() => {
-                        // dispatch(removeFromCart(item))
+                        dispatch(removeFromCart(item))
                       }}>
                       Remove
                     </div>

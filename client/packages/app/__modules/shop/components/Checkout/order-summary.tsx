@@ -37,7 +37,7 @@ const OrderSummary = ({ watch, errors }) => {
   }, [shipping, items])
 
   const handleFlutterPayment = useFlutterwave({
-    public_key: 'FLWPUBK-336e1502b66347f21711416b1f2b7c66-X',
+    public_key: 'FLWPUBK_TEST-df0e4fa63e812a62a238d5e6fa9f4f8a-X',
     tx_ref: `${Date.now()}`,
     currency: 'NGN',
     payment_options: 'card,mobilemonesy,ussd',
@@ -80,7 +80,7 @@ const OrderSummary = ({ watch, errors }) => {
             alert(err)
           }
           closePaymentModal() // this will close the modal programmatically
-          router.push('/orders?')
+          router.push(`/order/${response.transaction_id}`)
         } else {
           alert(` Your payment is ${response.status}.Please try again later`)
           return
@@ -139,8 +139,7 @@ const OrderSummary = ({ watch, errors }) => {
         ...checkout,
         errorMessage: ''
       }))
-      addOrder({ cart, billing, shipping })
-      // placeOrder()
+      placeOrder()
     }
   }
   return (

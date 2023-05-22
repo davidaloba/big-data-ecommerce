@@ -8,7 +8,12 @@ import Address from '@appComponents/__lib/address'
 const Order = ({ pageID }) => {
   const apiUrl = getStrapiURL(`/orders/?filters[slug][$eq]=${pageID}&populate=deep`)
   const { data: order, isSuccess } = useGetOrderQuery(apiUrl)
-  const { cart: items, billing, shipping, status } = isSuccess ? order : {}
+  const {
+    cart: items,
+    billing,
+    shipping,
+    status
+  } = isSuccess ? order : { cart: null, billing: null, shipping: null, status: null }
 
   const [cartCount, setCartCount] = useState(0)
   const [subtotal, setSubtotal] = useState(0)

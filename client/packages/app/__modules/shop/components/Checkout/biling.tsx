@@ -9,17 +9,6 @@ const Billing = ({ register, watch, paymentOptions, errors, setValue }) => {
   const [billingAdd, setBillingAdd] = useState(true)
   const [checked, setChecked] = useState(paymentOptions[0].name)
 
-  const firstNameErr = (errors && errors.firstName && errors.firstName) || null
-  const lastNameErr = (errors && errors.lastName && errors.lastName) || null
-  const emailErr = (errors && errors.email && errors.email) || null
-  const countryErr = (errors && errors.country && errors.country) || null
-  const addressLine1Err = (errors && errors.addressLine1 && errors.addressLine1) || null
-  const addressLine2Err = (errors && errors.addressLine2 && errors.addressLine2) || null
-  const cityErr = (errors && errors.city && errors.city) || null
-  const stateErr = (errors && errors.state && errors.state) || null
-  const zipCodeErr = (errors && errors.zipCode && errors.zipCode) || null
-  const phoneErr = (errors && errors.phone && errors.phone) || null
-
   const registerOptions = {
     paymentMethod: {
       required: 'Payment method is required'

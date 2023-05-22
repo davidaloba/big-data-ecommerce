@@ -1,9 +1,10 @@
 import api from '@globalStore/api'
 
 interface IOrder {
-  billing: object
-  shipping: object
-  cart: object
+  billing?: object
+  shipping?: object
+  cart?: Array<any>
+  status?: string
 }
 
 const ordersApi = api.injectEndpoints({
@@ -13,7 +14,7 @@ const ordersApi = api.injectEndpoints({
         return {
           url: '/orders',
           method: 'POST',
-          body: { data: { ...order, slug: `${order.billing.payment.method}` } }
+          body: { data: { ...order, slug: `${order.billing.payment.transaction_id}` } }
           // headers: new Headers({ 'content-type': 'application/json' })
         }
       },
