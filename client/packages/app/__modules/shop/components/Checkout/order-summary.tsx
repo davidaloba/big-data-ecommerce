@@ -1,6 +1,7 @@
 import { getStrapiMedia, numberWithCommas } from '@globalUtils/index'
 import Link from 'next/link'
 import Image from 'next/image'
+import Cookies from 'js-cookie'
 import { useContext, useState, useEffect } from 'react'
 import { CheckoutContext } from '.'
 import { RootState, useAppSelector } from '@globalStore/index'
@@ -80,6 +81,7 @@ const OrderSummary = ({ watch, errors }) => {
             alert(err)
           }
           closePaymentModal() // this will close the modal programmatically
+          Cookies.remove('cart')
           router.push(`/order/${response.transaction_id}`)
         } else {
           alert(` Your payment is ${response.status}.Please try again later`)

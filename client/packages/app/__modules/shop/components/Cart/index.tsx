@@ -9,21 +9,19 @@ const Cart = () => {
   const { items } = useAppSelector((state: RootState) => state.cart)
 
   const [subtotal, setSubtotal] = useState(0)
-  const [cart, setCart] = useState([])
   const [cartCount, setCartCount] = useState(0)
 
   useEffect(() => {
     const cartCount =
-      cart.reduce((prev, current) => prev + current.qty, 0) !== 0
-        ? cart.reduce((prev, current) => prev + current.qty, 0)
+      items && items.reduce((prev, current) => prev + current.qty, 0) !== 0
+        ? items.reduce((prev, current) => prev + current.qty, 0)
         : 0
     setCartCount(cartCount)
-    const count = cart.reduce((prev, current) => prev + current.price * current.qty, 0)
+    const count = items && items.reduce((prev, current) => prev + current.price * current.qty, 0)
     setSubtotal(count)
-    setCart(items)
   }, [items])
 
-  return cart.length < 1 ? (
+  return items && items.length < 1 ? (
     <section className=" pb-10 md:pb-20 pt-0 px-5 md:px-12 lg:px-16 2xl:px-20 ">
       <div className="px-4 py-5 uppercase  text-center">
         There are no items in your sopping cart.
@@ -40,14 +38,14 @@ const Cart = () => {
             </div>
             <div className="  "></div>
           </div>
-          <CartItems cart={cart} />
+          <CartItems cart={items} />
           <div className="md:hidden flex flex-col ">
             <div className=" flex flex-row justify-between items-center px-5 py-5 border-t ">
               <div className=" ">SUBTOTAL</div>
               <div className="  ">
                 $
                 {numberWithCommas(
-                  cart.reduce((prev, current) => prev + current.price * current.qty, 0)
+                  items.reduce((prev, current) => prev + current.price * current.qty, 0)
                 )}
               </div>
             </div>

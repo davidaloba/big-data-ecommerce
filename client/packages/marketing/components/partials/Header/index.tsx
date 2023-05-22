@@ -17,9 +17,10 @@ const Navigation = ({ logo, navMenu, shopMenu }) => {
 
   useEffect(() => {
     const count =
-      items.reduce((prev, current) => prev + current.qty, 0) !== 0
+      items &&
+      (items.reduce((prev, current) => prev + current.qty, 0) !== 0
         ? ` ${items.reduce((prev, current) => prev + current.qty, 0)}`
-        : ''
+        : '')
     setCartCount(count)
   }, [items])
 
