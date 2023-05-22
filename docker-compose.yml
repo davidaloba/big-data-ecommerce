@@ -20,8 +20,6 @@ services:
       - ./client:/app
     networks:
       - traefiknet
-    depends_on:
-      - strapi
     labels:
       - traefik.enable=true
       - traefik.http.routers.client.entrypoints=websecure
