@@ -1,0 +1,19 @@
+{
+    "collectionName": "components_order_shipping_method",
+    "info": {
+      "displayName": "ShippingMethod"
+    },
+    "options": {},
+      "attributes": {
+      "name": {
+        "type": "string"
+      },
+      "cost": {        
+        "type": "integer"
+      },
+      "duration": {
+        "type": "string"
+      }
+    }
+  }
+  

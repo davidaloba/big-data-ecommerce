@@ -1,4 +1,4 @@
-interface IShop {
-  cart: object[]
+interface ICart {
+  items: object[]
   openCart?: boolean
 }

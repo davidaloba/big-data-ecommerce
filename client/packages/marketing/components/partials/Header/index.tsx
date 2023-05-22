@@ -11,17 +11,17 @@ import MenuLink from './menulink'
 import MenuCart from './menu-cart'
 
 const Navigation = ({ logo, navMenu, shopMenu }) => {
-  const { cart } = useAppSelector((state: RootState) => state.shop)
+  const { items } = useAppSelector((state: RootState) => state.cart)
   const [mobileMenu, setMobileMenu] = useState(false)
   const [cartCount, setCartCount] = useState('')
 
   useEffect(() => {
     const count =
-      cart.reduce((prev, current) => prev + current.qty, 0) !== 0
-        ? ` ${cart.reduce((prev, current) => prev + current.qty, 0)}`
+      items.reduce((prev, current) => prev + current.qty, 0) !== 0
+        ? ` ${items.reduce((prev, current) => prev + current.qty, 0)}`
         : ''
     setCartCount(count)
-  }, [cart])
+  }, [items])
 
   return (
     <header className=" sticky top-0 z-50 ">

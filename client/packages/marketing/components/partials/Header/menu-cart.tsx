@@ -1,18 +1,18 @@
 import { RootState, useAppSelector, useAppDispatch } from '@globalStore/index'
 import Image from 'next/image'
 import Link from 'next/link'
-import { removeFromCart } from '@appModules/shop/store/slice'
+import { removeFromCart } from '@appModules/shop/store/cart.slice'
 import { getStrapiMedia, numberWithCommas } from '@globalUtils/index'
 import { useEffect, useState } from 'react'
 
 const MenuCart = () => {
-  const { cart: data, openCart } = useAppSelector((state: RootState) => state.shop)
+  const { items, openCart } = useAppSelector((state: RootState) => state.cart)
   const [subtotal, setSubtotal] = useState(0)
   const [cart, setCart] = useState([])
   useEffect(() => {
     const count = cart.reduce((prev, current) => prev + current.price * current.qty, 0)
     setSubtotal(count)
-    setCart(data)
+    setCart(items)
   }, [])
 
   const dispatch = useAppDispatch()

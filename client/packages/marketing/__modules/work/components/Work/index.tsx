@@ -1,5 +1,5 @@
 'use client'
-import { useGetProjectsQuery } from '../../store/api'
+import { useGetProjectsQuery } from '../../store/projects.api'
 import ProjectCard from '../ProjectCard'
 import NoResults from '@marketingComponents/__lib/no-results'
 import PageTitle from '@marketingComponents/__lib/PageTitle'

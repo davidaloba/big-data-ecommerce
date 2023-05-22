@@ -1,0 +1,25 @@
+{
+    "collectionName": "components_order_payment_details",
+    "info": {
+      "displayName": "PaymentDetails"
+    },
+    "options": {},
+      "attributes": {
+      "method": {
+        "type": "string"
+      },
+      "_ref": {
+        "type": "string"
+      },
+      "status": {
+        "type": "string"
+      },
+      "tx_ref": {
+        "type": "string"
+      },
+      "transaction_id": {        
+        "type": "integer"
+      }
+    }
+  }
+  

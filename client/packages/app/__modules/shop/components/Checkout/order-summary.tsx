@@ -6,13 +6,16 @@ import { CheckoutContext } from '.'
 import { RootState, useAppSelector } from '@globalStore/index'
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3'
 import { useRouter } from 'next/router'
+import { useAddOrderMutation } from '@appModules/shop/store/orders.api'
 
 const OrderSummary = ({ watch, errors }) => {
-  const [order, setOrder] = useState({})
-  useEffect(() => console.log(' order:', order), [order])
+  const [
+    addOrder, // This is the mutation trigger
+    { isLoading, error, isSuccess, isError } // This is the destructured mutation result
+  ] = useAddOrderMutation()
 
-  useEffect(() => console.log('errors:', errors, '|'), [watch()])
-  useEffect(() => console.log('formValues', watch(), '|'), [watch()])
+  // useEffect(() => console.log('errors:', errors, '|'), [watch()])
+  // useEffect(() => console.log('formValues', watch(), '|'), [watch()])
   useEffect(() => console.log('checkout', checkout), [watch()])
 
   const router = useRouter()
@@ -20,21 +23,22 @@ const OrderSummary = ({ watch, errors }) => {
   const [checkout, setCheckout] = useContext(CheckoutContext)
   const { stage, shipping, billing } = checkout
 
-  const { cart: data } = useAppSelector((state: RootState) => state.shop)
+  const { items } = useAppSelector((state: RootState) => state.cart)
   const [cart, setCart] = useState([])
   const [subtotal, setSubtotal] = useState(0)
   const [shippingCost, setShippingCost] = useState(0)
   const [tax, setTax] = useState(0)
   const [total, setTotal] = useState(0)
   useEffect(() => {
-    setCart(data)
-    setShippingCost(shipping && shipping.method ? shipping.method.cost : 0)
-    const subtotal = data.reduce((prev, current) => prev + current.price * current.qty, 0)
-    setSubtotal(subtotal)
+    const subtotal = items.reduce((prev, current) => prev + current.price * current.qty, 0)
     const tax = (7.5 / 100) * subtotal
+    setCart(items)
+    setShippingCost(shipping && shipping.method ? shipping.method.cost : 0)
+    setSubtotal(subtotal)
     setTax(tax)
     setTotal(subtotal + shippingCost + tax)
-  }, [shipping, data])
+    console.log(error)
+  }, [shipping, items, error])
 
   const handleFlutterPayment = useFlutterwave({
     public_key: 'FLWPUBK-336e1502b66347f21711416b1f2b7c66-X',
@@ -64,12 +68,18 @@ const OrderSummary = ({ watch, errors }) => {
               cart: cart,
               billing: {
                 ...billing,
-                payment: { ...billing.payment, ...response }
+                payment: {
+                  ...billing.payment,
+                  _ref: response.flw_ref,
+                  status: response.status,
+                  tx_ref: response.tx_ref,
+                  transaction_id: response.transaction_id
+                }
               },
               shipping
             }
+            addOrder(order)
             console.log(order)
-            // Create Order Hook: Add Order to Strapi
           } catch (err) {
             alert(err)
           }
@@ -133,7 +143,7 @@ const OrderSummary = ({ watch, errors }) => {
         ...checkout,
         errorMessage: ''
       }))
-      setOrder({ cart, billing, shipping })
+      addOrder({ cart, billing, shipping })
       // placeOrder()
     }
   }

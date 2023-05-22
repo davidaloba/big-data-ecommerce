@@ -1,6 +1,6 @@
 import GithubRepoCard from './github-repo-card'
 import Header from '@marketingComponents/__lib/Header'
-import { useGetLatestReposQuery } from '../../store/api'
+import { useGetLatestReposQuery } from '../../store/pages.api'
 
 const LatestCode = ({ header }) => {
   const { data: repos, isSuccess } = useGetLatestReposQuery('davidaloba')

@@ -1,0 +1,18 @@
+{
+    "collectionName": "components_order_shipping",
+    "info": {
+      "displayName": "Shipping"
+    },
+    "options": {},
+    "attributes": {
+      "address": {
+        "type": "component",
+        "component": "order.address"
+      },
+      "method": {
+        "type": "component",
+        "component": "order.shipping-method"
+      }
+    }
+  }
+  

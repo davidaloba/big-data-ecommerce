@@ -1,7 +1,7 @@
 import { getStrapiMedia, numberWithCommas } from '@globalUtils/index'
 import Link from 'next/link'
 import Image from 'next/image'
-import { removeFromCart } from '@appModules/shop/store/slice'
+import { removeFromCart } from '@appModules/shop/store/cart.slice'
 import { useAppDispatch } from '@globalStore/index'
 
 const CartItems = ({ cart }) => {

@@ -6,7 +6,7 @@ import OrderSummary from './order-summary'
 import CartItems from './cart-items'
 
 const Cart = () => {
-  const { cart: data } = useAppSelector((state: RootState) => state.shop)
+  const { items } = useAppSelector((state: RootState) => state.cart)
 
   const [subtotal, setSubtotal] = useState(0)
   const [cart, setCart] = useState([])
@@ -20,8 +20,8 @@ const Cart = () => {
     setCartCount(cartCount)
     const count = cart.reduce((prev, current) => prev + current.price * current.qty, 0)
     setSubtotal(count)
-    setCart(data)
-  }, [])
+    setCart(items)
+  }, [items])
 
   return cart.length < 1 ? (
     <section className=" pb-10 md:pb-20 pt-0 px-5 md:px-12 lg:px-16 2xl:px-20 ">

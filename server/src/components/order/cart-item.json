@@ -1,0 +1,28 @@
+{
+    "collectionName": "components_order_cart-item",
+    "info": {
+      "displayName": "CartItem"
+    },
+    "options": {},
+    "attributes": {
+        "slug": {
+            "type": "string"
+        },
+        "name": {
+            "type": "string"
+        },
+        "featuredImage": {
+            "type": "string"
+        },
+        "selectedSize": {
+            "type": "string"
+        },
+        "qty": {        
+            "type": "integer"
+        },
+        "price": {        
+            "type": "integer"
+        }
+    }
+  }
+  

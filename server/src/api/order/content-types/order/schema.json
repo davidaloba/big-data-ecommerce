@@ -1,0 +1,44 @@
+{
+  "kind": "collectionType",
+  "collectionName": "order",
+  "info": {
+    "singularName": "order",
+    "pluralName": "orders",
+    "displayName": "order",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "slug": {
+      "required": true,
+      "type": "uid"
+    },
+    "cart": {
+      "type": "component",
+      "repeatable": true,
+      "component": "order.cart-item"
+    },
+    "billing": {
+      "type": "component",
+      "component": "order.billing"
+    },
+    "shipping": {
+      "type": "component",
+      "component": "order.shipping"
+    },
+    "status": {
+      "type": "enumeration",
+      "enum": [
+        "Processing",
+        "On hold",
+        "Completed",
+        "Cancelled",
+        "Refunded",
+        "Failed",
+        "Draft"
+      ]
+    }
+  }
+}

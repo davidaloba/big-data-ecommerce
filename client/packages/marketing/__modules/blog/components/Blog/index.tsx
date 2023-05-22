@@ -1,6 +1,6 @@
 'use client'
 import { useState } from 'react'
-import { useGetArticlesQuery } from '../../store/api'
+import { useGetArticlesQuery } from '../../store/articles.api'
 import ArticleCard from '../ArticleCard'
 import SideBar from '../BlogSideBar'
 import NoResults from '@marketingComponents/__lib/no-results'

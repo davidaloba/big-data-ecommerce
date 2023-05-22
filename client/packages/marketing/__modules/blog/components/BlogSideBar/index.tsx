@@ -1,5 +1,5 @@
 import Repeatable from '@marketingComponents/__lib/Repeatable'
-import { useGetArticlesQuery, useGetTopicsQuery } from '@marketingModules/blog/store/api'
+import { useGetArticlesQuery, useGetTopicsQuery } from '@marketingModules/blog/store/articles.api'
 import Link from 'next/link'
 
 const SideBar = ({ relatedArticles }: { relatedArticles? }) => {

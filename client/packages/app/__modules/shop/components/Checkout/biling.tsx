@@ -131,7 +131,7 @@ const Billing = ({ register, watch, paymentOptions, errors, setValue }) => {
       billing: {
         ...billing,
         address: watch('billing.address'),
-        method: watch('billing.payment.method')
+        payment: { ...billing.payment, method: watch('billing.payment.method') }
       }
     }))
   }, [watch('billing.address'), watch('billing.payment.method')])

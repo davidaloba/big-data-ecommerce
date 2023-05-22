@@ -3,7 +3,7 @@
 import NoResults from '@marketingComponents/__lib/no-results'
 import Repeatable from '@marketingComponents/__lib/Repeatable'
 import ProductCard from '@appModules/shop/components/ProductCard'
-import { useGetProductsQuery } from '@appModules/shop/store/api'
+import { useGetProductsQuery } from '@appModules/shop/store/products.api'
 
 const Shop = ({ pageID }) => {
   const { data: products, isSuccess } = useGetProductsQuery(pageID)
