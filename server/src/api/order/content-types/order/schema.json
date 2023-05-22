@@ -38,7 +38,8 @@
         "Refunded",
         "Failed",
         "Draft"
-      ]
+      ],
+      "default": "Processing"
     }
   }
 }

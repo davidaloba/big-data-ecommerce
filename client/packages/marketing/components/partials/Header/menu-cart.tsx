@@ -59,7 +59,7 @@ const MenuCart = () => {
           </div>
           <div className=" flex flex-row justify-between items-center px-4 py-6 border-t ">
             <div className=" ">SUBTOTAL</div>
-            <div className=" "></div>
+            <div className=" ">${numberWithCommas(subtotal)}</div>
           </div>
           <div className="group/checkout bg-gray-700">
             <Link

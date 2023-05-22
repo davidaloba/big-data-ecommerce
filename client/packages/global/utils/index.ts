@@ -1,4 +1,4 @@
-const indexes = ['blog', 'shop', 'work', 'category', 'topic', 'author']
+const indexes = ['blog', 'work', 'shop', 'checkout', 'cart', 'category', 'topic', 'author', 'order']
 const contentTypes = {
   page: 'pages',
   blog: 'articles',
@@ -6,7 +6,8 @@ const contentTypes = {
   author: 'authors',
   work: 'projects',
   shop: 'products',
-  category: 'categories'
+  category: 'categories',
+  order: 'orders'
 }
 
 export function getData(slug: string | string[], preview?: boolean) {
@@ -28,6 +29,7 @@ export function getData(slug: string | string[], preview?: boolean) {
     data.contentType = index in contentTypes && contentTypes[index]
     data.apiUrl = getStrapiURL(
       `/${data.contentType}?filters[slug][$eq]=${pageID}${previewParams}&populate=deep`
+      // `/${data.contentType}/${pageID}?${previewParams}&populate=deep`
     )
   }
 

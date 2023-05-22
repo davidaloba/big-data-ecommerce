@@ -37,31 +37,12 @@ const CheckoutProvider = ({ children }) => {
 
 export { CheckoutProvider, CheckoutContext }
 
-const shippingOptions = [
-  {
-    name: 'Express Delivery',
-    cost: 5000,
-    duration: '1 - 3 business days'
-  },
-  {
-    name: 'Standard Delivery',
-    cost: 3000,
-    duration: '5 - 7 business days'
-  }
-]
-
-const paymentOptions = [
-  {
-    name: 'FlutterWave'
-  }
-]
-
-const CheckoutMain = () => {
+const CheckoutMain = ({ shippingMethods, paymentMethods }) => {
   return (
     <CheckoutProvider>
       <Checkout
-        paymentOptions={paymentOptions}
-        shippingOptions={shippingOptions}
+        paymentOptions={paymentMethods}
+        shippingOptions={shippingMethods}
       />
     </CheckoutProvider>
   )

@@ -22,6 +22,7 @@ import Cart from '@appModules/shop/components/Cart'
 import Checkout from '@appModules/shop/components/Checkout'
 import Work from '@marketingModules/work/components/Work'
 import Project from '@marketingModules/work/components/Project'
+import Order from '@appModules/shop/components/Order'
 
 interface Page {
   apiUrl: string
@@ -62,8 +63,7 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
 
   if (!pageData) return <ErrorPage statusCode={404} />
 
-  const pageTID =
-    pageID === 'home' || pageID === 'cart' || pageID === 'checkout' ? pageID : contentType
+  const pageTID = pageID === 'home' ? pageID : contentType
 
   let Layout
   switch (pageTID) {
@@ -106,6 +106,9 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
     case 'products':
       Content = Product
       break
+    case 'orders':
+      Content = Order
+      break
     default:
       Content = BlockManager
       break
@@ -117,7 +120,7 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
     pageID,
     ...pageData
   }
-  // console.log(globalData, props)
+  console.log(globalData, props)
 
   return (
     <Layout

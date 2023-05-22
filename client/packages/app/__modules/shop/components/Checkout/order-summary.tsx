@@ -9,13 +9,10 @@ import { useRouter } from 'next/router'
 import { useAddOrderMutation } from '@appModules/shop/store/orders.api'
 
 const OrderSummary = ({ watch, errors }) => {
-  const [
-    addOrder, // This is the mutation trigger
-    { isLoading, error, isSuccess, isError } // This is the destructured mutation result
-  ] = useAddOrderMutation()
+  const [addOrder, { isSuccess }] = useAddOrderMutation()
 
-  // useEffect(() => console.log('errors:', errors, '|'), [watch()])
-  // useEffect(() => console.log('formValues', watch(), '|'), [watch()])
+  useEffect(() => console.log('errors:', errors, '|'), [watch()])
+  useEffect(() => console.log('formValues', watch(), '|'), [watch()])
   useEffect(() => console.log('checkout', checkout), [watch()])
 
   const router = useRouter()
@@ -37,8 +34,7 @@ const OrderSummary = ({ watch, errors }) => {
     setSubtotal(subtotal)
     setTax(tax)
     setTotal(subtotal + shippingCost + tax)
-    console.log(error)
-  }, [shipping, items, error])
+  }, [shipping, items])
 
   const handleFlutterPayment = useFlutterwave({
     public_key: 'FLWPUBK-336e1502b66347f21711416b1f2b7c66-X',
@@ -148,54 +144,56 @@ const OrderSummary = ({ watch, errors }) => {
     }
   }
   return (
-    <div className=" md:flex flex-col  border border-gray-200">
-      <div className=" flex flex-row justify-between items-center px-5 py-5 text-black border-b">
-        <div className=" ">ORDER SUMMARY</div>
-      </div>
-      <div className=" flex flex-row justify-between items-center px-5 py-5 border-b">
-        <div className="text-sm ">Shipping from Lagos, Nigeria</div>
-      </div>
-      <div className=" max-h-[35vh] overflow-y-scroll">
-        {cart.map((item, i) => (
-          <div
-            key={i}
-            className="flex flex-row justify-between px-4 py-6 ">
-            <div className="flex flex-row">
-              <Link href={`/shop/${item.slug}`}>
-                <Image
-                  src={getStrapiMedia(item.featuredImage)}
-                  alt="logo"
-                  width="120"
-                  height="80"
-                />
-              </Link>
-              <div className="flex flex-col gap-2 ml-4">
-                <p>{item.name}</p>
-                <div>
-                  <p>SIZE: {item.selectedSize}</p>
-                  <p>QTY: {item.qty}</p>
+    <div className=" flex flex-col-reverse md:flex-col  border border-gray-200">
+      <div className=" md:flex flex-col ">
+        <div className=" flex flex-row justify-between items-center px-5 py-5 text-black border-b">
+          <div className=" ">ORDER SUMMARY</div>
+        </div>
+        <div className=" flex flex-row justify-between items-center px-5 py-5 border-b">
+          <div className="text-sm ">Shipping from Lagos, Nigeria</div>
+        </div>
+        <div className=" md:max-h-[35vh] overflow-y-scroll">
+          {cart.map((item, i) => (
+            <div
+              key={i}
+              className="flex flex-row justify-between px-4 py-6 ">
+              <div className="flex flex-row">
+                <Link href={`/shop/${item.slug}`}>
+                  <Image
+                    src={getStrapiMedia(item.featuredImage)}
+                    alt="logo"
+                    width="120"
+                    height="80"
+                  />
+                </Link>
+                <div className="flex flex-col gap-2 ml-4">
+                  <p>{item.name}</p>
+                  <div>
+                    <p>SIZE: {item.selectedSize}</p>
+                    <p>QTY: {item.qty}</p>
+                  </div>
                 </div>
               </div>
+              <p>${numberWithCommas(item.price)}</p>
             </div>
-            <p>${numberWithCommas(item.price)}</p>
-          </div>
-        ))}
-      </div>
-      <div className=" flex flex-row justify-between items-center px-5 py-2  ">
-        <div className=" ">Subtotal</div>
-        <div className="  ">${numberWithCommas(subtotal)}</div>
-      </div>
-      <div className=" flex flex-row justify-between items-center px-5 py-2  ">
-        <div className=" ">Shipping</div>
-        <div className="  ">${numberWithCommas(shippingCost)}</div>
-      </div>
-      <div className=" flex flex-row justify-between items-center px-5 py-2 border-b ">
-        <div className=" ">VAT (7.5%)</div>
-        <div className="  ">${numberWithCommas(tax)}</div>
-      </div>
-      <div className=" flex flex-row justify-between items-center px-5 py-5 border-b ">
-        <div className=" ">TOTAL</div>
-        <div className="  ">${numberWithCommas(total)}</div>
+          ))}
+        </div>
+        <div className=" flex flex-row justify-between items-center px-5 py-2  ">
+          <div className=" ">Subtotal</div>
+          <div className="  ">${numberWithCommas(subtotal)}</div>
+        </div>
+        <div className=" flex flex-row justify-between items-center px-5 py-2  ">
+          <div className=" ">Shipping</div>
+          <div className="  ">${numberWithCommas(shippingCost)}</div>
+        </div>
+        <div className=" flex flex-row justify-between items-center px-5 py-2 border-b ">
+          <div className=" ">VAT (7.5%)</div>
+          <div className="  ">${numberWithCommas(tax)}</div>
+        </div>
+        <div className=" flex flex-row justify-between items-center px-5 py-5 border-b ">
+          <div className=" ">TOTAL</div>
+          <div className="  ">${numberWithCommas(total)}</div>
+        </div>
       </div>
       <div className=" flex flex-row justify-between items-center px-5 py-3 border-t  bg-gray-700 ">
         <div

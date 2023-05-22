@@ -18,14 +18,14 @@ const Checkout = ({ paymentOptions, shippingOptions }) => {
 
   return (
     <section className="pb-10 md:pb-20 pt-0 px-5 md:px-12 lg:px-16 2xl:px-20 ">
-      <div className="sticky top-[68px] z-10 py-4 bg-white text-center text-red-500 uppercase ">
+      <div className="sticky md:top-[42px] xl:top-[68px] z-10 py-4 bg-white text-center text-red-500 uppercase ">
         {errorMessage}
       </div>
       <div className="flex flex-col  md:flex-row  justify-between items-start  ">
         <div
           className={` md:border-x md:mr-[10px] lg:mr-[30px] xl:mr-[50px] border-gray-200 w-full `}>
           <div className=" ">
-            <div className=" sticky z-10 top-[100px] flex flex-row border-y bg-white">
+            <div className=" md:sticky z-10 md:top-[74px] xl:top-[100px]  flex flex-row border-y bg-white">
               <button
                 onClick={() => setCheckout((checkout) => ({ ...checkout, stage: 'info' }))}
                 className={`flex-1  px-5 py-5 border-0 border-r hover:underline
@@ -76,7 +76,7 @@ const Checkout = ({ paymentOptions, shippingOptions }) => {
             </form>
           </div>
         </div>
-        <div className=" sticky top-[100px]  md:block min-w-[35%] xl:min-w-[30%]">
+        <div className=" md:sticky md:top-[74px] xl:top-[100px]  min-w-full md:min-w-[35%] xl:min-w-[30%]">
           <OrderSummary
             errors={errors}
             watch={watch}

@@ -1,0 +1,30 @@
+{
+  "kind": "singleType",
+  "collectionName": "checkouts",
+  "info": {
+    "singularName": "checkout",
+    "pluralName": "checkouts",
+    "displayName": "Checkout",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "shippingMethods": {
+      "type": "component",
+      "repeatable": true,
+      "component": "order.shipping-method"
+    },
+    "paymentMethods": {
+      "displayName": "PaymentMethods",
+      "type": "component",
+      "repeatable": true,
+      "component": "order.payment-methods"
+    },
+    "Title": {
+      "type": "string"
+    }
+  }
+}

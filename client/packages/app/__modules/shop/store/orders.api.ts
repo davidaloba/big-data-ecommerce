@@ -20,7 +20,12 @@ const ordersApi = api.injectEndpoints({
       invalidatesTags: [{ type: 'Orders', id: 'LIST' }]
     }),
     getOrder: build.query({
-      query: (slug) => `order/${slug}`,
+      query: (url) => url,
+      transformResponse: (order): IOrder => {
+        return Array.isArray(order.data)
+          ? order.data[0] && order.data[0].attributes
+          : order.data && order.data.attributes
+      },
       providesTags: (result, error, id) => [{ type: 'Orders', id }]
     }),
     updateOrder: build.mutation({

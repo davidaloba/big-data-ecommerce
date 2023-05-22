@@ -34,7 +34,7 @@ const Cart = () => {
       <div className=" relative flex flex-col  md:flex-row  justify-between items-start ">
         <div
           className={` md:border-x md:mr-[10px] lg:mr-[30px] xl:mr-[50px] border-gray-200 w-full `}>
-          <div className=" sticky top-[68px] flex flex-row justify-between items-center px-5 py-5 border-y bg-white ">
+          <div className=" md:sticky  md:top-[42px] xl:top-[68px]flex flex-row justify-between items-center px-5 py-5 border-y bg-white ">
             <div className=" ">
               SHOPPING CART : {`${cartCount} ITEM${cartCount === 0 || cartCount > 1 ? 'S' : ''}`}
             </div>
@@ -78,7 +78,7 @@ const Cart = () => {
             </p>
           </div>
         </div>
-        <div className=" sticky top-[68px]  md:block min-w-[35%] xl:min-w-[30%]">
+        <div className=" hidden md:sticky  md:top-[42px] xl:top-[68px]  md:block min-w-[35%] xl:min-w-[30%]">
           <OrderSummary subtotal={subtotal} />
         </div>
       </div>
