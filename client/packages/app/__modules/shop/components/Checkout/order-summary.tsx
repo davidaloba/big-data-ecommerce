@@ -12,10 +12,6 @@ import { useAddOrderMutation } from '@appModules/shop/store/orders.api'
 const OrderSummary = ({ watch, errors }) => {
   const [addOrder, { isSuccess }] = useAddOrderMutation()
 
-  useEffect(() => console.log('errors:', errors, '|'), [watch()])
-  useEffect(() => console.log('formValues', watch(), '|'), [watch()])
-  useEffect(() => console.log('checkout', checkout), [watch()])
-
   const router = useRouter()
 
   const [checkout, setCheckout] = useContext(CheckoutContext)
@@ -76,7 +72,6 @@ const OrderSummary = ({ watch, errors }) => {
               shipping
             }
             addOrder(order)
-            console.log(order)
           } catch (err) {
             alert(err)
           }
