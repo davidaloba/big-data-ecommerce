@@ -2,7 +2,7 @@
 FROM node:14-alpine AS deps
 
 # If you need libc for any of your deps, uncomment this line:
-RUN apk add --no-cache libc6-compat
+# RUN apk add --no-cache libc6-compat
 
 # Copy over ONLY the package.json and yarn.lock so that this `yarn install` layer is only recomputed
 # if these dependency files change. Nice speed hack!
