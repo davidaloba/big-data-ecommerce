@@ -83,7 +83,8 @@ nbproject
 public/uploads/*
 src/plugins/*
 !public/uploads/.gitkeep
-.history
+*.history
+*.code-workspace
 
 ############################
 # Node.js

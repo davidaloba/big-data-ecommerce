@@ -1,13 +1,13 @@
 version: '3'
 
 networks:
-  proxy:
-    name: proxy
+  traefiknet:
+    name: traefiknet
     external: true
     
 
 services:
-  nextjs:
+  client:
     container_name: client
     build: ./client
     image: next_simple:latest
@@ -21,11 +21,17 @@ services:
     ports:
       - "3000:3000"
     networks:
-      - proxy
+      - traefiknet
     depends_on:
       - strapi
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.client.entrypoints=websecure
+      - traefik.http.routers.client.rule=Host(`yinkasamuels.com`)
+      - traefik.http.routers.client.tls=true
+      - traefik.http.routers.client.tls.certresolver=myresolver
 
-  strapi:
+  server:
     container_name: server
     build: ./server
     image: strapi:latest
@@ -56,5 +62,11 @@ services:
     ports:
       - '1337:1337'
     networks:
-      - proxy
+      - traefiknet
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.server.entrypoints=websecure
+      - traefik.http.routers.server.rule=Host(`cms.yinkasamuels.com`)
+      - traefik.http.routers.server.tls=true
+      - traefik.http.routers.server.tls.certresolver=myresolver
   
