@@ -26,7 +26,7 @@ const articlesApi = api.injectEndpoints({
     }),
 
     getTopics: build.query({
-      query: () => `${process.env.NEXT_PUBLIC_API_URL}/api/topics?populate=deep`,
+      query: () => `${process.env.API_URL}/api/topics?populate=deep`,
       transformResponse: (res: { [index: string]: object | object[] }) => {
         return res.data
       }

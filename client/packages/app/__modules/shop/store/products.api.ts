@@ -19,13 +19,13 @@ const productsApi = api.injectEndpoints({
       query: (category) => {
         const pageNo = 1
         const start = +pageNo === 1 ? 0 : (+pageNo - 1) * 24
-        const baseUrl = `/products?pagination[limit]=${24}&pagination[start]=${start}&pagination[withCount]=true`
+        const apiUrl = `/products?pagination[limit]=${24}&pagination[start]=${start}&pagination[withCount]=true`
 
         return category === 'shop'
-          ? `${baseUrl}&populate=deep`
-          : `${baseUrl}&filters[category][slug][$eq]=${category}&populate=deep`
+          ? `${apiUrl}&populate=deep`
+          : `${apiUrl}&filters[category][slug][$eq]=${category}&populate=deep`
 
-        return baseUrl
+        return apiUrl
       },
       transformResponse: (res): Array<IProduct> => {
         return res.data
@@ -33,11 +33,11 @@ const productsApi = api.injectEndpoints({
     }),
     getRelatedProducts: build.query({
       query: ({ category, slug }) => {
-        const baseUrl = ``
+        const apiUrl = ``
 
         return `/products?filters[category][slug][$eq]=${category}&filters[slug][$ne]=${slug}&pagination[limit]=${4}&populate=deep`
 
-        return baseUrl
+        return apiUrl
       },
       transformResponse: (res): Array<IProduct> => {
         return res.data

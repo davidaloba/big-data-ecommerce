@@ -12,15 +12,13 @@ services:
     build:
       dockerfile: nextjs.Dockerfile.prod
     restart: always
-    ports:
-      - 3100:3000
     image: nextjs:latest
     environment:
       NODE_ENV: ${NODE_ENV}
-      NEXT_PUBLIC_API_URL: ${STRAPI_URL}
+      API_URL: ${STRAPI_URL}
       PREVIEW_SECRET: ${PREVIEW_SECRET}
-    # volumes:
-    #   - ./client:/app
+    ports:
+      - 3100:3000
     networks:
       - traefiknet
     labels:

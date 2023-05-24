@@ -5,7 +5,7 @@ import { Global, Page } from 'packages/global/__types/models'
 const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${process.env.STRAPI_URL}/api`
+    baseUrl: `${process.env.API_URL}/api`
   }),
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
