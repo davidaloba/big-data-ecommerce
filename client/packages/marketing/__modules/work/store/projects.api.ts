@@ -1,9 +1,10 @@
 import api from '@globalStore/api'
+import { getStrapiURL } from '@globalUtils/index'
 
 const projectsApi = api.injectEndpoints({
   endpoints: (build) => ({
     getProjects: build.query({
-      query: () => `${process.env.NEXT_PUBLIC_API_URL}/api/projects?populate=deep`,
+      query: () => getStrapiURL(`/projects?populate=deep`),
       transformResponse: (res: { [index: string]: object | object[] }) => {
         return res.data
       }

@@ -1,3 +1,5 @@
+const apiHost = 'https://cms.yinkasamuels.com'
+
 const indexes = ['blog', 'work', 'shop', 'checkout', 'cart', 'category', 'topic', 'author', 'order']
 const contentTypes = {
   page: 'pages',
@@ -11,7 +13,7 @@ const contentTypes = {
 }
 
 export function getStrapiURL(path: string) {
-  return `${process.env.NEXT_PUBLIC_API_URL}/api${path}`
+  return `${apiHost}/api${path}`
 }
 
 export function getStrapiMedia(url: string) {
@@ -21,7 +23,7 @@ export function getStrapiMedia(url: string) {
   if (url.startsWith('http') || url.startsWith('//')) {
     return url
   }
-  return `${process.env.NEXT_PUBLIC_API_URL}${url}`
+  return `${apiHost}${url}`
 }
 
 export function getData(slug: string | string[], preview?: boolean) {
@@ -91,7 +93,7 @@ export const numberWithCommas = (x: number) => {
 
 export const fetchHoverImg = async (slug: string, setData: Function) => {
   fetch(
-    `${process.env.NEXT_PUBLIC_API_URL}/api/products?filters[slug][$eq]=${slug}&populate[hoverImage][populate][0]=url`
+    `${apiHost}/api/products?filters[slug][$eq]=${slug}&populate[hoverImage][populate][0]=url`
   )
     .then((res) => {
       if (res.ok) {
@@ -109,7 +111,7 @@ export const fetchHoverImg = async (slug: string, setData: Function) => {
 
 // const [topics, setTopics] = useState([])
 // const fetchTopics = async () => {
-//   fetch(`${process.env.NEXT_PUBLIC_API_URL}/api/topics?populate=deep`)
+//   fetch(`${apiHost}/api/topics?populate=deep`)
 //     .then((res) => {
 //       if (res.ok) {
 //         return res.json()

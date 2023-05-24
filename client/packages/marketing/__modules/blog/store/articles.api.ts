@@ -1,4 +1,5 @@
 import api from '@globalStore/api'
+import { getStrapiURL } from '@globalUtils/index'
 
 const articlesApi = api.injectEndpoints({
   endpoints: (build) => ({
@@ -12,13 +13,13 @@ const articlesApi = api.injectEndpoints({
         const topicFilter = `filters[topic][slug][$eq]=${slug}&`
         const authorFilter = `filters[author][slug][$eq]=${slug}&`
 
-        return contentType === 'topics'
+        return getStrapiURL(contentType === 'topics'
           ? `/articles?${topicFilter}pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
           : contentType === 'authors'
           ? `/articles?${authorFilter}pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
           : contentType === 'recent'
           ? `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&sort=publishedAt%3Aasc&populate=deep`
-          : `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
+          : `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`)
       },
       transformResponse: (res: { [index: string]: object | object[] }) => {
         return res.data
@@ -26,7 +27,7 @@ const articlesApi = api.injectEndpoints({
     }),
 
     getTopics: build.query({
-      query: () => `${process.env.NEXT_PUBLIC_API_URL}/api/topics?populate=deep`,
+      query: () => getStrapiURL(`/topics?populate=deep`),
       transformResponse: (res: { [index: string]: object | object[] }) => {
         return res.data
       }

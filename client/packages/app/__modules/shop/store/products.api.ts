@@ -1,4 +1,5 @@
 import api from '@globalStore/api'
+import { getStrapiURL } from '@globalUtils/index'
 
 interface IProduct {
   slug?
@@ -16,29 +17,15 @@ interface IProduct {
 const productsApi = api.injectEndpoints({
   endpoints: (build) => ({
     getProducts: build.query({
-      query: (category) => {
-        const pageNo = 1
-        const start = +pageNo === 1 ? 0 : (+pageNo - 1) * 24
-        const apiUrl = `/products?pagination[limit]=${24}&pagination[start]=${start}&pagination[withCount]=true`
-
-        return category === 'shop'
-          ? `${apiUrl}&populate=deep`
-          : `${apiUrl}&filters[category][slug][$eq]=${category}&populate=deep`
-
-        return apiUrl
-      },
+      query: (category) => getStrapiURL(category === 'shop'
+          ? `${`/products?pagination[limit]=${24}&pagination[start]=${+1 === 1 ? 0 : (+1 - 1) * 24}&pagination[withCount]=true`}&populate=deep`
+          : `${`/products?pagination[limit]=${24}&pagination[start]=${+1 === 1 ? 0 : (+1 - 1) * 24}&pagination[withCount]=true`}&filters[category][slug][$eq]=${category}&populate=deep`),
       transformResponse: (res): Array<IProduct> => {
         return res.data
       }
     }),
     getRelatedProducts: build.query({
-      query: ({ category, slug }) => {
-        const apiUrl = ``
-
-        return `/products?filters[category][slug][$eq]=${category}&filters[slug][$ne]=${slug}&pagination[limit]=${4}&populate=deep`
-
-        return apiUrl
-      },
+      query: ({ category, slug }) => getStrapiURL(`/products?filters[category][slug][$eq]=${category}&filters[slug][$ne]=${slug}&pagination[limit]=${4}&populate=deep`),
       transformResponse: (res): Array<IProduct> => {
         return res.data
       }
