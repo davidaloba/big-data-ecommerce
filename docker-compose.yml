@@ -9,14 +9,18 @@ networks:
 services:
   client:
     container_name: client
-    build: ./client
-    image: next_simple:latest
+    build:
+      dockerfile: nextjs.Dockerfile.prod
+    restart: always
+    ports:
+      - 3100:3000
+    image: nextjs:latest
     environment:
       NODE_ENV: ${NODE_ENV}
       NEXT_PUBLIC_API_URL: ${STRAPI_URL}
       PREVIEW_SECRET: ${PREVIEW_SECRET}
-    volumes:
-      - ./client:/app
+    # volumes:
+    #   - ./client:/app
     networks:
       - traefiknet
     labels:
@@ -28,7 +32,8 @@ services:
 
   server:
     container_name: server
-    build: ./server
+    build:
+      dockerfile: strapi.Dockerfile.prod
     image: strapi:latest
     restart: unless-stopped
     environment:

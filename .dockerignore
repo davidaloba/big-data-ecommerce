@@ -1,0 +1,11 @@
+# .dockerignore file
+*node_modules/
+*Dockerfile*
+*.DS_Store
+*.tmp/
+*.next
+*.cache/
+*.git/
+*build/
+*npm-debug.log
+*README.md
