@@ -12,10 +12,10 @@ WORKDIR /opt/app
 COPY ./ .
 RUN yarn build
 FROM node:16-alpine
-# RUN apk add --no-cache vips-dev
+RUN apk add --no-cache vips-dev
 
 FROM node:16-alpine
-# RUN apk add --no-cache vips-dev
+RUN apk add --no-cache vips-dev
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 WORKDIR /opt/app
