@@ -120,7 +120,7 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
     pageID,
     ...pageData
   }
-  // console.log(globalData, props)
+  console.log(globalData, props)
 
   return (
     <Layout

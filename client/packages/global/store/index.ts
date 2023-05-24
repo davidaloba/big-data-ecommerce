@@ -11,11 +11,11 @@ const reducer = combineReducers({ [api.reducerPath]: api.reducer, ...slice })
 export const makeStore = () =>
   configureStore({
     reducer,
-    devTools: true,
+    // devTools: true,
     middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware()
         .concat(api.middleware)
-        .concat(process.browser ? logger : null)
+        // .concat(process.browser ? logger : null)
         .filter(Boolean)
   })
 

@@ -47,3 +47,5 @@ USER nextjs
 EXPOSE 3000
 
 CMD [ "yarn", "start" ]
+
+#  ENTRYPOINT ["tail", "-f", "/dev/null"] 
