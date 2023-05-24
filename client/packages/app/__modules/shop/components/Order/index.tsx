@@ -1,40 +1,18 @@
-import { getStrapiURL } from '@globalUtils/index'
-import { useEffect, useState } from 'react'
-import { useGetOrderQuery } from '../../store/orders.api'
 import CartItems from './cart-items'
 import OrderSummary from './order-summary'
 import Address from '@appComponents/__lib/address'
 
-const Order = ({ pageID }) => {
-  const apiUrl = getStrapiURL(`/orders/?filters[slug][$eq]=${pageID}&populate=deep`)
-  const { data: order, isSuccess } = useGetOrderQuery(apiUrl)
-  const {
-    cart: items,
-    billing,
-    shipping,
-    status
-  } = isSuccess ? order : { cart: null, billing: null, shipping: null, status: null }
-
-  const [cartCount, setCartCount] = useState(0)
-  const [subtotal, setSubtotal] = useState(0)
-  const [shippingCost, setShippingCost] = useState(0)
-  const [tax, setTax] = useState(0)
-  const [total, setTotal] = useState(0)
-  useEffect(() => {
-    const subtotal = items
-      ? items.reduce((prev, current) => prev + current.price * current.qty, 0)
+const Order = ({ cart: items, billing, shipping, status }) => {
+  const subtotal = items
+    ? items.reduce((prev, current) => prev + current.price * current.qty, 0)
+    : 0
+  const tax = (7.5 / 100) * subtotal
+  const cartCount =
+    items && items.reduce((prev, current) => prev + current.qty, 0) !== 0
+      ? items.reduce((prev, current) => prev + current.qty, 0)
       : 0
-    const tax = (7.5 / 100) * subtotal
-    const cartCount =
-      items && items.reduce((prev, current) => prev + current.qty, 0) !== 0
-        ? items.reduce((prev, current) => prev + current.qty, 0)
-        : 0
-    setCartCount(cartCount)
-    setShippingCost(shipping && shipping.method ? shipping.method.cost : 0)
-    setSubtotal(subtotal)
-    setTax(tax)
-    setTotal(subtotal + shippingCost + tax)
-  }, [isSuccess])
+  const shippingCost = shipping && shipping.method ? shipping.method.cost : 0
+  const total = subtotal + shippingCost + tax
 
   return (
     <section className=" pb-10 md:pb-20 pt-0 px-5 md:px-12 lg:px-16 2xl:px-20 ">

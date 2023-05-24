@@ -11,8 +11,6 @@ const contentTypes = {
 }
 
 export function getStrapiURL(path: string) {
-  console.log(process.env)
-
   return `${process.env.NEXT_PUBLIC_API_URL}/api${path}`
 }
 
