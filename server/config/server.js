@@ -2,9 +2,9 @@
 const cronTasks = require('@webbio/strapi-plugin-scheduler/cron-task');
 
 module.exports = ({ env }) => ({
-  url: env("PUBLIC_URL", "http://localhost:1337"),
-  host: env('HOST', '0.0.0.0'),
-  port: env.int('PORT', 1337),
+  url: env("PUBLIC_URL", env('DATABASE_HOST')),
+  host: env('HOST', env('DATABASE_HOST')),
+  port: env.int('PORT', env('DATABASE_HOST')),
   app: {
     keys: env.array('APP_KEYS', ['testKey1', 'testKey2']),
   },
