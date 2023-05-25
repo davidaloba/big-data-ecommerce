@@ -1,0 +1,33 @@
+{
+  "kind": "collectionType",
+  "collectionName": "kinds",
+  "info": {
+    "singularName": "kind",
+    "pluralName": "kinds",
+    "displayName": "kind",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": false
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string",
+      "required": true
+    },
+    "slug": {
+      "type": "uid",
+      "targetField": "name"
+    },
+    "description": {
+      "type": "text"
+    },
+    "projects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article",
+      "mappedBy": "kind"
+    }
+  }
+}

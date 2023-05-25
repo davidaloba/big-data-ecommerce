@@ -2,9 +2,9 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'cms.yinkasamuels.com',
-        port: '',
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1338',
         pathname: '/uploads/**'
       }
     ]

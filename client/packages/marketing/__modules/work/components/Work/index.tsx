@@ -1,38 +1,34 @@
-'use client'
 import { useGetProjectsQuery } from '../../store/projects.api'
-import ProjectCard from '../ProjectCard'
+import WorkCard from './work-card'
 import NoResults from '@marketingComponents/__lib/no-results'
-import PageTitle from '@marketingComponents/__lib/PageTitle'
-import Repeatable from '@marketingComponents/__lib/Repeatable'
+import Repeatable from '@globalComponents/__lib/Repeatable'
 import BlockManager from '@marketingModules/pages/components/BlockManager'
 
-const Projects = ({ perPage, contentType, slug, blocks }) => {
-  const key = {
-    slug: slug,
-    contentType: contentType
-  }
+const Projects = ({ perPage, blocks }) => {
   const { data: projects, isSuccess } = useGetProjectsQuery('projects')
 
   return (
     <>
-      <PageTitle
-        title={`Work`}
-        text=""
-        theme="primary"
-      />
-      <section className="">
+      <section
+        className="px-4 md:px-6 lg:px-8 2xl:px-12 py-4
+          flex flex-row items-center justify-between bg-white border-t">
+        <div className="uppercase">WORK</div>
+      </section>
+      <section className="p-0">
         {projects && projects.length > 0 ? (
-          <>
-            <Repeatable
-              Element={ProjectCard}
-              elements={projects}
-              style={{
-                container: ` mt-10 grid grid-cols-2 md:grid-cols-3 gap-10 `,
-                wrapper: `md:col-span-1 md:col-span-1`
-              }}
-              pre="product"
-            />
-          </>
+          <Repeatable
+            Element={WorkCard}
+            elements={projects}
+            style={{
+              container: `
+             flex flex-row flex-wrap justify-evenly
+             px-4 md:px-0
+             `,
+              wrapper:
+                'w-[100%] mb-16 md:w-[100%] md:[&:nth-child(2)]:w-[40%] md:[&:nth-child(3)]:w-[40%]  '
+            }}
+            pre="work"
+          />
         ) : (
           <NoResults
             status={isSuccess}
@@ -40,10 +36,12 @@ const Projects = ({ perPage, contentType, slug, blocks }) => {
           />
         )}
       </section>
-      <BlockManager
-        blocks={blocks}
-        perPage={perPage}
-      />
+      {blocks && (
+        <BlockManager
+          blocks={blocks}
+          perPage={perPage}
+        />
+      )}
     </>
   )
 }

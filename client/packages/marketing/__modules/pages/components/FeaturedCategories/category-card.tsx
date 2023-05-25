@@ -3,8 +3,8 @@ import { useState } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import MenuLink from '@marketingComponents/partials/Header/menulink'
-import Repeatable from '@marketingComponents/__lib/Repeatable'
+import MenuLink from '@globalComponents/partials/Header/menulink'
+import Repeatable from '@globalComponents/__lib/Repeatable'
 
 import { getStrapiMedia } from '@globalUtils/index'
 

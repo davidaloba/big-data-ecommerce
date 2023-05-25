@@ -46,4 +46,9 @@ export interface Page {
     publicationStages?: object
     publicationState?: string
   }
+  apiUrl: string
+  preview: boolean | undefined
+  contentType: string
+  apiID: string
+  pageID: string
 }

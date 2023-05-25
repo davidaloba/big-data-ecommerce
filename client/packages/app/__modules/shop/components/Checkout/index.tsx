@@ -1,17 +1,6 @@
-import { Dispatch, SetStateAction, createContext, useState } from 'react'
+import { createContext, useState } from 'react'
 import Checkout from './main'
-
-interface ICheckout {
-  stage?: string
-  shipping?: object
-  billing?: object
-  errorMessage?: string
-}
-
-export type CheckoutContextType = [
-  checkout: ICheckout,
-  setCheckout: Dispatch<SetStateAction<ICheckout>>
-]
+import { CheckoutContextType, ICheckout } from '@appModules/shop/__types'
 
 const CheckoutContext = createContext<CheckoutContextType>([
   {

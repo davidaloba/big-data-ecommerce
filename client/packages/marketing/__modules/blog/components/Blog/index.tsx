@@ -1,93 +1,48 @@
-'use client'
-import { useState } from 'react'
 import { useGetArticlesQuery } from '../../store/articles.api'
-import ArticleCard from '../ArticleCard'
-import SideBar from '../BlogSideBar'
 import NoResults from '@marketingComponents/__lib/no-results'
-import PageTitle from '@marketingComponents/__lib/PageTitle'
-import Repeatable from '@marketingComponents/__lib/Repeatable'
+import Repeatable from '@globalComponents/__lib/Repeatable'
+import BlogCard from './blog-card'
 
-const Articles = ({ perPage, contentType, slug, name }) => {
-  const [pageNumber, setPageNumber] = useState(1)
-
+const Blog = ({ perPage, contentType, slug }) => {
   const key = {
     slug: slug,
     contentType: contentType,
-    page: pageNumber,
+    page: 1,
     perPage
   }
   const { data: articles, isSuccess } = useGetArticlesQuery(key)
-  const lastPage = (isSuccess && articles && Math.ceil(articles.length / perPage)) || 1
-
-  let title
-  switch (contentType) {
-    case 'topics':
-      title = `Blog / Topic / ${name}`
-      break
-    case 'authors':
-      title = `Blog / Author / ${name}`
-      break
-    default:
-      title = 'Blog'
-      break
-  }
 
   return (
     <>
-      <PageTitle
-        title={title}
-        text=""
-        theme="primary"
-      />
-      <section>
-        <div className="flex flex-col lg:flex-row gap-10">
-          {articles && articles.length > 0 ? (
-            <>
-              <Repeatable
-                Element={ArticleCard}
-                elements={articles}
-                style={{
-                  container: ` mt-10 flex md:grid md:grid-cols-2 2xl:grid-cols-3 gap-10 `,
-                  wrapper: `md:col-span-1 md:col-span-1`
-                }}
-                pre="product"
-              />
-            </>
-          ) : (
-            <NoResults
-              status={isSuccess}
-              length={articles && articles.length}
-            />
-          )}
-          <SideBar />
-        </div>
-        {isSuccess && (
-          <div className="mt-10 grid grid-cols-3 gap-4 ">
-            <div className="col-start-2 col-end-3 flex items-center">
-              <button
-                type="button"
-                className={`${
-                  pageNumber <= 1 ? 'cursor-not-allowed opacity-50' : ''
-                } w-full p-4 border ase rounded-l-xl text-gray-600 bg-white hover:bg-gray-100 focus:outline-none`}
-                onClick={() => setPageNumber(pageNumber - 1)}
-                disabled={pageNumber <= 1}>
-                Previous
-              </button>
-              <button
-                type="button"
-                className={`${
-                  pageNumber >= lastPage ? 'cursor-not-allowed opacity-50' : ''
-                } w-full p-4 border-t border-b border-r ase rounded-r-xl text-gray-600 bg-white hover:bg-gray-100 focus:outline-none`}
-                onClick={() => setPageNumber(pageNumber + 1)}
-                disabled={pageNumber >= lastPage}>
-                Next
-              </button>
-            </div>
-          </div>
+      <section
+        className="px-4 md:px-6 lg:px-8 2xl:px-12 py-4
+        flex flex-row items-center justify-between bg-white border-t">
+        <div className="uppercase">Blog</div>
+      </section>
+      <section className="p-0">
+        {articles && articles.length > 0 ? (
+          <Repeatable
+            Element={BlogCard}
+            elements={articles}
+            style={{
+              container: `
+                flex flex-row flex-wrap justify-evenly
+                px-4 md:px-0
+                `,
+              wrapper:
+                'w-[100%] mb-16 md:w-[100%] md:[&:nth-child(2)]:w-[40%] md:[&:nth-child(3)]:w-[40%]  '
+            }}
+            pre="blog"
+          />
+        ) : (
+          <NoResults
+            status={isSuccess}
+            length={articles && articles.length}
+          />
         )}
       </section>
     </>
   )
 }
 
-export default Articles
+export default Blog

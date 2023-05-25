@@ -7,41 +7,30 @@ import {
   useGetPageDataQuery
 } from '@globalStore/api'
 import { getData } from '@globalUtils/index'
-
 import ErrorPage from 'next/error'
-import MarketingLayout from '@marketingComponents/layouts/layout'
+
+import GlobalLayout from '@globalComponents/layouts/layout'
 import Seo from '@marketingComponents/partials/seo'
 import BlockManager from '@marketingModules/pages/components/BlockManager'
 import Blog from '@marketingModules/blog/components/Blog'
-// import Topic from '@marketingModules/blog/components/Topic'
 import Article from '@marketingModules/blog/components/Article'
+import Work from '@marketingModules/work/components/Work'
+import Project from '@marketingModules/work/components/Project'
 import Shop from '@appModules/shop/components/Shop'
 import Category from '@appModules/shop/components/Category'
 import Product from '@appModules/shop/components/Product'
 import Cart from '@appModules/shop/components/Cart'
 import Checkout from '@appModules/shop/components/Checkout'
-import Work from '@marketingModules/work/components/Work'
-import Project from '@marketingModules/work/components/Project'
 import Order from '@appModules/shop/components/Order'
-
-interface Page {
-  apiUrl: string
-  preview: boolean | undefined
-  contentType: string
-  apiID: string
-  pageID: string
-}
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
   const { apiUrl, pageID, contentType } = getData(context.query.page || '', context.preview)
-
   try {
     await Promise.all([
       store.dispatch(getPageData.initiate(apiUrl)),
       store.dispatch(getGlobal.initiate('global')),
       store.dispatch(getRunningQueriesThunk())
     ])
-
     return {
       props: {
         apiUrl,
@@ -68,9 +57,10 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
   let Layout
   switch (pageTID) {
     default:
-      Layout = MarketingLayout
+      Layout = GlobalLayout
       break
   }
+
   let Content
   switch (pageTID) {
     case 'cart':
@@ -120,13 +110,13 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
     pageID,
     ...pageData
   }
-  // console.log(globalData, props)
 
+  console.log(globalData, props)
   return (
     <Layout
       globalData={globalData}
       preview={preview}>
-      <Seo seo={pageData.seo} />
+      {pageData.seo && <Seo seo={pageData.seo} />}
       <Content {...props} />
     </Layout>
   )

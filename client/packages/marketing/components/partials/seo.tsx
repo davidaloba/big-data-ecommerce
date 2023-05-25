@@ -1,9 +1,9 @@
 import Head from 'next/head'
 
-import { getStrapiMedia } from 'packages/global/utils/index'
+import { getStrapiMedia } from '@globalUtils/index'
 
-const Seo = ({ seo }) => {
-  const {
+const Seo = ({
+  seo: {
     metaTitle,
     metaImage,
     metaRobots,
@@ -11,17 +11,8 @@ const Seo = ({ seo }) => {
     structuredData,
     preventIndexing,
     metaDescription
-  }: any = seo ? seo : {}
-
-  const metaImageAttr = !seo ? {} : seo.metaImage ? seo.metaImage.data.attributes : {}
-
-  // const metaTitle = seo.metaTitle
-  // const metaRobots = seo.metaRobots
-  // const metaSocial = seo.metaSocial
-  // const structuredData = seo.structuredData
-  // const preventIndexing = seo.preventIndexing
-  // const metaDescription = seo.metaDescription
-
+  }
+}) => {
   return (
     <Head>
       <title>{metaTitle}</title>
@@ -84,14 +75,14 @@ const Seo = ({ seo }) => {
         data-hid="og:image"
         name="og:image"
         property="og:image"
-        content={metaImageAttr.url}
+        content={metaImage.data.attributes.url}
       />
       <meta
         prefix="og: http://ogp.me/ns#"
         data-hid="og:image:alt"
         name="og:image:alt"
         property="og:image:alt"
-        content={metaImageAttr.alternativeText}
+        content={metaImage.data.attributes.alternativeText}
       />
 
       <meta

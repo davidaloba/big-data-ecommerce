@@ -29,7 +29,7 @@ const Navigation = ({ logo, navMenu, shopMenu }) => {
       <nav
         className="px-4 md:px-6 lg:px-8 2xl:px-12 py-2
         flex flex-row items-center justify-between  bg-white ">
-        <MegaMenu columns={shopMenu} />
+        {shopMenu.length > 0 && <div className="flex-1">{<MegaMenu columns={shopMenu} />}</div>}
         <Link href="/">
           <Image
             src={logo && logo.data ? getStrapiMedia(logo.data.attributes.url) : `/avatar.png`}
@@ -38,18 +38,18 @@ const Navigation = ({ logo, navMenu, shopMenu }) => {
             height="52"
           />
         </Link>
-        <div className="flex flex-row justify-end">
-          <Menu links={navMenu} />
+        <div className="flex flex-row flex-1 justify-end">
+          {navMenu.length > 0 && <Menu links={navMenu} />}
           <ul className="flex flex-row">
-            <li className=" w-max">
+            <li className="flex-1  ">
               <MenuLink
                 href="login"
                 label="LOG IN"
               />
             </li>
-            <li className="w-max">
+            <li className="">
               <div className="relative group ">
-                <p className="relative z-10 px-2 py-1 group-hover:underline group-hover:bg-white border border-b-0 group-hover:border-gray-200  border-white ">
+                <p className="relative z-10 px-1 py-1 group-hover:underline group-hover:bg-white border border-b-0 group-hover:border-gray-200  border-white ">
                   CART{`${cartCount}`}
                 </p>
                 <MenuCart />

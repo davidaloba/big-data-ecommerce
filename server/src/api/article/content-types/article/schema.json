@@ -20,43 +20,6 @@
       "type": "uid",
       "required": true
     },
-    "title": {
-      "type": "string",
-      "required": true
-    },
-    "author": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "articles"
-    },
-    "topic": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::topic.topic",
-      "inversedBy": "articles"
-    },
-    "featuredImage": {
-      "type": "media",
-      "multiple": false,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "content": {
-      "type": "customField",
-      "options": {
-        "output": "HTML",
-        "preset": "rich"
-      },
-      "customField": "plugin::ckeditor.CKEditor"
-    },
-    "relatedArticles": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::article.article"
-    },
     "publicationState": {
       "type": "enumeration",
       "enum": [
@@ -68,6 +31,45 @@
       ],
       "default": "Draft"
     },
+    "title": {
+      "type": "string",
+      "required": true
+    },
+    "featuredImage": {
+      "type": "media",
+      "multiple": false,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "excerpt": {
+      "pluginOptions": {
+        "i18n": {
+          "localized": true
+        }
+      },
+      "type": "text"
+    },
+    "author": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::author.author",
+      "inversedBy": "articles"
+    },
+    "relatedArticles": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::article.article"
+    },
+    "content": {
+      "type": "customField",
+      "options": {
+        "output": "HTML",
+        "preset": "rich"
+      },
+      "customField": "plugin::ckeditor.CKEditor"
+    },
     "publicationStages": {
       "type": "json"
     },
@@ -75,6 +77,12 @@
       "type": "component",
       "repeatable": false,
       "component": "__lib.seo"
+    },
+    "topic": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::topic.topic",
+      "inversedBy": "articles"
     }
   }
 }

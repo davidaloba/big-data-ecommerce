@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import { getStrapiMedia, numberWithCommas, fetchHoverImg } from 'packages/global/utils/index'
 import Image from 'next/image'
-import Repeatable from '@marketingComponents/__lib/Repeatable'
+import Repeatable from '@globalComponents/__lib/Repeatable'
 import { useState } from 'react'
 
 const ProductCard = ({ attributes }) => {

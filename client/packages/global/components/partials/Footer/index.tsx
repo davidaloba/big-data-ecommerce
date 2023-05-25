@@ -1,4 +1,4 @@
-import Repeatable from '@marketingComponents/__lib/Repeatable'
+import Repeatable from '@globalComponents/__lib/Repeatable'
 import Column from './column'
 import Image from 'next/image'
 import Link from 'next/link'

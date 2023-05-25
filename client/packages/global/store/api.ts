@@ -1,3 +1,4 @@
+import { getStrapiURL } from '@globalUtils/index'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
 import { Global, Page } from 'packages/global/__types/models'
@@ -15,7 +16,7 @@ const api = createApi({
   tagTypes: [],
   endpoints: (build) => ({
     getGlobal: build.query({
-      query: () => `/global?populate=deep`,
+      query: () => getStrapiURL(`/global?populate=deep`),
       transformResponse: (global: { data: Global; [index: string]: object | object[] }) => {
         return global.data.attributes
       }

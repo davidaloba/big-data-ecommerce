@@ -1,4 +1,4 @@
-import Repeatable from '@marketingComponents/__lib/Repeatable'
+import Repeatable from '@globalComponents/__lib/Repeatable'
 import MenuLink from './menulink'
 
 const Menu = ({ links }) => {
@@ -8,9 +8,8 @@ const Menu = ({ links }) => {
         Element={MenuLink}
         elements={links}
         style={{
-          container: `flex flex-row flex-wrap items-center justify-end  capitalize
-        min-w-[40vw] `,
-          wrapper: 'mt-2 md:mt-0 mx-1 md:mx-2 '
+          container: `flex flex-row flex-wrap items-center justify-end  capitalize`,
+          wrapper: 'flex-1 mt-2 md:mt-0   '
         }}
         pre="headerLink"
       />

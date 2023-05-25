@@ -35,6 +35,10 @@
   input {
     @apply border p-2 text-xs uppercase ;
   }
+
+  .index-card-margin {
+    margin: 2rem calc(6.66667% + 1.66667rem) 0;
+}
   
 
   
