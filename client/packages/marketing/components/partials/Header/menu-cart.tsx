@@ -21,7 +21,7 @@ const MenuCart = () => {
     <div
       className={`group-hover:block    ${
         openCart ? 'block' : 'hidden'
-      } absolute border border-gray-200   w-[480px] top-6 right-0 bg-white`}>
+      } absolute border border-gray-200 max-w-[80vw]  md:w-[480px] top-6 right-0 bg-white`}>
       {items && items.length < 1 ? (
         <div className="px-4 py-8">There are no items in your bag</div>
       ) : (

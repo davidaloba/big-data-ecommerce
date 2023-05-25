@@ -8,8 +8,7 @@ const Menu = ({ links }) => {
         Element={MenuLink}
         elements={links}
         style={{
-          container: `flex flex-row flex-wrap items-center justify-end  capitalize
-        min-w-[40vw] `,
+          container: `flex flex-row flex-wrap items-center justify-end  capitalize`,
           wrapper: 'mt-2 md:mt-0 mx-1 md:mx-2 '
         }}
         pre="headerLink"
