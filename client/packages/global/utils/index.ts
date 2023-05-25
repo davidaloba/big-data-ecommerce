@@ -1,4 +1,4 @@
-const apiHost = 'https://cms.yinkasamuels.com'
+const apiHost = 'http://localhost:1338'
 
 const indexes = ['blog', 'work', 'shop', 'checkout', 'cart', 'category', 'topic', 'author', 'order']
 const contentTypes = {
@@ -92,9 +92,7 @@ export const numberWithCommas = (x: number) => {
 }
 
 export const fetchHoverImg = async (slug: string, setData: Function) => {
-  fetch(
-    `${apiHost}/api/products?filters[slug][$eq]=${slug}&populate[hoverImage][populate][0]=url`
-  )
+  fetch(`${apiHost}/api/products?filters[slug][$eq]=${slug}&populate[hoverImage][populate][0]=url`)
     .then((res) => {
       if (res.ok) {
         return res.json()
