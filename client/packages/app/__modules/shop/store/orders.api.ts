@@ -1,4 +1,5 @@
 import api from '@globalStore/api'
+import { getStrapiURL } from '@globalUtils/index'
 
 interface IOrder {
   billing?: object
@@ -12,7 +13,7 @@ const ordersApi = api.injectEndpoints({
     addOrder: build.mutation({
       query(order) {
         return {
-          url: '/orders',
+          url: getStrapiURL('/orders'),
           method: 'POST',
           body: { data: { ...order, slug: `${order.billing.payment.transaction_id}` } }
           // headers: new Headers({ 'content-type': 'application/json' })
@@ -33,7 +34,7 @@ const ordersApi = api.injectEndpoints({
       query(data) {
         const { id, ...body } = data
         return {
-          url: `order/${id}`,
+          url: getStrapiURL(`order/${id}`),
           method: 'PUT',
           body
         }
@@ -43,14 +44,14 @@ const ordersApi = api.injectEndpoints({
     deleteOrder: build.mutation({
       query(id) {
         return {
-          url: `order/${id}`,
+          url: getStrapiURL(`order/${id}`),
           method: 'DELETE'
         }
       },
       invalidatesTags: (result, error, id) => [{ type: 'Orders', id }]
     }),
     getOrders: build.query({
-      query: () => 'orders',
+      query: () => getStrapiURL('/orders'),
       providesTags: (result) =>
         result
           ? [

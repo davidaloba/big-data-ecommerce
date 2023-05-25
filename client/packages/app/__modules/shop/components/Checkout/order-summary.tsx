@@ -76,8 +76,8 @@ const OrderSummary = ({ watch, errors }) => {
             alert(err)
           }
           closePaymentModal() // this will close the modal programmatically
-          Cookies.remove('cart')
           router.push(`/order/${response.transaction_id}`)
+          Cookies.remove('cart')
         } else {
           alert(` Your payment is ${response.status}.Please try again later`)
           return
