@@ -6,9 +6,6 @@ const FeaturedCategories = dynamic(
     ssr: true
   }
 )
-const Section = dynamic(() => import('@marketingModules/pages/components/Section'), {
-  ssr: true
-})
 const PageTitle = dynamic(() => import('@marketingComponents/__lib/PageTitle'), {
   ssr: true
 })
@@ -35,9 +32,6 @@ const BlockManager = ({ blocks, perPage }) => {
         let Block
 
         switch (__component) {
-          case 'page.section':
-            Block = Section
-            break
           case 'page.categories':
             Block = FeaturedCategories
             break

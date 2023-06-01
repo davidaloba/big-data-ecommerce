@@ -12,6 +12,8 @@ const Blog = ({ perPage, contentType, slug }) => {
   }
   const { data: articles, isSuccess } = useGetArticlesQuery(key)
 
+  // TODO: Add filter functionality
+
   return (
     <>
       <section

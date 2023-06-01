@@ -7,6 +7,8 @@ import BlockManager from '@marketingModules/pages/components/BlockManager'
 const Projects = ({ perPage, blocks }) => {
   const { data: projects, isSuccess } = useGetProjectsQuery('projects')
 
+  // TODO: Add filter functionality
+
   return (
     <>
       <section

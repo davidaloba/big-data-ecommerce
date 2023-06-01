@@ -1,13 +1,14 @@
 import { getStrapiMedia } from '@globalUtils/index'
-import Elements from './elements'
 import { useRouter } from 'next/router'
 
-const Column = ({ style, link, bgColor, bgImage, elements }) => {
+const Element = ({ style, link, bgColor, bgImage, text, image, button }) => {
+  // { style, link, bgColor, bgImage, text, image, button }
+
   const background = {
     backgroundImage:
       bgImage && bgImage.data && bgImage.data.attributes
         ? `url(${getStrapiMedia(bgImage.data.attributes.url)})`
-        : null,
+        : '',
     backgroundColor: `${bgColor}` || '',
     ...style
   }
@@ -24,10 +25,8 @@ const Column = ({ style, link, bgColor, bgImage, elements }) => {
       style={background}
       className={`flex flex-col ${
         link ? 'cursor-pointer' : ' cursor-default pointer-events-none'
-      }`}>
-      <Elements elements={elements} />
-    </div>
+      }`}></div>
   )
 }
 
-export default Column
+export default Element

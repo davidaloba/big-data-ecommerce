@@ -7,13 +7,14 @@ import ArticleCard from './article-card'
 const Article = ({
   title,
   featuredImage,
-  content,
   relatedArticles: { data: relatedArticles },
-  topic
+  topic,
+  content
 }) => {
   const createMarkup = () => {
     return { __html: content }
   }
+
   // TODO: Add NEXT | PREV functionality
 
   return (
@@ -46,8 +47,8 @@ const Article = ({
         <div className="uppercase  ">{title}</div>
         <Link
           className={`block uppercase self-end flex-1 text-right `}
-          href={`topic`}>
-          {topic && topic.data.attributes && topic.data.attributes.name}
+          href={`#`}>
+          {topic && topic.data && topic.data.attributes.name}
         </Link>
       </section>
       <section className="px-4 md:px-6 lg:px-8 2xl:px-12 py-0 text-gray-600 body-font ">
@@ -63,16 +64,16 @@ const Article = ({
               />
             </div>
             <div
-              className="editor mt-10 px-40 "
+              className="editor mt-10 px-20 md:px-30 lg:px-40 "
               dangerouslySetInnerHTML={createMarkup()}></div>
           </article>
         </div>
       </section>
       {relatedArticles.length > 0 && (
-        <section className="px-4 md:px-6 lg:px-8 2xl:px-12 py-0 text-gray-600 body-font ">
+        <section className="px-4 md:px-6 lg:px-8 2xl:px-12 py-0 mt-20 text-gray-600 body-font ">
           <div className="md:mt-12 lg:mt-20">
             <h1
-              className="flex flex-row min-w-56
+              className="flex flex-row min-w-56 align gap-
             uppercase ">
               WE ALSO RECOMMEND
             </h1>
@@ -81,9 +82,9 @@ const Article = ({
               elements={relatedArticles}
               style={{
                 container: `mt-6
-                  flex flex-col gap-4 
-                  md:grid md:grid-cols-4  md:gap-8`,
-                wrapper: `md:col-span-1 md:col-span-1`
+                  flex flex-wrap flex-row gap-6 md:gap-4
+                 `,
+                wrapper: `w-[40%] md:w-max `
               }}
               pre="category"
             />

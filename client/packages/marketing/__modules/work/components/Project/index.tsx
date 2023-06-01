@@ -7,15 +7,16 @@ import ProjectCard from './project-card'
 const Project = ({
   title,
   featuredImage,
-  kind,
   relatedProjects: { data: relatedProjects },
-  content,
-  mockup,
-  description
+  kind,
+  description,
+  content
 }) => {
   const createMarkup = () => {
     return { __html: description }
   }
+
+  // TODO: Add NEXT | PREV functionality
 
   return (
     <>
@@ -47,8 +48,8 @@ const Project = ({
         <div className="uppercase  ">{title}</div>
         <Link
           className={`block uppercase self-end flex-1 text-right `}
-          href={`kind`}>
-          {kind && kind.data.attributes && kind.data.attributes.name}
+          href={`#`}>
+          {kind && kind.data && kind.data.attributes.name}
         </Link>
       </section>
       <section className="px-4 md:px-6 lg:px-8 2xl:px-12 py-0 text-gray-600 body-font ">
@@ -71,21 +72,21 @@ const Project = ({
         </div>
       </section>
       {relatedProjects.length > 0 && (
-        <section className="px-4 md:px-6 lg:px-8 2xl:px-12 py-0 text-gray-600 body-font ">
+        <section className="px-4 md:px-6 lg:px-8 2xl:px-12 py-0 mt-20 text-gray-600 body-font ">
           <div className="md:mt-12 lg:mt-20">
             <h1
-              className="flex flex-row min-w-56
-            uppercase ">
-              WE ALSO RECOMMEND
+              className="flex flex-row min-w-56 align gap-
+          uppercase ">
+              SIMILAR PROJECTS
             </h1>
             <Repeatable
               Element={ProjectCard}
               elements={relatedProjects}
               style={{
                 container: `mt-6
-                  flex flex-col gap-4 
-                  md:grid md:grid-cols-4  md:gap-8`,
-                wrapper: `md:col-span-1 md:col-span-1`
+                flex flex-wrap flex-row gap-6 md:gap-4
+               `,
+                wrapper: `w-[40%] md:w-max `
               }}
               pre="category"
             />
