@@ -1,4 +1,4 @@
-const apiHost = 'http://localhost:1338'
+const apiHost = process.env.NEXT_PUBLIC_API_URL
 
 const indexes = ['blog', 'work', 'shop', 'checkout', 'cart', 'category', 'topic', 'author', 'order']
 const contentTypes = {
