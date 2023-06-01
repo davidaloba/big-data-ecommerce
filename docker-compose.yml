@@ -8,7 +8,7 @@ networks:
 
 services:
   client:
-    container_name: client
+    container_name: yinkasamuels-client
     build:
       dockerfile: nextjs.Dockerfile.prod
     restart: always
@@ -29,7 +29,7 @@ services:
       - traefik.http.routers.client.tls.certresolver=myresolver
 
   server:
-    container_name: server
+    container_name: yinkasamuels-server
     build:
       dockerfile: strapi.Dockerfile.prod
     image: strapi:latest

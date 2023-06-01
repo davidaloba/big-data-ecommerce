@@ -6,7 +6,7 @@ import { addToCart, openCart } from '@appModules/shop/store/cart.slice'
 import Image from 'next/image'
 import Link from 'next/link'
 import ProductCard from '@appModules/shop/components/ProductCard'
-import Repeatable from '@marketingComponents/__lib/Repeatable'
+import Repeatable from '@globalComponents/__lib/Repeatable'
 
 const Product = ({
   slug,

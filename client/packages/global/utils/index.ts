@@ -1,4 +1,4 @@
-const apiHost = 'https://cms.yinkasamuels.com'
+const apiHost = 'http://localhost:1338'
 
 const indexes = ['blog', 'work', 'shop', 'checkout', 'cart', 'category', 'topic', 'author', 'order']
 const contentTypes = {
@@ -39,12 +39,12 @@ export function getData(slug: string | string[], preview?: boolean) {
   // handle Index Pages
   if (indexes.includes(slug[0]) && slug.length === 1) {
     data.contentType = index
-    data.apiUrl = getStrapiURL(`/${data.contentType}?${previewParams}&populate=deep`)
+    data.apiUrl = getStrapiURL(`/${data.contentType}?${previewParams}&populate[0]=deep`)
     // handle Single Pages
   } else {
     data.contentType = index in contentTypes && contentTypes[index]
     data.apiUrl = getStrapiURL(
-      `/${data.contentType}?filters[slug][$eq]=${pageID}${previewParams}&populate=deep`
+      `/${data.contentType}?filters[slug][$eq]=${pageID}${previewParams}&populate[0]=deep`
       // `/${data.contentType}/${pageID}?${previewParams}&populate=deep`
     )
   }
@@ -92,9 +92,7 @@ export const numberWithCommas = (x: number) => {
 }
 
 export const fetchHoverImg = async (slug: string, setData: Function) => {
-  fetch(
-    `${apiHost}/api/products?filters[slug][$eq]=${slug}&populate[hoverImage][populate][0]=url`
-  )
+  fetch(`${apiHost}/api/products?filters[slug][$eq]=${slug}&populate[hoverImage][populate][0]=url`)
     .then((res) => {
       if (res.ok) {
         return res.json()

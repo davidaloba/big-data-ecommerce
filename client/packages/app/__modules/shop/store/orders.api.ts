@@ -1,12 +1,6 @@
 import api from '@globalStore/api'
 import { getStrapiURL } from '@globalUtils/index'
-
-interface IOrder {
-  billing?: object
-  shipping?: object
-  cart?: Array<any>
-  status?: string
-}
+import { IOrder } from '../__types'
 
 const ordersApi = api.injectEndpoints({
   endpoints: (build) => ({

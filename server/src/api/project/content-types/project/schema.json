@@ -23,6 +23,12 @@
       "type": "string",
       "required": true
     },
+    "kind": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::kind.kind",
+      "inversedBy": "projects"
+    },
     "logo": {
       "type": "media",
       "multiple": false,
@@ -32,18 +38,6 @@
       ]
     },
     "description": {
-      "type": "string",
-      "required": true
-    },
-    "cardImage": {
-      "type": "media",
-      "multiple": false,
-      "required": true,
-      "allowedTypes": [
-        "images"
-      ]
-    },
-    "bgColor": {
       "type": "string",
       "required": true
     },
@@ -70,6 +64,11 @@
         "preset": "rich"
       },
       "customField": "plugin::ckeditor.CKEditor"
+    },
+    "relatedProjects": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::project.project"
     },
     "seo": {
       "type": "component",

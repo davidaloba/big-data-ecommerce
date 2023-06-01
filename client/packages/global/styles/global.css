@@ -35,7 +35,16 @@
   input {
     @apply border p-2 text-xs uppercase ;
   }
-  
+
+
+@media (min-width: 768px) {
+  .index-card-margin {
+    margin-left:  calc(6.66667% + 1.66667rem)  !important; 
+    margin-right:  calc(6.66667% + 1.66667rem)  !important; 
+}
+}
+
+
 
   
 }

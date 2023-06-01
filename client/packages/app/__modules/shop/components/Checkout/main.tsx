@@ -88,7 +88,3 @@ const Checkout = ({ paymentOptions, shippingOptions }) => {
 }
 
 export default Checkout
-
-// TODO: Create and handle SHIPPING and PAYMENT ON DELIVERY FORM
-// TODO: Add ONLINE PAYMENT GATEWAY
-// TODO: Handle SUBMIT FORM and ORDER CREATION with RTK QUERY MUTATION
