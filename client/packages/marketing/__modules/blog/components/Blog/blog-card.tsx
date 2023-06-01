@@ -8,7 +8,7 @@ const BlogCard = ({ attributes: { slug, title, featuredImage, excerpt } }) => {
     <Link
       className="group"
       href={`/blog/${slug}`}>
-      <div className={`flex flex-col  items-start px-0 pb-0 pt-0`}>
+      <div className={` flex flex-col items-stretch px-0 pb-0 pt-0`}>
         <Image
           className=""
           src={getStrapiMedia(featuredImage.data.attributes.url)}
@@ -16,9 +16,9 @@ const BlogCard = ({ attributes: { slug, title, featuredImage, excerpt } }) => {
           width="1920"
           height="1024"
         />
-        <div className="flex flex-col  index-card-margin ">
+        <div className="mt-4 md:mt-8 mx-8 index-card-margin  ">
           <div className={` group-hover:underline uppercase font-semibold `}>{title}S</div>
-          <div className={`mt-4 `}>{excerpt}</div>
+          <div className={`mt-1 md:mt-4  `}>{excerpt}</div>
         </div>
       </div>
     </Link>

@@ -66,7 +66,7 @@ const Project = ({
               {/* <div className="flex flex-col sm:flex-row mt-10 items-center justify-center"></div> */}
             </div>
             <div
-              className="editor mt-10"
+              className="editor mt-10 px-10 xs:px-20 md:px-30 lg:px-40 "
               dangerouslySetInnerHTML={createMarkup()}></div>
           </article>
         </div>

@@ -19,9 +19,9 @@ const MenuCart = () => {
 
   return (
     <div
-      className={`group-hover:block    ${
+      className={`group-hover:block fixed md:absolute w-screen md:w-[480px] top-[60px] md:top-6 right-0 px-4 md:px-0 ${
         openCart ? 'block' : 'hidden'
-      } absolute border border-gray-200   w-[480px] top-6 right-0 bg-white`}>
+      } border border-gray-200 bg-white`}>
       {items && items.length < 1 ? (
         <div className="px-4 py-8">There are no items in your bag</div>
       ) : (
@@ -66,8 +66,8 @@ const MenuCart = () => {
             <Link
               href="/checkout"
               className=" flex flex-row justify-between items-center px-4 py-2 border-t ">
-              <div className="group-hover/checkout:underline  text-white ">CHECKOUT</div>
-              <div className=" text-lg  text-white">{`>`}</div>
+              <div className="group-hover/checkout:underline text-white ">CHECKOUT</div>
+              <div className=" text-lg text-white">{`>`}</div>
             </Link>
           </div>
         </>

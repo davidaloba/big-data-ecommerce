@@ -64,7 +64,7 @@ const Article = ({
               />
             </div>
             <div
-              className="editor mt-10 px-20 md:px-30 lg:px-40 "
+              className="editor mt-10 px-10 xs:px-20 md:px-30 lg:px-40 "
               dangerouslySetInnerHTML={createMarkup()}></div>
           </article>
         </div>
