@@ -115,3 +115,10 @@ exports
 *.cache
 build
 .strapi-updater.json
+
+
+############################
+# NextJS
+############################
+
+next.config.js
