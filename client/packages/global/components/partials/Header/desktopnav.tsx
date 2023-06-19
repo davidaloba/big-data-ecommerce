@@ -16,7 +16,7 @@ const DesktopNav = ({ navMenu, shopMenu, logo, cartCount }) => {
         <Image
           src={logo && logo.data ? getStrapiMedia(logo.data.attributes.url) : `/avatar.png`}
           alt="logo"
-          width="44"
+          width="160"
           height="44"
         />
       </Link>
