@@ -32,7 +32,7 @@ const BlockManager = ({ blocks, perPage }) => {
         let Block
 
         switch (__component) {
-          case 'page.categories':
+          case 'page.featured-categories':
             Block = FeaturedCategories
             break
           case '__lib.page-title':

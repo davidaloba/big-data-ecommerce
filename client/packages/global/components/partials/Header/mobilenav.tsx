@@ -5,7 +5,7 @@ import MenuCart from './menu-cart'
 import { useState } from 'react'
 import MobileMenu from './mobilemenu'
 
-const MobileNav = ({ navMenu, shopMenu, logo, cartCount }) => {
+const MobileNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
   const [mobileMenu, setMobileMenu] = useState(false)
 
   return (
@@ -23,7 +23,7 @@ const MobileNav = ({ navMenu, shopMenu, logo, cartCount }) => {
           <Image
             src={logo && logo.data ? getStrapiMedia(logo.data.attributes.url) : `/avatar.png`}
             alt="logo"
-            width="44"
+            width={logoWidth || '44'}
             height="44"
           />
         </Link>

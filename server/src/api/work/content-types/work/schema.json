@@ -27,11 +27,6 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
-        "page.categories",
-        "page.hero",
-        "page.featured-projects",
-        "page.latest-code",
-        "page.about-me"
       ]
     },
     "seo": {

@@ -27,13 +27,13 @@
     "blocks": {
       "type": "dynamiczone",
       "components": [
+        "__lib.page-title",
         "page.section",
-        "page.categories",
+        "page.featured-categories",
         "page.hero",
         "page.featured-projects",
         "page.latest-code",
-        "page.about-me",
-        "__lib.page-title"
+        "page.about-me"
       ]
     },
     "seo": {

@@ -1,33 +1,22 @@
-'use client'
 import { useState } from 'react'
 
 import Image from 'next/image'
 import Link from 'next/link'
-import MenuLink from '@globalComponents/partials/Header/menulink'
 import Repeatable from '@globalComponents/__lib/Repeatable'
 
 import { getStrapiMedia } from '@globalUtils/index'
 
-const CategoryCard = ({
-  category,
-  label,
-  link,
-  featuredImage,
-  featuredLinks,
-  subCategories,
-  children,
-  index
-}) => {
-  const [openMenu, setOpenMenu] = useState(true)
+const CategoryCard = ({ title, subTitle, featuredImage, links, imageLinks, index }) => {
+  const [openMenu, setOpenMenu] = useState(false)
 
   return (
-    <section className={`relative px-0 pb-0 pt-0`}>
+    <div className={`relative px-0 pb-0 pt-0`}>
       <Image
         onClick={() => setOpenMenu(!openMenu)}
         className=" -z-10"
         src={getStrapiMedia(featuredImage.data.attributes.url)}
         alt="logo"
-        width="1366"
+        width="1920"
         height="52"
       />
       <div
@@ -36,23 +25,16 @@ const CategoryCard = ({
         <div
           onClick={() => setOpenMenu(!openMenu)}
           className={`${
-            !openMenu ? 'lack' : 'text-white '
+            openMenu && 'text-white '
           } text-3xl lg:text-4xl 2xl:text-4xl leading-4 lg:leading-5 2xl:leading-6 mr-2 lg:mr-4 2xl:mr-8 `}>
           {openMenu ? 'x' : '+'}
         </div>
-        {!link ? (
-          <div onClick={() => setOpenMenu(!openMenu)}>
-            <h3 className={` ${!openMenu ? 'lack' : 'text-white '} font-semibold  `}>{label}S</h3>
-            <h3 className={` ${!openMenu ? 'lack' : 'text-white '} font-semibold  `}>NEW IN</h3>
-          </div>
-        ) : (
-          <Link
-            className="hover:underline decoration-white"
-            href={link}>
-            <h3 className={` ${!openMenu ? 'lack' : 'text-white '} font-semibold  `}>{label}S</h3>
-            <h3 className={` ${!openMenu ? 'lack' : 'text-white '} font-semibold  `}>NEW IN</h3>
-          </Link>
-        )}
+        <div onClick={() => setOpenMenu(!openMenu)}>
+          <h3 className={` ${openMenu && 'text-white '} font-semibold uppercase `}>{title}S</h3>
+          {subTitle && (
+            <h3 className={` ${openMenu && 'text-white '} font-semibold uppercase `}>{subTitle}</h3>
+          )}
+        </div>
       </div>
       {openMenu && (
         <div
@@ -64,27 +46,33 @@ const CategoryCard = ({
             lg:pt-[88px] 2xl:pt-[100px] lg:px-[70px] 2xl:px-[84px]
           bg-black bg-opacity-80">
           <Repeatable
-            Element={MenuLink}
-            elements={featuredLinks}
+            Element={({ href, label }) => {
+              return (
+                <div className=" uppercase p-1 text-xl lg:text-2xl 2xl:text-3xl font-bold text-white  hover:text-gray-400">
+                  <Link href={href}>{label}</Link>
+                </div>
+              )
+            }}
+            elements={links}
             style={{
               container: 'static',
               wrapper: `
                 lg:mb-2 2xl:mb-[3] 
-                text-xl lg:text-2xl 2xl:text-3xl font-bold text-white  hover:text-gray-300`
+                `
             }}
             pre="category"
           />
-          {index === (2 || 5) && (
+          {index % 3 === 0 && (
             <Repeatable
-              Element={({ attributes }) => (
+              Element={({ featuredImages, href, label }) => (
                 <div className="">
                   <Link
-                    href={`/category/${attributes.slug}`}
+                    href={href}
                     className="group">
                     <Image
                       onClick={() => setOpenMenu(!openMenu)}
                       className="hidden group-hover:block -z-10"
-                      src="/dgc.png"
+                      src={getStrapiMedia(featuredImages.data[0].attributes.url)}
                       alt="logo"
                       width="600"
                       height="20"
@@ -92,7 +80,7 @@ const CategoryCard = ({
                     <Image
                       onClick={() => setOpenMenu(!openMenu)}
                       className=" group-hover:hidden -z-10"
-                      src="/olla.png"
+                      src={getStrapiMedia(featuredImages.data[1].attributes.url)}
                       alt="logo"
                       width="600"
                       height="20"
@@ -101,11 +89,11 @@ const CategoryCard = ({
                   <h4
                     className="mt-3 
                       text-sm lg:text-lg font-semibold text-white hover:text-gray-300">
-                    {attributes.name}
+                    {label}
                   </h4>
                 </div>
               )}
-              elements={subCategories.data}
+              elements={imageLinks}
               style={{
                 container: `hidden 
                   md:flex md:flex-row md:mt-8 md:justify-between
@@ -117,7 +105,7 @@ const CategoryCard = ({
           )}
         </div>
       )}
-    </section>
+    </div>
   )
 }
 

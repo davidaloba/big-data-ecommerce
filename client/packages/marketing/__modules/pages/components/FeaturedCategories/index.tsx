@@ -14,7 +14,8 @@ const FeaturedCategories = ({ categories }) => {
           md:px-6 lg:px-8 2xl:px-12
           px-4
         `,
-        wrapper: 'md:col-span-1 [&:nth-child(3)]:md:col-span-2'
+        wrapper:
+          'md:col-span-2 [&:nth-child(2)]:md:col-span-1 [&:nth-child(3)]:md:col-span-1 max-h-[100vh] overflow-hidden'
       }}
       pre="category"
     />

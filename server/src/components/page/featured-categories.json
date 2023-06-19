@@ -1,7 +1,7 @@
 {
   "collectionName": "components_shop_categories",
   "info": {
-    "displayName": "categories",
+    "displayName": "featCategories",
     "icon": "smile",
     "description": ""
   },
@@ -11,8 +11,7 @@
       "type": "component",
       "required": true,
       "repeatable": true,
-      "minimum": 2,
-      "component": "__lib.category-card"
+      "component": "page.category-card"
     }
   }
 }

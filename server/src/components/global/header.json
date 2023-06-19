@@ -14,6 +14,11 @@
       "type": "media",
       "multiple": false
     },
+    "logoWidth": {
+      "type": "string",
+      "required": true
+
+    },
     "navMenu": {
       "type": "component",
       "repeatable": true,

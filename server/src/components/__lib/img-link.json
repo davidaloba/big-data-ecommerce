@@ -1,0 +1,39 @@
+{
+  "collectionName": "components___lib_img_links",
+  "info": {
+    "displayName": "link",
+    "icon": "backward"
+  },
+  "options": {},
+  "attributes": {
+
+    "featuredImages": {
+      "type": "media",
+      "multiple": true,
+      "maximum": 2,
+      "required": true,
+      "allowedTypes": [
+        "images"
+      ]
+    },
+    "href": {
+      "type": "string",
+      "required": true
+    },
+    "label": {
+      "type": "string",
+      "required": true
+    },
+    "target": {
+      "type": "enumeration",
+      "enum": [
+        "_blank"
+      ]
+    },
+    "isExternal": {
+      "type": "boolean",
+      "default": false,
+      "required": false
+    }
+  }
+}

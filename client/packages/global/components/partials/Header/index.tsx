@@ -4,7 +4,7 @@ import { RootState, useAppSelector } from '@globalStore/index'
 import MobileNav from './mobilenav'
 import DesktopNav from './desktopnav'
 
-const Navigation = ({ logo, navMenu, shopMenu }) => {
+const Navigation = ({ logo, logoWidth, navMenu, shopMenu }) => {
   const { items } = useAppSelector((state: RootState) => state.cart)
   const [cartCount, setCartCount] = useState('')
 
@@ -23,12 +23,14 @@ const Navigation = ({ logo, navMenu, shopMenu }) => {
         navMenu={navMenu}
         shopMenu={shopMenu}
         logo={logo}
+        logoWidth={logoWidth}
         cartCount={cartCount}
       />
       <MobileNav
         navMenu={navMenu}
         shopMenu={shopMenu}
         logo={logo}
+        logoWidth={logoWidth}
         cartCount={cartCount}
       />
     </header>

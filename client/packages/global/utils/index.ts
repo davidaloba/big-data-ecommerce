@@ -1,4 +1,6 @@
-const apiHost = process.env.NEXT_PUBLIC_API_URL
+const apiHost = `${process.env.NEXT_PUBLIC_API_PROTOCOL}://${process.env.NEXT_PUBLIC_API_HOSTNAME}${
+  process.env.NEXT_PUBLIC_API_PORT && ':' + process.env.NEXT_PUBLIC_API_PORT
+}`
 
 const indexes = ['blog', 'work', 'shop', 'checkout', 'cart', 'category', 'topic', 'author', 'order']
 const contentTypes = {

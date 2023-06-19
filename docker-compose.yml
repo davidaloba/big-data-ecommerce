@@ -15,7 +15,10 @@ services:
     image: yinkasamuels-client:latest
     environment:
       NODE_ENV: ${NODE_ENV}
-      NEXT_PUBLIC_API_URL: ${STRAPI_URL}
+      NEXT_PUBLIC_API_PROTOCOL: ${NEXT_PUBLIC_API_PROTOCOL}
+      NEXT_PUBLIC_API_HOSTNAME: ${NEXT_PUBLIC_API_HOSTNAME}
+      NEXT_PUBLIC_API_PORT: ${NEXT_PUBLIC_API_PORT}
+      NEXT_PUBLIC_UPLOAD_PATH: ${NEXT_PUBLIC_UPLOAD_PATH}
       PREVIEW_SECRET: ${PREVIEW_SECRET}
     ports:
       - 3100:3000
@@ -36,9 +39,8 @@ services:
     restart: unless-stopped
     environment:
       NODE_ENV: ${NODE_ENV}
-      PUBLIC_URL: ${STRAPI_URL}
       HOST: ${HOST}
-      PORT: ${PORT}
+      PORT: ${NEXT_PUBLIC_API_PORT}
       APP_KEYS: ${APP_KEYS}
       API_TOKEN_SALT: ${API_TOKEN_SALT}
       JWT_SECRET: ${JWT_SECRET}

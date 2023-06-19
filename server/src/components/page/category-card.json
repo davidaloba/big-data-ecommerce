@@ -6,11 +6,6 @@
   },
   "options": {},
   "attributes": {
-    "category": {
-      "type": "relation",
-      "relation": "oneToOne",
-      "target": "api::category.category"
-    },
       "featuredImage": {
         "type": "media",
         "multiple": false,
@@ -21,24 +16,24 @@
           "videos"
         ]
       },
-      "label": {
+      "title": {
         "type": "string",
         "required": true
       },
-      "link": {
+      "subTitle": {
         "type": "string"
       },
-      "featuredLinks": {
+      "links": {
         "type": "component",
-        "required": true,
         "repeatable": true,
         "minimum": 2,
         "component": "__lib.link"
       },
-      "subCategories": {
-        "type": "relation",
-        "relation": "oneToMany",
-        "target": "api::category.category"
+      "imageLinks": {
+        "type": "component",
+        "repeatable": true,
+        "minimum": 2,
+        "component": "__lib.img-link"
       }
   }
 }

@@ -6,7 +6,7 @@ import Link from 'next/link'
 import MenuLink from './menulink'
 import MenuCart from './menu-cart'
 
-const DesktopNav = ({ navMenu, shopMenu, logo, cartCount }) => {
+const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
   return (
     <nav
       className="hidden px-4 md:px-6 lg:px-8 2xl:px-12 py-2
@@ -16,7 +16,7 @@ const DesktopNav = ({ navMenu, shopMenu, logo, cartCount }) => {
         <Image
           src={logo && logo.data ? getStrapiMedia(logo.data.attributes.url) : `/avatar.png`}
           alt="logo"
-          width="160"
+          width={logoWidth || '44'}
           height="44"
         />
       </Link>
