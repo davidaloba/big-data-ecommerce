@@ -30,7 +30,7 @@ const Footer = ({ label, footerColumns, primaryButton, secondaryButton, socialNe
           elements={footerColumns}
           style={{
             container: `
-              flex flex-wrap flex flex-row items-start
+              flex flex-wrap flex flex-row items-start  justify-center
               px-4 py-8  
               md:px-24 lg:px-28 md:pt-8
               border-t border-gray-300
