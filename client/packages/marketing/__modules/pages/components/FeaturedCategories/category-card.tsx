@@ -10,10 +10,10 @@ const CategoryCard = ({ title, subTitle, featuredImage, links, imageLinks, index
   const [openMenu, setOpenMenu] = useState(false)
 
   return (
-    <div className={`relative px-0 pb-0 pt-0`}>
+    <div className={`group relative px-0 pb-0 pt-0`}>
       <Image
         onClick={() => setOpenMenu(!openMenu)}
-        className=" -z-10"
+        className=" -z-10 filter group-hover:filter-none saturate-0 transition duration-300 ease-in-out "
         src={getStrapiMedia(featuredImage.data.attributes.url)}
         alt="logo"
         width="1920"
@@ -30,7 +30,7 @@ const CategoryCard = ({ title, subTitle, featuredImage, links, imageLinks, index
           {openMenu ? 'x' : '+'}
         </div>
         <div onClick={() => setOpenMenu(!openMenu)}>
-          <h3 className={` ${openMenu && 'text-white '} font-semibold uppercase `}>{title}S</h3>
+          <h3 className={` ${openMenu && 'text-white '} font-semibold uppercase `}>{title}</h3>
           {subTitle && (
             <h3 className={` ${openMenu && 'text-white '} font-semibold uppercase `}>{subTitle}</h3>
           )}
@@ -49,7 +49,7 @@ const CategoryCard = ({ title, subTitle, featuredImage, links, imageLinks, index
             Element={({ href, label }) => {
               return (
                 <div className=" uppercase p-1 text-xl lg:text-2xl 2xl:text-3xl font-bold text-white  hover:text-gray-400">
-                  <Link href={href}>{label}</Link>
+                  <Link href={`/categories/${href}`}>{label}</Link>
                 </div>
               )
             }}
