@@ -17,7 +17,7 @@ const CategoryCard = ({ title, subTitle, featuredImage, links, imageLinks, index
         src={getStrapiMedia(featuredImage.data.attributes.url)}
         alt="logo"
         width="1920"
-        height="52"
+        height="1080"
       />
       <div
         className="`absolute top-2 left-2
@@ -49,7 +49,7 @@ const CategoryCard = ({ title, subTitle, featuredImage, links, imageLinks, index
             Element={({ href, label }) => {
               return (
                 <div className=" uppercase p-1 text-xl lg:text-2xl 2xl:text-3xl font-bold text-white  hover:text-gray-400">
-                  <Link href={`/categories/${href}`}>{label}</Link>
+                  <Link href={`/category/${href}`}>{label}</Link>
                 </div>
               )
             }}
