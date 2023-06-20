@@ -170,7 +170,7 @@ const Product = ({
           </div>
         </div>
       </div>
-      {relatedIsSuccess && (
+      {relatedProducts && (
         <div className="md:mt-12 lg:mt-20">
           <h1
             className="flex flex-row min-w-56

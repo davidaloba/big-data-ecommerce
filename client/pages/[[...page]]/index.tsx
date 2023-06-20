@@ -111,7 +111,7 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
     ...pageData
   }
 
-  console.log(globalData, props)
+  // console.log(globalData, props)
   return (
     <Layout
       globalData={globalData}
