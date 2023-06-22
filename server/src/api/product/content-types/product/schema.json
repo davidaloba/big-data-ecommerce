@@ -40,16 +40,24 @@
         "images"
       ]
     },
+    "categories": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::category.category",
+      "inversedBy": "products"
+    },
+    "gallery": {
+      "type": "media",
+      "multiple": true,
+      "required": false,
+      "allowedTypes": [
+        "images"
+      ]
+    },
     "price": {
       "type": "float",
       "required": true,
       "default": 0
-    },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "products"
     },
     "size": {
       "type": "customField",
@@ -85,14 +93,6 @@
       "required": true,
       "component": "shop.color-variant"
     },
-    "gallery": {
-      "type": "media",
-      "multiple": true,
-      "required": false,
-      "allowedTypes": [
-        "images"
-      ]
-    },
     "description": {
       "type": "customField",
       "options": {
@@ -100,12 +100,6 @@
         "preset": "rich"
       },
       "customField": "plugin::ckeditor.CKEditor"
-    },
-    "categories": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::category.category",
-      "mappedBy": "product"
     },
     "seo": {
       "type": "component",

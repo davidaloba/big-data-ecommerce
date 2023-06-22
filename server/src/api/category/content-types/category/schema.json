@@ -33,21 +33,9 @@
       "target": "api::category.category",
       "mappedBy": "parent"
     },
-    "seo": {
-      "type": "component",
-      "repeatable": false,
-      "component": "__lib.seo"
-    },
-    "products": {
-      "type": "relation",
-      "relation": "oneToMany",
-      "target": "api::product.product",
-      "mappedBy": "category"
-    },
     "featuredImage": {
       "type": "media",
       "multiple": false,
-      "required": true,
       "allowedTypes": [
         "images"
       ]
@@ -62,11 +50,16 @@
       "repeatable": false,
       "component": "__lib.link"
     },
-    "product": {
+    "products": {
       "type": "relation",
-      "relation": "manyToOne",
+      "relation": "manyToMany",
       "target": "api::product.product",
-      "inversedBy": "categories"
+      "mappedBy": "categories"
+    },
+    "seo": {
+      "type": "component",
+      "repeatable": false,
+      "component": "__lib.seo"
     }
   }
 }

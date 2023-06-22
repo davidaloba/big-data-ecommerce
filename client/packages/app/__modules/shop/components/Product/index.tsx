@@ -16,7 +16,7 @@ const Product = ({
   price,
   color,
   size,
-  category,
+  categories,
   gallery,
   description
 }) => {
@@ -48,10 +48,12 @@ const Product = ({
     setTimeout(() => dispatch(openCart(false)), 1000)
   }
 
+  const category = categories.data[0]
   const { data: relatedProducts, isSuccess: relatedIsSuccess } = useGetRelatedProductsQuery({
-    category: category?.data?.attributes?.slug,
+    category: category?.attributes?.slug,
     slug
   })
+  console.log(categories)
 
   return (
     <section className="pb-20 pt-0 px-8 md:px-12 lg:px-16 2xl:px-20">
@@ -85,13 +87,13 @@ const Product = ({
               href="/shop">
               SHOP
             </Link>
-            {category?.data && (
+            {category?.attributes && (
               <>
                 <p>/</p>
                 <Link
                   className="md:ml-3"
-                  href={`/category/${category.data.attributes.slug}`}>
-                  {category.data.attributes.name}
+                  href={`/category/${category.attributes.slug}`}>
+                  {category.attributes.name}
                 </Link>
               </>
             )}
@@ -182,7 +184,7 @@ const Product = ({
             elements={relatedProducts}
             style={{
               container: `mt-6
-          flex flex-col gap-4 
+          flex flex-col gap-4   
           md:grid md:grid-cols-4  md:gap-8`,
               wrapper: `md:col-span-1 md:col-span-1`
             }}

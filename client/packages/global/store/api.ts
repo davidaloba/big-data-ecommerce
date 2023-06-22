@@ -1,4 +1,4 @@
-import { getStrapiURL } from '@globalUtils/index'
+import { apiHost, getStrapiURL } from '@globalUtils/index'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
 import { Global, Page } from 'packages/global/__types/models'
@@ -6,7 +6,7 @@ import { Global, Page } from 'packages/global/__types/models'
 const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: `https://cms.yinkasamuels.com/api`
+    baseUrl: `${apiHost}/api`
   }),
   extractRehydrationInfo(action, { reducerPath }) {
     if (action.type === HYDRATE) {
