@@ -21,7 +21,7 @@ const productsApi = api.injectEndpoints({
         }&pagination[start]=${start}&pagination[withCount]=true`
         const populate = `&populate=*`
 
-        const pageID = category === 'shop' ? `` : `filters[categories][slug][$eq]=${category}`
+        const pageID = category === 'shop' ? `` : `&filters[categories][slug][$eq]=${category}`
         const colorFilter = !filterByColor
           ? ``
           : filterByColor.map((color) => `&filters[color][label][$in]=${color}`).join('')

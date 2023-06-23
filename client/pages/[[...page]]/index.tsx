@@ -63,41 +63,35 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
 
   let Content
   switch (pageTID) {
+    case 'blog':
+      Content = Blog
+      break
+    case 'work':
+      Content = Work
+      break
+    case 'shop':
+      Content = Shop
+      break
     case 'cart':
       Content = Cart
       break
     case 'checkout':
       Content = Checkout
       break
-    case 'blog':
-      Content = Blog
-      break
-    case 'topics':
-      Content = Blog
-      break
-    case 'authors':
-      Content = Blog
+    case 'orders':
+      Content = Order
       break
     case 'articles':
       Content = Article
       break
-    case 'work':
-      Content = Work
-      break
     case 'projects':
       Content = Project
-      break
-    case 'shop':
-      Content = Shop
-      break
-    case 'categories':
-      Content = Category
       break
     case 'products':
       Content = Product
       break
-    case 'orders':
-      Content = Order
+    case 'categories':
+      Content = Category
       break
     default:
       Content = BlockManager

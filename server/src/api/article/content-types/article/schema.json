@@ -20,17 +20,6 @@
       "type": "uid",
       "required": true
     },
-    "publicationState": {
-      "type": "enumeration",
-      "enum": [
-        "Draft",
-        "In review",
-        "Changes requested",
-        "Publication scheduled",
-        "Published"
-      ],
-      "default": "Draft"
-    },
     "title": {
       "type": "string",
       "required": true
@@ -38,7 +27,7 @@
     "featuredImage": {
       "type": "media",
       "multiple": false,
-      "required": false,
+      "required": true,
       "allowedTypes": [
         "images"
       ]
@@ -52,9 +41,16 @@
       "type": "text"
     },
     "author": {
+      "required": true,
       "type": "relation",
       "relation": "manyToOne",
       "target": "api::author.author",
+      "inversedBy": "articles"
+    },
+    "topics": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::topic.topic",
       "inversedBy": "articles"
     },
     "relatedArticles": {
@@ -70,19 +66,10 @@
       },
       "customField": "plugin::ckeditor.CKEditor"
     },
-    "publicationStages": {
-      "type": "json"
-    },
     "seo": {
       "type": "component",
       "repeatable": false,
       "component": "__lib.seo"
-    },
-    "topics": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::topic.topic",
-      "inversedBy": "articles"
     }
   }
 }

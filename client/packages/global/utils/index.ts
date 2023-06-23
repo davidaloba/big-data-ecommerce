@@ -1,13 +1,21 @@
 const apiHost = `https://cms.yinkasamuels.com`
 
-const indexes = ['blog', 'work', 'shop', 'checkout', 'cart', 'category', 'topic', 'author', 'order']
+const indexes = [
+  'blog',
+  'article',
+  'work',
+  'project',
+  'shop',
+  'category',
+  'checkout',
+  'cart',
+  'order'
+]
 const contentTypes = {
-  page: 'pages',
-  blog: 'articles',
-  topic: 'topics',
-  author: 'authors',
-  work: 'projects',
   shop: 'products',
+  page: 'pages',
+  article: 'articles',
+  project: 'projects',
   category: 'categories',
   order: 'orders'
 }
