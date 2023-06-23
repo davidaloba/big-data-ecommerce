@@ -4,23 +4,16 @@ import { getStrapiURL } from '@globalUtils/index'
 const articlesApi = api.injectEndpoints({
   endpoints: (build) => ({
     getArticles: build.query({
-      query: (key) => {
-        const contentType = key.contentType
-        const pageNumber = key.page
-        const perPage = key.perPage || 24
-        const start = +pageNumber === 1 ? 0 : (+pageNumber - 1) * perPage
-        const slug = key.slug
-        const topicFilter = `filters[topic][slug][$eq]=${slug}&`
-        const authorFilter = `filters[author][slug][$eq]=${slug}&`
+      query: ({ slug, page, perPage, author, topic }) => {
+        const start = +page === 1 ? 0 : (+page - 1) * perPage
+        const pagination = `&pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true`
+        const pageID = slug !== 'blog' ? `filters[topics][slug][$in]=${slug}` : ''
+        const topicFilter = topic ? `filters[topics][slug][$in]=${topic}` : ''
+        const authorFilter = author ? `filters[author][slug][$eq]=${author}` : ''
+        const populate = `&populate=*`
 
         return getStrapiURL(
-          contentType === 'topics'
-            ? `/articles?${topicFilter}pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
-            : contentType === 'authors'
-            ? `/articles?${authorFilter}pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
-            : contentType === 'recent'
-            ? `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&sort=publishedAt%3Aasc&populate=deep`
-            : `/articles?pagination[limit]=${perPage}&pagination[start]=${start}&pagination[withCount]=true&populate=deep`
+          `/articles?${pageID}${topicFilter}${authorFilter}${pagination}${populate}`
         )
       },
       transformResponse: (res: { [index: string]: object | object[] }) => {
@@ -33,9 +26,16 @@ const articlesApi = api.injectEndpoints({
       transformResponse: (res: { [index: string]: object | object[] }) => {
         return res.data
       }
+    }),
+
+    getAuthors: build.query({
+      query: () => getStrapiURL(`/authors?populate=deep`),
+      transformResponse: (res: { [index: string]: object | object[] }) => {
+        return res.data
+      }
     })
   }),
   overrideExisting: false
 })
 
-export const { useGetArticlesQuery, useGetTopicsQuery } = articlesApi
+export const { useGetArticlesQuery, useGetTopicsQuery, useGetAuthorsQuery } = articlesApi

@@ -1,13 +1,33 @@
-import { useGetProjectsQuery } from '../../store/projects.api'
+import { useGetKindsQuery, useGetProjectsQuery } from '../../store/projects.api'
 import WorkCard from './work-card'
 import NoResults from '@marketingComponents/__lib/no-results'
 import Repeatable from '@globalComponents/__lib/Repeatable'
 import BlockManager from '@marketingModules/pages/components/BlockManager'
+import { useState } from 'react'
+import Filter from './filter'
 
 const Projects = ({ perPage, blocks }) => {
-  const { data: projects, isSuccess } = useGetProjectsQuery('projects')
+  const { categories } = useGetKindsQuery(
+    {},
+    {
+      selectFromResult: ({ data }) => ({
+        categories: data?.reduce((a, c) => {
+          return a.concat({ name: c.attributes.name, slug: c.attributes.slug })
+        }, [])
+      })
+    }
+  )
 
-  // TODO: Add filter functionality
+  const [filterByCategory, setFilterByCategory] = useState('')
+  const {
+    data: projects,
+    isSuccess,
+    refetch
+  } = useGetProjectsQuery({
+    page: 1,
+    perPage,
+    category: filterByCategory
+  })
 
   return (
     <>
@@ -15,6 +35,12 @@ const Projects = ({ perPage, blocks }) => {
         className="px-4 md:px-6 lg:px-8 2xl:px-12 py-4
           flex flex-row items-center justify-between bg-white border-t">
         <div className="uppercase">WORK</div>
+
+        <Filter
+          categories={[...new Set(categories)]}
+          setFilterByCategory={setFilterByCategory}
+          refetch={refetch}
+        />
       </section>
       <section className="p-0">
         {projects && projects.length > 0 ? (
