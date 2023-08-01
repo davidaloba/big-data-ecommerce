@@ -25,6 +25,7 @@ export interface IOrder {
 }
 
 export interface IProduct {
+  attributes: any
   slug?
   name?
   featuredImage?

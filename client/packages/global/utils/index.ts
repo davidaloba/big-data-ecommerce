@@ -1,4 +1,4 @@
-const apiHost = `https://cms.yinkasamuels.com`
+export const apiHost = `http://localhost:1338`
 
 const indexes = [
   'blog',

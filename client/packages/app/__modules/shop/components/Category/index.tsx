@@ -102,7 +102,7 @@ const Category = ({
         <div className="relative mt-6">
           <Image
             src={getStrapiMedia(featuredImage.data.attributes.url)}
-            alt={`${name} featured Image`}
+            alt={name + ' featured Image'}
             width="1366"
             height="800"
           />
