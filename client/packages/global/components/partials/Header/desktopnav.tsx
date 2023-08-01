@@ -23,12 +23,12 @@ const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
       <div className="flex flex-row flex-1 justify-end">
         {navMenu.length > 0 && <Menu links={navMenu} />}
         <ul className="flex flex-row">
-          <li className="flex-1  ">
+          {/* <li className="flex-1  ">
             <MenuLink
               href="login"
               label="LOG IN"
             />
-          </li>
+          </li> */}
           <li className="">
             <div className="relative group ">
               <p className="relative z-10 px-1 py-1 group-hover:underline group-hover:bg-white border border-b-0 group-hover:border-gray-200  border-white ">
