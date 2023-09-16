@@ -53,7 +53,6 @@ const Product = ({
     category: category?.attributes?.slug,
     slug
   })
-  console.log(categories)
 
   return (
     <section className="pb-20 pt-0 px-8 md:px-12 lg:px-16 2xl:px-20">
@@ -104,16 +103,25 @@ const Product = ({
             <p className="mr-3">COLOR:</p>
             {color && (
               <Repeatable
-                Element={({ label, slug, swatch }) => (
-                  <Link href={`shop/${slug}`}>
+                Element={({ label, slug, swatch }) =>
+                  slug === '/' ? (
                     <Image
                       src={getStrapiMedia(swatch.data.attributes.url)}
                       alt={`${label}`}
                       height="24"
                       width="24"
                     />
-                  </Link>
-                )}
+                  ) : (
+                    <Link href={`shop/${slug}`}>
+                      <Image
+                        src={getStrapiMedia(swatch.data.attributes.url)}
+                        alt={`${label}`}
+                        height="24"
+                        width="24"
+                      />
+                    </Link>
+                  )
+                }
                 elements={color}
                 pre="color"
                 style={{ container: `flex flex-row items-center`, wrapper: `mr-2` }}

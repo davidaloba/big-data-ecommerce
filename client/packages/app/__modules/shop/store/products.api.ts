@@ -13,15 +13,27 @@ const productsApi = api.injectEndpoints({
       }
     }),
     getProducts: build.query({
-      query: (category) => {
-        const pageNo = 1
-        const start = +pageNo === 1 ? 0 : (+pageNo - 1) * 24
-        const baseUrl = `/products?pagination[limit]=${24}&pagination[start]=${start}&pagination[withCount]=true`
+      query: ({ pageID: category, sortBy, filterByColor, filterBySize, perPage }) => {
+        const page = 1
+        const start = +page === 1 ? 0 : (+page - 1) * perPage
+        const pagination = `&pagination[limit]=${
+          perPage || 24
+        }&pagination[start]=${start}&pagination[withCount]=true`
+        const populate = `&populate=*`
 
+        const pageID = category === 'shop' ? `` : `&filters[categories][slug][$eq]=${category}`
+        const colorFilter = !filterByColor
+          ? ``
+          : filterByColor.map((color) => `&filters[color][label][$in]=${color}`).join('')
+        const sizeFilter = !filterBySize
+          ? ``
+          : filterBySize.map((size) => `&filters[size][$contains]=${size}`).join('')
+        const sort =
+          sortBy === 'newest'
+            ? ''
+            : `&sort=price${sortBy === 'price (low to high)' ? '%3Aasc' : '%3Adesc'}`
         return getStrapiURL(
-          category === 'shop'
-            ? `${baseUrl}&populate=deep`
-            : `${baseUrl}&filters[categories][slug][$eq]=${category}&populate=deep`
+          `/products?${pageID}${colorFilter}${sizeFilter}${sort}${pagination}${populate}`
         )
       },
       transformResponse: (res): Array<IProduct> => {
@@ -31,7 +43,7 @@ const productsApi = api.injectEndpoints({
     getRelatedProducts: build.query({
       query: ({ category, slug }) =>
         getStrapiURL(
-          `/products?filters[categories][slug][$eq]=${category}&filters[slug][$ne]=${slug}&pagination[limit]=${4}&populate=deep`
+          `/products?filters[categories][slug][$eq]=${category}&filters[slug][$ne]=${slug}&pagination[limit]=${4}&populate=*`
         ),
       transformResponse: (res): Array<IProduct> => {
         return res.data

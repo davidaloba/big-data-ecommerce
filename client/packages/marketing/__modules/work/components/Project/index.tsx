@@ -3,8 +3,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Repeatable from '@globalComponents/__lib/Repeatable'
 import ProjectCard from './project-card'
+import { useGetNavigationQuery } from '@marketingModules/work/store/projects.api'
 
 const Project = ({
+  slug,
   title,
   featuredImage,
   relatedProjects: { data: relatedProjects },
@@ -16,7 +18,7 @@ const Project = ({
     return { __html: description }
   }
 
-  // TODO: Add NEXT | PREV functionality
+  const { data: nav, isSuccess } = useGetNavigationQuery(slug)
 
   return (
     <>
@@ -29,21 +31,29 @@ const Project = ({
             href={`/work`}>
             {`< Work`}
           </Link>
-          {/*  
-        // TODO: Add NEXT | PREV buttons
-        <div className=" flex flex-row ml-4 uppercase">
-          <Link
-          className={`block mx-1`}
-          href={`#`}>
-          Previous{' '}
-          </Link>
-          |
-          <Link
-          className={`block mx-1`}
-          href={`#`}>
-          Next{' '}
-          </Link>
-        </div> */}
+          {isSuccess && (
+            <div className=" flex flex-row ml-4 uppercase">
+              {!nav.prev ? (
+                <p className={`text-gray-400  block mx-1`}>Previous </p>
+              ) : (
+                <Link
+                  className={` block mx-1`}
+                  href={`article/${nav.prev}`}>
+                  Previous{' '}
+                </Link>
+              )}
+              |
+              {!nav.next ? (
+                <p className={`text-gray-400  block mx-1`}>Next </p>
+              ) : (
+                <Link
+                  className={` block mx-1`}
+                  href={`article/${nav.next}`}>
+                  Next{' '}
+                </Link>
+              )}
+            </div>
+          )}
         </div>
         <div className="uppercase  ">{title}</div>
         <Link

@@ -5,7 +5,7 @@ import { getStrapiMedia } from 'packages/global/utils/index'
 const ArticleCard = ({ attributes: { slug, title, featuredImage, excerpt, topic } }) => {
   return (
     <Link
-      href={`/blog/${slug}`}
+      href={`/article/${slug}`}
       className="text-secondary-darker inline-flex items-center">
       <div className=" shadow-lg">
         <div className="relative">

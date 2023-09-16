@@ -1,4 +1,4 @@
-// import { useState } from 'react'
+import { useState } from 'react'
 
 import NoResults from '@marketingComponents/__lib/no-results'
 import Repeatable from '@globalComponents/__lib/Repeatable'
@@ -7,15 +7,52 @@ import { useGetProductsQuery } from '@appModules/shop/store/products.api'
 import { getStrapiMedia } from '@globalUtils/index'
 import Image from 'next/image'
 import Link from 'next/link'
+import Filter from '../filter'
+import Sort from '../sort'
 
-const Category = ({ name, parent, pageID, featuredImage, primaryButton, secondaryButton }) => {
-  // TODO: populate only required product fields {name, slug, featuredImages, price}
-  const { data: products, isSuccess } = useGetProductsQuery(pageID)
-
-  // TODO: Add filter and sort functionality
-  // const [openFilter, setOpenFilter] = useState(false)
-  // const [openSort, setOpenSort] = useState(false)
-  // const filteredProducts = products.filter((product) => {})
+const Category = ({
+  name,
+  parent,
+  pageID,
+  featuredImage,
+  primaryButton,
+  secondaryButton,
+  perPage
+}) => {
+  const { colors } = useGetProductsQuery(
+    { pageID },
+    {
+      selectFromResult: ({ data }) => ({
+        colors: data?.reduce((a, c) => {
+          return a.concat(
+            c.attributes.color.reduce((a, c) => {
+              return a.concat(c.label)
+            }, [])
+          )
+        }, [])
+      })
+    }
+  )
+  const { sizes } = useGetProductsQuery(
+    { pageID },
+    {
+      selectFromResult: ({ data }) => ({
+        sizes: data?.reduce((a, c) => {
+          return a.concat(c.attributes.size)
+        }, [])
+      })
+    }
+  )
+  const [openFilter, setOpenFilter] = useState(false)
+  const [openSort, setOpenSort] = useState(false)
+  const [filterByColor, setFilterByColor] = useState<string[]>([])
+  const [filterBySize, setFilterBySize] = useState<string[]>([])
+  const [sortBy, setSortBy] = useState('')
+  const {
+    data: products,
+    isSuccess,
+    refetch
+  } = useGetProductsQuery({ pageID, filterByColor, filterBySize, sortBy, perPage })
 
   return isSuccess ? (
     <section className=" pb-20 pt-0 px-8 md:px-12 lg:px-16 2xl:px-20 ">
@@ -34,32 +71,38 @@ const Category = ({ name, parent, pageID, featuredImage, primaryButton, secondar
           <p className="md:mr-3">/</p>
           {products && <h1>{`${products.length} product${products.length !== 1 ? 's' : ''}`}</h1>}
         </div>
-        {/*
-        // TODO: Add filter and sort buttons
-         <div className="flex flex-row justify-end">
-          <div className="mr-6">
-            <button
-              type="button"
-              className=""
-              onClick={() => setOpenFilter(!openFilter)}>
-              Filter
-            </button>
+        <div className="flex flex-row gap-6 justify-end">
+          <div className=" relative group ">
+            <Filter
+              setOpenSort={setOpenSort}
+              openFilter={openFilter}
+              setOpenFilter={setOpenFilter}
+              colors={[...new Set(colors)]}
+              sizes={[...new Set(sizes)]}
+              filterByColor={filterByColor}
+              filterBySize={filterBySize}
+              setFilterByColor={setFilterByColor}
+              setFilterBySize={setFilterBySize}
+              refetch={refetch}
+            />
           </div>
-          <div>
-            <button
-              type="button"
-              className=""
-              onClick={() => setOpenSort(!openSort)}>
-              Sort
-            </button>
+          <div className=" z-10 relative group ">
+            <Sort
+              setOpenFilter={setOpenFilter}
+              openSort={openSort}
+              setOpenSort={setOpenSort}
+              sortBy={sortBy}
+              setSortBy={setSortBy}
+              refetch={refetch}
+            />
           </div>
-        </div> */}
+        </div>
       </div>
       {featuredImage.data && (
         <div className="relative mt-6">
           <Image
             src={getStrapiMedia(featuredImage.data.attributes.url)}
-            alt={`${name} featured Image`}
+            alt={name + ' featured Image'}
             width="1366"
             height="800"
           />

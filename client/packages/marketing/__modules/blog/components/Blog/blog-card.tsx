@@ -7,7 +7,7 @@ const BlogCard = ({ attributes: { slug, title, featuredImage, excerpt } }) => {
   return (
     <Link
       className="group"
-      href={`/blog/${slug}`}>
+      href={`/article/${slug}`}>
       <div className={` flex flex-col items-stretch px-0 pb-0 pt-0`}>
         <Image
           className=""

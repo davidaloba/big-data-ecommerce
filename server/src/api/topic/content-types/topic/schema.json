@@ -25,9 +25,9 @@
     },
     "articles": {
       "type": "relation",
-      "relation": "oneToMany",
+      "relation": "manyToMany",
       "target": "api::article.article",
-      "mappedBy": "topic"
+      "mappedBy": "topics"
     }
   }
 }

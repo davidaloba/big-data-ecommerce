@@ -3,8 +3,10 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Repeatable from '@globalComponents/__lib/Repeatable'
 import ArticleCard from './article-card'
+import { useGetNavigationQuery } from '@marketingModules/blog/store/articles.api'
 
 const Article = ({
+  slug,
   title,
   featuredImage,
   relatedArticles: { data: relatedArticles },
@@ -14,8 +16,7 @@ const Article = ({
   const createMarkup = () => {
     return { __html: content }
   }
-
-  // TODO: Add NEXT | PREV functionality
+  const { data: nav, isSuccess } = useGetNavigationQuery(slug)
 
   return (
     <>
@@ -28,21 +29,29 @@ const Article = ({
             href={`/blog`}>
             {`< Blog`}
           </Link>
-          {/*  
-          // TODO: Add NEXT | PREV buttons
-          <div className=" flex flex-row ml-4 uppercase">
-            <Link
-            className={`block mx-1`}
-            href={`#`}>
-            Previous{' '}
-            </Link>
-            |
-            <Link
-            className={`block mx-1`}
-            href={`#`}>
-            Next{' '}
-            </Link>
-          </div> */}
+          {isSuccess && (
+            <div className=" flex flex-row ml-4 uppercase">
+              {!nav.prev ? (
+                <p className={`text-gray-400  block mx-1`}>Previous </p>
+              ) : (
+                <Link
+                  className={` block mx-1`}
+                  href={`article/${nav.prev}`}>
+                  Previous{' '}
+                </Link>
+              )}
+              |
+              {!nav.next ? (
+                <p className={`text-gray-400  block mx-1`}>Next </p>
+              ) : (
+                <Link
+                  className={` block mx-1`}
+                  href={`article/${nav.next}`}>
+                  Next{' '}
+                </Link>
+              )}
+            </div>
+          )}
         </div>
         <div className="uppercase  ">{title}</div>
         <Link
