@@ -1,4 +1,4 @@
-const apiHost = `https://cms.yinkasamuels.com`
+export const apiHost = `https://cms.yinkasamuels.com`
 
 const indexes = ['blog', 'work', 'shop', 'checkout', 'cart', 'category', 'topic', 'author', 'order']
 const contentTypes = {
