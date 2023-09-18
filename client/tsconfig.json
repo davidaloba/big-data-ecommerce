@@ -23,43 +23,28 @@
     "baseUrl": "./",
     "paths": {
       "@globalStore/*": [
-        "packages/global/store/*"
+        "packages/app/global/store/*"
       ],
       "@globalComponents/*": [
-        "packages/global/components/*"
+        "packages/app/global/components/*"
       ],
       "@globalStyles/*": [
-        "packages/global/styles/*"
+        "packages/app/global/styles/*"
       ],
       "@globalUtils/*": [
-        "packages/global/utils/*"
+        "packages/app/global/utils/*"
       ],
       "@globalAssets/*": [
-        "packages/global/assets/*"
+        "packages/app/global/assets/*"
       ],
       "@globalTypes/*": [
-        "packages/global/__types/*"
+        "packages/app/global/__types/*"
       ],
       "@globalHooks/*": [
-        "packages/global/hooks/*"
+        "packages/app/global/hooks/*"
       ],
-      "@marketingModules/*": [
-        "packages/marketing/__modules/*"
-      ],
-      "@marketingTests/*": [
-        "packages/marketing/__tests__/*"
-      ],
-      "@marketingComponents/*": [
-        "packages/marketing/components/*"
-      ],
-      "@appModules/*": [
-        "packages/app/__modules/*"
-      ],
-      "@appUtils/*": [
-        "packages/app/utils/*"
-      ],
-      "@appComponents/*": [
-        "packages/app/components/*"
+      "@features/*": [
+        "packages/app/features/*"
       ]
     },
     "allowJs": true,
