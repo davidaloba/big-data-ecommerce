@@ -34,8 +34,9 @@ export function getStrapiMedia(url: string) {
   return `${apiHost}${url}`
 }
 
-export function getData(slug: string | string[], preview?: boolean) {
+export function getData(slug: string, preview?: boolean) {
   const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
+  // const slug = pathname.split('/').filter((e) => e !== '')
   const index = indexes.includes(slug[0]) ? slug[0] : 'page'
   const pageID = !slug[slug.length - 1] ? 'home' : slug[slug.length - 1]
 
@@ -99,7 +100,7 @@ export const numberWithCommas = (x: number) => {
   return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',')
 }
 
-export const fetchHoverImg = async (slug: string, setData: Function) => {
+export const fetchHoverImg = async (slug: string, setData) => {
   fetch(`${apiHost}/api/products?filters[slug][$eq]=${slug}&populate[hoverImage][populate][0]=url`)
     .then((res) => {
       if (res.ok) {

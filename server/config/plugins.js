@@ -3,6 +3,9 @@ module.exports = ({ env }) => ({
     enabled: true,
     config: {
       model: 'scheduler',
+      contentTypes: {
+				'api::page.page': {}
+			},
     },
   },
   'cookie-manager': {

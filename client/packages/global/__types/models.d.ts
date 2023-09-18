@@ -48,7 +48,7 @@ export interface Page {
   }
   apiUrl: string
   preview: boolean | undefined
-  contentType: string
   apiID: string
   pageID: string
+  contentType: string
 }
