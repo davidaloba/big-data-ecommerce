@@ -1,51 +1,26 @@
 {
-  "include": [
-    "packages",
-    "pages",
-    "app",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    ".next",
-    ".history"
-  ],
+  "include": ["packages", "pages", "app", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next", ".history"],
   "compilerOptions": {
     "module": "esnext",
     "target": "es2015",
     "moduleResolution": "node",
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": "./",
     "paths": {
-      "@globalStore/*": [
-        "packages/app/global/store/*"
-      ],
-      "@globalComponents/*": [
-        "packages/app/global/components/*"
-      ],
-      "@globalStyles/*": [
-        "packages/app/global/styles/*"
-      ],
-      "@globalUtils/*": [
-        "packages/app/global/utils/*"
-      ],
-      "@globalAssets/*": [
-        "packages/app/global/assets/*"
-      ],
-      "@globalTypes/*": [
-        "packages/app/global/__types/*"
-      ],
-      "@globalHooks/*": [
-        "packages/app/global/hooks/*"
-      ],
-      "@features/*": [
-        "packages/app/features/*"
-      ]
+      "@globalStore/*": ["packages/app/_global/store/*"],
+      "@globalComponents/*": ["packages/app/_global/components/*"],
+      "@globalStyles/*": ["packages/app/_global/styles/*"],
+      "@globalUtils/*": ["packages/app/_global/utils/*"],
+      "@globalAssets/*": ["packages/app/_global/assets/*"],
+      "@globalTypes/*": ["packages/app/_global/__types/*"],
+      "@globalHooks/*": ["packages/app/_global/hooks/*"],
+      "@app/*": ["packages/app/*"],
+      "@blogComponents/*": ["packages/app/blog/components/*"],
+      "@pagesComponents/*": ["packages/app/pages/components/*"],
+      "@shopComponents/*": ["packages/app/shop/components/*"],
+      "@workComponents/*": ["packages/app/work/components/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,
