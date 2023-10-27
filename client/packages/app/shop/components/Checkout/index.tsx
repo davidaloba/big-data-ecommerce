@@ -1,3 +1,5 @@
+'use client'
+
 import { createContext, useState } from 'react'
 import Checkout from './main'
 import { CheckoutContextType, ICheckout } from '../../__types'

@@ -9,8 +9,6 @@ import MenuCart from './menu-cart'
 
 const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
   const user = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : Cookies.get('user')
-  console.log(user)
-
   return (
     <nav
       className="hidden px-4 md:px-6 lg:px-8 2xl:px-12 py-2
@@ -30,12 +28,12 @@ const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
           <li className="flex-1  ">
             {user ? (
               <MenuLink
-                href="/account"
+                href="account"
                 label="My Account"
               />
             ) : (
               <MenuLink
-                href="/login"
+                href="login"
                 label="LOG IN"
               />
             )}

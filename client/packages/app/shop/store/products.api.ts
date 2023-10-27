@@ -13,7 +13,7 @@ const productsApi = api.injectEndpoints({
       }
     }),
     getProducts: build.query({
-      query: ({ pageID: category, sortBy, filterByColor, filterBySize, perPage }) => {
+      query: ({ slug: category, sortBy, filterByColor, filterBySize, perPage }) => {
         const page = 1
         const start = +page === 1 ? 0 : (+page - 1) * perPage
         const pagination = `&pagination[limit]=${

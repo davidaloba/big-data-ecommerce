@@ -1,3 +1,5 @@
+'use client'
+
 import { useGetKindsQuery, useGetProjectsQuery } from '../../store/projects.api'
 import WorkCard from './work-card'
 import NoResults from '@app/_global/components/__lib/no-results'

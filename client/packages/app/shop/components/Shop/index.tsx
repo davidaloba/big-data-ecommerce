@@ -1,3 +1,4 @@
+'use client'
 import { useState } from 'react'
 import { useGetProductsQuery } from '../../store/products.api'
 import ProductCard from '../../components/ProductCard'
@@ -6,9 +7,9 @@ import Filter from '../filter'
 import NoResults from '@app/_global/components/__lib/no-results'
 import Repeatable from '@app/_global/components/__lib/Repeatable'
 
-const Shop = ({ pageID, perPage }) => {
+const Shop = ({ slug, perPage }) => {
   const { colors } = useGetProductsQuery(
-    { pageID },
+    { slug },
     {
       selectFromResult: ({ data }) => ({
         colors: data?.reduce((a, c) => {
@@ -22,7 +23,7 @@ const Shop = ({ pageID, perPage }) => {
     }
   )
   const { sizes } = useGetProductsQuery(
-    { pageID },
+    { slug },
     {
       selectFromResult: ({ data }) => ({
         sizes: data?.reduce((a, c) => {
@@ -40,7 +41,7 @@ const Shop = ({ pageID, perPage }) => {
     data: products,
     isSuccess,
     refetch
-  } = useGetProductsQuery({ pageID, filterByColor, filterBySize, sortBy, perPage })
+  } = useGetProductsQuery({ slug, filterByColor, filterBySize, sortBy, perPage })
 
   return isSuccess ? (
     <section className=" pb-20 pt-0 px-8 md:px-12 lg:px-16 2xl:px-20 ">

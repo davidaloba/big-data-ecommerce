@@ -6,7 +6,7 @@ import {
   useGetGlobalQuery,
   useGetPageDataQuery
 } from '@globalStore/api'
-import { getData } from '@globalUtils/index'
+import { getStrapiApi } from '@globalUtils/index'
 import ErrorPage from 'next/error'
 
 import GlobalLayout from '@globalComponents/layouts/layout'
@@ -24,7 +24,7 @@ import Checkout from '@shopComponents/Checkout'
 import Order from '@shopComponents/Order'
 
 export const getServerSideProps = wrapper.getServerSideProps((store) => async (context) => {
-  const { apiUrl, pageID, contentType } = getData(context.query.page || '', context.preview)
+  const { apiUrl, pageID, contentType } = getStrapiApi(context.query.page || '', context.preview)
   try {
     await Promise.all([
       store.dispatch(getPageData.initiate(apiUrl)),
@@ -55,7 +55,6 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
     pageID,
     ...pageData
   }
-  console.log(props, 'page:')
 
   if (!pageData) return <ErrorPage statusCode={404} />
 

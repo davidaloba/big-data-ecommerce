@@ -37,7 +37,6 @@ const projectsApi = api.injectEndpoints({
         const prev =
           currentIndex === articles.length - 1 ? '' : articles[currentIndex + 1].attributes?.slug
         const next = currentIndex === 0 ? '' : articles[currentIndex - 1].attributes?.slug
-        console.log(currentIndex, articles.length, next, prev)
 
         return { next, prev }
       }

@@ -1,29 +1,17 @@
 import { Metadata } from 'next'
 import { getStrapiURL } from '@globalUtils/index'
+import { ReduxProvider } from '@globalStore/providers'
+import { fetchData } from '@globalUtils/actions'
 
 import 'tailwindcss/tailwind.css'
 import '@globalStyles/global.css'
-import PreviewBanner from '@app/_global/components/partials/PreviewBanner'
-import Header from '@app/_global/components/partials/Header'
-import Main from '@app/_global/components/partials/Main'
-import Footer from '@app/_global/components/partials/Footer'
-import { ReduxProvider } from '@globalStore/providers'
-
-async function getData() {
-  const res = await fetch(getStrapiURL(`/global?populate=deep`))
-  // The return value is *not* serialized
-  // You can return Date, Map, Set, etc.
-
-  if (!res.ok) {
-    // This will activate the closest `error.js` Error Boundary
-    throw new Error('Failed to fetch data')
-  }
-
-  return res.json()
-}
+import PreviewBanner from '@globalComponents/partials/PreviewBanner'
+import Header from '@globalComponents/partials/Header'
+import Main from '@globalComponents/partials/Main'
+import Footer from '@globalComponents/partials/Footer'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
-  const global = await getData()
+  const global = await fetchData(getStrapiURL(`/global?populate=deep`))
   const globalData = global.data.attributes
   const { header, footer } = globalData
   let preview

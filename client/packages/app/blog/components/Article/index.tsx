@@ -1,3 +1,5 @@
+'use client'
+
 import { getStrapiMedia } from '@app/_global/utils/index'
 import Link from 'next/link'
 import Image from 'next/image'
@@ -36,7 +38,7 @@ const Article = ({
               ) : (
                 <Link
                   className={` block mx-1`}
-                  href={`article/${nav.prev}`}>
+                  href={`${nav.prev}`}>
                   Previous{' '}
                 </Link>
               )}
@@ -46,7 +48,7 @@ const Article = ({
               ) : (
                 <Link
                   className={` block mx-1`}
-                  href={`article/${nav.next}`}>
+                  href={`${nav.next}`}>
                   Next{' '}
                 </Link>
               )}

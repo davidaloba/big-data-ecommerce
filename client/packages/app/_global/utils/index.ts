@@ -35,31 +35,38 @@ export function getStrapiMedia(url: string) {
   return `${apiHost}${url}`
 }
 
-export function getData(pathname: string, preview?: boolean) {
+export function getStrapiApi(slug: string, preview?: boolean) {
   const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
-  const slug = pathname.split('/').filter((e) => e !== '')
-  const index = indexes.includes(slug[0]) ? slug[0] : 'page'
-  const pageID = !slug[slug.length - 1] ? 'home' : slug[slug.length - 1]
 
-  const data = {
-    apiUrl: '',
-    pageID,
-    contentType: ''
-  }
-  // handle Index Pages
-  if (indexes.includes(slug[0]) && slug.length === 1) {
-    data.contentType = index
-    data.apiUrl = getStrapiURL(`/${data.contentType}?${previewParams}&populate[0]=deep`)
-    // handle Single Pages
+  if (slug) {
+    const index = indexes.includes(slug[0]) ? slug[0] : 'page'
+    const pageID = slug[slug.length - 1]
+
+    const data = {
+      apiUrl: '',
+      contentType: ''
+    }
+    // handle Index Pages
+    if (indexes.includes(slug[0]) && slug.length === 1) {
+      data.contentType = index
+      data.apiUrl = getStrapiURL(`/${data.contentType}?${previewParams}&populate[0]=deep`)
+      // handle Single Pages
+    } else {
+      data.contentType = index in contentTypes && contentTypes[index]
+      data.apiUrl = getStrapiURL(
+        `/${data.contentType}?filters[slug][$eq]=${pageID}${previewParams}&populate[0]=deep`
+        // `/${data.contentType}/${pageID}?${previewParams}&populate=deep`
+      )
+    }
+
+    return data
   } else {
-    data.contentType = index in contentTypes && contentTypes[index]
-    data.apiUrl = getStrapiURL(
-      `/${data.contentType}?filters[slug][$eq]=${pageID}${previewParams}&populate[0]=deep`
-      // `/${data.contentType}/${pageID}?${previewParams}&populate=deep`
-    )
+    const data = {
+      apiUrl: getStrapiURL(`/pages?filters[slug][$eq]=home${previewParams}&populate[0]=deep`),
+      contentType: 'pages'
+    }
+    return data
   }
-
-  return data
 }
 
 export function handleRedirection(preview: boolean, custom: string) {

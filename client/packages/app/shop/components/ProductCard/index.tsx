@@ -11,7 +11,7 @@ const ProductCard = ({ attributes }) => {
   return (
     <div className=" w-full cursor-pointer">
       <div className="relative group">
-        <Link href={`shop/${slug}`}>
+        <Link href={`/shop/${slug}`}>
           {featuredImage && (
             <Image
               className="group-hover:hidden "

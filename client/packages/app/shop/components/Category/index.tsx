@@ -1,5 +1,5 @@
+'use client'
 import { useState } from 'react'
-
 import Image from 'next/image'
 import Link from 'next/link'
 import NoResults from '@app/_global/components/__lib/no-results'
@@ -13,14 +13,14 @@ import Sort from '../sort'
 const Category = ({
   name,
   parent,
-  pageID,
+  slug,
   featuredImage,
   primaryButton,
   secondaryButton,
   perPage
 }) => {
   const { colors } = useGetProductsQuery(
-    { pageID },
+    { slug },
     {
       selectFromResult: ({ data }) => ({
         colors: data?.reduce((a, c) => {
@@ -34,7 +34,7 @@ const Category = ({
     }
   )
   const { sizes } = useGetProductsQuery(
-    { pageID },
+    { slug },
     {
       selectFromResult: ({ data }) => ({
         sizes: data?.reduce((a, c) => {
@@ -52,7 +52,7 @@ const Category = ({
     data: products,
     isSuccess,
     refetch
-  } = useGetProductsQuery({ pageID, filterByColor, filterBySize, sortBy, perPage })
+  } = useGetProductsQuery({ slug, filterByColor, filterBySize, sortBy, perPage })
 
   return isSuccess ? (
     <section className=" pb-20 pt-0 px-8 md:px-12 lg:px-16 2xl:px-20 ">

@@ -1,7 +1,3 @@
-'use client'
-import { redirect, usePathname } from 'next/navigation'
-import { getData } from '@globalUtils/index'
-
 import BlockManager from '@pagesComponents/BlockManager'
 import Blog from '@blogComponents/Blog'
 import Article from '@blogComponents/Article'
@@ -13,23 +9,9 @@ import Product from '@shopComponents/Product'
 import Cart from '@shopComponents/Cart'
 import Checkout from '@shopComponents/Checkout'
 import Order from '@shopComponents/Order'
-import { useGetPageDataQuery } from '@globalStore/api'
 
-export default function Content() {
-  const path = usePathname()
-  const { apiUrl, pageID, contentType } = getData(path)
-  const { data: pageData } = useGetPageDataQuery(apiUrl)
-  const props = {
-    apiUrl,
-    contentType,
-    pageID,
-    ...pageData
-  }
-  console.log(props)
-
-  if (!pageData) redirect('/404')
-
-  const pageTID = pageID === 'home' ? pageID : contentType
+export default async function Content({ contentType, pageData }) {
+  const pageTID = pageData.slug === 'home' ? pageData.slug : contentType
 
   let Content
   switch (pageTID) {
@@ -71,5 +53,5 @@ export default function Content() {
       break
   }
 
-  return <Content {...props} />
+  return <Content {...pageData} />
 }

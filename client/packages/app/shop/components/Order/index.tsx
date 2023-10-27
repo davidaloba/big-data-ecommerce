@@ -1,3 +1,5 @@
+'use client'
+
 import CartItems from './cart-items'
 import OrderSummary from './order-summary'
 import Address from '@app/_global/components/__lib/address'

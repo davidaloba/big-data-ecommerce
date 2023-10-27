@@ -1,3 +1,5 @@
+'use client'
+
 import { RootState, useAppSelector } from '@app/_global/store/index'
 import Link from 'next/link'
 import { numberWithCommas } from '@app/_global/utils/index'
