@@ -35,7 +35,7 @@ const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
               />
             ) : (
               <MenuLink
-                href="/account/login"
+                href="/login"
                 label="LOG IN"
               />
             )}

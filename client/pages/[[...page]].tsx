@@ -49,18 +49,23 @@ export const getServerSideProps = wrapper.getServerSideProps((store) => async (c
 const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
   const { data: globalData } = useGetGlobalQuery('global')
   const { data: pageData } = useGetPageDataQuery(apiUrl)
+  const props = {
+    apiUrl,
+    contentType,
+    pageID,
+    ...pageData
+  }
+  console.log(props, 'page:')
 
   if (!pageData) return <ErrorPage statusCode={404} />
 
   const pageTID = pageID === 'home' ? pageID : contentType
-
   let Layout
   switch (pageTID) {
     default:
       Layout = GlobalLayout
       break
   }
-
   let Content
   switch (pageTID) {
     case 'blog':
@@ -77,6 +82,9 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
       break
     case 'checkout':
       Content = Checkout
+      break
+    case 'login':
+      Content = Order
       break
     case 'orders':
       Content = Order
@@ -98,14 +106,6 @@ const Page = ({ apiUrl, contentType, pageID, preview }: Page) => {
       break
   }
 
-  const props = {
-    apiUrl,
-    contentType,
-    pageID,
-    ...pageData
-  }
-
-  console.log('page:', pageData)
   return (
     <Layout
       globalData={globalData}
