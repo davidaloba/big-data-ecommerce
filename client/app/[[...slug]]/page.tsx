@@ -2,7 +2,7 @@ import { fetchData } from '@globalUtils/actions'
 import { getStrapiApi } from '@globalUtils/index'
 
 import Content from '@globalComponents/content'
-import ErrorPage from '../404/errorpage'
+import ErrorPage from '@globalComponents/pages/404'
 
 export default async function Page({ params }: { params: { slug: string } }) {
   const { apiUrl, contentType } = getStrapiApi(params.slug)

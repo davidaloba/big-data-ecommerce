@@ -1,4 +1,4 @@
-import { getStrapiMedia, numberWithCommas } from '@app/_global/utils/index'
+import { getStrapiMedia, numberWithCommas } from '@globalUtils/index'
 import Link from 'next/link'
 import Image from 'next/image'
 

@@ -1,11 +1,7 @@
-import NoResults from '@app/_global/components/__lib/no-results'
+'use client'
 
-const NotFound = () => {
-  return (
-    <section className="">
-      <NoResults />
-    </section>
-  )
+import ErrorPage from 'next/error'
+
+export default function NotFound() {
+  return <ErrorPage statusCode={404} />
 }
-
-export default NotFound

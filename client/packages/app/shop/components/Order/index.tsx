@@ -2,7 +2,7 @@
 
 import CartItems from './cart-items'
 import OrderSummary from './order-summary'
-import Address from '@app/_global/components/__lib/address'
+import Address from '@globalComponents/__lib/address'
 
 const Order = ({ cart: items, billing, shipping, status }) => {
   const subtotal = items

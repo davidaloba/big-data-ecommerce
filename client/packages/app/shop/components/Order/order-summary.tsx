@@ -1,4 +1,4 @@
-import { numberWithCommas } from '@app/_global/utils/index'
+import { numberWithCommas } from '@globalUtils/index'
 import Link from 'next/link'
 
 const OrderSummary = ({ subtotal, shippingCost, tax, total, status }) => {
