@@ -35,9 +35,9 @@ export function getStrapiMedia(url: string) {
   return `${apiHost}${url}`
 }
 
-export function getData(slug: string, preview?: boolean) {
+export function getData(pathname: string, preview?: boolean) {
   const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
-  // const slug = pathname.split('/').filter((e) => e !== '')
+  const slug = pathname.split('/').filter((e) => e !== '')
   const index = indexes.includes(slug[0]) ? slug[0] : 'page'
   const pageID = !slug[slug.length - 1] ? 'home' : slug[slug.length - 1]
 

@@ -1,5 +1,5 @@
 {
-  "include": ["packages", "pages", "app", ".next/types/**/*.ts"],
+  "include": ["packages", "app", ".next/types/**/*.ts"],
   "exclude": ["node_modules", ".next", ".history"],
   "compilerOptions": {
     "module": "esnext",

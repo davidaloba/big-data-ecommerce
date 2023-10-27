@@ -1,3 +1,5 @@
+'use client'
+
 import {
   useGetArticlesQuery,
   useGetAuthorsQuery,
