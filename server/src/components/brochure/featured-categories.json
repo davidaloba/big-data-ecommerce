@@ -11,7 +11,7 @@
       "type": "component",
       "required": true,
       "repeatable": true,
-      "component": "page.category-card"
+      "component": "brochure.category-card"
     }
   }
 }

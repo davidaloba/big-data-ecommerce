@@ -1,10 +1,10 @@
 {
   "kind": "collectionType",
-  "collectionName": "page",
+  "collectionName": "folio",
   "info": {
-    "singularName": "page",
-    "pluralName": "pages",
-    "displayName": "page",
+    "singularName": "folio",
+    "pluralName": "brochure",
+    "displayName": "folio",
     "description": ""
   },
   "options": {
@@ -28,12 +28,12 @@
       "type": "dynamiczone",
       "components": [
         "__lib.page-title",
-        "page.section",
-        "page.featured-categories",
-        "page.hero",
-        "page.featured-projects",
-        "page.latest-code",
-        "page.about-me"
+        "brochure.section",
+        "brochure.featured-categories",
+        "brochure.hero",
+        "brochure.featured-projects",
+        "brochure.latest-code",
+        "brochure.about-me"
       ]
     },
     "seo": {

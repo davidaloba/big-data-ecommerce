@@ -1,26 +1,62 @@
 {
-  "include": ["packages", "app", ".next/types/**/*.ts"],
-  "exclude": ["node_modules", ".next", ".history"],
+  "include": [
+    "packages",
+    "app",
+    ".next/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    ".next",
+    ".history"
+  ],
   "compilerOptions": {
     "module": "esnext",
     "target": "es2015",
     "moduleResolution": "node",
     "jsx": "preserve",
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": "./",
     "paths": {
-      "@globalStore/*": ["packages/app/_global/store/*"],
-      "@globalComponents/*": ["packages/app/_global/components/*"],
-      "@globalStyles/*": ["packages/app/_global/styles/*"],
-      "@globalUtils/*": ["packages/app/_global/utils/*"],
-      "@globalAssets/*": ["packages/app/_global/assets/*"],
-      "@globalTypes/*": ["packages/app/_global/__types/*"],
-      "@globalHooks/*": ["packages/app/_global/hooks/*"],
-      "@app/*": ["packages/app/*"],
-      "@blogComponents/*": ["packages/app/blog/components/*"],
-      "@brochureComponents/*": ["packages/app/brochure/components/*"],
-      "@shopComponents/*": ["packages/app/shop/components/*"],
-      "@workComponents/*": ["packages/app/work/components/*"]
+      "@globalStore/*": [
+        "packages/app/_global/store/*"
+      ],
+      "@globalComponents/*": [
+        "packages/app/_global/components/*"
+      ],
+      "@globalStyles/*": [
+        "packages/app/_global/styles/*"
+      ],
+      "@globalUtils/*": [
+        "packages/app/_global/utils/*"
+      ],
+      "@globalAssets/*": [
+        "packages/app/_global/assets/*"
+      ],
+      "@globalTypes/*": [
+        "packages/app/_global/__types/*"
+      ],
+      "@globalHooks/*": [
+        "packages/app/_global/hooks/*"
+      ],
+      "@app/*": [
+        "packages/app/*"
+      ],
+      "@blogComponents/*": [
+        "packages/app/blog/components/*"
+      ],
+      "@brochureComponents/*": [
+        "packages/app/brochure/components/*"
+      ],
+      "@shopComponents/*": [
+        "packages/app/shop/components/*"
+      ],
+      "@workComponents/*": [
+        "packages/app/work/components/*"
+      ]
     },
     "allowJs": true,
     "skipLibCheck": true,

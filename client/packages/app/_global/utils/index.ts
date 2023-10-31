@@ -14,7 +14,7 @@ const indexes = [
 ]
 const contentTypes = {
   shop: 'products',
-  page: 'pages',
+  folio: 'brochure',
   article: 'articles',
   project: 'projects',
   category: 'categories',
@@ -39,7 +39,7 @@ export function getStrapiApi(slug: string, preview?: boolean) {
   const previewParams = preview ? '&publicationState=preview&published_at_null=true' : ''
 
   if (slug) {
-    const index = indexes.includes(slug[0]) ? slug[0] : 'page'
+    const index = indexes.includes(slug[0]) ? slug[0] : 'folio'
     const pageID = slug[slug.length - 1]
 
     const data = {
@@ -62,8 +62,8 @@ export function getStrapiApi(slug: string, preview?: boolean) {
     return data
   } else {
     const data = {
-      apiUrl: getStrapiURL(`/pages?filters[slug][$eq]=home${previewParams}&populate[0]=deep`),
-      contentType: 'pages'
+      apiUrl: getStrapiURL(`/brochure?filters[slug][$eq]=home${previewParams}&populate[0]=deep`),
+      contentType: 'brochure'
     }
     return data
   }

@@ -2,24 +2,24 @@ module.exports = ({ env }) => ({
   scheduler: {
     enabled: true,
     config: {
-      model: 'scheduler',
+      model: "scheduler",
       contentTypes: {
-				'api::page.page': {}
-			},
+        "api::folio.folio": {},
+      },
     },
   },
-  'cookie-manager': {
+  "cookie-manager": {
     enabled: true,
     config: {
       localization: true,
     },
   },
   "generate-data": {
-      enabled: true,
+    enabled: true,
   },
-  'strapi-plugin-populate-deep': {
+  "strapi-plugin-populate-deep": {
     config: {
       defaultDepth: 7, // Default is 5
-    }
+    },
   },
 });

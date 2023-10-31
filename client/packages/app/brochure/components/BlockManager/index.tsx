@@ -27,22 +27,22 @@ const BlockManager = ({ blocks, perPage }) => {
         let Block
 
         switch (__component) {
-          case 'page.featured-categories':
+          case 'brochure.featured-categories':
             Block = FeaturedCategories
             break
-          case '__lib.page-title':
+          case '__lib.brochure-title':
             Block = PageTitle
             break
-          case 'page.featured-projects':
+          case 'brochure.featured-projects':
             Block = FeaturedProjects
             break
-          case 'page.latest-code':
+          case 'brochure.latest-code':
             Block = LatestCode
             break
-          case 'page.hero':
+          case 'brochure.hero':
             Block = Hero
             break
-          case 'page.about-me':
+          case 'brochure.about-me':
             Block = AboutMe
             break
         }

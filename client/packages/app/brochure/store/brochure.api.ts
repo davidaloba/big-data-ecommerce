@@ -1,6 +1,6 @@
 import api from '@app/_global/store/api'
 
-const pagesApi = api.injectEndpoints({
+const brochureApi = api.injectEndpoints({
   endpoints: (build) => ({
     getLatestRepos: build.query({
       query: (username) => {
@@ -28,4 +28,4 @@ const pagesApi = api.injectEndpoints({
   overrideExisting: false
 })
 
-export const { useGetLatestReposQuery } = pagesApi
+export const { useGetLatestReposQuery } = brochureApi
