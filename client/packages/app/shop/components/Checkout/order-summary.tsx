@@ -6,13 +6,11 @@ import { useContext, useState, useEffect } from 'react'
 import { CheckoutContext } from '.'
 import { RootState, useAppSelector } from '@app/_global/store/index'
 import { useFlutterwave, closePaymentModal } from 'flutterwave-react-v3'
-import { useRouter } from 'next/router'
+import { redirect } from 'next/navigation'
 import { useAddOrderMutation } from '../../store/orders.api'
 
 const OrderSummary = ({ watch, errors }) => {
   const [addOrder, { isSuccess }] = useAddOrderMutation()
-
-  const router = useRouter()
 
   const [checkout, setCheckout] = useContext(CheckoutContext)
   const { stage, shipping, billing } = checkout
@@ -76,7 +74,7 @@ const OrderSummary = ({ watch, errors }) => {
             alert(err)
           }
           closePaymentModal() // this will close the modal programmatically
-          router.push(`/order/${response.transaction_id}`)
+          redirect(`/order/${response.transaction_id}`)
           Cookies.remove('cart')
         } else {
           alert(` Your payment is ${response.status}.Please try again later`)

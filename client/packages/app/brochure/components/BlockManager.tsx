@@ -1,22 +1,22 @@
 'use client'
 import dynamic from 'next/dynamic'
 
-const FeaturedCategories = dynamic(() => import('@pagesComponents/FeaturedCategories'), {
+const FeaturedCategories = dynamic(() => import('@brochureComponents/FeaturedCategories'), {
   ssr: true
 })
 const PageTitle = dynamic(() => import('@app/_global/components/__lib/PageTitle'), {
   ssr: true
 })
-const Hero = dynamic(() => import('@pagesComponents/Hero'), {
+const Hero = dynamic(() => import('@brochureComponents/Hero'), {
   ssr: true
 })
-const FeaturedProjects = dynamic(() => import('@pagesComponents/FeaturedProjects'), {
+const FeaturedProjects = dynamic(() => import('@brochureComponents/FeaturedProjects'), {
   ssr: true
 })
-const LatestCode = dynamic(() => import('@pagesComponents/LatestCode'), {
+const LatestCode = dynamic(() => import('@brochureComponents/LatestCode'), {
   ssr: true
 })
-const AboutMe = dynamic(() => import('@pagesComponents/AboutMe'), {
+const AboutMe = dynamic(() => import('@brochureComponents/AboutMe'), {
   ssr: true
 })
 

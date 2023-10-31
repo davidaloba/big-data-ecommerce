@@ -11,7 +11,7 @@ import ErrorPage from 'next/error'
 
 import GlobalLayout from '@globalComponents/layouts/layout'
 import Seo from '@globalComponents/partials/seo'
-import BlockManager from '@pagesComponents/BlockManager'
+import BlockManager from '@brochureComponents/BlockManager'
 import Blog from '@blogComponents/Blog'
 import Article from '@blogComponents/Article'
 import Work from '@workComponents/Work'

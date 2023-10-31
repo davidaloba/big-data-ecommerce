@@ -129,35 +129,6 @@ const Billing = ({ register, watch, paymentOptions, errors, setValue }) => {
 
   return (
     <div>
-      <div className=" px-5 py-5 ">
-        <p className=" pb-5 uppercase ">select billing address</p>
-        <div className="pb-5 flex ">
-          <input
-            type="checkbox"
-            value={watch('shipping.address')}
-            className=" mr-6 cursor-pointer"
-            onClick={() => {
-              setBillingAdd(!billingAdd)
-              setValue('billing.address', shipping.address, {
-                shouldValidate: true,
-                shouldDirty: true,
-                shouldTouch: true
-              })
-            }}
-          />
-          <label className=" min-w-max uppercase">Same as shipping address</label>
-        </div>
-        {billingAdd ? (
-          <AddressForm
-            address="billing.address"
-            errors={errors}
-            register={register}
-            registerOptions={registerOptions}
-          />
-        ) : (
-          <Address address={shipping.address} />
-        )}
-      </div>
       <div className="px-5 py-5">
         <div>
           <p className="pb-4 uppercase">Payment method</p>
@@ -199,6 +170,35 @@ const Billing = ({ register, watch, paymentOptions, errors, setValue }) => {
             ))}
           </div>
         </div>
+      </div>
+      <div className=" px-5 py-5 ">
+        <p className=" pb-5 uppercase ">select billing address</p>
+        <div className="pb-5 flex ">
+          <input
+            type="checkbox"
+            value={watch('shipping.address')}
+            className=" mr-6 cursor-pointer"
+            onClick={() => {
+              setBillingAdd(!billingAdd)
+              setValue('billing.address', shipping.address, {
+                shouldValidate: true,
+                shouldDirty: true,
+                shouldTouch: true
+              })
+            }}
+          />
+          <label className=" min-w-max uppercase">Same as shipping address</label>
+        </div>
+        {billingAdd ? (
+          <AddressForm
+            address="billing.address"
+            errors={errors}
+            register={register}
+            registerOptions={registerOptions}
+          />
+        ) : (
+          <Address address={shipping.address} />
+        )}
       </div>
     </div>
   )

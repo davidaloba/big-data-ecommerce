@@ -18,7 +18,7 @@
       "@globalHooks/*": ["packages/app/_global/hooks/*"],
       "@app/*": ["packages/app/*"],
       "@blogComponents/*": ["packages/app/blog/components/*"],
-      "@pagesComponents/*": ["packages/app/pages/components/*"],
+      "@brochureComponents/*": ["packages/app/brochure/components/*"],
       "@shopComponents/*": ["packages/app/shop/components/*"],
       "@workComponents/*": ["packages/app/work/components/*"]
     },

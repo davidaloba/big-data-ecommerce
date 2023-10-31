@@ -4,7 +4,7 @@ import { useGetKindsQuery, useGetProjectsQuery } from '../../store/projects.api'
 import WorkCard from './work-card'
 import NoResults from '@app/_global/components/__lib/no-results'
 import Repeatable from '@app/_global/components/__lib/Repeatable'
-import BlockManager from '@pagesComponents/BlockManager'
+import BlockManager from '@brochureComponents/BlockManager'
 import { useState } from 'react'
 import Filter from './filter'
 
