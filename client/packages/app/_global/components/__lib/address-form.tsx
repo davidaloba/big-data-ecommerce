@@ -11,12 +11,12 @@ const AddressForm = ({ address, errors, registerOptions, register }) => {
   const phoneErr = (errors && errors.phone && errors.phone) || null
 
   return (
-    <div>
+    <div className="uppercase">
       <div className=" flex flex-row gap-5 pb-5">
         <div className="flex-1 flex flex-col ">
           <div className="flex flex-row justify-between items-center">
-            <label className=" mb-1 uppercase">First Name</label>
-            {firstNameErr && <p className="text-red-500 uppercase">{firstNameErr.message}</p>}
+            <label className=" mb-1  ">First Name</label>
+            {firstNameErr && <p className="text-red-500  ">{firstNameErr.message}</p>}
           </div>
           <input
             {...register(`${address}.firstName`, registerOptions.firstName)}
@@ -27,8 +27,8 @@ const AddressForm = ({ address, errors, registerOptions, register }) => {
         </div>
         <div className="flex-1 flex flex-col ">
           <div className="flex flex-row justify-between items-center">
-            <label className=" mb-1 uppercase">Last Name</label>
-            {lastNameErr && <p className="text-red-500 uppercase">{lastNameErr.message}</p>}
+            <label className=" mb-1  ">Last Name</label>
+            {lastNameErr && <p className="text-red-500  ">{lastNameErr.message}</p>}
           </div>
           <input
             type="text"
@@ -39,8 +39,8 @@ const AddressForm = ({ address, errors, registerOptions, register }) => {
       </div>
       <div className="pb-5 flex flex-col ">
         <div className="flex flex-row justify-between items-center">
-          <label className=" mb-1 uppercase">E-mail</label>
-          {emailErr && <p className="text-red-500 uppercase">{emailErr.message}</p>}
+          <label className=" mb-1  ">E-mail</label>
+          {emailErr && <p className="text-red-500  ">{emailErr.message}</p>}
         </div>
         <input
           type="email"
@@ -53,10 +53,10 @@ const AddressForm = ({ address, errors, registerOptions, register }) => {
           <label
             aria-live="assertive"
             role="alert"
-            className="mb-1 uppercase ">
+            className="mb-1   ">
             Country/Region
           </label>
-          {countryErr && <p className="text-red-500 uppercase">{countryErr.message}</p>}
+          {countryErr && <p className="text-red-500  ">{countryErr.message}</p>}
         </div>
         <input
           type="dropdown"
@@ -67,8 +67,8 @@ const AddressForm = ({ address, errors, registerOptions, register }) => {
       </div>
       <div className="  pb-5 flex flex-col ">
         <div className="flex flex-row justify-between items-center">
-          <label className=" mb-1 uppercase">street line</label>
-          {addressLine1Err && <p className="text-red-500 uppercase">{addressLine1Err.message}</p>}
+          <label className=" mb-1  ">street line</label>
+          {addressLine1Err && <p className="text-red-500  ">{addressLine1Err.message}</p>}
         </div>
         <input
           type="text"
@@ -78,8 +78,8 @@ const AddressForm = ({ address, errors, registerOptions, register }) => {
       </div>
       <div className="pb-5 flex flex-col ">
         <div className="flex flex-row justify-between items-center">
-          <label className=" mb-1 uppercase">street line 2</label>
-          {addressLine2Err && <p className="text-red-500 uppercase">{addressLine2Err.message}</p>}
+          <label className=" mb-1  ">street line 2</label>
+          {addressLine2Err && <p className="text-red-500  ">{addressLine2Err.message}</p>}
         </div>
         <input
           {...register(`${address}.addressLine2`, registerOptions.addressLine2)}
@@ -90,8 +90,8 @@ const AddressForm = ({ address, errors, registerOptions, register }) => {
       <div className="flex flex-row gap-5 pb-5">
         <div className="flex-1 flex flex-col ">
           <div className="flex flex-row justify-between items-center">
-            <label className=" mb-1 uppercase">city</label>
-            {cityErr && <p className="text-red-500 uppercase">{cityErr.message}</p>}
+            <label className=" mb-1  ">city</label>
+            {cityErr && <p className="text-red-500  ">{cityErr.message}</p>}
           </div>
           <input
             type="text"
@@ -101,8 +101,8 @@ const AddressForm = ({ address, errors, registerOptions, register }) => {
         </div>
         <div className="flex-1 flex flex-col ">
           <div className="flex flex-row justify-between items-center">
-            <label className=" mb-1 uppercase">state</label>
-            {stateErr && <p className="text-red-500 uppercase">{stateErr.message}</p>}
+            <label className=" mb-1  ">state</label>
+            {stateErr && <p className="text-red-500  ">{stateErr.message}</p>}
           </div>
           <input
             {...register(`${address}.state`, registerOptions.state)}
@@ -114,8 +114,8 @@ const AddressForm = ({ address, errors, registerOptions, register }) => {
       <div className="flex flex-row gap-5 pb-5">
         <div className="flex-1 flex flex-col ">
           <div className="flex flex-row justify-between items-center">
-            <label className=" mb-1 uppercase">zip code</label>
-            {zipCodeErr && <p className="text-red-500 uppercase">{zipCodeErr.message}</p>}
+            <label className=" mb-1  ">zip code</label>
+            {zipCodeErr && <p className="text-red-500  ">{zipCodeErr.message}</p>}
           </div>
           <input
             type="text"
@@ -125,8 +125,8 @@ const AddressForm = ({ address, errors, registerOptions, register }) => {
         </div>
         <div className=" flex-1 ">
           <div className="flex flex-row justify-between items-center">
-            <label className=" mb-1 uppercase">phone</label>
-            {phoneErr && <p className="text-red-500 uppercase">{phoneErr.message}</p>}
+            <label className=" mb-1  ">phone</label>
+            {phoneErr && <p className="text-red-500  ">{phoneErr.message}</p>}
           </div>
           <div className=" flex flex-col -">
             <div className=" ">

@@ -6,24 +6,20 @@ import Project from '@workComponents/Project'
 import Shop from '@shopComponents/Shop'
 import Category from '@shopComponents/Category'
 import Product from '@shopComponents/Product'
-import Cart from '@shopComponents/Cart'
 import Checkout from '@shopComponents/Checkout'
 import Order from '@shopComponents/Order'
-import Login from '@app/account/components/Auth'
 
 const componentMapping = {
+  default: BlockManager,
   blog: Blog,
   work: Work,
   shop: Shop,
-  cart: Cart,
-  checkout: Checkout,
-  login: Login,
-  orders: Order,
   articles: Article,
   projects: Project,
   products: Product,
   categories: Category,
-  default: BlockManager
+  orders: Order,
+  checkout: Checkout
 }
 
 interface ContentProps {

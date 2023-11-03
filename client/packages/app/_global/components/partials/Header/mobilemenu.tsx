@@ -46,7 +46,7 @@ const MobileMenu = ({ navMenu, shopMenu, logo, cartCount, mobileMenu, setMobileM
           }}
           pre="headerLink"
         />
-        <ul className="mt-12 flex flex-col items-center justify-end capitalize">
+        <ul className="mt-12 flex flex-col items-center justify-end uppercase">
           <li className="">
             <div className=" uppercase p-1 hover:underline text-white ">
               <Link href="cart">CART</Link>
@@ -61,7 +61,7 @@ const MobileMenu = ({ navMenu, shopMenu, logo, cartCount, mobileMenu, setMobileM
         <Repeatable
           pre="headerLink"
           style={{
-            container: `flex flex-col items-center justify-end capitalize`,
+            container: `flex flex-col items-center justify-end uppercase`,
             wrapper: 'flex-1 mt-0'
           }}
           elements={navMenu}

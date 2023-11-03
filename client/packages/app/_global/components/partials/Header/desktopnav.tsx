@@ -1,18 +1,20 @@
-import Image from 'next/image'
-import Cookies from 'js-cookie'
 import { getStrapiMedia } from '@app/_global/utils/index'
+import { RootState, useAppSelector } from '@globalStore/index'
+
+import Image from 'next/image'
+import Link from 'next/link'
 import Menu from './menu'
 import MegaMenu from './megamenu'
-import Link from 'next/link'
 import MenuLink from './menulink'
 import MenuCart from './menu-cart'
+import AccountMenu from './account-menu'
 
 const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
-  const user = Cookies.get('user') ? JSON.parse(Cookies.get('user')) : Cookies.get('user')
+  const { user } = useAppSelector((state: RootState) => state.account)
   return (
     <nav
       className="hidden px-4 md:px-6 lg:px-8 2xl:px-12 py-2
-      md:flex flex-row items-center justify-between bg-white ">
+      md:flex flex-row items-center justify-between bg-white uppercase">
       <div className="flex-1">{shopMenu.length > 0 && <MegaMenu columns={shopMenu} />}</div>
       <Link href="/">
         <Image
@@ -25,24 +27,35 @@ const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
       <div className="flex flex-row flex-1 justify-end">
         {navMenu.length > 0 && <Menu links={navMenu} />}
         <ul className="flex flex-row">
-          <li className="flex-1  ">
-            {user ? (
-              <MenuLink
-                href="account"
-                label="My Account"
-              />
-            ) : (
+          {user ? (
+            <>
+              <li className=" ">
+                <div className="relative group   ">
+                  <div className="relative z-10 p-1 group-hover:underline group-hover:bg-white border border-b-0 group-hover:border-gray-200  border-white ">
+                    <Link href="cart">My Account</Link>
+                  </div>
+                  <AccountMenu />
+                </div>
+              </li>
+              <li className="  ">
+                <MenuLink
+                  href="account/wishlist"
+                  label={`Wishlist ${cartCount}`}></MenuLink>
+              </li>
+            </>
+          ) : (
+            <li className="">
               <MenuLink
                 href="login"
                 label="LOG IN"
               />
-            )}
-          </li>
+            </li>
+          )}
           <li className="">
-            <div className="relative group ">
-              <p className="relative z-10 px-1 py-1 group-hover:underline group-hover:bg-white border border-b-0 group-hover:border-gray-200  border-white ">
-                CART{`${cartCount}`}
-              </p>
+            <div className="relative group  ">
+              <div className="relative z-10 p-1 group-hover:underline group-hover:bg-white border border-b-0 group-hover:border-gray-200  border-white ">
+                <Link href="cart">CART{`${cartCount}`}</Link>
+              </div>
               <MenuCart />
             </div>
           </li>

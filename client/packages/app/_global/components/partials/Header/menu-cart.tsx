@@ -1,12 +1,15 @@
+'use client'
 import { RootState, useAppSelector, useAppDispatch } from '@app/_global/store/index'
 import Image from 'next/image'
 import Link from 'next/link'
 import { removeFromCart } from '@app/shop/store/cart.slice'
+import { setAuthModal } from '@app/account/store/account.slice'
 import { getStrapiMedia, numberWithCommas } from '@app/_global/utils/index'
 import { useEffect, useState } from 'react'
 
 const MenuCart = () => {
   const { items: cart, openCart } = useAppSelector((state: RootState) => state.cart)
+  const { user } = useAppSelector((state: RootState) => state.account)
   const [subtotal, setSubtotal] = useState(0)
   const [items, setItems] = useState([])
   useEffect(() => {
@@ -62,14 +65,21 @@ const MenuCart = () => {
             <div className=" ">SUBTOTAL</div>
             <div className=" ">${numberWithCommas(subtotal)}</div>
           </div>
-          <div className="group/checkout bg-gray-700">
+          {user ? (
             <Link
               href="/checkout"
-              className=" flex flex-row justify-between items-center px-4 py-2 border-t ">
+              className=" flex flex-row justify-between items-center px-4 py-2 border-t group/checkout bg-gray-700 ">
               <div className="group-hover/checkout:underline text-white ">CHECKOUT</div>
               <div className=" text-lg text-white">{`>`}</div>
             </Link>
-          </div>
+          ) : (
+            <div
+              onClick={() => dispatch(setAuthModal(true))}
+              className="flex flex-row justify-between items-center px-4 py-2 border-t group/checkout bg-gray-700 ">
+              <div className="group-hover/checkout:underline text-white ">CHECKOUT</div>
+              <div className=" text-lg text-white">{`>`}</div>
+            </div>
+          )}
         </>
       )}
       <div className="group/view">

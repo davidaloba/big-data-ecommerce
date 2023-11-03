@@ -1,14 +1,11 @@
 import { Metadata } from 'next'
 import { getStrapiURL } from '@globalUtils/index'
-import { ReduxProvider } from '@globalStore/providers'
 import { fetchData } from '@globalUtils/actions'
+import { ReduxProvider } from '@globalStore/providers'
 
 import 'tailwindcss/tailwind.css'
 import '@globalStyles/global.css'
-import PreviewBanner from '@globalComponents/partials/PreviewBanner'
-import Header from '@globalComponents/partials/Header'
-import Main from '@globalComponents/partials/Main'
-import Footer from '@globalComponents/partials/Footer'
+import Layout from '@globalComponents/layouts/layout'
 
 export default async function RootLayout({ children }: { children: React.ReactNode }) {
   const global = await fetchData(getStrapiURL(`/global?populate=deep`))
@@ -20,10 +17,12 @@ export default async function RootLayout({ children }: { children: React.ReactNo
     <html lang="en">
       <body>
         <ReduxProvider>
-          {preview && <PreviewBanner />}
-          {header && <Header {...header} />}
-          {children && <Main>{children}</Main>}
-          {footer && <Footer {...footer} />}
+          <Layout
+            preview={preview}
+            header={header}
+            footer={footer}
+            children={children}
+          />
         </ReduxProvider>
       </body>
     </html>

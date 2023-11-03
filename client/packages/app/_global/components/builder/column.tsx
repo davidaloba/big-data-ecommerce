@@ -30,7 +30,7 @@ const Column = ({ style, link, bgColor, bgImage, elements }) => {
         Element={Element}
         elements={elements}
         style={{
-          container: `flex flex-row flex-wrap items-center justify-end  capitalize`,
+          container: `flex flex-row flex-wrap items-center justify-end  uppercase`,
           wrapper: 'flex-1 mt-2 md:mt-0   '
         }}
         pre="headerLink"

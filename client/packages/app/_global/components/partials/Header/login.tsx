@@ -1,15 +1,8 @@
 'use client'
-import { redirect } from 'next/navigation'
-import { RootState, useAppSelector } from '@globalStore/index'
-
-import Login from './login'
-import Register from './register'
+import Login from '@app/account/components/Auth/login'
+import Register from '@app/account/components/Auth/register'
 
 const AccountPage = () => {
-  const { user } = useAppSelector((state: RootState) => state.account)
-
-  user && redirect(`/account/details`)
-
   return (
     <section className="pb-10 md:pb-20 pt-0 px-5 md:px-12 lg:px-16 2xl:px-20">
       <div className="relative flex flex-col md:flex-row justify-center items-stretch uppercase">

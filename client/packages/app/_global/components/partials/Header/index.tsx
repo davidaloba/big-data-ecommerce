@@ -18,7 +18,7 @@ const Navigation = ({ logo, logoWidth, navMenu, shopMenu }) => {
   }, [items])
 
   return (
-    <header className=" sticky top-0 z-50 ">
+    <header className=" sticky top-0 z-40 ">
       <DesktopNav
         navMenu={navMenu}
         shopMenu={shopMenu}

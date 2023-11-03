@@ -1,11 +1,17 @@
-import PreviewBanner from '@app/_global/components/partials/PreviewBanner'
-import Header from '@app/_global/components/partials/Header'
-import Main from '@app/_global/components/partials/Main'
-import Footer from '@app/_global/components/partials/Footer'
+'use client'
+import { RootState, useAppSelector } from '@globalStore/index'
 
-const Layout = ({ children, globalData: { header, footer }, preview }) => {
+import PreviewBanner from '@globalComponents/partials/PreviewBanner'
+import Header from '@globalComponents/partials/Header'
+import Main from '@globalComponents/partials/Main'
+import Footer from '@globalComponents/partials/Footer'
+import AuthModal from '@app/account/components/Auth/modal'
+
+export default function Layout({ preview, header, children, footer }) {
+  const { authModal } = useAppSelector((state: RootState) => state.account)
   return (
     <>
+      {authModal && <AuthModal />}
       {preview && <PreviewBanner />}
       {header && <Header {...header} />}
       {children && <Main>{children}</Main>}
@@ -13,5 +19,3 @@ const Layout = ({ children, globalData: { header, footer }, preview }) => {
     </>
   )
 }
-
-export default Layout
