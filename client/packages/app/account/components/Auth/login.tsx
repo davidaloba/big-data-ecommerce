@@ -1,13 +1,17 @@
 'use client'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { useRouter } from 'next/navigation'
+import { usePathname, useRouter } from 'next/navigation'
 import { useAppDispatch } from '@globalStore/index'
 import { login, setAuthModal } from '@app/account/store/account.slice'
 
 import Link from 'next/link'
 
-const Login = () => {
+const Login = ({ destination }: { destination?: string }) => {
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const pathname = usePathname()
+
   const {
     register,
     handleSubmit,
@@ -46,13 +50,10 @@ const Login = () => {
     remainLoggedIn: {}
   }
 
-  const dispatch = useAppDispatch()
-  const router = useRouter()
-
   const onSubmit = (data) => {
-    dispatch(login(data))
     dispatch(setAuthModal(false))
-    router.push('/account/details')
+    dispatch(login(data))
+    pathname !== '/account/login' && router.push(destination || '/')
   }
 
   return (

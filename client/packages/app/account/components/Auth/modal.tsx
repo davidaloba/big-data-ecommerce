@@ -19,7 +19,7 @@ const AuthModal = () => {
         {!newUser ? (
           <div>
             <div className="mb-4">Already have an account?</div>
-            <Login />
+            <Login destination="/checkout" />
             <div className="py-8">
               <div className="pb-2">Create an account </div>
               <div className="pb-2 normal-case text-[8px]">

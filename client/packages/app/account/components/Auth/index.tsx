@@ -7,8 +7,7 @@ import Register from './register'
 
 const AccountPage = () => {
   const { user } = useAppSelector((state: RootState) => state.account)
-
-  user && redirect(`/account/details`)
+  user && redirect(`/account/profile`)
 
   return (
     <section className="pb-10 md:pb-20 pt-0 px-5 md:px-12 lg:px-16 2xl:px-20">

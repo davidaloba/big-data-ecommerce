@@ -10,8 +10,7 @@ const AccountMenu = () => {
   const dispatch = useAppDispatch()
   const router = useRouter()
   return (
-    <div
-      className={`hidden group-hover:block fixed md:absolute min-w-max top-[60px] md:top-6 right-0 p-6  border border-gray-200 bg-white`}>
+    <div className={`min-w-max p-6  border border-gray-200`}>
       <ul>
         <li className="pb-2">Welcome, {user.profile.firstName}</li>
         <li className="pb-2">

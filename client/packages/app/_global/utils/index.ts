@@ -9,8 +9,7 @@ const indexes = [
   'category',
   'checkout',
   'cart',
-  'order',
-  'login'
+  'order'
 ]
 const contentTypes = {
   shop: 'products',

@@ -3,7 +3,7 @@ import type { RootState } from '@app/_global/store/index'
 import Cookies from 'js-cookie'
 
 const initialState = {
-  user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : null,
+  user: Cookies.get('user') ? JSON.parse(Cookies.get('user')) : { profile: { firstName: 'David' } },
   authModal: false
 }
 

@@ -32,7 +32,7 @@ const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
               <li className=" ">
                 <div className="relative group   ">
                   <div className="relative z-10 p-1 group-hover:underline group-hover:bg-white border border-b-0 group-hover:border-gray-200  border-white ">
-                    <Link href="cart">My Account</Link>
+                    <Link href="account/profile">My Account</Link>
                   </div>
                   <AccountMenu />
                 </div>
@@ -46,7 +46,7 @@ const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
           ) : (
             <li className="">
               <MenuLink
-                href="login"
+                href="account/login"
                 label="LOG IN"
               />
             </li>
