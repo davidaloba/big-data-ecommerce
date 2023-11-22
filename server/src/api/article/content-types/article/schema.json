@@ -40,13 +40,6 @@
       },
       "type": "text"
     },
-    "author": {
-      "required": true,
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::author.author",
-      "inversedBy": "articles"
-    },
     "topics": {
       "type": "relation",
       "relation": "manyToMany",

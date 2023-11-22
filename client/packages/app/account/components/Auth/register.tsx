@@ -1,9 +1,13 @@
 'use client'
+import { useCreateUserMutation } from '@app/account/store/auth.api'
+import { login } from '@app/account/store/auth.slice'
+import { useAppDispatch } from '@globalStore/index'
 import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 
-const Login = () => {
+const Register = ({ destination }: { destination?: string }) => {
   const {
     register,
     handleSubmit,
@@ -55,8 +59,20 @@ const Login = () => {
   const passwordErr = (errors && errors.password && errors.password) || null
   const confirmPasswordErr = (errors && errors.confirmPassword && errors.confirmPassword) || null
 
-  const onSubmit = (data) => {
-    console.log(data)
+  const router = useRouter()
+  const pathname = usePathname()
+  const dispatch = useAppDispatch()
+
+  const [createAccount] = useCreateUserMutation()
+  const onSubmit = async (data) => {
+    try {
+      const userData = await createAccount(data).unwrap()
+      dispatch(login(userData))
+      pathname !== '/account/login' && router.push(destination || '/')
+    } catch (err) {
+      console.error('Failed to register: ', err)
+      alert(err.data.error.message)
+    }
   }
 
   return (
@@ -189,4 +205,4 @@ const Login = () => {
   )
 }
 
-export default Login
+export default Register

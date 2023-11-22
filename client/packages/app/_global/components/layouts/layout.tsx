@@ -8,7 +8,7 @@ import Footer from '@globalComponents/partials/Footer'
 import AuthModal from '@app/account/components/Auth/modal'
 
 export default function Layout({ preview, header, children, footer }) {
-  const { authModal } = useAppSelector((state: RootState) => state.account)
+  const { authModal } = useAppSelector((state: RootState) => state.auth)
   return (
     <>
       {authModal && <AuthModal />}

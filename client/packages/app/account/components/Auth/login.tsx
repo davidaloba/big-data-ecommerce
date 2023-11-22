@@ -3,15 +3,12 @@ import { useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { usePathname, useRouter } from 'next/navigation'
 import { useAppDispatch } from '@globalStore/index'
-import { login, setAuthModal } from '@app/account/store/account.slice'
+import { login, setAuthModal } from '@app/account/store/auth.slice'
 
 import Link from 'next/link'
+import { useLoginUserMutation } from '@app/account/store/auth.api'
 
 const Login = ({ destination }: { destination?: string }) => {
-  const dispatch = useAppDispatch()
-  const router = useRouter()
-  const pathname = usePathname()
-
   const {
     register,
     handleSubmit,
@@ -50,10 +47,20 @@ const Login = ({ destination }: { destination?: string }) => {
     remainLoggedIn: {}
   }
 
-  const onSubmit = (data) => {
-    dispatch(setAuthModal(false))
-    dispatch(login(data))
-    pathname !== '/account/login' && router.push(destination || '/')
+  const dispatch = useAppDispatch()
+  const router = useRouter()
+  const pathname = usePathname()
+  const [loginUser] = useLoginUserMutation()
+
+  const onSubmit = async (data) => {
+    try {
+      const userData = await loginUser(data).unwrap()
+      dispatch(login(userData))
+      pathname !== '/account/login' && router.push(destination || '/')
+    } catch (err) {
+      console.error('Failed to log in: ', err)
+      alert(err.error)
+    }
   }
 
   return (

@@ -6,7 +6,7 @@ import Login from './login'
 import Register from './register'
 
 const AccountPage = () => {
-  const { user } = useAppSelector((state: RootState) => state.account)
+  const { user } = useAppSelector((state: RootState) => state.auth)
   user && redirect(`/account/profile`)
 
   return (

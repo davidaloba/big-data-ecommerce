@@ -10,7 +10,7 @@ import MenuCart from './menu-cart'
 import AccountMenu from './account-menu'
 
 const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
-  const { user } = useAppSelector((state: RootState) => state.account)
+  const { user } = useAppSelector((state: RootState) => state.auth)
   return (
     <nav
       className="hidden px-4 md:px-6 lg:px-8 2xl:px-12 py-2
@@ -32,21 +32,21 @@ const DesktopNav = ({ navMenu, shopMenu, logo, logoWidth, cartCount }) => {
               <li className=" ">
                 <div className="relative group   ">
                   <div className="relative z-10 p-1 group-hover:underline group-hover:bg-white border border-b-0 group-hover:border-gray-200  border-white ">
-                    <Link href="account/profile">My Account</Link>
+                    <Link href="/account/profile">My Account</Link>
                   </div>
                   <AccountMenu />
                 </div>
               </li>
               <li className="  ">
                 <MenuLink
-                  href="account/wishlist"
+                  href="/account/wishlist"
                   label={`Wishlist ${cartCount}`}></MenuLink>
               </li>
             </>
           ) : (
             <li className="">
               <MenuLink
-                href="account/login"
+                href="/account/login"
                 label="LOG IN"
               />
             </li>

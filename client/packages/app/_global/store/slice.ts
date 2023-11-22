@@ -1,6 +1,6 @@
 import cart from '@app/shop/store/cart.slice'
-import account from '@app/account/store/account.slice'
+import auth from '@app/account/store/auth.slice'
 
-const slice = { cart, account }
+const slice = { cart, auth }
 
 export default slice

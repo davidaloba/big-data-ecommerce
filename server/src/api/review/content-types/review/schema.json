@@ -23,12 +23,6 @@
       "required": true,
       "max": 5,
       "min": 1
-    },
-    "author": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "plugin::users-permissions.user",
-      "inversedBy": "reviews"
     }
   }
 }

@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Login from './login'
 import Register from './register'
 import Link from 'next/link'
-import { setAuthModal } from '@app/account/store/account.slice'
+import { setAuthModal } from '@app/account/store/auth.slice'
 import { useAppDispatch } from '@globalStore/index'
 
 const AuthModal = () => {

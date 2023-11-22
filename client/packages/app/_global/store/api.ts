@@ -1,6 +1,6 @@
-import { apiHost, getStrapiURL } from '@app/_global/utils/index'
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
 import { HYDRATE } from 'next-redux-wrapper'
+import { apiHost, getStrapiURL } from '@app/_global/utils/index'
 import { Global, Page } from '@app/_global/__types/models'
 
 const api = createApi({
