@@ -1,7 +1,12 @@
+'use client'
 import { numberWithCommas } from '@app/_global/utils/index'
 import Link from 'next/link'
+import { RootState, useAppDispatch, useAppSelector } from '@app/_global/store/index'
+import { setAuthModal } from '@app/account/store/account.slice'
 
 const OrderSummary = ({ subtotal }) => {
+  const { userToken } = useAppSelector((state: RootState) => state.account)
+  const dispatch = useAppDispatch()
   return (
     <>
       <div className=" md:flex flex-col  border border-gray-200">
@@ -12,14 +17,22 @@ const OrderSummary = ({ subtotal }) => {
           <div className=" ">SUBTOTAL</div>
           <div className="  ">${numberWithCommas(subtotal)}</div>
         </div>
-        <div className=" bg-gray-700">
+
+        {userToken ? (
           <Link
             href="/checkout"
-            className=" flex flex-row justify-between items-center px-5 py-3 border-t ">
-            <div className="hover:underline   text-white ">PROCEED T0 CHECKOUT</div>
-            <div className=" text-2xl  text-white">{`>`}</div>
+            className=" flex flex-row justify-between items-center px-4 py-2 border-t group/checkout bg-gray-700 ">
+            <div className="group-hover/checkout:underline text-white ">CHECKOUT</div>
+            <div className=" text-lg text-white">{`>`}</div>
           </Link>
-        </div>
+        ) : (
+          <div
+            onClick={() => dispatch(setAuthModal(true))}
+            className="flex flex-row justify-between items-center px-4 py-2 border-t group/checkout bg-gray-700 ">
+            <div className="group-hover/checkout:underline text-white ">CHECKOUT</div>
+            <div className=" text-lg text-white">{`>`}</div>
+          </div>
+        )}
       </div>
       <Link href="/shop">
         <div className="py-4">

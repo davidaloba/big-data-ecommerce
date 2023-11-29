@@ -1,6 +1,6 @@
 const Address = ({ address }) => {
   return (
-    <div className=" flex flex-col justify-center  p-4 border">
+    <div className=" flex flex-col justify-center  p-4 ">
       <div className="flex flex-row flex-wrap gap-1">
         <p>{address.firstName}</p>
         <p>{address.lastName}</p>

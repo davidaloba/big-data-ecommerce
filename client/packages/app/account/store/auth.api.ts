@@ -3,7 +3,24 @@ import { getStrapiURL } from '@app/_global/utils/index'
 
 export const authApi = api.injectEndpoints({
   endpoints: (build) => ({
-    createUser: build.mutation({
+    getUser: build.query({
+      query: () => getStrapiURL('/users/me'),
+      providesTags: ['User'],
+      transformResponse: (res) => {
+        return res
+      }
+    }),
+    login: build.mutation({
+      query: (data) => ({
+        url: getStrapiURL('/auth/local'),
+        method: 'POST',
+        body: { identifier: data.email, password: data.password }
+      }),
+      transformResponse: (res) => {
+        return res
+      }
+    }),
+    register: build.mutation({
       query: (data) => ({
         url: getStrapiURL('/auth/local/register'),
         method: 'POST',
@@ -20,12 +37,24 @@ export const authApi = api.injectEndpoints({
         return res
       }
     }),
-    loginUser: build.mutation({
+    changePassword: build.mutation({
       query: (data) => ({
-        url: getStrapiURL('/auth/local'),
+        url: getStrapiURL(`/auth/change-password`),
         method: 'POST',
-        body: { identifier: data.email, password: data.password }
+        body: data
       }),
+      transformResponse: (res) => {
+        return res.user
+      }
+    }),
+    updateUser: build.mutation({
+      query: (data) => ({
+        url: getStrapiURL(`/users/me`),
+        method: 'POST',
+        body: data
+      }),
+      invalidatesTags: ['User'],
+
       transformResponse: (res) => {
         return res
       }
@@ -34,4 +63,12 @@ export const authApi = api.injectEndpoints({
   overrideExisting: false
 })
 
-export const { useCreateUserMutation, useLoginUserMutation } = authApi
+export const {
+  useRegisterMutation,
+  useLoginMutation,
+  useUpdateUserMutation,
+  useChangePasswordMutation,
+  useGetUserQuery
+} = authApi
+
+const enhancedApi = api.enhanceEndpoints({ addTagTypes: ['User'] })

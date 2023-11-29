@@ -1,17 +1,20 @@
 'use client'
-import { logOut } from '@app/account/store/auth.slice'
+import { useRouter } from 'next/navigation'
+import { logOut } from '@app/account/store/account.slice'
 import { RootState, useAppSelector, useAppDispatch } from '@globalStore/index'
 
 import Link from 'next/link'
+import { useGetUserQuery } from '@app/account/store/auth.api'
 
 const AccountMenu = () => {
-  const { user } = useAppSelector((state: RootState) => state.auth)
+  const { data: user, isSuccess } = useGetUserQuery('user')
   const dispatch = useAppDispatch()
+  const router = useRouter()
   return (
     <div
       className={`hidden group-hover:block fixed md:absolute min-w-max top-[60px] md:top-6 right-0 p-6  border border-gray-200 bg-white`}>
       <ul>
-        <li className="pb-2">Welcome, {user.firstName}</li>
+        <li className="pb-2">Welcome{isSuccess && `,  ${user?.firstName}`}</li>
         <li className="pb-2">
           <Link
             href="/account/profile"
@@ -33,13 +36,13 @@ const AccountMenu = () => {
             Orders & Returns
           </Link>
         </li>
-        <li className="pb-2">
+        {/* <li className="pb-2">
           <Link
             href="/account/payment-options"
             className="hover:underline">
             Payment Options
           </Link>
-        </li>
+        </li> */}
         <li className="pb-2">
           <Link
             href="/account/wishlist"
@@ -51,6 +54,7 @@ const AccountMenu = () => {
           <div
             onClick={() => {
               dispatch(logOut())
+              router.push('/')
             }}
             className="hover:underline">
             Log out

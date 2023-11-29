@@ -1,6 +1,6 @@
 'use client'
-import Login from '@app/account/components/Auth/login'
-import Register from '@app/account/components/Auth/register'
+import Login from '@accountComponents/Auth/login'
+import Register from '@accountComponents/Auth/register'
 
 const AccountPage = () => {
   return (

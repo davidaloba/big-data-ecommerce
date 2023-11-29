@@ -1,14 +1,17 @@
 'use client'
-
-import { RootState, useAppSelector } from '@app/_global/store/index'
-import Link from 'next/link'
-import { numberWithCommas } from '@app/_global/utils/index'
 import { useEffect, useState } from 'react'
+
+import { RootState, useAppDispatch, useAppSelector } from '@app/_global/store/index'
+import { setAuthModal } from '@app/account/store/account.slice'
+import { numberWithCommas } from '@app/_global/utils/index'
+import Link from 'next/link'
 import OrderSummary from './order-summary'
 import CartItems from './cart-items'
 
 const Cart = () => {
   const { items } = useAppSelector((state: RootState) => state.cart)
+  const { user } = useAppSelector((state: RootState) => state.account)
+  const dispatch = useAppDispatch()
 
   const [subtotal, setSubtotal] = useState(0)
   const [cartCount, setCartCount] = useState(0)
@@ -51,14 +54,21 @@ const Cart = () => {
                 )}
               </div>
             </div>
-            <div className=" bg-gray-700">
+            {user ? (
               <Link
                 href="/checkout"
-                className=" flex flex-row justify-between items-center px-5 py-4 border-t ">
-                <div className="hover:underline   text-white ">CHECKOUT</div>
-                <div className=" text-2xl  text-white">{`>`}</div>
+                className=" flex flex-row justify-between items-center px-4 py-2 border-t group/checkout bg-gray-700 ">
+                <div className="group-hover/checkout:underline text-white ">CHECKOUT</div>
+                <div className=" text-lg text-white">{`>`}</div>
               </Link>
-            </div>
+            ) : (
+              <div
+                onClick={() => dispatch(setAuthModal(true))}
+                className="flex flex-row justify-between items-center px-4 py-2 border-t group/checkout bg-gray-700 ">
+                <div className="group-hover/checkout:underline text-white ">CHECKOUT</div>
+                <div className=" text-lg text-white">{`>`}</div>
+              </div>
+            )}
           </div>
           <div className=" px-5 py-5 border-t ">
             <p>

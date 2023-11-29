@@ -9,8 +9,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import ProductCard from '../../components/ProductCard'
 import Repeatable from '@app/_global/components/__lib/Repeatable'
+import { openWishlist } from '@app/account/store/account.slice'
+import {
+  useGetWishlistQuery,
+  useSaveToWishlistMutation,
+  useRemoveFromWishlistMutation
+} from '@app/account/store/wishlist.api'
 
 const Product = ({
+  id,
   slug,
   name,
   featuredImage,
@@ -22,19 +29,27 @@ const Product = ({
   gallery,
   description
 }) => {
-  const [selectedSize, setSelectedSize] = useState('')
-  const [sizeError, setSizeError] = useState('')
-  const createMarkup = () => {
-    return { __html: description }
+  const dispatch = useAppDispatch()
+
+  const { data: wishlist, isSuccess: isGetWIshlistSucess } = useGetWishlistQuery('wishlist')
+  const inWishlist = isGetWIshlistSucess && wishlist.find((item) => item.id === id) ? true : false
+  const [saveToWishlist] = useSaveToWishlistMutation()
+  const [removeFromWishlist] = useRemoveFromWishlistMutation()
+  const wishlistHandler = () => {
+    if (!inWishlist) {
+      saveToWishlist(id)
+      dispatch(openWishlist(true))
+      setTimeout(() => dispatch(openWishlist(false)), 3000)
+    } else removeFromWishlist(id)
   }
 
-  const dispatch = useAppDispatch()
-  const cartHandler = () => {
+  const [selectedSize, setSelectedSize] = useState('')
+  const [sizeError, setSizeError] = useState('')
+  const cartHandler = (item) => {
     if (!selectedSize) {
       setSizeError('Please select a size')
       return
     }
-
     dispatch(
       addToCart({
         name,
@@ -44,10 +59,14 @@ const Product = ({
         price
       })
     )
-
-    setSizeError('')
+    removeFromWishlist(id)
     dispatch(openCart(true))
-    setTimeout(() => dispatch(openCart(false)), 1000)
+    setSizeError('')
+    setTimeout(() => dispatch(openCart(false)), 3000)
+  }
+
+  const createMarkup = () => {
+    return { __html: description }
   }
 
   const category = categories.data[0]
@@ -168,10 +187,14 @@ const Product = ({
             {sizeError && <p className="py-2 normal-case text-red-600">{sizeError}!</p>}
             <div className="flex gap-3 justify-stretch flex-row uppercase">
               <button
-                className="w-full text-white font-semibold bg-gray-600 max-w-sm"
-                type="button"
-                onClick={cartHandler}>
+                className="w-full border border-gray-600 text-white font-semibold bg-gray-600 max-w-sm"
+                onClick={() => cartHandler(item)}>
                 Add to cart
+              </button>
+              <button
+                className="w-full border border-gray-600 max-w-sm"
+                onClick={wishlistHandler}>
+                {!inWishlist ? ` Save to Wishlist` : `Remove from Wishlist`}
               </button>
             </div>
           </div>

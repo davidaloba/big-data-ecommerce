@@ -1,13 +1,16 @@
-import { useForm } from 'react-hook-form'
 import { useContext } from 'react'
+import { useForm } from 'react-hook-form'
+import { RootState, useAppSelector } from '@globalStore/index'
+import { CheckoutContext } from '.'
 import OrderSummary from './order-summary'
 import Information from './information'
-import { CheckoutContext } from '.'
 import Shipping from './shipping'
 import Billing from './biling'
+import Link from 'next/link'
 
 const Checkout = ({ paymentOptions, shippingOptions }) => {
   const [{ stage, shipping, errorMessage }, setCheckout] = useContext(CheckoutContext)
+  const { userToken } = useAppSelector((state: RootState) => state.account)
 
   const {
     register,
@@ -16,7 +19,19 @@ const Checkout = ({ paymentOptions, shippingOptions }) => {
     formState: { errors }
   } = useForm({ mode: 'onBlur' })
 
-  return (
+  return !userToken ? (
+    <section className="min-h-[50vh] flex flex-col justify-center items-center  pb-10 md:pb-20 pt-0 px-5 md:px-12 lg:px-16 2xl:px-20 ">
+      <div className="py-4 bg-white text-center  uppercase ">
+        You must be logged in to Checkout. click{' '}
+        <Link
+          className="underline"
+          href="/account/login">
+          here
+        </Link>{' '}
+        to proceed
+      </div>
+    </section>
+  ) : (
     <section className="pb-10 md:pb-20 pt-0 px-5 md:px-12 lg:px-16 2xl:px-20 ">
       <div className="sticky md:top-[42px] xl:top-[68px] z-10 py-4 bg-white text-center text-red-500 uppercase ">
         {errorMessage}

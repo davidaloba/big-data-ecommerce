@@ -3,7 +3,7 @@ import { useState } from 'react'
 import Login from './login'
 import Register from './register'
 import Link from 'next/link'
-import { setAuthModal } from '@app/account/store/auth.slice'
+import { setAuthModal } from '@app/account/store/account.slice'
 import { useAppDispatch } from '@globalStore/index'
 
 const AuthModal = () => {
@@ -49,7 +49,7 @@ const AuthModal = () => {
             </div>
           </div>
         )}
-        <div className="">
+        {/* <div className="">
           <div className="pb-2">Don't have an account? </div>
           <div className="pb-2 normal-case text-[8px]">
             In a hurry? Continue without registering this time.
@@ -61,7 +61,7 @@ const AuthModal = () => {
             <div className="grow border-0 text-left  hover:underline ">Checkout as guest</div>
             <div className=" text-2xl ">{`>`}</div>
           </Link>
-        </div>
+        </div> */}
       </div>
     </div>
   )

@@ -1,4 +1,4 @@
-import Profile from '@app/account/components/Profile'
+import Profile from '@accountComponents/Profile'
 
 export default function Page() {
   return <Profile />

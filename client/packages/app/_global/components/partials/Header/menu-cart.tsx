@@ -3,13 +3,13 @@ import { RootState, useAppSelector, useAppDispatch } from '@app/_global/store/in
 import Image from 'next/image'
 import Link from 'next/link'
 import { removeFromCart } from '@app/shop/store/cart.slice'
-import { setAuthModal } from '@app/account/store/auth.slice'
+import { setAuthModal } from '@app/account/store/account.slice'
 import { getStrapiMedia, numberWithCommas } from '@app/_global/utils/index'
 import { useEffect, useState } from 'react'
 
 const MenuCart = () => {
   const { items: cart, openCart } = useAppSelector((state: RootState) => state.cart)
-  const { user } = useAppSelector((state: RootState) => state.auth)
+  const { user } = useAppSelector((state: RootState) => state.account)
   const [subtotal, setSubtotal] = useState(0)
   const [items, setItems] = useState([])
   useEffect(() => {

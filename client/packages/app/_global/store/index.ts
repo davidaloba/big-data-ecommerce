@@ -4,9 +4,9 @@ import { TypedUseSelectorHook, useDispatch, useSelector } from 'react-redux'
 // import logger from 'redux-logger'
 
 import api from './api'
-import slice from './slice'
+import slices from './slices'
 
-const reducer = combineReducers({ [api.reducerPath]: api.reducer, ...slice })
+const reducer = combineReducers({ [api.reducerPath]: api.reducer, ...slices })
 
 export const store = configureStore({
   reducer,

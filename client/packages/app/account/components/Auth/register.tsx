@@ -1,11 +1,10 @@
 'use client'
-import { useCreateUserMutation } from '@app/account/store/auth.api'
-import { login } from '@app/account/store/auth.slice'
-import { useAppDispatch } from '@globalStore/index'
-import Link from 'next/link'
-import { usePathname, useRouter } from 'next/navigation'
 import { useState } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
 import { useForm } from 'react-hook-form'
+import { useAppDispatch } from '@globalStore/index'
+import { useRegisterMutation } from '@app/account/store/auth.api'
+import { login, setAuthModal } from '@app/account/store/account.slice'
 
 const Register = ({ destination }: { destination?: string }) => {
   const {
@@ -63,15 +62,16 @@ const Register = ({ destination }: { destination?: string }) => {
   const pathname = usePathname()
   const dispatch = useAppDispatch()
 
-  const [createAccount] = useCreateUserMutation()
+  const [createAccount] = useRegisterMutation()
   const onSubmit = async (data) => {
     try {
       const userData = await createAccount(data).unwrap()
       dispatch(login(userData))
+      dispatch(setAuthModal(false))
       pathname !== '/account/login' && router.push(destination || '/')
     } catch (err) {
       console.error('Failed to register: ', err)
-      alert(err.data.error.message)
+      err.data.error.message && alert(err.data.error.message)
     }
   }
 
@@ -153,7 +153,7 @@ const Register = ({ destination }: { destination?: string }) => {
             {...register(`password`, registerOptions.password)}
             type="password"
             autoFocus
-            className={` invalid:border-red-500 ${emailErr && 'border-red-500'}`}
+            className={` invalid:border-red-500 ${passwordErr && 'border-red-500'}`}
           />
         </div>
         <div className="pb-6 flex flex-col ">
@@ -167,7 +167,7 @@ const Register = ({ destination }: { destination?: string }) => {
             {...register(`confirmPassword`, registerOptions.confirmPassword)}
             type="password"
             autoFocus
-            className={` invalid:border-red-500 ${emailErr && 'border-red-500'}`}
+            className={` invalid:border-red-500 ${confirmPasswordErr && 'border-red-500'}`}
           />
         </div>
         <div className="py-4 text-[8px]">

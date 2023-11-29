@@ -3,22 +3,27 @@
 @tailwind utilities;
 
 @layer base {
-  
-  
-  h1, h2, h3, h4, h5, h6 {
-    @apply text-slate-600 text-xs  ;
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply text-slate-600 text-xs;
   }
 
-  p,  li {
-    @apply text-gray-600 text-xs ;
+  p,
+  li {
+    @apply text-gray-600 text-xs;
   }
-  
+
   a {
-    @apply  cursor-pointer  ;
+    @apply cursor-pointer;
   }
 
-  div,ul{
-    @apply text-gray-600 text-xs ;
+  div,
+  ul {
+    @apply text-gray-600 text-xs;
   }
   section {
     @apply px-8 lg:px-16 pt-16 pb-20 md:pt-20 md:pb-28;
@@ -27,26 +32,22 @@
   main {
     @apply py-0;
   }
-  
+
   button {
-    @apply border  px-4 py-1 text-xs uppercase ;
+    @apply border  px-4 py-1 text-xs uppercase;
   }
 
-  input {
-    @apply border p-2 text-xs uppercase ;
+  input,
+  select {
+    @apply border p-2 text-xs uppercase bg-transparent;
   }
 
-
-@media (min-width: 768px) {
-  .index-card-margin {
-    margin-left:  calc(6.66667% + 1.66667rem)  !important; 
-    margin-right:  calc(6.66667% + 1.66667rem)  !important; 
-}
-}
-
-
-
-  
+  @media (min-width: 768px) {
+    .index-card-margin {
+      margin-left: calc(6.66667% + 1.66667rem) !important;
+      margin-right: calc(6.66667% + 1.66667rem) !important;
+    }
+  }
 }
 
 @layer utilities {

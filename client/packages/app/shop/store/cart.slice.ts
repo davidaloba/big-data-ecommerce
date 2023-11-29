@@ -1,6 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit'
 import type { RootState } from '@app/_global/store/index'
 import Cookies from 'js-cookie'
+import { ICart } from '../__types'
 
 const initialState: ICart = {
   items: Cookies.get('cart') ? JSON.parse(Cookies.get('cart')) : [],
@@ -10,14 +11,7 @@ const initialState: ICart = {
 const cartSlice = createSlice({
   name: 'cart',
   initialState,
-  extraReducers: (builder) => {
-    // builder.addCase(HYDRATE, (state, action) => {
-    //   return {
-    //     ...state,
-    //     ...action.payload.cart
-    //   }
-    // })
-  },
+  extraReducers: (builder) => {},
   reducers: {
     addToCart: (cart, action) => {
       const existingItem = cart.items.find(

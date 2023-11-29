@@ -1,3 +1,4 @@
+'use client'
 import BlockManager from '@brochureComponents/BlockManager'
 import Blog from '@blogComponents/Blog'
 import Article from '@blogComponents/Article'
@@ -7,7 +8,7 @@ import Shop from '@shopComponents/Shop'
 import Category from '@shopComponents/Category'
 import Product from '@shopComponents/Product'
 import Checkout from '@shopComponents/Checkout'
-import Order from '@shopComponents/Order'
+import Order from '@accountComponents/Order'
 
 const componentMapping = {
   default: BlockManager,

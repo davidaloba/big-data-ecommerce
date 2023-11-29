@@ -1,19 +1,20 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react'
-import { HYDRATE } from 'next-redux-wrapper'
 import { apiHost, getStrapiURL } from '@app/_global/utils/index'
 import { Global, Page } from '@app/_global/__types/models'
+import { RootState } from '.'
 
 const api = createApi({
   reducerPath: 'api',
   baseQuery: fetchBaseQuery({
-    baseUrl: `${apiHost}/api`
-  }),
-  extractRehydrationInfo(action, { reducerPath }) {
-    if (action.type === HYDRATE) {
-      return action.payload[reducerPath]
+    baseUrl: `${apiHost}/api`,
+    prepareHeaders: (headers, { getState }) => {
+      const token = (getState() as RootState).account.userToken
+      if (token) {
+        headers.set('authorization', `Bearer ${token}`)
+        return headers
+      }
     }
-  },
-  tagTypes: [],
+  }),
   endpoints: (build) => ({
     getGlobal: build.query({
       query: () => getStrapiURL(`/global?populate=deep`),

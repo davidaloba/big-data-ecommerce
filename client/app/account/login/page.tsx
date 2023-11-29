@@ -1,4 +1,4 @@
-import Login from '@app/account/components/Auth'
+import Login from '@accountComponents/Auth'
 
 export default function Page({ params }) {
   return <Login />

@@ -1,3 +1,4 @@
+'use client'
 import Image from 'next/image'
 import { getStrapiMedia } from '@app/_global/utils/index'
 import Link from 'next/link'

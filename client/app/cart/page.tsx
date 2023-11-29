@@ -1,4 +1,4 @@
-import Cart from '@app/shop/components/Cart'
+import Cart from '@shopComponents/Cart'
 
 export default function Page() {
   return <Cart />
