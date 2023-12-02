@@ -1,66 +1,27 @@
 {
-  "include": [
-    "packages",
-    "pages",
-    "app",
-    ".next/types/**/*.ts"
-  ],
-  "exclude": [
-    "node_modules",
-    ".next",
-    ".history"
-  ],
+  "include": ["packages", "app", ".next/types/**/*.ts"],
+  "exclude": ["node_modules", ".next", ".history"],
   "compilerOptions": {
     "module": "esnext",
     "target": "es2015",
     "moduleResolution": "node",
     "jsx": "preserve",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": "./",
     "paths": {
-      "@globalStore/*": [
-        "packages/global/store/*"
-      ],
-      "@globalComponents/*": [
-        "packages/global/components/*"
-      ],
-      "@globalStyles/*": [
-        "packages/global/styles/*"
-      ],
-      "@globalUtils/*": [
-        "packages/global/utils/*"
-      ],
-      "@globalAssets/*": [
-        "packages/global/assets/*"
-      ],
-      "@globalTypes/*": [
-        "packages/global/__types/*"
-      ],
-      "@globalHooks/*": [
-        "packages/global/hooks/*"
-      ],
-      "@marketingModules/*": [
-        "packages/marketing/__modules/*"
-      ],
-      "@marketingTests/*": [
-        "packages/marketing/__tests__/*"
-      ],
-      "@marketingComponents/*": [
-        "packages/marketing/components/*"
-      ],
-      "@appModules/*": [
-        "packages/app/__modules/*"
-      ],
-      "@appUtils/*": [
-        "packages/app/utils/*"
-      ],
-      "@appComponents/*": [
-        "packages/app/components/*"
-      ]
+      "@app/*": ["packages/app/*"],
+      "@globalStore/*": ["packages/app/_global/store/*"],
+      "@globalStyles/*": ["packages/app/_global/styles/*"],
+      "@globalUtils/*": ["packages/app/_global/utils/*"],
+      "@globalAssets/*": ["packages/app/_global/assets/*"],
+      "@globalTypes/*": ["packages/app/_global/__types/*"],
+      "@globalHooks/*": ["packages/app/_global/hooks/*"],
+      "@globalComponents/*": ["packages/app/_global/components/*"],
+      "@accountComponents/*": ["packages/app/account/components/*"],
+      "@blogComponents/*": ["packages/app/blog/components/*"],
+      "@brochureComponents/*": ["packages/app/brochure/components/*"],
+      "@shopComponents/*": ["packages/app/shop/components/*"],
+      "@workComponents/*": ["packages/app/work/components/*"]
     },
     "allowJs": true,
     "skipLibCheck": true,
@@ -75,6 +36,7 @@
       {
         "name": "next"
       }
-    ]
+    ],
+    "strictNullChecks": true
   }
 }

@@ -1,38 +1,38 @@
 {
-  "name": "foodadvisor",
+  "name": "strapi_webapp_boilerplate",
   "private": true,
-  "version": "2.0.0",
-  "description": "Official Strapi Demo Application",
+  "version": "1.0.0",
+  "description": "Official Taavetti Strapi Web App Boilerplate",
   "scripts": {
     "dev": "strapi develop",
     "start": "strapi start",
     "build": "strapi build",
-    "strapi": "strapi",
-    "seed": "node script/seed.js"
+    "strapi": "strapi"
   },
   "devDependencies": {
-    "codemirror": "5.65.11"
+    "codemirror": "6.0.1"
   },
   "dependencies": {
-    "@ckeditor/strapi-plugin-ckeditor": "^0.0.5",
-    "@offset-dev/strapi-calendar": "^0.0.8",
-    "@strapi/plugin-color-picker": "^4.9.1",
-    "@strapi/plugin-graphql": "^4.9.0",
-    "@strapi/plugin-i18n": "4.9.0",
-    "@strapi/plugin-seo": "^1.7.7",
-    "@strapi/plugin-users-permissions": "4.9.0",
-    "@strapi/strapi": "4.9.0",
-    "@webbio/strapi-plugin-scheduler": "^0.1.2",
-    "better-sqlite3": "^7.6.2",
-    "fs-extra": "^10.0.0",
+    "@ckeditor/strapi-plugin-ckeditor": "^0.0.7",
+    "@offset-dev/strapi-calendar": "^0.0.10",
+    "@strapi/plugin-color-picker": "^4.13.6",
+    "@strapi/plugin-graphql": "^4.13.6",
+    "@strapi/plugin-i18n": "4.13.6",
+    "@strapi/plugin-seo": "^1.9.5",
+    "@strapi/plugin-users-permissions": "4.13.6",
+    "@strapi/strapi": "4.13.6",
+    "@webbio/strapi-plugin-scheduler": "^1.0.6",
+    "better-sqlite3": "^8.6.0",
+    "fs-extra": "^11.1.1",
     "mysql": "^2.18.1",
-    "sharp": "^0.31.3",
-    "strapi-plugin-cookie-manager": "^1.0.7",
-    "strapi-plugin-duplicate-button": "^1.1.7",
-    "strapi-plugin-generate-data": "^1.0.22",
-    "strapi-plugin-multi-select": "^1.1.0",
-    "strapi-plugin-populate-deep": "^1.1.2",
-    "strapi-plugin-sitemap": "^2.0.9",
+    "react-dom": "^18.2.0",
+    "sharp": "^0.32.5",
+    "strapi-plugin-cookie-manager": "^1.2.2",
+    "strapi-plugin-duplicate-button": "^1.1.13",
+    "strapi-plugin-generate-data": "^1.0.23",
+    "strapi-plugin-multi-select": "^1.2.2",
+    "strapi-plugin-populate-deep": "^3.0.0",
+    "strapi-plugin-sitemap": "^3.0.3",
     "strapi-plugin-todo": "^0.0.9",
     "unzip-stream": "^0.3.1",
     "uuid-v4": "^0.1.0"
@@ -41,7 +41,7 @@
     "name": "A Strapi developer"
   },
   "strapi": {
-    "uuid": "FOODADVISOR-LOCAL-91bcb9c3-39e5-43e4-ac15-05df0813913f"
+    "uuid": "STRAPI-BOILERPLATE-91bcb9c3-39e5-43e4-ac15-05df0813913f"
   },
   "engines": {
     "node": ">=14.x.x <=18.x.x",

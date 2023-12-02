@@ -9,8 +9,7 @@
     "displayName": "User"
   },
   "options": {
-    "draftAndPublish": false,
-    "timestamps": true
+    "draftAndPublish": false
   },
   "attributes": {
     "username": {
@@ -63,30 +62,34 @@
       "inversedBy": "users",
       "configurable": false
     },
-    "reviews": {
+    "firstName": {
+      "type": "string"
+    },
+    "gender": {
+      "type": "enumeration",
+      "enum": [
+        "male",
+        "female"
+      ]
+    },
+    "orders": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::review.review",
-      "mappedBy": "author"
+      "target": "api::order.order"
     },
-    "articles": {
+    "lastName": {
+      "type": "string"
+    },
+    "phone": {
+      "type": "string"
+    },
+    "dob": {
+      "type": "date"
+    },
+    "wishlist": {
       "type": "relation",
       "relation": "oneToMany",
-      "target": "api::article.article",
-      "mappedBy": "author"
-    },
-    "picture": {
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos"
-      ],
-      "type": "media",
-      "multiple": false
-    },
-    "job": {
-      "type": "string",
-      "required": true
+      "target": "api::product.product"
     }
   }
 }

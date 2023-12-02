@@ -1,5 +1,4 @@
-// const cronTasks = require('./cron-tasks');
-const cronTasks = require('@webbio/strapi-plugin-scheduler/cron-task');
+const cronTasks = require('./cron-tasks');
 
 module.exports = ({ env }) => ({
   url: env("PUBLIC_URL", env('PUBLIC_URL')),

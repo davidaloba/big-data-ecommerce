@@ -2,14 +2,16 @@ module.exports = {
   images: {
     remotePatterns: [
       {
-        protocol: 'https',
-        hostname: 'cms.yinkasamuels.com',
-        port: '',
+        protocol: 'http',
+        hostname: 'localhost',
+        port: '1338',
         pathname: '/uploads/**'
       }
     ]
   },
-  experimental: {},
+  experimental: {
+    serverActions: true
+  },
   typescript: {
     // Dangerously allow production builds to successfully complete even if your project has type errors.
     ignoreBuildErrors: true
