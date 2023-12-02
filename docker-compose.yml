@@ -1,18 +1,17 @@
-version: '3'
+version: "3"
 
 networks:
   traefiknet:
     name: proxy_traefiknet
     external: true
-    
 
 services:
   client:
-    container_name: yinkasamuels-client
+    container_name: big-data-ecommerce-client
     build:
       dockerfile: nextjs.Dockerfile.prod
     restart: always
-    image: yinkasamuels-client:latest
+    image: big-data-ecommerce-client:latest
     environment:
       NODE_ENV: ${NODE_ENV}
       NEXT_PUBLIC_API_PROTOCOL: ${NEXT_PUBLIC_API_PROTOCOL}
@@ -26,16 +25,16 @@ services:
       - traefiknet
     labels:
       - traefik.enable=true
-      - traefik.http.routers.yinkasamuels-client.entrypoints=websecure
-      - traefik.http.routers.yinkasamuels-client.rule=Host(`yinkasamuels.com`)
-      - traefik.http.routers.yinkasamuels-client.tls=true
-      - traefik.http.routers.yinkasamuels-client.tls.certresolver=myresolver
+      - traefik.http.routers.big-data-ecommerce-client.entrypoints=websecure
+      - traefik.http.routers.big-data-ecommerce-client.rule=Host(`big-data-ecommerce.davidaloba.xyz`)
+      - traefik.http.routers.big-data-ecommerce-client.tls=true
+      - traefik.http.routers.big-data-ecommerce-client.tls.certresolver=myresolver
 
   server:
-    container_name: yinkasamuels-server
+    container_name: big-data-ecommerce-server
     build:
       dockerfile: strapi.Dockerfile.prod
-    image: yinkasamuels-server:latest
+    image: big-data-ecommerce-server:latest
     restart: unless-stopped
     environment:
       NODE_ENV: ${NODE_ENV}
@@ -65,8 +64,7 @@ services:
       - traefiknet
     labels:
       - traefik.enable=true
-      - traefik.http.routers.yinkasamuels-server.entrypoints=websecure
-      - traefik.http.routers.yinkasamuels-server.rule=Host(`cms.yinkasamuels.com`)
-      - traefik.http.routers.yinkasamuels-server.tls=true
-      - traefik.http.routers.yinkasamuels-server.tls.certresolver=myresolver
-  
+      - traefik.http.routers.big-data-ecommerce-server.entrypoints=websecure
+      - traefik.http.routers.big-data-ecommerce-server.rule=Host(`cms.big-data-ecommerce.davidaloba.xyz`)
+      - traefik.http.routers.big-data-ecommerce-server.tls=true
+      - traefik.http.routers.big-data-ecommerce-server.tls.certresolver=myresolver
